@@ -1,5 +1,7 @@
 Ultimate Arena License
+
 September 2015
+
 Version 1.0
 
 Anyone is free to copy, modify, use, compile, or distribute this 
