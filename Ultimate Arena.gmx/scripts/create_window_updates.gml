@@ -1,0 +1,53 @@
+var WS = global.WSCALE;
+var HS = global.HSCALE;
+
+with(zui_create(WS - 200,HS/2,objUIWindow,-1))
+{
+    wID = "Updates";
+    callback = arena_ui;
+    zui_set_size(390,HS*.8);
+    with(zui_create(0,0,objUIWindowCaption))
+    {
+        caption = "Updates";
+        draggable = 1;
+    }
+    zui_create(0,0,oUIExitButton);
+    with(zui_create(5,__height - 45,objUIButton))
+    {
+        zui_set_anchor(0,0);
+
+        if(global.deadUpdates)
+        {
+            caption = "Death Updates On";
+            type = 3;
+        }
+        else
+        {
+            caption = "Death Updates Off";
+            type = 2;
+        }
+        
+
+    bID = 10;
+    zui_set_size(186,40);
+    callback = arena_ui;
+    
+    }
+    with(zui_create(__width - 5,__height - 45,objUIButton))
+    {
+        zui_set_anchor(1,0);
+        bID = 9;
+        if(global.otherUpdates)
+        {
+        caption = "Other Updates On";
+        type = 3;
+        }
+        else
+        {
+        caption = "Other Updates Off";
+        type = 2;
+        }
+        zui_set_size(186,40);
+        callback = arena_ui;
+    }
+} 
