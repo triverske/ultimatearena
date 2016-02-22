@@ -27,16 +27,23 @@ with(objUIButton)
         if(bID == 1)
         {
             file = get_open_filename("image|*.png", "");
-            newsp = sprite_add(file,0,0,0,0,0);
-            surf = surface_create(128,128);
-            surface_set_target(surf);
-            draw_sprite_stretched(newsp,0,0,0,128,128);
-            surface_reset_target();
-            
-            global.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
-            
-            sprite_delete(newsp);
-            surface_free(surf);
+            if(file != "")
+            {
+                newsp = sprite_add(file,0,0,0,0,0);
+                surf = surface_create(128,128);
+                surface_set_target(surf);
+                draw_sprite_stretched(newsp,0,0,0,128,128);
+                surface_reset_target();
+                
+                global.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
+                
+                sprite_delete(newsp);
+                surface_free(surf);
+            }
+            else
+            {
+                global.newImage = sFighterImage;
+            }
             
             with(oUIImage)
             {
