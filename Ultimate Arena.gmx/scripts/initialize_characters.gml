@@ -4,9 +4,9 @@ ini_open(working_directory + "characters\" + global.fNAME[0]);
 global.cNAME[0] = ini_read_string("character","name","NAMING ERROR");
 cImage = ini_read_string("character","image","sFighterImage");
         if (cImage != "sFighterImage")
-            global.IMAGES[0] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
+            global.cIMAGES[0] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
         else
-            global.IMAGES[0] = sFighterImage; 
+            global.cIMAGES[0] = sFighterImage; 
             
 tags = ini_read_string("character","tags","");
 if (tags != "")
@@ -31,9 +31,9 @@ while(global.fNAME[i] != "")
     global.cNAME[i] = ini_read_string("character","name","NAMING ERROR");
     cImage = ini_read_string("character","image","sFighterImage");
         if (cImage != "sFighterImage")
-            global.IMAGES[i] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
+            global.cIMAGES[i] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
         else
-            global.IMAGES[i] = sFighterImage; 
+            global.cIMAGES[i] = sFighterImage; 
             
             
     tags = ini_read_string("character","tags","");

@@ -120,7 +120,7 @@ with (objUIButton)
         }
         else if (bID == 8)
         {
-            ui_show_popup("fuck off I don't want to implement this");
+            
         }
     }
 }
@@ -146,7 +146,7 @@ with (objUIWindow)
                 gen = "Female";
             else
                 gen = "Male";
-            draw_sprite_stretched(global.IMAGES[global.IDselected],0,5,29,64,64);
+            draw_sprite_stretched(global.cIMAGES[global.IDselected],0,5,29,64,64);
             draw_text(73,29,global.cNAME[global.IDselected]);
             draw_text(73,44,"Gender: " + gen);
             ini_close();

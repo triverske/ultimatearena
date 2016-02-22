@@ -150,7 +150,7 @@ with (objUIButton)
         }
         else if (bID == 11)
         {
-            url_open("http://steamcommunity.com/sharedfiles/filedetails/?id=434032565");
+            url_open("https://github.com/triverske/ultimatearena");
             
         }
         if (bID == 12) // Endless Arena

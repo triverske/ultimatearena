@@ -37,6 +37,7 @@ with(zui_main())
         wID = "Character List";
         with(zui_create(0, 0, objUIWindowCaption))
             caption = "Characters (Click to edit)";
+            
         with(zui_create(0, 24, oUIListBox))
         {
             zui_set_anchor(0, 0);

@@ -4,9 +4,15 @@ with(oUIListBox)
     if(argument0 == id)
     {
         if(global.IDselected == argument0.sID)
+        {
             global.IDselected = -1;
+        }
         else
+        {
             global.IDselected = argument0.sID;
+            keyboard_string = global.cNAME[sID];
+            global.newImage = global.cIMAGES[sID];
+        }
     }
 }
 with(objUIButton)
@@ -58,7 +64,8 @@ with(objUIButton)
                 
             sprite_save(global.newImage,0,working_directory + "characters\" + keyboard_string +".png");
             
-            
+            initialize_characters();
+            room_restart();
         }
     }
 }
@@ -67,7 +74,7 @@ with(oUIImage)
     if(argument0 == id)
     {
         if(global.IDselected >= 0)
-            image = global.IMAGES[global.IDselected];
+            image = global.cIMAGES[global.IDselected];
     }
 }
 with(objUIField)

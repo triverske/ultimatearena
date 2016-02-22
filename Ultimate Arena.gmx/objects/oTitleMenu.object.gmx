@@ -66,8 +66,15 @@ with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 240,
      callback = title_buttons;
      bID = 1;
     }      
-
 with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 270, objUIButton)) {
+     //zui_set_anchor(0, 0);
+     zui_set_size(180, 24);
+     caption = "Github";
+     callback = title_buttons;
+     type = 1;
+     bID = 11;
+    }
+with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 300, objUIButton)) {
      //zui_set_anchor(0, 0);
      zui_set_size(180, 24);
      caption = "Exit Game";
