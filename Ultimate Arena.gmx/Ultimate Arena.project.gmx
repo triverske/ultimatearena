@@ -195,6 +195,7 @@
         <script>scripts\create_window_map.gml</script>
         <script>scripts\create_window_updates.gml</script>
         <script>scripts\create_window_charedit.gml</script>
+        <script>scripts\create_window_fighterlist.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>

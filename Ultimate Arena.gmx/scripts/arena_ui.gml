@@ -126,34 +126,16 @@ with (objUIButton)
         }
         if (bID == 7)
         {
-        
-        with(zui_main())
-        {
-            with(zui_create(445,348,objUIWindow,-1)) 
+            with(objUIWindow)
             {
-                zui_set_size(260,424);
-                with(zui_create(0,24,oUIListBox))
-                {
-                    zui_set_anchor(0,0);
-                    zui_set_size(260,400);
-                    caption = "TEST";
-                    callback = test22;
-                    draw_callback = drawcall_fighter;
-                    initialize_listbox(global.NAMES,0,global.fighters+1);
-        
-                    with(zui_create(0,50,oUIListBoxScroll))
-                    {
-                    }
-                }                
-                with(zui_create(0,0,objUIWindowCaption))
-                {
-                    caption = "Fighters";
-                    draggable = 1;
-                }
-                zui_create(0,0,oUIExitButton);
-
+                if(wID == "Fighter List")
+                    zui_destroy();
             }
-        }
+            with (zui_main()) 
+            {
+                create_window_fighterlist();
+            }
+       
         
         }
         if (bID == 8)
