@@ -26,7 +26,7 @@ defaultE[2,6] = "$1 trips over himself into a mound of fireants, killing *1.";
 defaultE[2,7] = "$1 runs as fast as he can, but the fireants catch up and kill *1.";
 
 
-for(i = 0;i < 2;i++)
+for(i = 0;i < 3;i++)
 {
     ini_open(working_directory + "events\" + defaultE[i,0] + ".ini");
     ini_write_string("event","name",defaultE[i,0]);

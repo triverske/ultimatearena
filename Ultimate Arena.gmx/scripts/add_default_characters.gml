@@ -40,23 +40,27 @@ defaultC[38] = "Malcolm X";
 defaultC[39] = "Spielberg";
 defaultC[40] = "Kim Jong-un";
 defaultC[41] = "Hulk Hogan";
+defaultC[42] = "Hillary";
+defaultC[43] = "Trump";
+defaultC[44] = "Bernie";
+defaultC[45] = "Ted Cruz";
+defaultC[46] = "Marco Rubio";
 
 v = sprite_duplicate(sDefaultCharacters);
 
-for(i = 0;i < 41;i++)
+for(i = 0;i < array_length_1d(defaultC);i++)
 {
-ini_open(working_directory + "characters\" + defaultC[i] + ".ini");
-ini_write_string("character","name",defaultC[i]);
-ini_write_string("character","image",defaultC[i]+".png");
-
-if(i == 35 || i == 36 || i == 17)
-    ini_write_real("character","gender",1)
-else
-    ini_write_real("character","gender",0)
+    show_debug_message(defaultC[i]);
+    ini_open(working_directory + "characters\" + defaultC[i] + ".ini");
+    ini_write_string("character","name",defaultC[i]);
+    ini_write_string("character","image",defaultC[i]+".png");
     
-sprite_save(v,i,working_directory + "characters\" +defaultC[i]+".png");
-
-
+    if(i == 35 || i == 36 || i == 17 || i == 42)
+        ini_write_real("character","gender",1)
+    else
+        ini_write_real("character","gender",0)
+        
+    sprite_save(v,i,working_directory + "characters\" +defaultC[i]+".png");
 }
 
 game_restart();
