@@ -405,7 +405,7 @@ else if (THIRST &lt; 1)
  
 sendCommand("WANDER",5);
 
-c = random(5);
+c = irandom(100);
 if(c == 3)
     sendCommand("THINK",1);
 
