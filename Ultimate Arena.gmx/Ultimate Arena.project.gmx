@@ -253,7 +253,6 @@
       <object>objects\oSetup</object>
       <object>objects\oSplashscreen</object>
       <object>objects\obj_backgroundAnimation</object>
-      <object>objects\oArenaLogo</object>
       <object>objects\oTitleMenu</object>
       <object>objects\oCharselect</object>
       <object>objects\oCharedit</object>
