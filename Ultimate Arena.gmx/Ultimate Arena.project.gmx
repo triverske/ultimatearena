@@ -182,7 +182,7 @@
     <scripts name="ui">
       <script>scripts\arena_ui.gml</script>
       <script>scripts\title_buttons.gml</script>
-      <script>scripts\test22.gml</script>
+      <script>scripts\fighter_list_ui.gml</script>
       <script>scripts\tag_ui.gml</script>
       <script>scripts\tag_draw_ui.gml</script>
       <script>scripts\fighter_select_buttons.gml</script>
@@ -309,7 +309,6 @@
       <object>objects\objUIField</object>
       <object>objects\objUIWindowCaption</object>
     </objects>
-    <object>objects\object42</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
@@ -318,7 +317,6 @@
     <room>rooms\rm_title</room>
     <room>rooms\rm_charedit</room>
     <room>rooms\rm_charselect</room>
-    <room>rooms\room9</room>
     <room>rooms\rm_tycoon</room>
     <room>rooms\rm_twitchCharselect</room>
     <room>rooms\rm_twitchWinroom</room>

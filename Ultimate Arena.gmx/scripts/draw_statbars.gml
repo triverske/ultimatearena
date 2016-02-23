@@ -4,22 +4,27 @@ p2 = argument1;
 p3 = argument2;
 p4 = argument3;
 status = argument4;
+var yPos = 36;
+
 c = 61/100
 if(p4<0)
     p4 = 0;
 
-draw_sprite(sStatusCheck,0,153,72);
+draw_sprite(sStatusCheck,0,153,yPos - 10);
+draw_sprite_stretched(global.IMAGES[fighter],0,155,yPos - 8,58,58);
+
 if(status == 0)
 {
-    draw_text(260,82,"Status: Alive");
+    draw_text(260,yPos,"Status: Alive");
 }
 else
 {
-    draw_text(260,82,"Status: Dead");
+    draw_text(260,yPos,"Status: Dead");
 }
+
 draw_set_alpha(.6); draw_set_color(c_black);
-draw_rectangle(304,93,304 - (61-(p1*c)),98,0);
-draw_rectangle(304,103,304 - (61-(p2*c)),108,0);
-draw_rectangle(304,113,304 - (61-(p3*c)),118,0);
-draw_rectangle(304,123,304 - (61-(p4*c)),128,0);
+draw_rectangle(304,yPos + 11,304 - (61-(p1*c)),yPos + 16,0);
+draw_rectangle(304,yPos + 21,304 - (61-(p2*c)),yPos + 26,0);
+draw_rectangle(304,yPos + 31,304 - (61-(p3*c)),yPos + 36,0);
+draw_rectangle(304,yPos + 41,304 - (61-(p4*c)),yPos + 46,0);
 draw_set_alpha(1);

@@ -1,12 +1,18 @@
-///title_buttons(id)
+///fighter_list_ui
 
-d = ceil(random(global.fighters))
-if (global.DEATH_ARRAY[d] == 0)
+// Whenever you click on a name in the fighter list, this is the code that runs.
+
+
+var WS = global.WSCALE;
+var HS = global.HSCALE;
+
+d = sID;
+if (global.DEATH_ARRAY[d] == 0 && d > 0 && d < global.fighters)
 {
-with (zui_main()) 
-{
-    d = other.d;
-        with(zui_create(display_get_gui_width()/2+350,348+i*194,objUIWindow,-1)) 
+    with (zui_main()) 
+    {
+        d = other.d;
+        with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
         {
             fighter = other.d;
             zui_set_size(312,174);
@@ -34,6 +40,26 @@ with (zui_main())
                 height = 150;
                 fID = other.fID
                 other.xID = id;
+            }
+            
+            with (zui_create(156, 106, objUIButton))
+            {
+                zui_set_anchor(0,0);
+                zui_set_size(150, 24);
+                caption = "Give Food & Water";
+                callback = arena_fighter_ui;
+                bID = 0;
+                fID = other.fID
+            }
+            
+            with (zui_create(156, 134, objUIButton))
+            {
+                zui_set_anchor(0,0);
+                zui_set_size(150, 24);
+                caption = "Kill";
+                callback = arena_fighter_ui;
+                bID = 1;
+                fID = other.fID
             }
             
             wID = "FIGHTER";

@@ -161,8 +161,9 @@ if (pressed)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (zui_get_hover()) {
-pressed = 1;
+            <string>if (zui_get_hover()) 
+{
+    pressed = 1;
 }
 
 

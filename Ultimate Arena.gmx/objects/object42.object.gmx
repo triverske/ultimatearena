@@ -31,7 +31,7 @@
     {
     zui_set_size(400,400);
     caption = "TEST";
-    callback = test22;
+    callback = fighter_list_ui;
     initialize_listbox(global.cNAME);
     
         with(zui_create(0,0,oUIListBoxScroll))
@@ -44,7 +44,7 @@
     {
     zui_set_size(250,380);
     
-    callback = test22;
+    callback = fighter_list_ui;
     initialize_listbox(global.cNAME);
     
     

@@ -1,4 +1,7 @@
 ///arena_ui(id)
+
+//Controls the UI for most of the arena-related things
+
 var WS = global.WSCALE;
 var HS = global.HSCALE;
 
@@ -209,68 +212,52 @@ with (objUIWindow)
 {
     if (argument0 == id)
     {
-    if(wID == "Map")
-    {
-
-        draw_surface_stretched(oGraphicsController.map,0,24,HS*.8,HS*.8);
-        
-    }
-
-    if(wID == "Stats")
-    {
-
-        draw_surface_ext(oSideMenu.sidemenu,20,24,1,1,0,c_white,1);
-        
-    }
-    if(wID == "Updates")
-    {
-        draw_surface_part(global.surf_updates,0,0,390,HS*.8 - 75,0,24);
-        
-    }
-    if(wID == "Sponsor Menu")
-    {
-
-        draw_surface_ext(oSponsorMenu.sponsormenu,0,24,1,1,0,c_white,1);
-        
-    }
-    if(wID == "Sandbox")
-    {
-        draw_set_valign(fa_top);
-        draw_text(70,77,"Care Package");
-        draw_text(70,215,"Land Mine");
-        draw_text(70,355,"Begin Event");
-        
-    }
-    if(wID == "FIGHTER")
-    {
-        if(instance_exists(xID.fID))
+        if(wID == "Map")
         {
-            
-                xID.left = xID.fID.x;
-                
-            
-                xID.top = xID.fID.y;
-            
-            
-            //xID.top = xID.fID.y - 75 - (500 - (other.fID.y - 75));
-            //draw_sprite(sStatusCheck,0,153,75);
-            draw_statbars(xID.fID.HP,xID.fID.HUNGER,xID.fID.THIRST,xID.fID.SANITY,0);
-            //draw_statbars(50,50,50,50);
-
-            
-        
-            
-        }
-        else
-        {
-            draw_statbars(0,0,0,0,1);
-        }
-        
-        draw_sprite_stretched(global.IMAGES[fighter],0,155,74,58,58);
     
-        
-        //draw_surface_part(oGraphicsController.map,fID.x - 50,fID.y-50,100,100,0,24);
-        
-    }
+            draw_surface_stretched(oGraphicsController.map,0,24,HS*.8,HS*.8);
+            
+        }
+    
+        if(wID == "Stats")
+        {
+    
+            draw_surface_ext(oSideMenu.sidemenu,20,24,1,1,0,c_white,1);
+            
+        }
+        if(wID == "Updates")
+        {
+            draw_surface_part(global.surf_updates,0,0,390,HS*.8 - 75,0,24);
+            
+        }
+        if(wID == "Sponsor Menu")
+        {
+    
+            draw_surface_ext(oSponsorMenu.sponsormenu,0,24,1,1,0,c_white,1);
+            
+        }
+        if(wID == "Sandbox")
+        {
+            draw_set_valign(fa_top);
+            draw_text(70,77,"Care Package");
+            draw_text(70,215,"Land Mine");
+            draw_text(70,355,"Begin Event");
+        }
+        if(wID == "FIGHTER")
+        {
+            if(instance_exists(xID.fID))
+            {   
+                xID.left = xID.fID.x;
+                xID.top = xID.fID.y;
+                draw_statbars(xID.fID.HP,xID.fID.HUNGER,xID.fID.THIRST,xID.fID.SANITY,0);   
+            }
+            else
+            {
+                draw_statbars(0,0,0,0,1);
+            }
+            
+            
+ 
+        }
     }
 }

@@ -104,7 +104,6 @@ with(zui_main())
     create_window_map();
     create_window_updates();
         
-    test22();
     
         /*with(zui_create(5,__height - 45,objUIButton))
         {

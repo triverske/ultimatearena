@@ -25,10 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*
-This object controls the little menu in the top left during an arena game.
-*/
-
+            <string>// This object controls the little menu in the top left during an arena game.
 
 with (zui_main())
 {   

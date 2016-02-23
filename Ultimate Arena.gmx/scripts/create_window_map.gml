@@ -1,7 +1,6 @@
 var WS = global.WSCALE;
 var HS = global.HSCALE;
 
-
 with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
 {
     wID = "Map";
@@ -14,6 +13,4 @@ with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
         draggable = 1;
     }
     zui_create(0,0,oUIExitButton);
-
-
 }
