@@ -209,7 +209,9 @@ DELAY--;
 alarm[0] = global.GAME_SPEED;
 alarm[1] = 2;
 speed = random(QUICK);
+
 sendCommand(STATE,CONTINUE); 
+
 if(STATE == "SLEEP")
 {
     if(time%(40+ENDURANCE*5) == 0)
@@ -259,6 +261,7 @@ else{
     else if(time%(96-ENDURANCE*2) == 0 &amp;&amp; HP &lt; 100)
         HP+=floor(random(3));
 }
+
 if (TIRED &lt; 30)
     sendCommand("SLEEP",30);
 if (TIRED &lt; 0)
@@ -405,9 +408,11 @@ else if (THIRST &lt; 1)
  
 sendCommand("WANDER",5);
 
-c = irandom(100);
-if(c == 3)
+if(irandom(100) == 1)
     sendCommand("THINK",1);
+    
+if(irandom(10000) == 1)
+    sendCommand("THINK RARE",1);
 
 if(HUNGER &lt; 50 &amp;&amp; INV[2] &gt; 0)
     sendCommand("EAT",20);
@@ -453,7 +458,8 @@ if (foodNear &amp;&amp; SKILL &gt; 2)
 }
 
 if(INV[0] &gt; 0)
-    sendCommand("PLACE MINE", 5);
+    if(irandom(20) == 1)
+        sendCommand("PLACE MINE", 1);
 
 var esc = floor(random(100000));
 if(x &gt; 490 || x &lt; 10  || y &gt; 490 || y &lt; 10) //Make sure fighter doesn't leave arena

@@ -190,6 +190,13 @@ switch(com)
     createUpdate(getText("think",fighterID),fighterID,0);
     break;
     
+    case "THINK RARE":
+    QUICK = 0;
+    DELAY = 10;
+    CONTINUE = 3;
+    createUpdate(getText("think_rare",fighterID),fighterID,0);
+    break;
+    
     case "MAKE SPEAR":
     QUICK = 0;
     INV[9]--;
