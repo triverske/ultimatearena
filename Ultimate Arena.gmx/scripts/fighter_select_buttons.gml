@@ -158,7 +158,7 @@ with (objUIWindow)
         if(!surface_exists(global.mapsurf))
             oCharselect.regen = 1;
         else
-            draw_surface_stretched(global.mapsurf,0,24,HS*.8,HS*.8);
+            draw_surface_stretched(global.mapsurf,0,24,HS*(512/720),HS*(512/720));
     }
     }
 }

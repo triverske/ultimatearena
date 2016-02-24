@@ -29,16 +29,8 @@
 regen = 0;
 startgame = 0;
 
-
-for (i = 0;i &lt; global.trees; i++)
-{
-    instance_create(global.treeloc[i,0],global.treeloc[i,1],oTree);
-}
-
-
 var WS = global.WSCALE;
 var HS = global.HSCALE;
-
 
 with (zui_main()) 
 {
@@ -99,7 +91,7 @@ with (zui_main())
     with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
     {
         wID = "Map Window";
-        zui_set_size(HS*.8,HS*.8+24);
+        zui_set_size(HS*(512/720),HS*(512/720)+24);
         zui_set_position(WS*.75,HS / 2);
         callback = fighter_select_buttons;
         
@@ -286,11 +278,6 @@ if (regen == 1)
 tile_size = 32;  // the size of your tiles
 show_minimap = true;
 
-with(oTree)
-{
-    instance_destroy();
-}
-
 // generate a map
 
 // argument0: defines the size (MUST be a power of 2!) Large sizes (&gt; 1024) take a while to load
@@ -319,7 +306,7 @@ with (zui_main())
     with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
     {
         wID = "Map Window";
-        zui_set_size(HS*.8,HS*.8+24);
+        zui_set_size(HS*(512/720),HS*(512/720)+24);
         zui_set_position(WS*.75,HS / 2);
         callback = fighter_select_buttons;
         
@@ -417,14 +404,6 @@ if (startgame == 1)
 draw_set_color(c_white);
 draw_set_valign(fa_top);
 draw_set_halign(fa_left);
-
-//MAP
-//draw_background(global.bck_minimap,460,0);
-//draw_rectangle_colour(460,1,959,500,c_0,c_0,c_0,c_0,1);
-
-
-
-//draw_text(460,518,"Press Enter to begin game, and G to generate a new map");
 </string>
           </argument>
         </arguments>

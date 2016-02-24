@@ -1,7 +1,7 @@
 if !surface_exists(map)
 {
-    map = surface_create(500,500);
-    realmap = surface_create(650,650);
+    map = surface_create(512,512);
+    realmap = surface_create(662,662);
 }
 
 surface_set_target(map);
@@ -67,16 +67,16 @@ with (oFighter)
     //if (INV[0] != 0)
         //draw_text(x,y+3,string(INV[0]));
 }
-draw_rectangle_colour(1,1,499,499,c_0,c_0,c_0,c_0,true);
+draw_rectangle_colour(1,1,511,511,c_0,c_0,c_0,c_0,true);
 
 draw_set_alpha(dif(global.TIME_HOURS,12)*.02);
-draw_rectangle_colour(1,1,499,499,c_navy,c_navy,c_navy,c_navy,false);
+draw_rectangle_colour(1,1,511,511,c_navy,c_navy,c_navy,c_navy,false);
 draw_set_alpha(1);
 
 surface_reset_target();
 surface_set_target(realmap);
 
-draw_rectangle_colour(0,0,650,650,c_black,c_black,c_black,c_black,false);
+draw_rectangle_colour(0,0,662,662,c_black,c_black,c_black,c_black,false);
 draw_surface(map,75,75);
 
 surface_reset_target();

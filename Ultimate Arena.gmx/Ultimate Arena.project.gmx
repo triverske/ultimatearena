@@ -312,7 +312,6 @@
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
     <room>rooms\rm_splashscreen</room>
-    <room>rooms\rm_fullscreen</room>
     <room>rooms\rm_title</room>
     <room>rooms\rm_charedit</room>
     <room>rooms\rm_charselect</room>

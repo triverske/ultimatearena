@@ -5,7 +5,7 @@ with(zui_create(WS - 200,HS/2,objUIWindow,-1))
 {
     wID = "Updates";
     callback = arena_ui;
-    zui_set_size(390,HS*.8);
+    zui_set_size(390,HS*(512/720));
     with(zui_create(0,0,objUIWindowCaption))
     {
         caption = "Updates";
