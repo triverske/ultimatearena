@@ -30,13 +30,13 @@ with (objUIButton)
             {
                 window_set_fullscreen(false);
                 display_set_gui_size(1280,720);
-                room_goto(rm_fullscreen);
+                room_restart();
             }
             else
             {
                 window_set_fullscreen(true);
                 display_set_gui_size(SW,SH);
-                room_goto(rm_fullscreen);
+                room_restart();
             }
         }
         else if (bID == 3)

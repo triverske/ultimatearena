@@ -6,7 +6,7 @@ with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
     wID = "Map";
     callback = arena_ui;
     global.mapwindow = id;
-    zui_set_size(HS*.8,HS*.8+24);
+    zui_set_size(HS*(512/720),HS*(512/720)+24);
     with(zui_create(0,0,objUIWindowCaption))
     {
         caption = "Map";

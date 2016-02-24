@@ -33,7 +33,6 @@ global.stone = 0;
 // set room size
 room_set_height(room_map, height * tile_size);
 room_set_width(room_map, width * tile_size);
-randomize();
 
 // create heightmap
 for (var i = 0; i < width; i += featuresize) {
@@ -68,7 +67,7 @@ for (var i = 0; i < width; i += 1) {
 }
 
 // create minimap surface
-var surf = surface_create(500, 500);
+var surf = surface_create(512, 512);
 surface_set_target(surf);
 
 var green  = make_color_rgb( 69, 157, 69);
@@ -77,7 +76,7 @@ var yellow = make_color_rgb(222, 196,104);
 var brown1 = make_color_rgb(164, 141, 60);
 var brown2 = make_color_rgb(130, 112, 48);
 var brown3 = make_color_rgb( 94,  80, 34);
-var map_tile_size = (500 / width);
+var map_tile_size = (512 / width);
 
 // give each terrain a unique color in the minimap
 for (var i = 0; i < width; i += 1) {
@@ -100,105 +99,73 @@ for (var i = 0; i < width; i += 1) {
   }
 }
 
-
 // create the minimap background 
-global.bck_minimap = background_create_from_surface(surf, 0, 0, 500, 500, 0, 0);
+global.bck_minimap = background_create_from_surface(surf, 0, 0, 512, 512, 0, 0);
 
-// create water objects 
-
+// create water
 while(global.waterpools < totalwaterpools)
 {
-    var rand1 = floor(random(500));
-    var rand2 = floor(random(500));
+    var rand1 = irandom(512);
+    var rand2 = irandom(512);
     if (surface_getpixel(surf,rand1,rand2) == blue)
     {
-        instance_create(rand1,rand2,oWater);
+        global.waterloc[global.waterpools,0] = rand1;
+        global.waterloc[global.waterpools,1] = rand2;
         global.waterpools++
     }
-}
-i = 0;
-with(oWater)
-{
-    global.waterloc[i,0] = x;
-    global.waterloc[i,1] = y;
-    i++;
 }
 
 // create trees
 while(global.trees < totaltrees)
 {
-    var rand1 = floor(random(500));
-    var rand2 = floor(random(500));
+    var rand1 = irandom(512);
+    var rand2 = irandom(512);
     if (surface_getpixel(surf,rand1,rand2) == green)
     {
-        instance_create(rand1,rand2,oTree);
+        global.treeloc[global.trees,0] = rand1;
+        global.treeloc[global.trees,1] = rand2;
+        draw_sprite(sTree,0,rand1,rand2);
         global.trees++;
     }
-}
-i = 0;
-with(oTree)
-{
-    global.treeloc[i,0] = x;
-    global.treeloc[i,1] = y;
-    i++;
-    draw_sprite(sTree,0,x,y);
 }
 
 //create wood
 while(global.wood < totalwood)
 {
-    var rand1 = floor(random(500));
-    var rand2 = floor(random(500));
+    var rand1 = irandom(512);
+    var rand2 = irandom(512);
     if (surface_getpixel(surf,rand1,rand2) != blue)
     {
-        instance_create(rand1,rand2,oWood);
+        global.woodloc[global.wood,0] = rand1;
+        global.woodloc[global.wood,1] = rand2;
         global.wood++;
     }
-}
-i = 0;
-with(oWood)
-{
-    global.woodloc[i,0] = x;
-    global.woodloc[i,1] = y;
-    i++;
 }
 
 //create rope
 while(global.rope < totalrope)
 {
-    var rand1 = floor(random(500));
-    var rand2 = floor(random(500));
+    var rand1 = irandom(512);
+    var rand2 = irandom(512);
     if (surface_getpixel(surf,rand1,rand2) != blue)
     {
-        instance_create(rand1,rand2,oRope);
+        global.ropeloc[global.rope,0] = rand1;
+        global.ropeloc[global.rope,1] = rand2;
         global.rope++;
     }
-}
-i = 0;
-with(oRope)
-{
-    global.ropeloc[i,0] = x;
-    global.ropeloc[i,1] = y;
-    i++;
 }
 
 //create stone
 while(global.stone < totalstone)
 {
-    var rand1 = floor(random(500));
-    var rand2 = floor(random(500));
+    var rand1 = irandom(512);
+    var rand2 = irandom(512);
     if (surface_getpixel(surf,rand1,rand2) != blue)
     {
-        instance_create(rand1,rand2,oStone);
+        global.stoneloc[global.stone,0] = rand1;
+        global.stoneloc[global.stone,1] = rand2;
         global.stone++;
     }
-}
-i = 0;
-with(oStone)
-{
-    global.stoneloc[i,0] = x;
-    global.stoneloc[i,1] = y;
-    i++;
 }
 
 surface_reset_target();

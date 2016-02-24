@@ -52,6 +52,7 @@ else
     initialize_events();
 
 }
+randomize();
 // variables
 tile_size = 32;  // the size of your tiles
 show_minimap = true;

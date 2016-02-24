@@ -215,7 +215,7 @@ with (objUIWindow)
         if(wID == "Map")
         {
     
-            draw_surface_stretched(oGraphicsController.map,0,24,HS*.8,HS*.8);
+            draw_surface_stretched(oGraphicsController.map,0,24,HS*(512/720),HS*(512/720));
             
         }
     
@@ -227,7 +227,7 @@ with (objUIWindow)
         }
         if(wID == "Updates")
         {
-            draw_surface_part(global.surf_updates,0,0,390,HS*.8 - 75,0,24);
+            draw_surface_part(global.surf_updates,0,0,390,HS*(512/720) - 75,0,24);
             
         }
         if(wID == "Sponsor Menu")
