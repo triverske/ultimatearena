@@ -6,7 +6,7 @@ var WS = global.WSCALE;
 var HS = global.HSCALE;
 
 var d = sID;
-if (d > 0 )
+if (d > 0 && global.DEATH_ARRAY[d] == 0)
 {
     with (zui_main()) 
     {
@@ -22,6 +22,7 @@ if (d > 0 )
             }
             zui_create(0,0,oUIExitButton,-1);
             
+
             with(oFighter)
             {
                 if (other.fighter == fighterID)
