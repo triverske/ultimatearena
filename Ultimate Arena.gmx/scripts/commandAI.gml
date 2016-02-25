@@ -416,7 +416,6 @@ switch(com)
     case "ATTACK DROWN":
     QUICK = 0;
     CONTINUE = 0;
-    show_message("DROWN");
     createUpdateM(getTextM("kill_drown",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
     kills++;
     XP+=12;

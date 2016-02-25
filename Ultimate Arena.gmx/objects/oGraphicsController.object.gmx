@@ -54,7 +54,7 @@ global.mapSize = mapSize;
 if(global.arena_events)
     event_timer = floor(random(20000)); 
     
-for(var i = 0;i&lt;global.fighters+1;i++)
+for(var i = 0;i&lt;global.fighters+2;i++)
     global.deadday[i] = "";
     
 for(var i = 0;i &lt; global.waterpools; i++)
@@ -82,6 +82,7 @@ for(var i = 1;i &lt; global.fighters+1; i++)
     global.IDLIST[i] = c;
     c.NAME = global.NAMES[i];
 }    
+global.NAMES[global.fighters+1] = "";
 
 if(global.landmines)
 {

@@ -2,19 +2,17 @@
 
 // Whenever you click on a name in the fighter list, this is the code that runs.
 
-
 var WS = global.WSCALE;
 var HS = global.HSCALE;
 
-d = sID;
-if (global.DEATH_ARRAY[d] == 0 && d > 0 && d < global.fighters)
+var d = sID;
+if (d > 0 )
 {
     with (zui_main()) 
     {
-        d = other.d;
         with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
         {
-            fighter = other.d;
+            fighter = d;
             zui_set_size(312,174);
             callback = arena_ui;
             with (zui_create(0, 0, objUIWindowCaption)) 

@@ -12,7 +12,7 @@ with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
         caption = "TEST";
         callback = fighter_list_ui;
         draw_callback = drawcall_fighter;
-        initialize_listbox(global.NAMES,0,global.fighters+1);
+        initialize_listbox(global.NAMES,0,global.fighters+2);
 
         with(zui_create(0,50,oUIListBoxScroll))
         {
