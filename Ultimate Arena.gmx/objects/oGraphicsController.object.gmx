@@ -51,8 +51,11 @@ audio_play_sound(snd_outdoor_ambient,0,1);
 audio_play_sound(snd_outdoor_ambient2,0,1);
 mapSize = 512;
 global.mapSize = mapSize;
+
 if(global.arena_events)
-    event_timer = floor(random(20000)); 
+    event_timer = irandom(20000);
+else
+    event_timer = 0;
     
 for(var i = 0;i&lt;global.fighters+2;i++)
     global.deadday[i] = "";

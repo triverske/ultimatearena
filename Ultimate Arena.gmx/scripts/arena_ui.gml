@@ -202,7 +202,8 @@ with (objUIButton)
         if (bID == 13)
         {
             if (!instance_exists(oArenaEvent))
-                oGraphicsController.event_timer = 1;
+                if(global.arena_events)
+                    oGraphicsController.event_timer = 1;
         }
         
         
