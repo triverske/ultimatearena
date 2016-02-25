@@ -52,7 +52,7 @@ with(zui_main())
             zui_set_size(120, 30);
             caption = "New Character";
             callback = charedit_ui;
-            bID = 0;
+            bID = 4;
         }
         
         with (zui_create(__width - 129, __height - 35, objUIButton)) 

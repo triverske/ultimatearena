@@ -115,7 +115,7 @@ with (objUIButton)
             {
                 type = 2;
                 global.custom_updates = 0;
-                caption = "Custom Sounds Off";
+                caption = "Custom Updates Off";
             }
         }
         else if (bID == 8)

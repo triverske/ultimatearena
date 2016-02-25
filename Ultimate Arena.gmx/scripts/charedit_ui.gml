@@ -69,9 +69,25 @@ with(objUIButton)
             ini_write_real("character","gender",newGender)
             ini_close();
                 
-            sprite_save(global.newImage,0,working_directory + "characters\" + keyboard_string +".png");
+            if(global.newImage != sFighterImage)
+            {
+                sprite_save(global.newImage,0,working_directory + "characters\" + keyboard_string +".png");
+            }
+            else
+            {
+                //Gamemaker doesn't let you save images from the resource tree.
+                tempSprite = sprite_duplicate(sFighterImage);
+                sprite_save(tempSprite,0,working_directory + "characters\" + keyboard_string +".png");
+                sprite_delete(tempSprite);
+            }
             
             initialize_characters();
+            room_restart();
+        }
+        if(bID == 4)
+        {
+            global.newImage = sFighterImage;
+            keyboard_string = "";
             room_restart();
         }
     }
