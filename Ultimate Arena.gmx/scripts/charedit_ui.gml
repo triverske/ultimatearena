@@ -26,7 +26,7 @@ with(objUIButton)
         }
         if(bID == 1)
         {
-            file = get_open_filename("image|*.png", "");
+            file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
             if(file != "")
             {
                 newsp = sprite_add(file,0,0,0,0,0);
