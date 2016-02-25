@@ -24,6 +24,6 @@ with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
         caption = "Fighter List";
         draggable = 1;
     }
-    zui_create(0,0,oUIExitButton);
+    zui_create(0,0,oUIExitButton,-1);
 }
 

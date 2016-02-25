@@ -20,7 +20,7 @@ if (d > 0 )
                 caption = global.NAMES[other.fighter] + " - Fighter \#" + string(other.fighter);
                 draggable = 1;
             }
-            zui_create(0, 0, oUIExitButton);
+            zui_create(0,0,oUIExitButton,-1);
             
             with(oFighter)
             {

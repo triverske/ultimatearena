@@ -45,7 +45,7 @@ with (objUIButton)
         
                         } 
                     }
-                    zui_create(0,0,oUIExitButton);
+                    zui_create(0,0,oUIExitButton,-1);
                 }
             }
             }

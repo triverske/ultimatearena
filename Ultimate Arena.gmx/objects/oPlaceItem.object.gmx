@@ -50,8 +50,14 @@
             <kind>1</kind>
             <string>if(global.mapwindow.__hover == 1)
 {
-    var xPos = (global.__zui_mx-global.mapwindow.__x)-(250);
-    var yPos = (global.__zui_my-global.mapwindow.__y)-(238);
+    var xPos = (global.__zui_mx-global.mapwindow.__x);
+    var yPos = (global.__zui_my-global.mapwindow.__y);
+    
+    xPos *= (512/(global.HSCALE*(512/720)));
+    yPos *= (512/(global.HSCALE*(512/720)));
+    
+    yPos -= 24;
+    
     if(image == sMine)
     {
         instance_create(xPos,yPos,oMine);
@@ -62,6 +68,10 @@
         e.INV[20] = 0;
         e.INV[2] = 2;
         e.INV[3] = 2;
+        e.wspearid = irandom(1);
+        e.sspearid = irandom(1);
+        e.wbowid = irandom(1);
+        e.sbowid = irandom(1);
     }
     audio_play_sound(snd_blip,0,0);
     instance_destroy();

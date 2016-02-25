@@ -909,13 +909,13 @@ if(alarm[0] == 1)
             <kind>1</kind>
             <string>check = 0;
 
-if(INV[4] = 0)
+if(INV[4] == 0)
     wspearid = other.wspearid;
-if(INV[5] = 0)
+if(INV[5] == 0)
     sspearid = other.sspearid;
-if(INV[6] = 0)
+if(INV[6] == 0)
     wbowid = other.wbowid;
-if(INV[7] = 0)
+if(INV[7] == 0)
     sbowid = other.sbowid;
     
 for(i=0;i&lt;20;i++)
