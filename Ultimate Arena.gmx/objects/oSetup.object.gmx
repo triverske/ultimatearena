@@ -28,7 +28,7 @@
             <string>var i = 1;
 global.TAG_COUNT = 0;
 
-draw_set_font(fntMain);
+draw_set_font(font0);
 if(directory_exists(working_directory + "characters"))
 {
     initialize_characters();

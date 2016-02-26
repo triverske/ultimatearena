@@ -39,13 +39,7 @@
       <filename>settings.ini</filename>
     </datafile>
   </datafiles>
-  <NewExtensions>
-    <extension index="0">extensions\ZUI engine</extension>
-    <extension index="1">extensions\Input Fields</extension>
-    <extension index="2">extensions\Free Shaders</extension>
-    <extension index="3">extensions\Random Map Generator</extension>
-    <extension index="4">extensions\TMC Vectors</extension>
-  </NewExtensions>
+  <NewExtensions/>
   <sounds name="sound">
     <sound>sound\snd_notification</sound>
     <sound>sound\snd_blip</sound>
@@ -204,32 +198,6 @@
     <scripts name="AI">
       <script>scripts\commandAI_wander.gml</script>
     </scripts>
-    <scripts name="vector scripts">
-      <script>scripts\speed_dir_to_vect2.gml</script>
-      <script>scripts\vect_add.gml</script>
-      <script>scripts\vect_comp.gml</script>
-      <script>scripts\vect_cross.gml</script>
-      <script>scripts\vect_direction.gml</script>
-      <script>scripts\vect_dist.gml</script>
-      <script>scripts\vect_div.gml</script>
-      <script>scripts\vect_divr.gml</script>
-      <script>scripts\vect_dot.gml</script>
-      <script>scripts\vect_len.gml</script>
-      <script>scripts\vect_mult.gml</script>
-      <script>scripts\vect_multr.gml</script>
-      <script>scripts\vect_norm.gml</script>
-      <script>scripts\vect_perp.gml</script>
-      <script>scripts\vect_rev.gml</script>
-      <script>scripts\vect_scaler.gml</script>
-      <script>scripts\vect_subtract.gml</script>
-      <script>scripts\vect_to_vect2.gml</script>
-      <script>scripts\vect_to_vect3.gml</script>
-      <script>scripts\vect_to_vect4.gml</script>
-      <script>scripts\vect_truncate.gml</script>
-      <script>scripts\vect2.gml</script>
-      <script>scripts\vect3.gml</script>
-      <script>scripts\vect4.gml</script>
-    </scripts>
     <script>scripts\playDeathSound.gml</script>
     <script>scripts\getPoints.gml</script>
     <script>scripts\string_parse.gml</script>
@@ -242,11 +210,7 @@
   <fonts name="fonts">
     <font>fonts\font0</font>
     <font>fonts\font4</font>
-    <font>fonts\fntMain</font>
-    <font>fonts\font0_new</font>
     <font>fonts\font_board</font>
-    <font>fonts\font5</font>
-    <font>fonts\font6</font>
   </fonts>
   <objects name="objects">
     <objects name="Menus &amp; Setup">
@@ -319,7 +283,6 @@
     <room>rooms\rm_twitchCharselect</room>
     <room>rooms\rm_twitchWinroom</room>
     <room>rooms\rm_game</room>
-    <room>rooms\room_map</room>
   </rooms>
   <constants number="2">
     <constant name="SW">display_get_width()</constant>

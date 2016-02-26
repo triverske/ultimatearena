@@ -66,29 +66,40 @@ with (objUIButton)
             
                         with (zui_create(5, __height - 35, objUIButton)) 
                         {
-                        zui_set_anchor(0,0);
-                        zui_set_size(230, 30);
-                        caption = "View Credits";
-                        callback = title_buttons;
-                        bID = 9;
+                            zui_set_anchor(0,0);
+                            zui_set_size(230, 30);
+                            caption = "View Credits";
+                            callback = title_buttons;
+                            bID = 9;
                         }
+                        /* No one used VSYNC anyway
                         with (zui_create(5, __height - 70, objUIButton)) 
                         {
-                        zui_set_anchor(0,0);
-                        zui_set_size(230, 30);
-                        if (global.vsync == 0)
+                            zui_set_anchor(0,0);
+                            zui_set_size(230, 30);
+                            if (global.vsync == 0)
+                            {
+                                caption = "VSYNC Off";
+                                type = 2
+                            }
+                            else
+                            {
+                                caption = "VSYNC On";
+                                type = 3;
+                            }
+                            callback = title_buttons;
+                            bID = 10;
+                        }
+                        */
+                        with (zui_create(5, __height - 70, objUIButton)) 
                         {
-                            caption = "VSYNC Off";
-                            type = 2
-                        }
-                        else
-                        {
-                            caption = "VSYNC On";
-                            type = 3;
-                        }
-                        callback = title_buttons;
-                        bID = 10;
-                        }
+                            zui_set_anchor(0,0);
+                            zui_set_size(230, 30);
+                            caption = "Toggle Fullscreen";
+                            callback = title_buttons;
+                            bID = 2;
+                        }    
+
 
                         with (zui_create(0, 0, objUIWindowCaption)) 
                         {

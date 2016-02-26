@@ -30,10 +30,6 @@ global.rope = 0;
 var totalstone = 5;
 global.stone = 0;
 
-// set room size
-room_set_height(room_map, height * tile_size);
-room_set_width(room_map, width * tile_size);
-
 // create heightmap
 for (var i = 0; i < width; i += featuresize) {
   for (var j = 0; j < height; j += featuresize) {
