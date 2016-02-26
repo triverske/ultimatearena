@@ -390,7 +390,14 @@ if (INSANE = 1)
 {
     sendCommand("Suicide",5);
     if(SKILL &gt; 4)
+    {
+        instance_deactivate_object(self);
+        var c = instance_nearest(x,y,oFighter);
+        instance_activate_object(self);
+        enemyloc[0] = c.x;
+        enemyloc[1] = c.y;
         sendCommand("HUNT", 50);
+    }
 }
     
 if (HUNGER &lt; 1)
@@ -426,19 +433,10 @@ else if(HUNGER &lt; 50 &amp;&amp; INV[2] == 0 &amp;&amp; foodloc[0] != 0)
 enemyNear = collision_circle(x,y-5,SIGHT,oFighter,0,1);
 if (enemyNear)
 {
-    instance_deactivate_object(self);
-    c = instance_nearest(x,y,oFighter);
-    instance_activate_object(self);
-    if(SKILL &gt; 4)
-    {
-        enemyloc[0] = c.x;
-        enemyloc[1] = c.y;
-    }
     if(HP &gt; 20 - (100 - SANITY) / 5)
         sendCommand("CHASE",50);
     else
-        sendCommand("RUN",45);
-        
+        sendCommand("RUN",45);  
 }
     
 waterNear = collision_circle(x,y-5,SIGHT,oWater,0,0);
