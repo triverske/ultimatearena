@@ -42,7 +42,7 @@ with (oUIListBox)
         
                         } 
                     }
-                zui_create(0, 0, oUIExitButton);
+                zui_create(0,0,oUIExitButton,-1);
                 with (zui_create(5, __height - 35, objUIButton)) 
     {
         zui_set_anchor(0,0);

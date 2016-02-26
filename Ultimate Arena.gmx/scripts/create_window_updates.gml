@@ -11,7 +11,7 @@ with(zui_create(WS - 200,HS/2,objUIWindow,-1))
         caption = "Updates";
         draggable = 1;
     }
-    zui_create(0,0,oUIExitButton);
+    zui_create(0,0,oUIExitButton,-1);
     with(zui_create(5,__height - 45,objUIButton))
     {
         zui_set_anchor(0,0);

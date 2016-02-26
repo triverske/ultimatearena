@@ -26,7 +26,7 @@ with(objUIButton)
         }
         if(bID == 1)
         {
-            file = get_open_filename("image|*.png", "");
+            file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
             if(file != "")
             {
                 newsp = sprite_add(file,0,0,0,0,0);
@@ -69,10 +69,37 @@ with(objUIButton)
             ini_write_real("character","gender",newGender)
             ini_close();
                 
-            sprite_save(global.newImage,0,working_directory + "characters\" + keyboard_string +".png");
+            if(global.newImage != sFighterImage)
+            {
+                sprite_save(global.newImage,0,working_directory + "characters\" + keyboard_string +".png");
+            }
+            else
+            {
+                //Gamemaker doesn't let you save images from the resource tree.
+                tempSprite = sprite_duplicate(sFighterImage);
+                sprite_save(tempSprite,0,working_directory + "characters\" + keyboard_string +".png");
+                sprite_delete(tempSprite);
+            }
             
             initialize_characters();
             room_restart();
+            keyboard_string = "";
+        }
+        if(bID == 4)
+        {
+            global.newImage = sFighterImage;
+            keyboard_string = "";
+            room_restart();
+        }
+        if(bID == 5)
+        {
+            if(global.IDselected != -1)
+            {
+                file_delete(working_directory + "characters\" + global.fNAME[global.IDselected]);
+                initialize_characters();
+                keyboard_string = "";
+                room_restart();
+            }
         }
     }
 }

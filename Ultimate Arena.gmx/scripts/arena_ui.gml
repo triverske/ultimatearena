@@ -65,7 +65,7 @@ with (objUIButton)
                         caption = "Stats";
                         draggable = 1;
                     }
-                    zui_create(0,0,oUIExitButton);
+                    zui_create(0,0,oUIExitButton,-1);
                 }
             }
         }
@@ -123,7 +123,7 @@ with (objUIButton)
             draggable = 1;
         }
         }
-        zui_create(0,0,oUIExitButton);
+        zui_create(0,0,oUIExitButton,-1);
                 }
             }
         }
@@ -202,7 +202,8 @@ with (objUIButton)
         if (bID == 13)
         {
             if (!instance_exists(oArenaEvent))
-                oGraphicsController.event_timer = 1;
+                if(global.arena_events)
+                    oGraphicsController.event_timer = 1;
         }
         
         

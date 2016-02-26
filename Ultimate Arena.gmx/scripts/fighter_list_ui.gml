@@ -2,19 +2,22 @@
 
 // Whenever you click on a name in the fighter list, this is the code that runs.
 
-
 var WS = global.WSCALE;
 var HS = global.HSCALE;
 
-d = sID;
-if (global.DEATH_ARRAY[d] == 0 && d > 0 && d < global.fighters)
+var d = sID;
+if (d > 0 && global.DEATH_ARRAY[d] == 0 && instance_number(objUIWindow) < 100)
 {
+    with (objUIWindowCaption) 
+    {
+        if(caption == global.NAMES[d] + " - Fighter \#" + string(d))
+            exit;
+    }
     with (zui_main()) 
     {
-        d = other.d;
         with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
         {
-            fighter = other.d;
+            fighter = d;
             zui_set_size(312,174);
             callback = arena_ui;
             with (zui_create(0, 0, objUIWindowCaption)) 
@@ -22,8 +25,9 @@ if (global.DEATH_ARRAY[d] == 0 && d > 0 && d < global.fighters)
                 caption = global.NAMES[other.fighter] + " - Fighter \#" + string(other.fighter);
                 draggable = 1;
             }
-            zui_create(0, 0, oUIExitButton);
+            zui_create(0,0,oUIExitButton,-1);
             
+
             with(oFighter)
             {
                 if (other.fighter == fighterID)

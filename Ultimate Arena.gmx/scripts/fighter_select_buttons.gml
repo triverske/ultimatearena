@@ -45,7 +45,7 @@ with (objUIButton)
         
                         } 
                     }
-                    zui_create(0,0,oUIExitButton);
+                    zui_create(0,0,oUIExitButton,-1);
                 }
             }
             }
@@ -115,7 +115,7 @@ with (objUIButton)
             {
                 type = 2;
                 global.custom_updates = 0;
-                caption = "Custom Sounds Off";
+                caption = "Custom Updates Off";
             }
         }
         else if (bID == 8)

@@ -50,7 +50,6 @@ v = sprite_duplicate(sDefaultCharacters);
 
 for(i = 0;i < array_length_1d(defaultC);i++)
 {
-    show_debug_message(defaultC[i]);
     ini_open(working_directory + "characters\" + defaultC[i] + ".ini");
     ini_write_string("character","name",defaultC[i]);
     ini_write_string("character","image",defaultC[i]+".png");
