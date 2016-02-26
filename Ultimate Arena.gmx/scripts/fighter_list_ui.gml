@@ -8,6 +8,11 @@ var HS = global.HSCALE;
 var d = sID;
 if (d > 0 && global.DEATH_ARRAY[d] == 0 && instance_number(objUIWindow) < 100)
 {
+    with (objUIWindowCaption) 
+    {
+        if(caption == global.NAMES[d] + " - Fighter \#" + string(d))
+            exit;
+    }
     with (zui_main()) 
     {
         with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
