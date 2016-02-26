@@ -83,12 +83,23 @@ with(objUIButton)
             
             initialize_characters();
             room_restart();
+            keyboard_string = "";
         }
         if(bID == 4)
         {
             global.newImage = sFighterImage;
             keyboard_string = "";
             room_restart();
+        }
+        if(bID == 5)
+        {
+            if(global.IDselected != -1)
+            {
+                file_delete(working_directory + "characters\" + global.fNAME[global.IDselected]);
+                initialize_characters();
+                keyboard_string = "";
+                room_restart();
+            }
         }
     }
 }

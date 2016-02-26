@@ -1,13 +1,12 @@
 with(zui_create(window_get_width()*.6, window_get_height()/2, objUIWindow))
 {
-    //zui_set_anchor(-.5, -.05);
-    zui_set_size(500, 300);
+
+    zui_set_size(500, 258);
     wID = "Editor Window";
     
     with(zui_create(0, 0, objUIWindowCaption))
     {
         caption = "Character Editor";
-        draggable = 1;
     }
         
     with(zui_create(5, 29, oUIImage))
@@ -48,20 +47,28 @@ with(zui_create(window_get_width()*.6, window_get_height()/2, objUIWindow))
         callback = charedit_ui;
         cID = 1;
     }
-    with (zui_create(200, 130, objUIButton)) 
+    with (zui_create(5, 223, objUIButton)) 
     {
         zui_set_anchor(0,0);
-        zui_set_size(100, 30);
+        zui_set_size(192, 30);
         caption = "Change Image";
         callback = charedit_ui;
         bID = 1;
     }
-    with (zui_create(200, 180, objUIButton)) 
+    with (zui_create(365, 223, objUIButton)) 
     {
         zui_set_anchor(0,0);
-        zui_set_size(100, 30);
+        zui_set_size(130, 30);
         caption = "Save Character";
         callback = charedit_ui;
         bID = 2;
+    }
+    with (zui_create(202, 223, objUIButton)) 
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(158, 30);
+        caption = "New Character";
+        callback = charedit_ui;
+        bID = 4;
     }
 }
