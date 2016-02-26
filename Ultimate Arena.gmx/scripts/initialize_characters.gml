@@ -1,4 +1,6 @@
 var i = 1;
+global.cNAME = 0;
+
 global.fNAME[0] = file_find_first(working_directory + "characters\*.ini", 0);
 ini_open(working_directory + "characters\" + global.fNAME[0]);
 
@@ -39,6 +41,7 @@ while(global.fNAME[i] != "")
 {
     ini_open(working_directory + "characters\" + global.fNAME[i]);
     global.cNAME[i] = ini_read_string("character","name","NAMING ERROR");
+    show_debug_message(global.cNAME[i]);
     cImage = ini_read_string("character","image","sFighterImage");
     
     if (cImage != "sFighterImage")
@@ -87,6 +90,7 @@ while(global.fNAME[i] != "")
     i++;
     global.fNAME[i] = file_find_next();
 }
+
 file_find_close();
 global.lNAME = i;
 global.fighters = i;
