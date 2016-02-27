@@ -356,11 +356,14 @@ if (startgame == 1)
     global.fighters = charcount;
     if (charcount &lt; 3)
         ui_show_popup("You need at least 4 characters#to begin the match.");
+    else if (charcount &gt; 100)
+        ui_show_popup("Only 100 can participate in a match.");
     else
     {
         c = instance_create(0,0,oRoomTransition);
         c.gotoroom = rm_game;
-        }
+    }
+    
     startgame = 0;
 }
 </string>

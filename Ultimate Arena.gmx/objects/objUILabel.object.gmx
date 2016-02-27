@@ -30,6 +30,7 @@ halign = 1;
 valign = 1;
 caption = "";
 callback = -1;
+lID = 0;
 </string>
           </argument>
         </arguments>
