@@ -38,7 +38,7 @@ instance_create(0,0,oSponsorMenu);
 draw_set_valign(fa_top);
 
 //show_debug_overlay(true);
-global.GAME_SPEED = 2;
+global.GAME_SPEED = 4;
 global.fighters_remaining = global.fighters;
 tile_size = 32;
 instance_create(0,0,oSignDeaths);
@@ -84,6 +84,11 @@ for(var i = 1;i &lt; global.fighters+1; i++)
     c.fighterID = i;
     global.IDLIST[i] = c;
     c.NAME = global.NAMES[i];
+    STRENGTH = global.STATS[i,0];
+    AGILITY = global.STATS[i,1];
+    ENDURANCE = global.STATS[i,2];
+    SKILL = global.STATS[i,3];
+    LUCK = global.STATS[i,4];
 }    
 global.NAMES[global.fighters+1] = "";
 
