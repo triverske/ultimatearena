@@ -7,16 +7,16 @@ with (objUIButton)
 {
     if (argument0 == id)
     {
-        if (bID == 0)
+        if (bID == 0) //return to title
         {
             c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_title;
         }
-        else if (bID == 1)
+        else if (bID == 1) //regen map
         {
             oCharselect.regen = 1;
         }
-        else if (bID == 2)
+        else if (bID == 2) //tag
         {
             if(global.TAG_COUNT > 0)
             {

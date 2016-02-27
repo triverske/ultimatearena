@@ -101,6 +101,14 @@ with(objUIButton)
                 room_restart();
             }
         }
+        if(bID == 6) //Add sound
+        {
+            file = get_open_filename("Sound File|*.ogg", "");
+            if(file != "")
+            {
+                //with the current setup I don't think it's possible to get a file then save it in the character directory
+            }
+        }
     }
 }
 with(oUIImage)

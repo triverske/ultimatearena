@@ -40,6 +40,7 @@ with(zui_create(window_get_width()*.6, window_get_height()/2, objUIWindow))
         type = 1;
         callback = charedit_ui;
         cID = 0;
+        value = 1;
     }
     with(zui_create(325, 75, objUICheckbox))
     {
@@ -47,6 +48,16 @@ with(zui_create(window_get_width()*.6, window_get_height()/2, objUIWindow))
         callback = charedit_ui;
         cID = 1;
     }
+    /*
+    with (zui_create(200, 105, objUIButton)) 
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(130, 30);
+        caption = "Add Death Sound";
+        callback = charedit_ui;
+        bID = 6;
+    }
+    */
     with (zui_create(5, 223, objUIButton)) 
     {
         zui_set_anchor(0,0);

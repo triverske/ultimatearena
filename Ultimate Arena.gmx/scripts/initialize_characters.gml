@@ -5,12 +5,15 @@ global.fNAME[0] = file_find_first(working_directory + "characters\*.ini", 0);
 ini_open(working_directory + "characters\" + global.fNAME[0]);
 
 global.cNAME[0] = ini_read_string("character","name","NAMING ERROR");
+global.cSOUNDS[0] = ini_read_string("character","deathsound","");
 cImage = ini_read_string("character","image","sFighterImage");
 
 if (cImage != "sFighterImage")
     global.cIMAGES[0] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
 else
     global.cIMAGES[0] = sFighterImage; 
+    
+
             
 if(global.cIMAGES[0] == -1)
 {
@@ -41,7 +44,8 @@ while(global.fNAME[i] != "")
 {
     ini_open(working_directory + "characters\" + global.fNAME[i]);
     global.cNAME[i] = ini_read_string("character","name","NAMING ERROR");
-    show_debug_message(global.cNAME[i]);
+    global.cSOUNDS[i] = ini_read_string("character","deathsound","");
+    
     cImage = ini_read_string("character","image","sFighterImage");
     
     if (cImage != "sFighterImage")
