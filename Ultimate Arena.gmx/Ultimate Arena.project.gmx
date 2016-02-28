@@ -237,6 +237,7 @@
       <object>objects\oMine</object>
       <object>objects\oStatusCheck</object>
       <object>objects\oSideMenu</object>
+      <object>objects\obj_hoverStats</object>
       <object>objects\oArenaEvent</object>
       <object>objects\oSponsorMenu</object>
       <object>objects\oSignDeaths</object>
@@ -272,7 +273,6 @@
       <object>objects\objUIField</object>
       <object>objects\objUIWindowCaption</object>
     </objects>
-    <object>objects\obj_hoverStats</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>

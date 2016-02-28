@@ -141,11 +141,13 @@ if(global.mapwindow.__hover == 1)
     xPos *= (512/(global.HSCALE*(512/720)));
     yPos *= (512/(global.HSCALE*(512/720)));
     
-    yPos -= 24;
+    yPos -= 18;
     
     c = instance_nearest(xPos,yPos,oFighter)
-    if(dif(c.x,xPos) &lt; 10)
-        if(dif(c.y,yPos) &lt; 10)
+    
+    var dis = 10 * (global.HSCALE/1280)
+    if(dif(c.x,xPos) &lt; dis)
+        if(dif(c.y,yPos) &lt; dis)
             draw_hover_stats(c);
 }
 </string>
