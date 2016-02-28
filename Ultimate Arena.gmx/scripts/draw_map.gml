@@ -85,10 +85,10 @@ surface_set_target(map);
 if(instance_exists(oArenaEvent))
 {
     draw_set_alpha(.6)
-    draw_rectangle_colour(0,500-24,500,500,c_red,c_red,c_maroon,c_maroon,0);
+    draw_rectangle_colour(0,512-24,512,512,c_red,c_red,c_maroon,c_maroon,0);
     draw_set_alpha(1);
     draw_set_halign(fa_middle);
-    draw_text_colour(250,500-22,"Arena Event! " + oArenaEvent.description,c_white,c_white,c_silver,c_silver,1);
+    draw_text_colour(256,512-22,"Arena Event! " + oArenaEvent.description,c_white,c_white,c_silver,c_silver,1);
 }
 
 surface_reset_target();
