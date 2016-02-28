@@ -48,7 +48,6 @@ with (objUIButton)
             c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_twitchCharselect;
             global.GAMETYPE = 1;
-            //ui_show_popup("This mode has been disabled#in the current build.");
         }
         else if (bID == 5) 
         {
@@ -110,32 +109,12 @@ with (objUIButton)
                 }
             }
         }
-        else if (bID == 7)
-        {
-            //var file;
-            //file = get_open_filename_ext("*.ini", "",global.path, "Open character file");
-            //ini_open(file);
-            //name = ini_read_string("character","name","NAMING ERROR");
-            
-        }
-        else if (bID == 8)
-        {
-            ini_open(working_directory + "characters\" + name + ".ini");
-            ini_write_string("character","name",name);
-            ini_close();
-            
-            
-        }
         else if (bID == 9)
         {
-            ui_show_popup_credits("Ultimate Arena v1.0##Developed by House Bonneau & Triverske##Programmers: Troy Bonneau, Matt Mozingo##Copyright 2016");
-            
-            
+            ui_show_popup_credits("Ultimate Arena v1.0##Developed by House Bonneau & Triverske##Programmers: Troy Bonneau, Matt Mozingo##Copyright 2016");     
         }
         else if (bID == 10)
         {
-            
-            
             if (type == 2)
             {
                 type = 3;
@@ -156,8 +135,6 @@ with (objUIButton)
                 ini_close();
                 caption = "VSYNC Off";
             }
-            
-            
         }
         else if (bID == 11)
         {
@@ -181,16 +158,3 @@ with (objUIButton)
     }
 }
 
-with (objUIWindow)
-{
-    if (argument0 == id)
-    {
-        if(wID == "Fighter Create") 
-        {
-        name = keyboard_string;
-        draw_text(4,40,name);
-        
-        
-        }
-    }
-}

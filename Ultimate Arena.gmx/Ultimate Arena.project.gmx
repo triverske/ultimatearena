@@ -96,6 +96,7 @@
     <sprite>sprites\sSSpear</sprite>
     <sprite>sprites\sSBow</sprite>
     <sprite>sprites\sTrap</sprite>
+    <sprite>sprites\spr_hoverStats</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>
@@ -196,9 +197,6 @@
     <script>scripts\string_parse_number.gml</script>
     <script>scripts\initialize_listbox.gml</script>
     <script>scripts\reverseArray.gml</script>
-    <scripts name="AI">
-      <script>scripts\commandAI_wander.gml</script>
-    </scripts>
     <script>scripts\playDeathSound.gml</script>
     <script>scripts\getPoints.gml</script>
     <script>scripts\string_parse.gml</script>
@@ -207,6 +205,7 @@
     <script>scripts\add_default_events.gml</script>
     <script>scripts\initialize_characters.gml</script>
     <script>scripts\initialize_events.gml</script>
+    <script>scripts\draw_hover_stats.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -273,6 +272,7 @@
       <object>objects\objUIField</object>
       <object>objects\objUIWindowCaption</object>
     </objects>
+    <object>objects\obj_hoverStats</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
