@@ -137,7 +137,7 @@ with (objUIWindow)
         {
             draw_sprite_stretched(sFighterImage,0,5,29,64,64);
             draw_text(73,29,"NO FIGHTER SELECTED");
-            draw_text(73,44,"GENDER:");
+            draw_text(73,44,"Gender:");
         }
         else
         {

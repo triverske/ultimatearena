@@ -136,6 +136,7 @@
       <script>scripts\ui_popup_close.gml</script>
       <script>scripts\ui_exit.gml</script>
       <script>scripts\ui_show_popup.gml</script>
+      <script>scripts\ui_show_popup_credits.gml</script>
       <script>scripts\ui_show_exit.gml</script>
       <script>scripts\zui_draw.gml</script>
       <script>scripts\zui_set_visible.gml</script>

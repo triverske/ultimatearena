@@ -337,11 +337,12 @@ if (startgame == 1)
             global.SOUNDS[charcount] = ini_read_string("character","deathsound","");
             global.FILES[charcount] = file;
             
-            global.STATS[charcount,0] = min(10,ini_read_real("character","strength",5));
-            global.STATS[charcount,1] = min(10,ini_read_real("character","agility",5));
-            global.STATS[charcount,2] = min(10,ini_read_real("character","endurance",5));
-            global.STATS[charcount,3] = min(10,ini_read_real("character","skill",5));
-            global.STATS[charcount,4] = min(10,ini_read_real("character","luck",5));
+            global.STATS[charcount,0] = max(min(10,ini_read_real("character","strength",5)),1);
+            global.STATS[charcount,1] = max(min(10,ini_read_real("character","agility",5)),1);
+            global.STATS[charcount,2] = max(min(10,ini_read_real("character","endurance",5)),1);
+            global.STATS[charcount,3] = max(min(10,ini_read_real("character","skill",5)),1);
+            global.STATS[charcount,4] = max(min(10,ini_read_real("character","luck",5)),1);
+            
             cImage = ini_read_string("character","image","sFighterImage");
             if (cImage != "sFighterImage")
                 global.IMAGES[charcount] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);

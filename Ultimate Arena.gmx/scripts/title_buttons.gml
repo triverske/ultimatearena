@@ -128,7 +128,7 @@ with (objUIButton)
         }
         else if (bID == 9)
         {
-            ui_show_popup("Ultimate Arena - Copyright 2015#Developed by House Bonneau & Triverske#Programmers: Troy Bonneau, Matt Mozingo");
+            ui_show_popup_credits("Ultimate Arena v1.0##Developed by House Bonneau & Triverske##Programmers: Troy Bonneau, Matt Mozingo##Copyright 2016");
             
             
         }
