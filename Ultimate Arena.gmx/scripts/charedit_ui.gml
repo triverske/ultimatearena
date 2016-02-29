@@ -19,7 +19,21 @@ with(oUIListBox)
             global.editStats[2] = min(10,ini_read_real("character","endurance",5));
             global.editStats[3] = min(10,ini_read_real("character","skill",5));
             global.editStats[4] = min(10,ini_read_real("character","luck",5));
+            var gen = ini_read_real("character","gender",0)
             ini_close();
+            
+            with(objUICheckbox)
+            {
+                if(gen == cID)
+                {
+                    value = 1;
+                }
+                else
+                {
+                    value = 0;
+                }
+            }
+            
             
             with(objUILabel)
                 if(lID > 0)
@@ -38,6 +52,7 @@ with(objUIButton)
         }
         if(bID == 1)
         {
+            var charname = keyboard_string;
             file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
             if(file != "")
             {
@@ -65,6 +80,7 @@ with(objUIButton)
                     image = global.newImage;
                 }
             }
+            keyboard_string = charname;
         }
         if(bID == 2) //Save Character
         {
