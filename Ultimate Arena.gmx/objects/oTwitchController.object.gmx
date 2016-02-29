@@ -51,7 +51,7 @@ voteType = 1;
 
 winscreen = 0;
 
-irc_create_socket("irc.twitch.tv",6667,"triverske","oauth:xn1fwy9hesf2471a0mt0e2pm7r9b0a","triverske",true)
+irc_create_socket("irc.twitch.tv",6667,user,oauth,user,true)
 alarm[0] = 1
 
 </string>
