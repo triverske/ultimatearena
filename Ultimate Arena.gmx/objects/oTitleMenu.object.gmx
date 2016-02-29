@@ -84,9 +84,9 @@ with (zui_main())
          bID = 3;
     }      
     
-    if(0)//global.TWITCHENABLED (twitch mode disabled)
+    if(1)//global.TWITCHENABLED (twitch mode disabled)
     {
-        with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2 + 300, objUIButton)) 
+        with (zui_create(display_get_gui_width()/2 + 190, display_get_gui_height() / 2 + 300, objUIButton)) 
         {
              //zui_set_anchor(0, 0);
              zui_set_size(180, 24);

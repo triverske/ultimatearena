@@ -89,7 +89,7 @@ if(v &lt; real(global.VERSION))
 }
 ini_close();
 
-if(global.TWITCHENABLED)
+//if(global.TWITCHENABLED)
     instance_create(0,0,oTwitchController);
 room_goto_next();
 //audio_play_sound(snd_wario,1,0);
