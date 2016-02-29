@@ -28,85 +28,88 @@
             <string>var WS = global.WSCALE;
 var HS = global.HSCALE;
 
-if(global.mapwindow.__hover == 1)
+if(instance_exists(global.mapwindow))
 {
-    var xPos = (global.__zui_mx-global.mapwindow.__x);
-    var yPos = (global.__zui_my-global.mapwindow.__y);
-    
-    xPos *= (512/(global.HSCALE*(512/720)));
-    yPos *= (512/(global.HSCALE*(512/720)));
-    
-    yPos -= 24;
-    
-    c = instance_nearest(xPos,yPos,oFighter)
-    var open = 0;
-    var d = c.fighterID
-    if(dif(c.x,xPos) &lt; 10)
-        if(dif(c.y,yPos) &lt; 10)
-            open = 1;
-
-
-    if (d &gt; 0 &amp;&amp; global.DEATH_ARRAY[d] == 0 &amp;&amp; instance_number(objUIWindow) &lt; 100 &amp;&amp; open == 1)
+    if(global.mapwindow.__hover == 1)
     {
-        with (objUIWindowCaption) 
+        var xPos = (global.__zui_mx-global.mapwindow.__x);
+        var yPos = (global.__zui_my-global.mapwindow.__y);
+        
+        xPos *= (512/(global.HSCALE*(512/720)));
+        yPos *= (512/(global.HSCALE*(512/720)));
+        
+        yPos -= 24;
+        
+        c = instance_nearest(xPos,yPos,oFighter)
+        var open = 0;
+        var d = c.fighterID
+        if(dif(c.x,xPos) &lt; 10)
+            if(dif(c.y,yPos) &lt; 10)
+                open = 1;
+    
+    
+        if (d &gt; 0 &amp;&amp; global.DEATH_ARRAY[d] == 0 &amp;&amp; instance_number(objUIWindow) &lt; 100 &amp;&amp; open == 1)
         {
-            if(caption == global.NAMES[d] + " - Fighter \#" + string(d))
-                exit;
-        }
-        with (zui_main()) 
-        {
-            with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
+            with (objUIWindowCaption) 
             {
-                fighter = d;
-                zui_set_size(312,174);
-                callback = arena_ui;
-                with (zui_create(0, 0, objUIWindowCaption)) 
+                if(caption == global.NAMES[d] + " - Fighter \#" + string(d))
+                    exit;
+            }
+            with (zui_main()) 
+            {
+                with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
                 {
-                    caption = global.NAMES[other.fighter] + " - Fighter \#" + string(other.fighter);
-                    draggable = 1;
+                    fighter = d;
+                    zui_set_size(312,174);
+                    callback = arena_ui;
+                    with (zui_create(0, 0, objUIWindowCaption)) 
+                    {
+                        caption = global.NAMES[other.fighter] + " - Fighter \#" + string(other.fighter);
+                        draggable = 1;
+                    }
+                    zui_create(0,0,oUIExitButton,-1);
+                    
+        
+                    with(oFighter)
+                    {
+                        if (other.fighter == fighterID)
+                            other.fID = id;
+                    }
+        
+                    with (zui_create(0, 24, oUIImage)) 
+                    {
+                        type = 2;
+                        image = oGraphicsController.realmap;
+                        left = other.fID.x - 75 - (500 - (other.fID.x - 75));
+                        top = other.fID.y - 75- (500 - (other.fID.y - 75));
+                        width = 150;
+                        height = 150;
+                        fID = other.fID
+                        other.xID = id;
+                    }
+                    
+                    with (zui_create(156, 106, objUIButton))
+                    {
+                        zui_set_anchor(0,0);
+                        zui_set_size(150, 24);
+                        caption = "Give Food &amp; Water";
+                        callback = arena_fighter_ui;
+                        bID = 0;
+                        fID = other.fID
+                    }
+                    
+                    with (zui_create(156, 134, objUIButton))
+                    {
+                        zui_set_anchor(0,0);
+                        zui_set_size(150, 24);
+                        caption = "Kill";
+                        callback = arena_fighter_ui;
+                        bID = 1;
+                        fID = other.fID
+                    }
+                    
+                    wID = "FIGHTER";
                 }
-                zui_create(0,0,oUIExitButton,-1);
-                
-    
-                with(oFighter)
-                {
-                    if (other.fighter == fighterID)
-                        other.fID = id;
-                }
-    
-                with (zui_create(0, 24, oUIImage)) 
-                {
-                    type = 2;
-                    image = oGraphicsController.realmap;
-                    left = other.fID.x - 75 - (500 - (other.fID.x - 75));
-                    top = other.fID.y - 75- (500 - (other.fID.y - 75));
-                    width = 150;
-                    height = 150;
-                    fID = other.fID
-                    other.xID = id;
-                }
-                
-                with (zui_create(156, 106, objUIButton))
-                {
-                    zui_set_anchor(0,0);
-                    zui_set_size(150, 24);
-                    caption = "Give Food &amp; Water";
-                    callback = arena_fighter_ui;
-                    bID = 0;
-                    fID = other.fID
-                }
-                
-                with (zui_create(156, 134, objUIButton))
-                {
-                    zui_set_anchor(0,0);
-                    zui_set_size(150, 24);
-                    caption = "Kill";
-                    callback = arena_fighter_ui;
-                    bID = 1;
-                    fID = other.fID
-                }
-                
-                wID = "FIGHTER";
             }
         }
     }
@@ -133,22 +136,25 @@ if(global.mapwindow.__hover == 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(global.mapwindow.__hover == 1)
+            <string>if(instance_exists(global.mapwindow))
 {
-    var xPos = (global.__zui_mx-global.mapwindow.__x);
-    var yPos = (global.__zui_my-global.mapwindow.__y);
-    
-    xPos *= (512/(global.HSCALE*(512/720)));
-    yPos *= (512/(global.HSCALE*(512/720)));
-    
-    yPos -= 18;
-    
-    c = instance_nearest(xPos,yPos,oFighter)
-    
-    var dis = 10 * (global.HSCALE/1280)
-    if(dif(c.x,xPos) &lt; dis)
-        if(dif(c.y,yPos) &lt; dis)
-            draw_hover_stats(c);
+    if(global.mapwindow.__hover == 1)
+    {
+        var xPos = (global.__zui_mx-global.mapwindow.__x);
+        var yPos = (global.__zui_my-global.mapwindow.__y);
+        
+        xPos *= (512/(global.HSCALE*(512/720)));
+        yPos *= (512/(global.HSCALE*(512/720)));
+        
+        yPos -= 18;
+        
+        c = instance_nearest(xPos,yPos,oFighter)
+        
+        var dis = 10 * (global.HSCALE/1280)
+        if(dif(c.x,xPos) &lt; dis)
+            if(dif(c.y,yPos) &lt; dis)
+                draw_hover_stats(c);
+    }
 }
 </string>
           </argument>
