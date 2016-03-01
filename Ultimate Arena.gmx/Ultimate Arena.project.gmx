@@ -40,11 +40,7 @@
     </datafile>
   </datafiles>
   <NewExtensions>
-    <extension index="0">extensions\ZUI engine</extension>
-    <extension index="1">extensions\Input Fields</extension>
-    <extension index="2">extensions\Free Shaders</extension>
-    <extension index="3">extensions\Random Map Generator</extension>
-    <extension index="4">extensions\TMC Vectors</extension>
+    <extension index="0">extensions\IRC Chat Connection for Twitch</extension>
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\snd_notification</sound>
@@ -102,6 +98,7 @@
     <sprite>sprites\sSSpear</sprite>
     <sprite>sprites\sSBow</sprite>
     <sprite>sprites\sTrap</sprite>
+    <sprite>sprites\spr_hoverStats</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>
@@ -142,6 +139,7 @@
       <script>scripts\ui_popup_close.gml</script>
       <script>scripts\ui_exit.gml</script>
       <script>scripts\ui_show_popup.gml</script>
+      <script>scripts\ui_show_popup_credits.gml</script>
       <script>scripts\ui_show_exit.gml</script>
       <script>scripts\zui_draw.gml</script>
       <script>scripts\zui_set_visible.gml</script>
@@ -173,12 +171,7 @@
     </scripts>
     <script>scripts\scr_generate_map.gml</script>
     <script>scripts\scr_display_map.gml</script>
-    <script>scripts\trace.gml</script>
     <script>scripts\string_extract.gml</script>
-    <script>scripts\sendVote.gml</script>
-    <script>scripts\getTwitchID.gml</script>
-    <script>scripts\createTwitchName.gml</script>
-    <script>scripts\irc_send_message.gml</script>
     <scripts name="ui">
       <script>scripts\arena_ui.gml</script>
       <script>scripts\title_buttons.gml</script>
@@ -201,52 +194,34 @@
     <script>scripts\string_parse_number.gml</script>
     <script>scripts\initialize_listbox.gml</script>
     <script>scripts\reverseArray.gml</script>
-    <scripts name="AI">
-      <script>scripts\commandAI_wander.gml</script>
-    </scripts>
-    <scripts name="vector scripts">
-      <script>scripts\speed_dir_to_vect2.gml</script>
-      <script>scripts\vect_add.gml</script>
-      <script>scripts\vect_comp.gml</script>
-      <script>scripts\vect_cross.gml</script>
-      <script>scripts\vect_direction.gml</script>
-      <script>scripts\vect_dist.gml</script>
-      <script>scripts\vect_div.gml</script>
-      <script>scripts\vect_divr.gml</script>
-      <script>scripts\vect_dot.gml</script>
-      <script>scripts\vect_len.gml</script>
-      <script>scripts\vect_mult.gml</script>
-      <script>scripts\vect_multr.gml</script>
-      <script>scripts\vect_norm.gml</script>
-      <script>scripts\vect_perp.gml</script>
-      <script>scripts\vect_rev.gml</script>
-      <script>scripts\vect_scaler.gml</script>
-      <script>scripts\vect_subtract.gml</script>
-      <script>scripts\vect_to_vect2.gml</script>
-      <script>scripts\vect_to_vect3.gml</script>
-      <script>scripts\vect_to_vect4.gml</script>
-      <script>scripts\vect_truncate.gml</script>
-      <script>scripts\vect2.gml</script>
-      <script>scripts\vect3.gml</script>
-      <script>scripts\vect4.gml</script>
-    </scripts>
     <script>scripts\playDeathSound.gml</script>
-    <script>scripts\getPoints.gml</script>
     <script>scripts\string_parse.gml</script>
     <script>scripts\string_rtrim.gml</script>
     <script>scripts\add_default_characters.gml</script>
     <script>scripts\add_default_events.gml</script>
     <script>scripts\initialize_characters.gml</script>
     <script>scripts\initialize_events.gml</script>
+    <script>scripts\draw_hover_stats.gml</script>
+    <script>scripts\string_to_color.gml</script>
+    <scripts name="twitch">
+      <script>scripts\getPoints.gml</script>
+      <script>scripts\trace.gml</script>
+      <script>scripts\createTwitchName.gml</script>
+      <script>scripts\getTwitchID.gml</script>
+      <script>scripts\sendVote.gml</script>
+      <script>scripts\irc_create_socket.gml</script>
+      <script>scripts\irc_handle_http.gml</script>
+      <script>scripts\irc_send_message.gml</script>
+      <script>scripts\irc_send_packet.gml</script>
+      <script>scripts\irc_handle_networking.gml</script>
+      <script>scripts\irc_refresh_followers.gml</script>
+      <script>scripts\irc_get_viewers.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
     <font>fonts\font4</font>
-    <font>fonts\fntMain</font>
-    <font>fonts\font0_new</font>
     <font>fonts\font_board</font>
-    <font>fonts\font5</font>
-    <font>fonts\font6</font>
   </fonts>
   <objects name="objects">
     <objects name="Menus &amp; Setup">
@@ -273,6 +248,7 @@
       <object>objects\oMine</object>
       <object>objects\oStatusCheck</object>
       <object>objects\oSideMenu</object>
+      <object>objects\obj_hoverStats</object>
       <object>objects\oArenaEvent</object>
       <object>objects\oSponsorMenu</object>
       <object>objects\oSignDeaths</object>
@@ -319,7 +295,6 @@
     <room>rooms\rm_twitchCharselect</room>
     <room>rooms\rm_twitchWinroom</room>
     <room>rooms\rm_game</room>
-    <room>rooms\room_map</room>
   </rooms>
   <constants number="2">
     <constant name="SW">display_get_width()</constant>

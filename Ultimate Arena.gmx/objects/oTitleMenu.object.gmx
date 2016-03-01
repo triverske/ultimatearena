@@ -36,68 +36,65 @@ if(audio_is_playing(snd_outdoor_ambient))
 
 with (zui_main()) 
 {
-//ui_show_popup("More features on the way,#thank you for playing!");
-with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2 + 120, objUIButton)) {
-    zui_set_size(180, 24);
-    caption = "Quick Match";
-    callback = title_buttons;
-    bID = 0;
-     
+    //ui_show_popup("More features on the way,#thank you for playing!");
+    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2 + 120, objUIButton)) 
+    {
+        zui_set_size(180, 24);
+        caption = "Quick Match";
+        callback = title_buttons;
+        bID = 0;
     }
-with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 180, objUIButton)) {
-     //zui_set_anchor(0, 0);
-     zui_set_size(180, 24);
-     caption = "Settings";
-     callback = title_buttons;
-     bID = 5;
+    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 150, objUIButton)) 
+    {
+         //zui_set_anchor(0, 0);
+         zui_set_size(180, 24);
+         caption = "Endless Arena";
+         callback = title_buttons;
+         bID = 12;
+    }
+    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 180, objUIButton)) 
+    {
+         //zui_set_anchor(0, 0);
+         zui_set_size(180, 24);
+         caption = "Settings";
+         callback = title_buttons;
+         bID = 5;
     }    
-
-with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 210, objUIButton)) {
-     //zui_set_anchor(0, 0);
-     zui_set_size(180, 24);
-     caption = "Toggle Fullscreen";
-     callback = title_buttons;
-     bID = 2;
-    }    
-with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 240, objUIButton)) {
-     //zui_set_anchor(0, 0);
-     zui_set_size(180, 24);
-     caption = "Edit Characters";
-     callback = title_buttons;
-     bID = 1;
+    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 210, objUIButton)) 
+    {
+         zui_set_size(180, 24);
+         caption = "Edit Characters";
+         callback = title_buttons;
+         bID = 1;
     }      
-with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 270, objUIButton)) {
-     //zui_set_anchor(0, 0);
-     zui_set_size(180, 24);
-     caption = "Github";
-     callback = title_buttons;
-     type = 1;
-     bID = 11;
+    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 240, objUIButton)) 
+    {
+         zui_set_size(180, 24);
+         caption = "Github";
+         callback = title_buttons;
+         type = 1;
+         bID = 11;
     }
-with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 300, objUIButton)) {
-     //zui_set_anchor(0, 0);
-     zui_set_size(180, 24);
-     caption = "Exit Game";
-     callback = title_buttons;
-     bID = 3;
+    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 270, objUIButton)) 
+    {
+         //zui_set_anchor(0, 0);
+         zui_set_size(180, 24);
+         caption = "Exit Game";
+         callback = title_buttons;
+         bID = 3;
     }      
-with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 150, objUIButton)) {
-     //zui_set_anchor(0, 0);
-     zui_set_size(180, 24);
-     caption = "Endless Arena";
-     callback = title_buttons;
-     bID = 12;
-    }
-if(0)//global.TWITCHENABLED (twitch mode disabled for demo)
-{
-with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2 + 150, objUIButton)) {
-     //zui_set_anchor(0, 0);
-     zui_set_size(180, 24);
-     type = 1;
-     caption = "Twitch Game";
-     callback = title_buttons;
-     bID = 4;
-    }  
+    
+    if(1)//global.TWITCHENABLED (twitch mode disabled)
+    {
+        with (zui_create(display_get_gui_width()/2 + 190, display_get_gui_height() / 2 + 300, objUIButton)) 
+        {
+             //zui_set_anchor(0, 0);
+             zui_set_size(180, 24);
+             type = 1;
+             caption = "Twitch Game";
+             callback = title_buttons;
+             bID = 4;
+        }  
     }
 }
 </string>

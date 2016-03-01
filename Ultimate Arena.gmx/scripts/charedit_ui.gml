@@ -12,6 +12,18 @@ with(oUIListBox)
             global.IDselected = argument0.sID;
             keyboard_string = global.cNAME[sID];
             global.newImage = global.cIMAGES[sID];
+            
+            ini_open(working_directory + "characters\" + global.fNAME[sID])
+            global.editStats[0] = min(10,ini_read_real("character","strength",5));
+            global.editStats[1] = min(10,ini_read_real("character","agility",5));
+            global.editStats[2] = min(10,ini_read_real("character","endurance",5));
+            global.editStats[3] = min(10,ini_read_real("character","skill",5));
+            global.editStats[4] = min(10,ini_read_real("character","luck",5));
+            ini_close();
+            
+            with(objUILabel)
+                if(lID > 0)
+                    caption = string(global.editStats[lID - 1]);
         }
     }
 }
@@ -54,7 +66,7 @@ with(objUIButton)
                 }
             }
         }
-        if(bID == 2)
+        if(bID == 2) //Save Character
         {
             ini_open(working_directory + "characters\" + keyboard_string + ".ini");
             ini_write_string("character","name",keyboard_string);
@@ -67,7 +79,21 @@ with(objUIButton)
                     other.newGender = cID;
             }
             ini_write_real("character","gender",newGender)
+            
+            ini_write_real("character","strength",global.editStats[0]);
+            ini_write_real("character","agility",global.editStats[1]);
+            ini_write_real("character","endurance",global.editStats[2]);
+            ini_write_real("character","skill",global.editStats[3]);
+            ini_write_real("character","luck",global.editStats[4]);
+            
             ini_close();
+            
+            for(i=0;i<5;i++)
+                global.editStats[i] = 5;
+                
+            with(objUILabel)
+                if(lID > 0)
+                    caption = "5";
                 
             if(global.newImage != sFighterImage)
             {
@@ -100,6 +126,36 @@ with(objUIButton)
                 keyboard_string = "";
                 room_restart();
             }
+        }
+        if(bID == 6) //Add sound
+        {
+            file = get_open_filename("Sound File|*.ogg", "");
+            if(file != "")
+            {
+                //with the current setup I don't think it's possible to get a file then save it in the character directory
+            }
+        }
+        if(bID == 7) //Increase Stat
+        {
+            global.editStats[stat]++;
+            
+            if(global.editStats[stat] > 10)
+                global.editStats[stat] = 10;
+                
+            with(objUILabel)
+                if(lID == other.stat + 1)
+                    caption = string(global.editStats[other.stat]);
+        }
+        if(bID == 8) //Decrease Stat
+        {
+            global.editStats[stat]--;
+            
+            if(global.editStats[stat] < 1)
+                global.editStats[stat] = 1;
+                
+            with(objUILabel)
+                if(lID == other.stat + 1)
+                    caption = string(global.editStats[other.stat]);
         }
     }
 }

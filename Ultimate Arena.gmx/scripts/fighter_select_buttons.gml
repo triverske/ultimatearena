@@ -7,16 +7,16 @@ with (objUIButton)
 {
     if (argument0 == id)
     {
-        if (bID == 0)
+        if (bID == 0) //return to title
         {
             c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_title;
         }
-        else if (bID == 1)
+        else if (bID == 1) //regen map
         {
             oCharselect.regen = 1;
         }
-        else if (bID == 2)
+        else if (bID == 2) //tag
         {
             if(global.TAG_COUNT > 0)
             {
@@ -137,7 +137,7 @@ with (objUIWindow)
         {
             draw_sprite_stretched(sFighterImage,0,5,29,64,64);
             draw_text(73,29,"NO FIGHTER SELECTED");
-            draw_text(73,44,"GENDER:");
+            draw_text(73,44,"Gender:");
         }
         else
         {

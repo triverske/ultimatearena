@@ -48,7 +48,6 @@ with (objUIButton)
             c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_twitchCharselect;
             global.GAMETYPE = 1;
-            //ui_show_popup("This mode has been disabled#in the current build.");
         }
         else if (bID == 5) 
         {
@@ -66,29 +65,40 @@ with (objUIButton)
             
                         with (zui_create(5, __height - 35, objUIButton)) 
                         {
-                        zui_set_anchor(0,0);
-                        zui_set_size(230, 30);
-                        caption = "View Credits";
-                        callback = title_buttons;
-                        bID = 9;
+                            zui_set_anchor(0,0);
+                            zui_set_size(230, 30);
+                            caption = "View Credits";
+                            callback = title_buttons;
+                            bID = 9;
                         }
+                        /* No one used VSYNC anyway
                         with (zui_create(5, __height - 70, objUIButton)) 
                         {
-                        zui_set_anchor(0,0);
-                        zui_set_size(230, 30);
-                        if (global.vsync == 0)
+                            zui_set_anchor(0,0);
+                            zui_set_size(230, 30);
+                            if (global.vsync == 0)
+                            {
+                                caption = "VSYNC Off";
+                                type = 2
+                            }
+                            else
+                            {
+                                caption = "VSYNC On";
+                                type = 3;
+                            }
+                            callback = title_buttons;
+                            bID = 10;
+                        }
+                        */
+                        with (zui_create(5, __height - 70, objUIButton)) 
                         {
-                            caption = "VSYNC Off";
-                            type = 2
-                        }
-                        else
-                        {
-                            caption = "VSYNC On";
-                            type = 3;
-                        }
-                        callback = title_buttons;
-                        bID = 10;
-                        }
+                            zui_set_anchor(0,0);
+                            zui_set_size(230, 30);
+                            caption = "Toggle Fullscreen";
+                            callback = title_buttons;
+                            bID = 2;
+                        }    
+
 
                         with (zui_create(0, 0, objUIWindowCaption)) 
                         {
@@ -99,32 +109,12 @@ with (objUIButton)
                 }
             }
         }
-        else if (bID == 7)
-        {
-            //var file;
-            //file = get_open_filename_ext("*.ini", "",global.path, "Open character file");
-            //ini_open(file);
-            //name = ini_read_string("character","name","NAMING ERROR");
-            
-        }
-        else if (bID == 8)
-        {
-            ini_open(working_directory + "characters\" + name + ".ini");
-            ini_write_string("character","name",name);
-            ini_close();
-            
-            
-        }
         else if (bID == 9)
         {
-            ui_show_popup("Ultimate Arena - Copyright 2015#Developed by House Bonneau & Triverske#Programmers: Troy Bonneau, Matt Mozingo");
-            
-            
+            ui_show_popup_credits("Ultimate Arena v" + global.VERSION + "##Developed by House Bonneau & Triverske##Programmers: Troy Bonneau, Matt Mozingo##Copyright 2016");     
         }
         else if (bID == 10)
         {
-            
-            
             if (type == 2)
             {
                 type = 3;
@@ -145,8 +135,6 @@ with (objUIButton)
                 ini_close();
                 caption = "VSYNC Off";
             }
-            
-            
         }
         else if (bID == 11)
         {
@@ -170,16 +158,3 @@ with (objUIButton)
     }
 }
 
-with (objUIWindow)
-{
-    if (argument0 == id)
-    {
-        if(wID == "Fighter Create") 
-        {
-        name = keyboard_string;
-        draw_text(4,40,name);
-        
-        
-        }
-    }
-}

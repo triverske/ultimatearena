@@ -35,10 +35,11 @@ global.kill_count = 0;
 global.event_kills = 0;
 
 instance_create(0,0,oSponsorMenu);
+instance_create(0,0,obj_hoverStats);
 draw_set_valign(fa_top);
 
 //show_debug_overlay(true);
-global.GAME_SPEED = 2;
+global.GAME_SPEED = 4;
 global.fighters_remaining = global.fighters;
 tile_size = 32;
 instance_create(0,0,oSignDeaths);
@@ -84,6 +85,11 @@ for(var i = 1;i &lt; global.fighters+1; i++)
     c.fighterID = i;
     global.IDLIST[i] = c;
     c.NAME = global.NAMES[i];
+    STRENGTH = global.STATS[i,0];
+    AGILITY = global.STATS[i,1];
+    ENDURANCE = global.STATS[i,2];
+    SKILL = global.STATS[i,3];
+    LUCK = global.STATS[i,4];
 }    
 global.NAMES[global.fighters+1] = "";
 
@@ -98,7 +104,7 @@ with(zui_main())
     create_window_map();
     create_window_updates();
     
-    with(zui_create(71,display_get_gui_height()/2,objUIWindow,-1))
+    with(zui_create(75,global.HSCALE/2,objUIWindow,-1))
     {
         wID = "Stats";
         callback = arena_ui;

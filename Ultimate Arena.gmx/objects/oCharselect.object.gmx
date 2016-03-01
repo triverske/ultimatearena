@@ -319,27 +319,6 @@ with (zui_main())
 }
 }
 
-
-
-if (keyboard_check_pressed(ord('S')))
-{
-    with (global.select_list)
-    {
-        check = 0;
-        for(i = 0;i &lt; length; i++)
-        {
-            if(selected[i] == 0)
-                check += 1;
-        }
-        for(i = 0; i &lt; length; i++)
-        {
-            if(check == length)
-                selected[i] = 1;
-            else
-                selected[i] = 0;
-        }
-    }
-}
 var charcount = 0;
 if (startgame == 1)
 {
@@ -357,6 +336,13 @@ if (startgame == 1)
             global.GENDER[charcount] = ini_read_real("character","gender",0);
             global.SOUNDS[charcount] = ini_read_string("character","deathsound","");
             global.FILES[charcount] = file;
+            
+            global.STATS[charcount,0] = max(min(10,ini_read_real("character","strength",5)),1);
+            global.STATS[charcount,1] = max(min(10,ini_read_real("character","agility",5)),1);
+            global.STATS[charcount,2] = max(min(10,ini_read_real("character","endurance",5)),1);
+            global.STATS[charcount,3] = max(min(10,ini_read_real("character","skill",5)),1);
+            global.STATS[charcount,4] = max(min(10,ini_read_real("character","luck",5)),1);
+            
             cImage = ini_read_string("character","image","sFighterImage");
             if (cImage != "sFighterImage")
                 global.IMAGES[charcount] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
@@ -371,11 +357,14 @@ if (startgame == 1)
     global.fighters = charcount;
     if (charcount &lt; 3)
         ui_show_popup("You need at least 4 characters#to begin the match.");
+    else if (charcount &gt; 100)
+        ui_show_popup("Only 100 can participate in a match.");
     else
     {
         c = instance_create(0,0,oRoomTransition);
         c.gotoroom = rm_game;
-        }
+    }
+    
     startgame = 0;
 }
 </string>

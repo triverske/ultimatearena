@@ -394,9 +394,12 @@ if (INSANE = 1)
         instance_deactivate_object(self);
         var c = instance_nearest(x,y,oFighter);
         instance_activate_object(self);
-        enemyloc[0] = c.x;
-        enemyloc[1] = c.y;
-        sendCommand("HUNT", 50);
+        if(instance_exists(c))
+        {
+            enemyloc[0] = c.x;
+            enemyloc[1] = c.y;
+            sendCommand("HUNT", 50);
+        }
     }
 }
     

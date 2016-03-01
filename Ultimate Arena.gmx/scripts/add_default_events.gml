@@ -25,8 +25,25 @@ defaultE[2,5] = "$1 is overcome by a massive horde of fireants.";
 defaultE[2,6] = "$1 trips over himself into a mound of fireants, killing *1.";
 defaultE[2,7] = "$1 runs as fast as he can, but the fireants catch up and kill *1.";
 
+defaultE[3,0] = "Pirates";
+defaultE[3,1] = "Pirates suddenly appear out of nowhere!";
+defaultE[3,2] = 20;
+defaultE[3,3] = 4;
+defaultE[3,4] = "$1 attempts to fight off the pirates, but fails!";
+defaultE[3,5] = "$1 is stabbed by a drunk pirate.";
+defaultE[3,6] = "$1 trips over himself into a pub full of pirates, killing *1.";
+defaultE[3,7] = "$1 runs, but couldn't hide from the pirates.";
 
-for(i = 0;i < 3;i++)
+defaultE[4,0] = "Ebola";
+defaultE[4,1] = "A strain of Ebola is found amongst the fighters!";
+defaultE[4,2] = 10;
+defaultE[4,3] = 3;
+defaultE[4,4] = "$1 couldn't recover from Ebola.";
+defaultE[4,5] = "$1 falls to Ebola";
+defaultE[4,6] = "$1 is no match for the mighty Ebola virus.";
+
+
+for(i = 0;i < 5;i++)
 {
     ini_open(working_directory + "events\" + defaultE[i,0] + ".ini");
     ini_write_string("event","name",defaultE[i,0]);

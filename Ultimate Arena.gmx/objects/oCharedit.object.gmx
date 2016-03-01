@@ -27,6 +27,10 @@
             <kind>1</kind>
             <string>global.IDselected = -1;
 global.newImage = sFighterImage;
+
+for(i=0;i&lt;5;i++)
+    global.editStats[i] = 5;
+    
 with(zui_main())
 {
     with(zui_create(0, 0, objUIWindow))

@@ -7,7 +7,8 @@ STATE = com;
 switch(com)
 {   
     case "WANDER":
-    commandAI_wander();
+    wanderAngle += random(1) * wanderChange - wanderChange * .5;//change the angle randomly to make it wander
+    DIR = wanderAngle;
     QUICK = .5 + AGILITY/10;
     CONTINUE = 100;
     break;

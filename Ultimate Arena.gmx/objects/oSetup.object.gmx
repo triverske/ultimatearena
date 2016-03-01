@@ -25,10 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var i = 1;
+            <string>global.VERSION = "1.1";
+
+
+var i = 1;
 global.TAG_COUNT = 0;
 
-draw_set_font(fntMain);
+draw_set_font(font0);
 if(directory_exists(working_directory + "characters"))
 {
     initialize_characters();
@@ -76,8 +79,17 @@ global.CODENAME = "Basilisk";
 ini_open("settings.ini");
 global.TWITCHENABLED = ini_read_real("twitch","enable",0);
 global.vsync = ini_read_real("settings","vsync",0);
+
+var v = ini_read_real("settings","version",1);
+
+if(v &lt; real(global.VERSION))
+{
+    ini_write_real("settings","version",real(global.VERSION));
+    add_default_events();
+}
 ini_close();
-if(global.TWITCHENABLED)
+
+//if(global.TWITCHENABLED)
     instance_create(0,0,oTwitchController);
 room_goto_next();
 //audio_play_sound(snd_wario,1,0);
