@@ -51,17 +51,24 @@ with(oSBow)
     if(dropped)
         draw_self();
 }
+
+
+draw_set_color(c_red);
+with (oFighter)
+{
+    draw_sprite_ext(sFighterS,INSANE,x,y,1,1,0,c_white,1);
+    //if (INV[0] != 0)
+        //draw_text(x,y+3,string(INV[0]));
+}
+
 with (oExplosion)
 {
     draw_self();
 }
 
-draw_set_color(c_red);
-with (oFighter)
+with(obj_popup)
 {
-    draw_sprite_ext(sFighterS,INSANE,x,y,1,1,0,color,1);
-    //if (INV[0] != 0)
-        //draw_text(x,y+3,string(INV[0]));
+    draw_self();
 }
 draw_rectangle_colour(1,1,511,511,c_0,c_0,c_0,c_0,true);
 

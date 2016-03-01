@@ -99,6 +99,7 @@
     <sprite>sprites\sSBow</sprite>
     <sprite>sprites\sTrap</sprite>
     <sprite>sprites\spr_hoverStats</sprite>
+    <sprite>sprites\spr_alert</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>
@@ -286,6 +287,7 @@
       <object>objects\objUIField</object>
       <object>objects\objUIWindowCaption</object>
     </objects>
+    <object>objects\obj_popup</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>

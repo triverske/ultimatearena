@@ -434,11 +434,12 @@ switch(com)
     c = random(10)
     if(c+SKILL>=5)
     {
-    var w = instance_create(x,y,oMine);
-    w.owner = self;
-    INV[0]--;
+        var w = instance_create(x,y,oMine);
+        w.owner = self;
+        INV[0]--;
     }
-    else{
+    else
+    {
         HP = 0;
         instance_create(x,y,oExplosion);
         createUpdate(getText("die_landmine_p",fighterID),fighterID,1);
