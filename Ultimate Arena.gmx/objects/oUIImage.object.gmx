@@ -61,13 +61,24 @@ callback = -1;
             <string>draw_set_color(color);
 
 if (type == 0)
+{
     draw_sprite_ext(image,0,0,0,scale,scale,0,color,alpha);
+}
 else if (type == 1)
+{
     draw_background_ext(image,0,0,scale,scale,0,color,alpha);
+}
 else if (type == 2 &amp;&amp; width == 0)
-    draw_surface_ext(image,0,0,scale,scale,0,color,alpha);
+{
+    if(surface_exists(image))
+        draw_surface_ext(image,0,0,scale,scale,0,color,alpha);
+}
 else if (type == 2)
-    draw_surface_part(image,left,top,width,height,0,0);
+{
+    if(surface_exists(image))
+        draw_surface_part(image,left,top,width,height,0,0);
+}
+
 if(callback &gt;= 0)
     script_execute(callback, id);
 </string>

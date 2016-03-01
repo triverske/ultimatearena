@@ -4,7 +4,15 @@ with (objUIButton)
 {
     if (argument0 == id)
     {
-        if(bID == 1)
+        if(bID == 0) //Food + Drink
+        {
+            with(fID)
+            {
+                HUNGER = 100;
+                THIRST = 100;
+            }
+        }
+        if(bID == 1) //Kill
         {
             with(fID)
             {
@@ -13,14 +21,16 @@ with (objUIButton)
             }
         
         }
-        if(bID == 0)
+        if(bID == 2)
         {
-            with(fID)
+            if(!instance_exists(obj_moveFighter))
             {
-                HUNGER = 100;
-                THIRST = 100;
+                if(instance_exists(fID))
+                {
+                    m = instance_create(0,0,obj_moveFighter)
+                    m.fighter = fID; 
+                }
             }
-        
         }
     
     }

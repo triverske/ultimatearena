@@ -59,11 +59,7 @@ with (oExplosion)
 draw_set_color(c_red);
 with (oFighter)
 {
-    //draw_circle(x,y-5,3*SIGHT,1);
-}
-with (oFighter)
-{
-    draw_sprite(sFighterS,INSANE,x,y);
+    draw_sprite_ext(sFighterS,INSANE,x,y,1,1,0,color,1);
     //if (INV[0] != 0)
         //draw_text(x,y+3,string(INV[0]));
 }

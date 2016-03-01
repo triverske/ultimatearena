@@ -28,6 +28,9 @@
             <string>sprite_index = sFighterS;
 x = floor(random((global.mapSize)-20)+10);
 y = floor(random((global.mapSize)-20)+10);
+
+color = make_color_hsv(irandom(255),255,255);
+
 kills = 0;
 fight = 0;
 water = 0;

@@ -189,6 +189,7 @@
         <script>scripts\create_window_updates.gml</script>
         <script>scripts\create_window_charedit.gml</script>
         <script>scripts\create_window_fighterlist.gml</script>
+        <script>scripts\create_window_fighter.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>
@@ -258,6 +259,7 @@
       <object>objects\oButtonBar</object>
       <object>objects\oExplosion</object>
       <object>objects\oPlaceItem</object>
+      <object>objects\obj_moveFighter</object>
       <object>objects\oWood</object>
       <object>objects\oRope</object>
       <object>objects\oStone</object>
