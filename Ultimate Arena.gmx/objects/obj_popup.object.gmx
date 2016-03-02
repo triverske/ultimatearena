@@ -77,6 +77,10 @@ fighter = 0;
     x = fighter.x;
     y = fighter.y - 12;
 }
+else
+{
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>

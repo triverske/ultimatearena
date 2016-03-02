@@ -52,6 +52,7 @@
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sFighterS</sprite>
+    <sprite>sprites\spr_chareditFighters</sprite>
     <sprite>sprites\sFighter</sprite>
     <sprite>sprites\sMenuBox</sprite>
     <sprite>sprites\sprWindowPanel</sprite>
@@ -100,6 +101,9 @@
     <sprite>sprites\sTrap</sprite>
     <sprite>sprites\spr_hoverStats</sprite>
     <sprite>sprites\spr_alert</sprite>
+    <sprite>sprites\spr_deadLocation</sprite>
+    <sprite>sprites\spr_nameBar</sprite>
+    <sprite>sprites\spr_updateBox</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>
@@ -268,6 +272,8 @@
       <object>objects\oSSpear</object>
       <object>objects\oWBow</object>
       <object>objects\oSBow</object>
+      <object>objects\obj_popup</object>
+      <object>objects\obj_deadLocation</object>
       <object>objects\oTrap</object>
     </objects>
     <objects name="ZUI">
@@ -287,7 +293,6 @@
       <object>objects\objUIField</object>
       <object>objects\objUIWindowCaption</object>
     </objects>
-    <object>objects\obj_popup</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>

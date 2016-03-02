@@ -29,7 +29,7 @@
 x = floor(random((global.mapSize)-20)+10);
 y = floor(random((global.mapSize)-20)+10);
 
-color = make_color_hsv(irandom(255),255,255);
+color = c_white;
 
 kills = 0;
 fight = 0;
@@ -68,7 +68,7 @@ STATE  = "WANDER";
 CONTINUE = 1; // How much more likely will the current action be on the next cycle?
 ENERGY_RATE = .1;
 
-
+caption = "Wandering";
 
 DIR = floor(random(360));
 alarm[0] = global.GAME_SPEED;
@@ -158,6 +158,8 @@ with(oFighter)
     
 if(global.fighters_remaining == 1)
     instance_create(0,0,oWinScreen);
+    
+instance_create(x,y,obj_deadLocation);
     
 
 </string>
@@ -465,37 +467,34 @@ if(INV[0] &gt; 0)
     if(irandom(20) == 1)
         sendCommand("PLACE MINE", 1);
 
-var esc = floor(random(100000));
+var esc = irandom(100000)
 if(x &gt; 490 || x &lt; 10  || y &gt; 490 || y &lt; 10) //Make sure fighter doesn't leave arena
 {
-    if (!escape) {
-    if (esc &gt; 500)
+    if (!escape) 
     {
-    
-    }
-    else if (esc == 0) //Successful escape attempt
-    {
-        escape = true;
-        instance_destroy();
-        createUpdate(global.NAMES[fighterID] + " escaped the arena!",fighterID,0);
-    }
-    else if (esc &lt; 480)
-    {
-        instance_destroy();
-        createUpdate(getText("arena_escape_fail",fighterID),fighterID,1);
-    }
-    else if (esc &lt; 490)
-    {
-        instance_destroy();
-        createUpdate(global.NAMES[fighterID]  + " was killed by the guardians.",fighterID,1);
-    }
-    else if (esc &lt; 501)
-    {
-        instance_destroy();
-        createUpdate(global.NAMES[fighterID]  + " died trying to get off Mr. Troy's Wild Ride!",fighterID,1);
-    }
-    speed = -1;
-    DIR -= (floor(random(40)) + 160)
+        
+
+        if (esc &lt; 480)
+        {
+            global.deathCause[fighterID] = "Death by Failed Escape Attempt";
+            instance_destroy();
+            createUpdate(getText("arena_escape_fail",fighterID),fighterID,1);
+        }
+        else if (esc &lt; 490)
+        {
+            global.deathCause[fighterID] = "Death by Failed Escape Attempt";
+            instance_destroy();
+            createUpdate(global.NAMES[fighterID]  + " was killed by the guardians.",fighterID,1);
+        }
+        else if (esc &lt; 501)
+        {
+            global.deathCause[fighterID] = "Death by Failed Escape Attempt";
+            instance_destroy();
+            createUpdate(global.NAMES[fighterID]  + " died trying to get off Mr. Troy's Wild Ride!",fighterID,1);
+        }
+        
+        speed = -1;
+        DIR -= (floor(random(40)) + 160)
     }
 }
 
@@ -820,6 +819,7 @@ if(alarm[0] == 1)
     if (t &lt; 25-(SKILL+LUCK))
     {
         other.triggered = true;
+        global.deathCause[fighterID] = "Death by Landmine";
         createUpdate(getText("die_landmine",fighterID),fighterID,1);
         instance_destroy();
     }

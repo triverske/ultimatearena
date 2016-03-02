@@ -27,6 +27,35 @@
             <kind>1</kind>
             <string>global.IDselected = -1;
 global.newImage = sFighterImage;
+global.editColor = 0;
+
+global.editColors[0,0] = 255;
+global.editColors[0,1] = 255;
+global.editColors[0,2] = 255;
+
+global.editColors[1,0] = 255;
+global.editColors[1,1] = 64;
+global.editColors[1,2] = 64;
+
+global.editColors[2,0] = 255;
+global.editColors[2,1] = 175;
+global.editColors[2,2] = 64;
+
+global.editColors[3,0] = 255;
+global.editColors[3,1] = 255;
+global.editColors[3,2] = 64;
+
+global.editColors[4,0] = 64;
+global.editColors[4,1] = 255;
+global.editColors[4,2] = 64;
+
+global.editColors[5,0] = 0;
+global.editColors[5,1] = 192;
+global.editColors[5,2] = 192;
+
+global.editColors[6,0] = 0;
+global.editColors[6,1] = 64;
+global.editColors[6,2] = 255;
 
 for(i=0;i&lt;5;i++)
     global.editStats[i] = 5;

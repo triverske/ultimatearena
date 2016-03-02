@@ -20,7 +20,7 @@ if (argument5 > 0 && global.deadUpdates)
     i.fighters = 4;
     
     i = instance_create(0,0,obj_popup);
-    i.fighter = argument1;
+    i.fighter = global.IDLIST[argument1];
         
     if (global.boxColor == 0)
         global.boxColor = 1;

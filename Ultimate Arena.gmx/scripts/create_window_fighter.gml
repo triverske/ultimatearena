@@ -7,7 +7,7 @@ var HS = global.HSCALE;
 with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
 {
     fighter = argument0;
-    zui_set_size(312,174);
+    zui_set_size(312,200);
     callback = arena_ui;
     with (zui_create(0, 0, objUIWindowCaption)) 
     {
@@ -16,11 +16,24 @@ with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
     }
     zui_create(0,0,oUIExitButton,-1);
     
-
     with(oFighter)
     {
         if (other.fighter == fighterID)
             other.fID = id;
+    }
+    
+    with (zui_create(0, 174, oUIImage)) 
+    {
+        type = 0;
+        image = spr_nameBar;
+    }
+    with(zui_create(156, 186, objUILabel))
+    {
+        caption = "Wandering";
+        halign = fa_center;
+        callback = arena_fighter_ui;
+        fighter = other.fID;
+        fighterID = other.fighter;
     }
 
     with (zui_create(0, 24, oUIImage)) 

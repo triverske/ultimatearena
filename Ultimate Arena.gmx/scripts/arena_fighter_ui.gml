@@ -35,3 +35,17 @@ with (objUIButton)
     
     }
 }
+with (id)
+{
+    if(object_index == objUILabel)
+    {
+        if(instance_exists(fighter))
+        {
+            caption = fighter.caption;
+        }
+        else
+        {
+            caption = global.deathCause[fighterID];
+        }
+    }
+}
