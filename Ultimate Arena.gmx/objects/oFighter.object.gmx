@@ -474,13 +474,9 @@ if(INV[0] &gt; 0)
     if(irandom(20) == 1)
         sendCommand("PLACE MINE", 1);
 
-<<<<<<< HEAD
-var esc = floor(random(100000));
-if(x &gt; 502 || x &lt; 10  || y &gt; 502 || y &lt; 10) //Make sure fighter doesn't leave arena
-=======
+
 var esc = irandom(100000)
 if(x &gt; 490 || x &lt; 10  || y &gt; 490 || y &lt; 10) //Make sure fighter doesn't leave arena
->>>>>>> refs/remotes/origin/master
 {
     if (!escape) 
     {
