@@ -39,7 +39,9 @@
       <filename>settings.ini</filename>
     </datafile>
   </datafiles>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\IRC Chat Connection for Twitch</extension>
+  </NewExtensions>
   <sounds name="sound">
     <sound>sound\snd_notification</sound>
     <sound>sound\snd_blip</sound>
@@ -50,6 +52,7 @@
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sFighterS</sprite>
+    <sprite>sprites\spr_chareditFighters</sprite>
     <sprite>sprites\sFighter</sprite>
     <sprite>sprites\sMenuBox</sprite>
     <sprite>sprites\sprWindowPanel</sprite>
@@ -97,6 +100,10 @@
     <sprite>sprites\sSBow</sprite>
     <sprite>sprites\sTrap</sprite>
     <sprite>sprites\spr_hoverStats</sprite>
+    <sprite>sprites\spr_alert</sprite>
+    <sprite>sprites\spr_deadLocation</sprite>
+    <sprite>sprites\spr_nameBar</sprite>
+    <sprite>sprites\spr_updateBox</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>
@@ -169,12 +176,7 @@
     </scripts>
     <script>scripts\scr_generate_map.gml</script>
     <script>scripts\scr_display_map.gml</script>
-    <script>scripts\trace.gml</script>
     <script>scripts\string_extract.gml</script>
-    <script>scripts\sendVote.gml</script>
-    <script>scripts\getTwitchID.gml</script>
-    <script>scripts\createTwitchName.gml</script>
-    <script>scripts\irc_send_message.gml</script>
     <scripts name="ui">
       <script>scripts\arena_ui.gml</script>
       <script>scripts\title_buttons.gml</script>
@@ -192,13 +194,13 @@
         <script>scripts\create_window_updates.gml</script>
         <script>scripts\create_window_charedit.gml</script>
         <script>scripts\create_window_fighterlist.gml</script>
+        <script>scripts\create_window_fighter.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>
     <script>scripts\initialize_listbox.gml</script>
     <script>scripts\reverseArray.gml</script>
     <script>scripts\playDeathSound.gml</script>
-    <script>scripts\getPoints.gml</script>
     <script>scripts\string_parse.gml</script>
     <script>scripts\string_rtrim.gml</script>
     <script>scripts\add_default_characters.gml</script>
@@ -206,6 +208,21 @@
     <script>scripts\initialize_characters.gml</script>
     <script>scripts\initialize_events.gml</script>
     <script>scripts\draw_hover_stats.gml</script>
+    <script>scripts\string_to_color.gml</script>
+    <scripts name="twitch">
+      <script>scripts\getPoints.gml</script>
+      <script>scripts\trace.gml</script>
+      <script>scripts\createTwitchName.gml</script>
+      <script>scripts\getTwitchID.gml</script>
+      <script>scripts\sendVote.gml</script>
+      <script>scripts\irc_create_socket.gml</script>
+      <script>scripts\irc_handle_http.gml</script>
+      <script>scripts\irc_send_message.gml</script>
+      <script>scripts\irc_send_packet.gml</script>
+      <script>scripts\irc_handle_networking.gml</script>
+      <script>scripts\irc_refresh_followers.gml</script>
+      <script>scripts\irc_get_viewers.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -247,6 +264,7 @@
       <object>objects\oButtonBar</object>
       <object>objects\oExplosion</object>
       <object>objects\oPlaceItem</object>
+      <object>objects\obj_moveFighter</object>
       <object>objects\oWood</object>
       <object>objects\oRope</object>
       <object>objects\oStone</object>
@@ -254,6 +272,8 @@
       <object>objects\oSSpear</object>
       <object>objects\oWBow</object>
       <object>objects\oSBow</object>
+      <object>objects\obj_popup</object>
+      <object>objects\obj_deadLocation</object>
       <object>objects\oTrap</object>
     </objects>
     <objects name="ZUI">

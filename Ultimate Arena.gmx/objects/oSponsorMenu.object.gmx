@@ -183,21 +183,19 @@ draw_text(70,65,"WINS");
 
 
 
-
 draw_text(70,92,"START EVENT");
 draw_sprite_stretched(sSandboxButton,0,46,108,48,48);
-draw_text(70,156,"!VOTE 1");
+draw_text(70,156,"!vote 1");
 draw_text(70,170,"Votes: " + string(oTwitchController.sponsorVotes[1]));
-
 
 draw_text(70,196,"ADD LANDMINES");
 draw_sprite_stretched(sSandboxButton,0,46,212,48,48);
-draw_text(70,260,"!VOTE 2");
+draw_text(70,260,"!vote 2");
 draw_text(70,274,"Votes: " + string(oTwitchController.sponsorVotes[2]));
 
 draw_text(70,300,"CARE PACKAGES");
 draw_sprite_stretched(sSandboxButton,0,46,316,48,48);
-draw_text(70,364,"!VOTE 3");
+draw_text(70,364,"!vote 3");
 draw_text(70,378,"Votes: " + string(oTwitchController.sponsorVotes[3]));
 
 

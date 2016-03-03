@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//":triverske!triverske@triverske.tmi.twitch.tv PRIVMSG #triverske :test"
-
-irc_socket = network_create_socket(network_socket_tcp);
+            <string>
 global.stringcount = 0;
 global.stringlist[0] = "";
 pac = ":!POINTS";
@@ -37,11 +35,6 @@ user = ini_read_string("twitch","user","");
 oauth = ini_read_string("twitch","oauth","");
 global.currentgame = ini_read_real("twitch","gamenumber",0);
 ini_close();
-
-if (oauth == "")
-{
-    global.TWITCHENABLED = 0;
-}
 
 
 for(i = 0;i &lt; global.lNAME; i++)
@@ -58,48 +51,15 @@ voteType = 1;
 
 winscreen = 0;
 
-irc = network_connect_raw(irc_socket, "irc.twitch.tv", 6667);
+irc_create_socket("irc.twitch.tv",6667,user,oauth,user,true)
+alarm[0] = 1
 
-if (irc &lt; 0)
-{
-    trace("connection failed");
-    
-}
-else
-{
-    trace("connection successful");
-}
-
-
-var buff = buffer_create(1024, buffer_grow, 1);
-buffer_seek(buff, buffer_seek_start, 0);
-buffer_write(buff, buffer_string, "PASS oauth:" + oauth + chr(13) + chr(10));
-network_send_raw(irc_socket, buff, buffer_get_size(buff));
-buffer_delete(buff);
-
-var buff = buffer_create(1024, buffer_grow, 1);
-buffer_seek(buff, buffer_seek_start, 0);
-buffer_write(buff, buffer_string, "USER " + user + " 0 * :" + user + chr(13) + chr(10));
-network_send_raw(irc_socket, buff, buffer_get_size(buff));
-buffer_delete(buff);
-
-var buff = buffer_create(1024, buffer_grow, 1);
-buffer_seek(buff, buffer_seek_start, 0);
-buffer_write(buff, buffer_string, "NICK " + user + chr(13) + chr(10));
-network_send_raw(irc_socket, buff, buffer_get_size(buff));
-buffer_delete(buff);
-
-var buff = buffer_create(1024, buffer_grow, 1);
-buffer_seek(buff, buffer_seek_start, 0);
-buffer_write(buff, buffer_string, "JOIN #" + user + chr(13) + chr(10));
-network_send_raw(irc_socket, buff, buffer_get_size(buff));
-buffer_delete(buff); 
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -116,15 +76,13 @@ buffer_delete(buff);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(oWinScreen) &amp;&amp; winscreen == 0)
-{
-    var buff = buffer_create(1024, buffer_grow, 1);
-    buffer_seek(buff, buffer_seek_start, 0);
-    buffer_write(buff, buffer_string, "PRIVMSG #triverske :The winner is " + oWinScreen.winner + "!" + chr(13) + chr(10));
-    network_send_raw(irc_socket, buff, buffer_get_size(buff));
-    buffer_delete(buff);
-    winscreen++;
-}
+            <string>//Example:
+//Call irc_get_viewers() and irc_refresh_followers() every 30 seconds which will trigger the HTTP event
+
+alarm[0] = room_speed * 5
+
+irc_get_viewers()
+irc_refresh_followers()
 </string>
           </argument>
         </arguments>
@@ -147,8 +105,8 @@ buffer_delete(buff);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//trace("triggered");
-
+            <string>
+/*
 var data = ds_map_find_value(async_load, "buffer");
 var str  = buffer_read(data, buffer_string);
 
@@ -187,8 +145,132 @@ if(string_extract(str," ",1) == "PRIVMSG")
     ds_list_destroy(se);
     
 }
+*/
+
+if (irc_handle_networking() == "message")
+{
+    //Add commands here:
+    //Variables you can always access:
+    //
+    //"msg" : Contains the message the user sent
+    //"sender" : Stores the username of the user
+    //
+    //If you enabled IRCv3 in irc_create_socket you have access to the following variables:
+    //
+    //"color" : Stores the chat color of the sender in this format: "#FFFFFF" - if the user hasnt set their color yet, the color value will default to #000000
+    //"subscriber" : Is 1 or 0 depending on whether the sender of the message subscribed to the channel
+    //"turbo" : Is 1 or 0 depending on whether the sender has bought Twitch-Turbo
+    
+    //No arguments:
+    if msg = "!ping"
+    {
+        irc_send_message("pong!")
+    }
+    
+    if msg = "!points"
+    {
+        getPoints(sender);
+    }
+    
+    if ircv3
+    {
+        if msg = "!info"
+        {
+            irc_send_message("Sender: " + sender + " Color: " + color + " Subscriber: " + subscriber + " Turbo: " + turbo)
+        }
+    }
+    
+    //1 Argument::
+    //Make sure you add a space after the command in string_pos.
+    //Prevents: "!killabcd PLAYER1" to cause "!kill PLAYER1"
+    
+    if string_pos("!vote ",msg) = 1 //change command here
+    {
+    
+        //These 2 lines extract the argument out of the message
+        
+        arg1 = string_delete(msg,1,string_length("!vote ")) //change command here
+        arg1 = string_delete(arg1,string_pos(" ",arg1),string_length(arg1)-1)
+        
+        if arg1 != ""
+        {
+            sendVote(voteType,arg1,sender);
+        }
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//
+//"viewercount" : Count of viewers
+//"mods" : ds_list of moderators
+//"viewers" : ds_list of normal viewers (does not include mods)
+//
+//"followercount" : Count of followers
+//"followers" : ds_list of last 25 followers
+
+//irc_handle_http()
+
+//Example: Print the viewercount and the mods, viewers list
+
+/*
+show_debug_message("Viewer count: " + string(viewercount))
+
+if ds_exists(mods,ds_type_list)
+{
+    show_debug_message("Mods:")
+    //Iterate through the mods list
+    for(i = 0; i &lt; ds_list_size(mods); i++)
+    {
+        show_debug_message(mods[| i])
+    }
+}
+
+if ds_exists(viewers,ds_type_list)
+{
+    show_debug_message("Viewers:")
+    //Iterate through the viewers list
+    for(i = 0; i &lt; ds_list_size(viewers); i++)
+    {
+        show_debug_message(viewers[| i])
+    }
+}
 
 
+//Example: Print the followercount and the last 25 followers
+
+show_debug_message("Follower count: " + string(followercount))
+
+if ds_exists(followers,ds_type_list)
+{
+    show_debug_message("Last 25 followers:")
+    //Iterate through the followers list
+    for(i = 0; i &lt; ds_list_size(followers); i++)
+    {
+        show_debug_message(followers[| i])
+    }
+}
+*/
 </string>
           </argument>
         </arguments>

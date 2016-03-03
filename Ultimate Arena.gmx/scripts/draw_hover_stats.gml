@@ -1,8 +1,8 @@
 ///draw_hover_stats(fighter)
 
 var c = argument0;
-var mxPos = mouse_x * (global.WSCALE/1280);
-var myPos = mouse_y * (global.HSCALE/720);
+var mxPos = device_mouse_raw_x(0);//mouse_x * (global.WSCALE/1280);
+var myPos = device_mouse_raw_y(0);//mouse_y * (global.HSCALE/720);
 if(instance_exists(c))
 {
     draw_sprite(spr_hoverStats,0,mxPos,myPos);

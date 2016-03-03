@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.VERSION = "1.1";
+            <string>global.VERSION = "1.11";
 
 
 var i = 1;
@@ -86,10 +86,11 @@ if(v &lt; real(global.VERSION))
 {
     ini_write_real("settings","version",real(global.VERSION));
     add_default_events();
+    add_default_characters();
 }
 ini_close();
 
-if(global.TWITCHENABLED)
+//if(global.TWITCHENABLED)
     instance_create(0,0,oTwitchController);
 room_goto_next();
 //audio_play_sound(snd_wario,1,0);

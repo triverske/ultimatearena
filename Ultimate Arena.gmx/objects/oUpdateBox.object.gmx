@@ -31,22 +31,7 @@ time = global.TIME_STRING;
 var tvar = floor(random(5));
 text = "ERROR";
 trigger = 0;
-/*
-if (tvar == 0)
-    text = "TEST0";
-else if (tvar == 1)
-    text = "TEST1";
-else if (tvar == 2)
-    text = "TEST2";
-else if (tvar == 3)
-    text = "TEST3";
-else if (tvar == 4)
-    text = "TEST4";
-else if (tvar == 5)
-    text = "TEST5";
-else if (tvar == 6)
-    text = "TEST5";
-    */
+
 </string>
           </argument>
         </arguments>
@@ -70,24 +55,9 @@ else if (tvar == 6)
           <argument>
             <kind>1</kind>
             <string>if (y != currentPos * 74)
-{
    y += (74/4);  
-}
- 
-if (trigger == 0) // post to twitch chat
-{
-    /*
-    var buff = buffer_create(1024, buffer_grow, 1);
-    buffer_seek(buff, buffer_seek_start, 0);
-    buffer_write(buff, buffer_string, "PRIVMSG #triverske :" + text + chr(13) + chr(10));
-    network_send_raw(oTwitchController.irc_socket, buff, buffer_get_size(buff));
-    buffer_delete(buff); */
-    trigger++; 
 
-
-}
-
-if (currentPos &gt; 99)
+if (y &gt; global.HSCALE)
     instance_destroy();
 </string>
           </argument>

@@ -91,7 +91,7 @@ draw_sprite_stretched(global.IMAGES[ID],0,x-24,y-30,48,48);
 
 draw_set_color(c_white);
 draw_text(x,y-48,name);
-draw_text(x,y+20,"!VOTE " + string(ID));
+draw_text(x,y+20,"!vote " + string(ID));
 draw_text(x,y+33,"Votes: "+ string(oTwitchController.fighterVotes[ID,0]));
 }
 
