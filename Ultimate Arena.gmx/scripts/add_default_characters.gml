@@ -45,21 +45,35 @@ defaultC[43] = "Trump";
 defaultC[44] = "Bernie";
 defaultC[45] = "Ted Cruz";
 defaultC[46] = "Marco Rubio";
+defaultC[47] = "Vermin Supreme";
+defaultC[48] = "PewDiePie";
+defaultC[49] = "Skrillex";
+defaultC[50] = "Tiger Woods";
+defaultC[51] = "Charlie Sheen";
+defaultC[52] = "Stevie Wonder";
+defaultC[53] = "Kanye West";
+defaultC[54] = "Zuckerberg"
+defaultC[55] = "John Carmack";
+defaultC[56] = "Troy Bonneau";
 
 v = sprite_duplicate(sDefaultCharacters);
 
 for(i = 0;i < array_length_1d(defaultC);i++)
 {
-    ini_open(working_directory + "characters\" + defaultC[i] + ".ini");
-    ini_write_string("character","name",defaultC[i]);
-    ini_write_string("character","image",defaultC[i]+".png");
-    
-    if(i == 35 || i == 36 || i == 17 || i == 42)
-        ini_write_real("character","gender",1)
-    else
-        ini_write_real("character","gender",0)
+    if(!file_exists(working_directory + "characters\" + defaultC[i] + ".ini"))
+    {
+        show_debug_message(defaultC[i]);
+        ini_open(working_directory + "characters\" + defaultC[i] + ".ini");
+        ini_write_string("character","name",defaultC[i]);
+        ini_write_string("character","image",defaultC[i]+".png");
         
-    sprite_save(v,i,working_directory + "characters\" +defaultC[i]+".png");
+        if(i == 35 || i == 36 || i == 17 || i == 42)
+            ini_write_real("character","gender",1)
+        else
+            ini_write_real("character","gender",0)
+            
+        sprite_save(v,i,working_directory + "characters\" +defaultC[i]+".png");
+    }
 }
 
 game_restart();

@@ -102,6 +102,14 @@ with(zui_main())
     create_window_charedit();
     
 }
+
+with(oUIImageButton)
+{
+    if(global.editColor != type)
+        color = c_gray;
+    else
+        color = c_white;
+}
 </string>
           </argument>
         </arguments>

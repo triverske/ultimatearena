@@ -163,6 +163,13 @@ with(objUIButton)
         if(bID == 9) //Fighter Color
         {
             global.editColor = type;
+            with(oUIImageButton)
+            {
+                if(global.editColor != type)
+                    color = c_gray;
+                else
+                    color = c_white;
+            }
         }
     }
 }
