@@ -61,9 +61,6 @@ else
 for(var i = 0;i&lt;global.fighters+2;i++)
     global.deadday[i] = "";
     
-for(var i = 0;i &lt; global.waterpools; i++)
-    instance_create(global.waterloc[i,0],global.waterloc[i,1],oWater);
-    
 for(var i = 0;i &lt; global.trees; i++)
 {
     c = instance_create(global.treeloc[i,0],global.treeloc[i,1],oTree);

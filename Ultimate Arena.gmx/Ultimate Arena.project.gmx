@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="6" name="datafiles">
+  <datafiles number="8" name="datafiles">
     <datafile>
       <name>text.ini</name>
       <exists>-1</exists>
@@ -37,6 +37,40 @@
         </Config>
       </ConfigOptions>
       <filename>settings.ini</filename>
+    </datafile>
+    <datafile>
+      <name>MapTest.png</name>
+      <exists>-1</exists>
+      <size>7813</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>MapTest.png</filename>
+    </datafile>
+    <datafile>
+      <name>MapTest2.png</name>
+      <exists>-1</exists>
+      <size>4686</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>MapTest2.png</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -175,6 +209,7 @@
       <script>scripts\scr_diamond_square.gml</script>
     </scripts>
     <script>scripts\scr_generate_map.gml</script>
+    <script>scripts\scr_load_map.gml</script>
     <script>scripts\scr_display_map.gml</script>
     <script>scripts\string_extract.gml</script>
     <scripts name="ui">
@@ -249,7 +284,6 @@
       <object>objects\oTree</object>
       <object>objects\oItems</object>
       <object>objects\oWinScreen</object>
-      <object>objects\oWater</object>
       <object>objects\oTextScroll</object>
       <object>objects\oMine</object>
       <object>objects\oStatusCheck</object>

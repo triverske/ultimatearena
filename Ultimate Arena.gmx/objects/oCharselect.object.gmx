@@ -291,7 +291,7 @@ show_minimap = true;
 var WS = global.WSCALE;
 var HS = global.HSCALE;
 
-
+//scr_load_map("MapTest2.png");
 scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
 regen = 0;
 with(objUIWindow)
