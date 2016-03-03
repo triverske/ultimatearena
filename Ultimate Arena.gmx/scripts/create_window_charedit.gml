@@ -1,7 +1,7 @@
 with(zui_create(window_get_width()*.6, window_get_height()/2, objUIWindow))
 {
 
-    zui_set_size(500, 258);
+    zui_set_size(500, 298);
     wID = "Editor Window";
     
     with(zui_create(0, 0, objUIWindowCaption))
@@ -58,7 +58,20 @@ with(zui_create(window_get_width()*.6, window_get_height()/2, objUIWindow))
         bID = 6;
     }
     */
-    with (zui_create(5, 223, objUIButton)) 
+    for(i=0;i<7;i++)
+    {
+        with (zui_create(5 + 28*i, 223, oUIImageButton)) 
+        {
+            zui_set_anchor(0,0);
+            zui_set_size(26, 26);
+            image = spr_chareditFighters;
+            type = other.i;
+            callback = charedit_ui;
+            bID = 9;
+        }
+    }
+    
+    with (zui_create(5, 263, objUIButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(192, 30);
@@ -66,7 +79,7 @@ with(zui_create(window_get_width()*.6, window_get_height()/2, objUIWindow))
         callback = charedit_ui;
         bID = 1;
     }
-    with (zui_create(365, 223, objUIButton)) 
+    with (zui_create(365, 263, objUIButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(130, 30);
@@ -74,7 +87,7 @@ with(zui_create(window_get_width()*.6, window_get_height()/2, objUIWindow))
         callback = charedit_ui;
         bID = 2;
     }
-    with (zui_create(202, 223, objUIButton)) 
+    with (zui_create(202, 263, objUIButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(158, 30);

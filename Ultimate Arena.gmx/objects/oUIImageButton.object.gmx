@@ -30,6 +30,7 @@ callback = -1;
 type = 0;
 colortype = 0;
 drawGui = 0;
+color = c_white;
 </string>
           </argument>
         </arguments>
@@ -138,7 +139,7 @@ drawGui = 0;
     } 
     
     
-    draw_sprite_stretched(image,type,1,1,zui_get_width()-2,zui_get_height()-2);
+    draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,1);
     
     
     /*
@@ -200,7 +201,7 @@ drawGui = 0;
     } 
     
     
-    draw_sprite_stretched(image,type,1,1,zui_get_width()-2,zui_get_height()-2);
+    draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,1);
     
     
     /*

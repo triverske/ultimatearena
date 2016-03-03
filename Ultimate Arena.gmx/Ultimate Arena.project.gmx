@@ -55,23 +55,6 @@
       </ConfigOptions>
       <filename>MapTest.png</filename>
     </datafile>
-    <datafile>
-      <name>MapTest2.png</name>
-      <exists>-1</exists>
-      <size>4686</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>MapTest2.png</filename>
-    </datafile>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\IRC Chat Connection for Twitch</extension>
@@ -86,6 +69,7 @@
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sFighterS</sprite>
+    <sprite>sprites\spr_chareditFighters</sprite>
     <sprite>sprites\sFighter</sprite>
     <sprite>sprites\sMenuBox</sprite>
     <sprite>sprites\sprWindowPanel</sprite>
@@ -133,6 +117,10 @@
     <sprite>sprites\sSBow</sprite>
     <sprite>sprites\sTrap</sprite>
     <sprite>sprites\spr_hoverStats</sprite>
+    <sprite>sprites\spr_alert</sprite>
+    <sprite>sprites\spr_deadLocation</sprite>
+    <sprite>sprites\spr_nameBar</sprite>
+    <sprite>sprites\spr_updateBox</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>
@@ -224,6 +212,7 @@
         <script>scripts\create_window_updates.gml</script>
         <script>scripts\create_window_charedit.gml</script>
         <script>scripts\create_window_fighterlist.gml</script>
+        <script>scripts\create_window_fighter.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>
@@ -292,6 +281,7 @@
       <object>objects\oButtonBar</object>
       <object>objects\oExplosion</object>
       <object>objects\oPlaceItem</object>
+      <object>objects\obj_moveFighter</object>
       <object>objects\oWood</object>
       <object>objects\oRope</object>
       <object>objects\oStone</object>
@@ -299,6 +289,8 @@
       <object>objects\oSSpear</object>
       <object>objects\oWBow</object>
       <object>objects\oSBow</object>
+      <object>objects\obj_popup</object>
+      <object>objects\obj_deadLocation</object>
       <object>objects\oTrap</object>
     </objects>
     <objects name="ZUI">

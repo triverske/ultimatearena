@@ -10,10 +10,7 @@ surface_set_target(updates);
 draw_rectangle_colour(0,0,390,74*25,c_0,c_0,c_0,c_0,0);
 with (oUpdateBox)
 {
-    if (boxColor == 0)
-        draw_rectangle_colour(0,y,390,y+74,c_0,c_0,c_0,c_0,false);
-    else
-        draw_rectangle_colour(0,y,390,y+74,c_1,c_1,c_1,c_1,false);
+    draw_sprite(spr_updateBox,boxColor,0,y);
     
     if(fighters == 1)
     {

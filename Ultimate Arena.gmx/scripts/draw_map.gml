@@ -7,6 +7,10 @@ if !surface_exists(map)
 surface_set_target(map);
 draw_background(global.bck_minimap,0,0);
 
+with (obj_deadLocation)
+{
+    draw_self();
+}
 with (oTree)
 {
     draw_self();
@@ -51,22 +55,25 @@ with(oSBow)
     if(dropped)
         draw_self();
 }
-with (oExplosion)
-{
-    draw_self();
-}
+
 
 draw_set_color(c_red);
 with (oFighter)
 {
-    //draw_circle(x,y-5,3*SIGHT,1);
-}
-with (oFighter)
-{
-    draw_sprite(sFighterS,INSANE,x,y);
+    draw_sprite_ext(sFighterS,INSANE,x,y,1,1,0,color,1);
     //if (INV[0] != 0)
         //draw_text(x,y+3,string(INV[0]));
 }
+
+with (oExplosion)
+{
+    draw_self();
+}
+with(obj_popup)
+{
+    draw_self();
+}
+
 draw_rectangle_colour(1,1,511,511,c_0,c_0,c_0,c_0,true);
 
 draw_set_alpha(dif(global.TIME_HOURS,12)*.02);

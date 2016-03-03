@@ -3,12 +3,12 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,37 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>q = 1;
-audio_play_sound(snd_event_notification,0,0);
+            <string>if(!instance_exists(fighter))
+    instance_destroy();
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="1" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>oGraphicsController.event_timer = floor(random(20000)); 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
+    <event eventtype="6" enumb="57">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -78,7 +55,7 @@ audio_play_sound(snd_event_notification,0,0);
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="0">
+    <event eventtype="6" enumb="56">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -95,39 +72,31 @@ audio_play_sound(snd_event_notification,0,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(q &lt; global.fighters)
+            <string>if(global.mapwindow.__hover == 1)
 {
-    if(global.DEATH_ARRAY[q] == 0)
-    {
-        per = random(100);
-        if (per &lt; death_percentage)
-        {
-            with(global.IDLIST[q])
-            {
-                global.deathCause[fighterID] = "Death by Arena Event";
-                drop_items();
-                instance_destroy();
-            }
-            global.event_kills++;    
-            createUpdate(getTextEvent(event,q),q,1)
+    var xPos = (global.__zui_mx-global.mapwindow.__x);
+    var yPos = (global.__zui_my-global.mapwindow.__y);
     
-        }
+    xPos *= (512/(global.HSCALE*(512/720)));
+    yPos *= (512/(global.HSCALE*(512/720)));
+    
+    yPos -= 24;
+    
+    with(fighter)
+    {
+        x = xPos;
+        y = yPos;
     }
-}
-else if (alarm[1] == -1)
-{
-    alarm[1] = 60*15;
+    audio_play_sound(snd_blip,0,0);
+    instance_destroy();
 }
 
-
-q++;
-alarm[0] = global.GAME_SPEED * 3;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -144,12 +113,7 @@ alarm[0] = global.GAME_SPEED * 3;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
-{
-
-    alarm[0] = global.GAME_SPEED * 3;
-
-}
+            <string>draw_sprite(sFighterS,0,global.__zui_mx,global.__zui_my);
 </string>
           </argument>
         </arguments>

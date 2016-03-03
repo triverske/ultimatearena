@@ -2,9 +2,17 @@
 
 with (objUIButton)
 {
-    if (argument0 == id)
+    if (argument0 == id && fID > 0)
     {
-        if(bID == 1)
+        if(bID == 0) //Food + Drink
+        {
+            with(fID)
+            {
+                HUNGER = 100;
+                THIRST = 100;
+            }
+        }
+        if(bID == 1) //Kill
         {
             with(fID)
             {
@@ -13,15 +21,31 @@ with (objUIButton)
             }
         
         }
-        if(bID == 0)
+        if(bID == 2)
         {
-            with(fID)
+            if(!instance_exists(obj_moveFighter))
             {
-                HUNGER = 100;
-                THIRST = 100;
+                if(instance_exists(fID))
+                {
+                    m = instance_create(0,0,obj_moveFighter)
+                    m.fighter = fID; 
+                }
             }
-        
         }
     
+    }
+}
+with (id)
+{
+    if(object_index == objUILabel)
+    {
+        if(instance_exists(fighter) && fighter > 0)
+        {
+            caption = fighter.caption;
+        }
+        else
+        {
+            caption = global.deathCause[fighterID];
+        }
     }
 }
