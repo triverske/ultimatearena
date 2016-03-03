@@ -78,15 +78,17 @@ for(var i = 0;i &lt; global.stone; i++)
     
 for(var i = 1;i &lt; global.fighters+1; i++)
 { 
+    global.deathCause[i] = "Death by ???";
     c = instance_create(0,0,oFighter);
     c.fighterID = i;
     global.IDLIST[i] = c;
+    c.color = global.COLORS[i];
     c.NAME = global.NAMES[i];
-    STRENGTH = global.STATS[i,0];
-    AGILITY = global.STATS[i,1];
-    ENDURANCE = global.STATS[i,2];
-    SKILL = global.STATS[i,3];
-    LUCK = global.STATS[i,4];
+    c.STRENGTH = global.STATS[i,0];
+    c.AGILITY = global.STATS[i,1];
+    c.ENDURANCE = global.STATS[i,2];
+    c.SKILL = global.STATS[i,3];
+    c.LUCK = global.STATS[i,4];
 }    
 global.NAMES[global.fighters+1] = "";
 

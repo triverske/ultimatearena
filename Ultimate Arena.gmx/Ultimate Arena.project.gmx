@@ -86,6 +86,7 @@
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sFighterS</sprite>
+    <sprite>sprites\spr_chareditFighters</sprite>
     <sprite>sprites\sFighter</sprite>
     <sprite>sprites\sMenuBox</sprite>
     <sprite>sprites\sprWindowPanel</sprite>
@@ -133,6 +134,10 @@
     <sprite>sprites\sSBow</sprite>
     <sprite>sprites\sTrap</sprite>
     <sprite>sprites\spr_hoverStats</sprite>
+    <sprite>sprites\spr_alert</sprite>
+    <sprite>sprites\spr_deadLocation</sprite>
+    <sprite>sprites\spr_nameBar</sprite>
+    <sprite>sprites\spr_updateBox</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>
@@ -224,6 +229,7 @@
         <script>scripts\create_window_updates.gml</script>
         <script>scripts\create_window_charedit.gml</script>
         <script>scripts\create_window_fighterlist.gml</script>
+        <script>scripts\create_window_fighter.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>
@@ -292,6 +298,7 @@
       <object>objects\oButtonBar</object>
       <object>objects\oExplosion</object>
       <object>objects\oPlaceItem</object>
+      <object>objects\obj_moveFighter</object>
       <object>objects\oWood</object>
       <object>objects\oRope</object>
       <object>objects\oStone</object>
@@ -299,6 +306,8 @@
       <object>objects\oSSpear</object>
       <object>objects\oWBow</object>
       <object>objects\oSBow</object>
+      <object>objects\obj_popup</object>
+      <object>objects\obj_deadLocation</object>
       <object>objects\oTrap</object>
     </objects>
     <objects name="ZUI">

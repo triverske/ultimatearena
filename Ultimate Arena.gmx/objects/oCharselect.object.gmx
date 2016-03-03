@@ -337,6 +337,11 @@ if (startgame == 1)
             global.SOUNDS[charcount] = ini_read_string("character","deathsound","");
             global.FILES[charcount] = file;
             
+            var r = ini_read_real("character","colorr",255);
+            var g = ini_read_real("character","colorg",255);
+            var b = ini_read_real("character","colorb",255);
+            global.COLORS[charcount] = make_color_rgb(r,g,b);
+            
             global.STATS[charcount,0] = max(min(10,ini_read_real("character","strength",5)),1);
             global.STATS[charcount,1] = max(min(10,ini_read_real("character","agility",5)),1);
             global.STATS[charcount,2] = max(min(10,ini_read_real("character","endurance",5)),1);

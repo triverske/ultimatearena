@@ -2,105 +2,12 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
-  <depth>0</depth>
-  <persistent>-1</persistent>
+  <visible>-1</visible>
+  <depth>-1000</depth>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.VERSION = "1.11";
-
-
-var i = 1;
-global.TAG_COUNT = 0;
-
-draw_set_font(font0);
-if(directory_exists(working_directory + "characters"))
-{
-    initialize_characters();
-}
-else
-{
-    directory_create("characters");
-    add_default_characters();
-    initialize_characters();
-}
-
-var i = 1;
-if(directory_exists(working_directory + "events"))
-{
-    initialize_events();
-}
-else
-{
-    directory_create("events");
-    add_default_events();
-    initialize_events();
-
-}
-randomize();
-// variables
-tile_size = 32;  // the size of your tiles
-show_minimap = true;
-
-global.mapsurf = 0;
-global.bck_minimap = 0;
-// generate a map
-
-// argument0: defines the size (MUST be a power of 2!) Large sizes (&gt; 1024) take a while to load
-// argument1: defines the level of fluctuation (low = much variation in terrain, high = little variation in terrain) 
-//           This must be lower than the map size! (MUST be a power of 2!)
-// argument2: defines the waterlevel (lower = less water)
-// argument3: defines the mountain level (higher = less mountains)
-// argument4: defines the size of the beaches (0 = no beach)
-// argument5: is the map seamlessly repeating or not
-
-scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
-
-global.boxColor = 0;
-global.GAMETYPE = 0;
-
-global.CODENAME = "Basilisk";
-ini_open("settings.ini");
-global.TWITCHENABLED = ini_read_real("twitch","enable",0);
-global.vsync = ini_read_real("settings","vsync",0);
-
-var v = ini_read_real("settings","version",1);
-
-if(v &lt; real(global.VERSION))
-{
-    ini_write_real("settings","version",real(global.VERSION));
-    add_default_events();
-    add_default_characters();
-}
-ini_close();
-
-//if(global.TWITCHENABLED)
-    instance_create(0,0,oTwitchController);
-room_goto_next();
-//audio_play_sound(snd_wario,1,0);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -118,15 +25,78 @@ room_goto_next();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check(vk_alt) &amp;&amp; keyboard_check(vk_f4))
-    game_end();
+            <string>if(!instance_exists(fighter))
+    instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="57">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(global.mapwindow.__hover == 1)
+{
+    var xPos = (global.__zui_mx-global.mapwindow.__x);
+    var yPos = (global.__zui_my-global.mapwindow.__y);
     
+    xPos *= (512/(global.HSCALE*(512/720)));
+    yPos *= (512/(global.HSCALE*(512/720)));
+    
+    yPos -= 24;
+    
+    with(fighter)
+    {
+        x = xPos;
+        y = yPos;
+    }
+    audio_play_sound(snd_blip,0,0);
+    instance_destroy();
+}
+
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="4">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -143,47 +113,7 @@ room_goto_next();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(window_get_fullscreen())
-{
-    room_set_width(room,SW)
-    room_set_height(room,SH) 
-    global.WSCALE = SW;
-    global.HSCALE = SH;
-}
-else
-{
-    room_set_width(room,1280)
-    room_set_height(room,720)
-    global.WSCALE = 1280;
-    global.HSCALE = 720;
-}
-
-
-display_set_gui_size(global.WSCALE,global.HSCALE);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="27">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (room == rm_game)
-    ui_show_exit();
+            <string>draw_sprite(sFighterS,0,global.__zui_mx,global.__zui_my);
 </string>
           </argument>
         </arguments>

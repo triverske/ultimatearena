@@ -7,6 +7,7 @@ STATE = com;
 switch(com)
 {   
     case "WANDER":
+    caption = "Wandering";
     wanderAngle += random(1) * wanderChange - wanderChange * .5;//change the angle randomly to make it wander
     DIR = wanderAngle;
     QUICK = .5 + AGILITY/10;
@@ -14,6 +15,7 @@ switch(com)
     break;
     
     case "SLEEP":
+    caption = "Sleeping";
     QUICK = 0;
     if(TIRED<80)
         CONTINUE = 500;
@@ -22,6 +24,7 @@ switch(com)
     break;
     
     case "WATER SEARCH":
+    caption = "Searching for Water";
     QUICK = .5 + AGILITY/10;
     CONTINUE = 170;
     DELAY = 30;
@@ -29,6 +32,7 @@ switch(com)
     break;
     
     case "FOOD SEARCH":
+    caption = "Searching for Food";
     QUICK = .5 + AGILITY/10;
     CONTINUE = 85;
     DELAY = 30;
@@ -36,6 +40,7 @@ switch(com)
     break;
     
     case "GET FOOD":
+    caption = "Getting Food";
     QUICK = 0;
     CONTINUE = 0;
     if(treeid.foodcount > 0)
@@ -47,6 +52,7 @@ switch(com)
     break;
     
     case "GET WOOD":
+    caption = "Getting Wood";
     QUICK = 0;
     CONTINUE = 0;
     XP+=3;
@@ -56,6 +62,7 @@ switch(com)
     break;
     
     case "GET ROPE":
+    caption = "Getting Rope";
     QUICK = 0;
     CONTINUE = 0;
     XP+=5;
@@ -65,6 +72,7 @@ switch(com)
     break;
     
     case "GET STONE":
+    caption = "Getting Stone";
     QUICK = 0;
     CONTINUE = 0;
     XP+=4;
@@ -126,6 +134,7 @@ switch(com)
     break;
 */    
     case "BATHE":
+    caption = "Taking a Bath";
     QUICK = 0;
     CONTINUE = 0;
     if(SANITY<SANMAX)
@@ -136,6 +145,7 @@ switch(com)
     break;
     
     case "MAKE MEDKIT":
+    caption = "Making a Medkit";
     QUICK = 0;
     CONTINUE = 0;
     INV[2]--;
@@ -147,6 +157,7 @@ switch(com)
     break;
     
     case "MAKE TRAP":
+    caption = "Making a Trap";
     QUICK = 0;
     DELAY = 6;
     CONTINUE = 0;
@@ -159,6 +170,7 @@ switch(com)
     break;
     
     case "EAT":
+    caption = "Eating";
     QUICK = 0;
     DELAY = 3;
     INV[2]--;
@@ -168,6 +180,7 @@ switch(com)
     break;
     
     case "DRINK":
+    caption = "Drinking Water";
     QUICK = 0;
     DELAY = 3;
     INV[3]--;
@@ -177,6 +190,7 @@ switch(com)
     break;
     
     case "USE MEDKIT":
+    caption = "Using a Medkit";
     QUICK = 0;
     CONTINUE = 0;
     INV[8]--;
@@ -185,6 +199,7 @@ switch(com)
     break;
     
     case "THINK":
+    caption = "Thinking";
     QUICK = 0;
     DELAY = 10;
     CONTINUE = 3;
@@ -192,6 +207,7 @@ switch(com)
     break;
     
     case "THINK RARE":
+    caption = "Thinking";
     QUICK = 0;
     DELAY = 10;
     CONTINUE = 3;
@@ -199,6 +215,7 @@ switch(com)
     break;
     
     case "MAKE SPEAR":
+    caption = "Making a Spear";
     QUICK = 0;
     INV[9]--;
     INV[11]--;
@@ -211,6 +228,7 @@ switch(com)
     break;
     
     case "MAKE BOW":
+    caption = "Making a Bow";
     QUICK = 0;
     INV[9]--;
     INV[10]--;
@@ -223,12 +241,14 @@ switch(com)
     break;
     
     case "HUNT":
+    caption = "Hunting";
     QUICK = .5 + AGILITY/10;
     CONTINUE = 100;
     point_direction(x,y,enemyloc[0],enemyloc[1]);
     break;
     
     case "CHASE":
+    caption = "Chasing";
     QUICK = .7 + AGILITY/10;
     CONTINUE = 30;
     instance_deactivate_object(self);
@@ -239,6 +259,7 @@ switch(com)
     break;
     
     case "RUN":
+    caption = "Running";
     QUICK = .7 + AGILITY/10;
     CONTINUE = 70;
     instance_deactivate_object(self);
@@ -249,12 +270,14 @@ switch(com)
     break;
     
     case "SUICIDE":
+    global.deathCause[fighterID] = "Death by Suicide";
     createUpdate(getText("suicide",fighterID),fighterID,1);
     drop_items();    
     instance_destroy();
     break;
     
     case "ATTACK UNARMED":
+    caption = "Attacking";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
     hit = 1+floor(random(STRENGTH));
@@ -264,6 +287,7 @@ switch(com)
         XP++;
     if (otherFighter.HP <= 0)
     {
+        global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         createUpdateM(getTextM("kill_unarmed",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=5;
@@ -279,6 +303,7 @@ switch(com)
     break;
     
     case "ATTACK WSPEAR":
+    caption = "Attacking with Spear";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
     hit = 5+floor(random(STRENGTH*2));
@@ -298,6 +323,7 @@ switch(com)
         XP++;
     if (otherFighter.HP <= 0)
     {
+        global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         createUpdateM(getTextM("kill_wspear",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=7;
@@ -313,6 +339,7 @@ switch(com)
     break;
     
     case "ATTACK SSPEAR":
+    caption = "Attacking with Spear";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
     hit = 10+floor(random(STRENGTH*2));
@@ -332,6 +359,7 @@ switch(com)
         XP+=2;
     if(otherFighter.HP <= 0)
     {
+        global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         createUpdateM(getTextM("kill_sspear",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=8;
@@ -347,6 +375,7 @@ switch(com)
     break;
         
     case "ATTACK WBOW":
+    caption = "Attacking with Bow";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
     hit = 5+floor(random(SKILL*2));
@@ -366,6 +395,7 @@ switch(com)
         XP++;
     if (otherFighter.HP <= 0)
     {
+        global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         createUpdateM(getTextM("kill_wbow",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=9;
@@ -381,6 +411,7 @@ switch(com)
     break;
     
     case "ATTACK SBOW":
+    caption = "Attacking with Bow";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
     hit = 10+floor(random(SKILL*2));
@@ -400,6 +431,7 @@ switch(com)
         XP+=2;
     if (otherFighter.HP <= 0)
     {
+        global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         createUpdateM(getTextM("kill_sbow",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=10;
@@ -423,22 +455,26 @@ switch(com)
     SANITY -= (floor(random(10)));
     with (otherFighter)
     {
+        global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         drop_items();
         instance_destroy();
     }
     break;
     
     case "PLACE MINE":
+    caption = "Placing Landmine";
     QUICK = 0;
     CONTINUE = 0;
     c = random(10)
     if(c+SKILL>=5)
     {
-    var w = instance_create(x,y,oMine);
-    w.owner = self;
-    INV[0]--;
+        var w = instance_create(x,y,oMine);
+        w.owner = self;
+        INV[0]--;
     }
-    else{
+    else
+    {
+        global.deathCause[fighterID] = "Killed by Landmine";
         HP = 0;
         instance_create(x,y,oExplosion);
         createUpdate(getText("die_landmine_p",fighterID),fighterID,1);
@@ -447,6 +483,7 @@ switch(com)
     break;
 
     case "SET TRAP":
+    caption = "Placing Trap";
     QUICK = 0;
     CONTINUE = 0;
     var w = instance_create(x,y,oTrap);

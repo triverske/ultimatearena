@@ -72,6 +72,9 @@ with(objUIButton)
             ini_write_string("character","name",keyboard_string);
             ini_write_string("character","image",keyboard_string+".png");
             
+            ini_write_real("character","colorr",global.editColors[global.editColor,0]);
+            ini_write_real("character","colorg",global.editColors[global.editColor,1]);
+            ini_write_real("character","colorb",global.editColors[global.editColor,2]);
             newGender = 0;
             with(objUICheckbox)
             {
@@ -156,6 +159,17 @@ with(objUIButton)
             with(objUILabel)
                 if(lID == other.stat + 1)
                     caption = string(global.editStats[other.stat]);
+        }
+        if(bID == 9) //Fighter Color
+        {
+            global.editColor = type;
+            with(oUIImageButton)
+            {
+                if(global.editColor != type)
+                    color = c_gray;
+                else
+                    color = c_white;
+            }
         }
     }
 }
