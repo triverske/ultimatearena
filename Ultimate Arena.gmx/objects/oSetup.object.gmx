@@ -60,6 +60,8 @@ randomize();
 tile_size = 32;  // the size of your tiles
 show_minimap = true;
 
+global.mapsurf = 0;
+global.bck_minimap = 0;
 // generate a map
 
 // argument0: defines the size (MUST be a power of 2!) Large sizes (&gt; 1024) take a while to load

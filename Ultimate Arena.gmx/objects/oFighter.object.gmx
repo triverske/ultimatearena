@@ -441,14 +441,21 @@ if (enemyNear)
     else
         sendCommand("RUN",45);  
 }
-    
-waterNear = collision_circle(x,y-5,SIGHT,oWater,0,0);
-if (waterNear &amp;&amp; SKILL &gt; 2)
 
+var waterNear0 = 0;
+var waterNear1 = 0;
+for(var i=max(round(x/2)-5,0); i&lt;min(round(x/2)+5,256); i++){
+    for(var j=max(round(y/2)-5,0); j&lt;min(round(y/2)+5,256); j++){
+        if(global.grid[i,j] == 0 &amp;&amp; abs(round(x/2)-i)+abs(round(y/2)-j)&lt;abs(round(x/2)-waterNear0)+abs(round(y/2)-waterNear1)){
+            waterNear0 = i;
+            waterNear0 = j;
+        }
+    }
+}
+if(!(waterNear0==0 &amp;&amp; waterNear1==0) &amp;&amp; SKILL &gt; 2)
 {
-    c = instance_nearest(x,y,oWater);
-    waterloc[0] = c.x;
-    waterloc[1] = c.y;
+    waterloc[0] = waterNear0*2;
+    waterloc[1] = waterNear1*2;
 }
 foodNear = collision_circle(x,y-5,SIGHT,oTree,0,0);
 if (foodNear &amp;&amp; SKILL &gt; 2)
@@ -463,7 +470,7 @@ if(INV[0] &gt; 0)
         sendCommand("PLACE MINE", 1);
 
 var esc = floor(random(100000));
-if(x &gt; 490 || x &lt; 10  || y &gt; 490 || y &lt; 10) //Make sure fighter doesn't leave arena
+if(x &gt; 502 || x &lt; 10  || y &gt; 502 || y &lt; 10) //Make sure fighter doesn't leave arena
 {
     if (!escape) {
     if (esc &gt; 500)
@@ -525,6 +532,12 @@ if (DELAY &lt; 1)
 
     alarm[0] = global.GAME_SPEED;
 
+}
+//check if on water
+if(alarm[0] == 1)
+{
+    if(global.grid[round(x/2),round(y/2)] == 0)
+        water = 1;
 }
 </string>
           </argument>
@@ -860,32 +873,6 @@ if(alarm[0] == 1)
 }
 
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="oWater">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(alarm[0] == 1)
-{
-    water = 1;
-}
 </string>
           </argument>
         </arguments>

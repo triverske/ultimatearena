@@ -19,8 +19,6 @@ mountainlevel = argument3;
 beachsize     = argument4;
 seamless      = argument5;
 
-var totalwaterpools = 3;
-global.waterpools = 0;
 var totaltrees = 30;
 global.trees = 0;
 var totalwood = 10;
@@ -49,17 +47,17 @@ while (samplesize > 1) {
 // set tiles (Here you can add the tiles/terrains you want in the map)
 global.grid = grid;
 for (var i = 0; i < width; i += 1) {
-  for (var j = 0; j < height; j += 1) {
-    // tiles
-    if (scr_sample(i,j) > mountainlevel)
-      global.grid[i,j] = 3; // mountain
-    else if (scr_sample(i,j) > waterlevel)
-      global.grid[i,j] = 2; // grass
-    else if (scr_sample(i,j) > waterlevel - beachsize)
-      global.grid[i,j] = 1; // sand
-    else
-      global.grid[i,j] = 0; // water
-  }
+    for (var j = 0; j < height; j += 1) {
+        // tiles
+        if (scr_sample(i,j) > mountainlevel)
+            global.grid[i,j] = 3; // mountain
+        else if (scr_sample(i,j) > waterlevel)
+            global.grid[i,j] = 2; // grass
+        else if (scr_sample(i,j) > waterlevel - beachsize)
+            global.grid[i,j] = 1; // sand
+        else
+            global.grid[i,j] = 0; // water
+    }
 }
 
 // create minimap surface
@@ -96,20 +94,7 @@ for (var i = 0; i < width; i += 1) {
 }
 
 // create the minimap background 
-global.bck_minimap = background_create_from_surface(surf, 0, 0, 512, 512, 0, 0);
-
-// create water
-while(global.waterpools < totalwaterpools)
-{
-    var rand1 = irandom(512);
-    var rand2 = irandom(512);
-    if (surface_getpixel(surf,rand1,rand2) == blue)
-    {
-        global.waterloc[global.waterpools,0] = rand1;
-        global.waterloc[global.waterpools,1] = rand2;
-        global.waterpools++
-    }
-}
+background_assign(global.bck_minimap,background_create_from_surface(surf, 0, 0, 512, 512, 0, 0));
 
 // create trees
 while(global.trees < totaltrees)
@@ -165,5 +150,6 @@ while(global.stone < totalstone)
 }
 
 surface_reset_target();
+if(surface_exists(global.mapsurf))
+    surface_free(global.mapsurf);
 global.mapsurf = surf;
-//surface_free(surf);
