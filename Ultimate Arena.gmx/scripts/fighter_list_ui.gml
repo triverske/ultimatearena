@@ -6,7 +6,7 @@ var WS = global.WSCALE;
 var HS = global.HSCALE;
 
 var d = sID;
-if (d > 0 && global.DEATH_ARRAY[d] == 0 && instance_number(objUIWindow) < 100)
+if (d > 0 && instance_number(objUIWindow) < 100)
 {
     with (objUIWindowCaption) 
     {

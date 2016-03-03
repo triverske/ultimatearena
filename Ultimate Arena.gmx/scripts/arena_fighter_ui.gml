@@ -2,7 +2,7 @@
 
 with (objUIButton)
 {
-    if (argument0 == id)
+    if (argument0 == id && fID > 0)
     {
         if(bID == 0) //Food + Drink
         {
@@ -39,7 +39,7 @@ with (id)
 {
     if(object_index == objUILabel)
     {
-        if(instance_exists(fighter))
+        if(instance_exists(fighter) && fighter > 0)
         {
             caption = fighter.caption;
         }

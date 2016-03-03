@@ -246,7 +246,7 @@ with (objUIWindow)
         }
         if(wID == "FIGHTER")
         {
-            if(instance_exists(xID.fID))
+            if(instance_exists(xID.fID) && xID.fID != -1)
             {   
                 xID.left = xID.fID.x;
                 xID.top = xID.fID.y;

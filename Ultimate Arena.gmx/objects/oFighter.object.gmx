@@ -160,6 +160,9 @@ if(global.fighters_remaining == 1)
     instance_create(0,0,oWinScreen);
     
 instance_create(x,y,obj_deadLocation);
+
+global.DEADLOC[fighterID,0] = x;
+global.DEADLOC[fighterID,1] = y;
     
 
 </string>

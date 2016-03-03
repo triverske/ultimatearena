@@ -6,6 +6,7 @@ var HS = global.HSCALE;
 
 with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
 {
+    fID = -1;
     fighter = argument0;
     zui_set_size(312,200);
     callback = arena_ui;
@@ -38,14 +39,33 @@ with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
 
     with (zui_create(0, 24, oUIImage)) 
     {
-        type = 2;
-        image = oGraphicsController.realmap;
-        left = other.fID.x - 75 - (500 - (other.fID.x - 75));
-        top = other.fID.y - 75- (500 - (other.fID.y - 75));
-        width = 150;
-        height = 150;
-        fID = other.fID
-        other.xID = id;
+        if(other.fID < 0)
+        {
+            show_debug_message(string(other.fighter));
+            var xPos = global.DEADLOC[other.fighter,0]
+            var yPos = global.DEADLOC[other.fighter,1]
+            type = 2;
+            image = oGraphicsController.realmap;
+            left = xPos;
+            top = yPos;
+            show_debug_message(string(left));
+            show_debug_message(string(top));
+            width = 150;
+            height = 150;
+            fID = other.fID
+            other.xID = id;
+        }
+        else
+        {
+            type = 2;
+            image = oGraphicsController.realmap;
+            left = other.fID.x - 75 - (500 - (other.fID.x - 75));
+            top = other.fID.y - 75- (500 - (other.fID.y - 75));
+            width = 150;
+            height = 150;
+            fID = other.fID
+            other.xID = id;
+        }
     }
     
     with (zui_create(156, 90, objUIButton))

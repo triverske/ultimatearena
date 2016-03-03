@@ -248,13 +248,14 @@ switch(com)
     break;
     
     case "CHASE":
-    caption = "Chasing";
+    
     QUICK = .7 + AGILITY/10;
-    CONTINUE = 30;
+    CONTINUE = 80;
     instance_deactivate_object(self);
     c = instance_nearest(x,y-5,oFighter);
     instance_activate_object(self);
     DIR = c.DIR;
+    caption = "Chasing " + c.NAME;
     //createUpdate(global.NAMES[fighterID] + " began chasing " + global.NAMES[c.fighterID],fighterID,1);
     break;
     
@@ -277,7 +278,7 @@ switch(com)
     break;
     
     case "ATTACK UNARMED":
-    caption = "Attacking";
+    caption = "Attacking " + otherFighter.NAME;
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
     hit = 1+floor(random(STRENGTH));
@@ -303,7 +304,7 @@ switch(com)
     break;
     
     case "ATTACK WSPEAR":
-    caption = "Attacking with Spear";
+    caption = "Attacking " + otherFighter.NAME + " with Spear";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
     hit = 5+floor(random(STRENGTH*2));
@@ -339,7 +340,7 @@ switch(com)
     break;
     
     case "ATTACK SSPEAR":
-    caption = "Attacking with Spear";
+    caption = "Attacking " + otherFighter.NAME + " with Spear";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
     hit = 10+floor(random(STRENGTH*2));
@@ -375,7 +376,7 @@ switch(com)
     break;
         
     case "ATTACK WBOW":
-    caption = "Attacking with Bow";
+    caption = "Attacking " + otherFighter.NAME + " with Bow";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
     hit = 5+floor(random(SKILL*2));
@@ -411,7 +412,7 @@ switch(com)
     break;
     
     case "ATTACK SBOW":
-    caption = "Attacking with Bow";
+    caption = "Attacking " + otherFighter.NAME + " with Bow";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
     hit = 10+floor(random(SKILL*2));
@@ -455,7 +456,7 @@ switch(com)
     SANITY -= (floor(random(10)));
     with (otherFighter)
     {
-        global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
+        global.deathCause[fighterID] = "Drowned by " + other.NAME;
         drop_items();
         instance_destroy();
     }
