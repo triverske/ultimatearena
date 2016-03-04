@@ -8,8 +8,12 @@ switch(com)
 {   
     case "WANDER":
     caption = "Wandering";
-    wanderAngle += random(1) * wanderChange - wanderChange * .5;//change the angle randomly to make it wander
-    DIR = wanderAngle;
+    if(group != -1 && distance_to_object(group) > 5)
+        DIR = point_direction(x,y-5,group.x,group.y-5);
+    else{
+        wanderAngle += random(1) * wanderChange - wanderChange * .5;//change the angle randomly to make it wander
+        DIR = wanderAngle;
+    }
     QUICK = .5 + AGILITY/10;
     CONTINUE = 100;
     break;
@@ -277,14 +281,22 @@ switch(com)
     instance_destroy();
     break;
     
+    case "GROUP UP":
+    if(group == -1)
+        group = id;
+    otherFighter.group = group;
+    createUpdateM(getTextM("group_up",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,0);
+    break;
+    
     case "ATTACK UNARMED":
+    otherFighter.opinion[fighterID]--;
     caption = "Attacking " + otherFighter.NAME;
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
-    hit = 1+floor(random(STRENGTH));
+    hit = irandom(STRENGTH);
     otherFighter.HP -= hit;
-    c = random(floor(7))
-    if(c = 6)
+    c = irandom(6);
+    if(c == 6)
         XP++;
     if (otherFighter.HP <= 0)
     {
@@ -292,7 +304,7 @@ switch(com)
         createUpdateM(getTextM("kill_unarmed",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=5;
-        c = (floor(random(20)));
+        c = irandom(20);
         SANITY -= c;
         SANMAX -= c;
         with (otherFighter)
@@ -304,6 +316,7 @@ switch(com)
     break;
     
     case "ATTACK WSPEAR":
+    otherFighter.opinion[fighterID]--;
     caption = "Attacking " + otherFighter.NAME + " with Spear";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
@@ -319,7 +332,7 @@ switch(com)
         }
     }
     otherFighter.HP -= hit;
-    c = random(floor(6));
+    c = irandom(5);
     if(c = 5)
         XP++;
     if (otherFighter.HP <= 0)
@@ -340,6 +353,7 @@ switch(com)
     break;
     
     case "ATTACK SSPEAR":
+    otherFighter.opinion[fighterID]--;
     caption = "Attacking " + otherFighter.NAME + " with Spear";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
@@ -355,7 +369,7 @@ switch(com)
         }
     }
     otherFighter.HP -= hit;
-    c = random(floor(6));
+    c = irandom(5);
     if(c = 5)
         XP+=2;
     if(otherFighter.HP <= 0)
@@ -376,6 +390,7 @@ switch(com)
     break;
         
     case "ATTACK WBOW":
+    otherFighter.opinion[fighterID]--;
     caption = "Attacking " + otherFighter.NAME + " with Bow";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
@@ -391,7 +406,7 @@ switch(com)
         }
     }
     otherFighter.HP -= hit;
-    c = random(floor(5));
+    c = irandom(4);
     if(c = 4)
         XP++;
     if (otherFighter.HP <= 0)
@@ -412,6 +427,7 @@ switch(com)
     break;
     
     case "ATTACK SBOW":
+    otherFighter.opinion[fighterID]--;
     caption = "Attacking " + otherFighter.NAME + " with Bow";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
@@ -427,7 +443,7 @@ switch(com)
         }
     }
     otherFighter.HP -= hit;
-    c = random(floor(5));
+    c = irandom(4);
     if(c = 4)
         XP+=2;
     if (otherFighter.HP <= 0)
@@ -466,7 +482,7 @@ switch(com)
     caption = "Placing Landmine";
     QUICK = 0;
     CONTINUE = 0;
-    c = random(10)
+    c = irandom(10)
     if(c+SKILL>=5)
     {
         var w = instance_create(x,y,oMine);

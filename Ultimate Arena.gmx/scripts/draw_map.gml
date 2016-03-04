@@ -60,6 +60,24 @@ with(oSBow)
 draw_set_color(c_red);
 with (oFighter)
 {
+    if(other.showGroups){
+    if(group!=-1){
+        var c=-1;
+        for(var i=0; i<other.totalGroups; i++){
+            if(other.groups[i,0] == group)
+                c=i;
+        }
+        if(c==-1){
+            other.groups[other.totalGroups,0] = group;
+            other.groups[other.totalGroups,1] = make_colour_rgb(irandom(255),irandom(255),irandom(255));
+            c=other.totalGroups;
+            other.totalGroups++;
+        }
+        if(group == id)
+            draw_rectangle_colour(x-6,y-13,x+6,y+2,c_white,c_white,c_white,c_white,0);
+        draw_rectangle_colour(x-5,y-12,x+5,y+1,other.groups[c,1],other.groups[c,1],other.groups[c,1],other.groups[c,1],0);
+    }
+    }
     draw_sprite_ext(sFighterS,INSANE,x,y,1,1,0,color,1);
     //if (INV[0] != 0)
         //draw_text(x,y+3,string(INV[0]));
