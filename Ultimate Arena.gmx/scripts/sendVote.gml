@@ -25,12 +25,12 @@ else if(argument0 == 2)
     if(fID > 59 || fID < 0) exit;
     
     ini_open("twitch.ini")
-    if !ini_section_exists(tID)
+    if (!ini_section_exists(tID))
     {
         ini_write_real(tID,"points",0);
         ini_write_real(tID,"votenum",0);
     }
-    var votenum = -1; //ini_read_real(tID,"votenum",0);
+    var votenum = ini_read_real(tID,"votenum",0);
     
     if(votenum < global.currentgame)
     {

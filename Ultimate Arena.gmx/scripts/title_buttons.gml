@@ -45,9 +45,16 @@ with (objUIButton)
         }
         else if (bID == 4)
         {
-            c = instance_create(0,0,oRoomTransition);
-            c.gotoroom = rm_twitchCharselect;
-            global.GAMETYPE = 1;
+            if(global.fighters > 60)
+            {
+                c = instance_create(0,0,oRoomTransition);
+                c.gotoroom = rm_twitchCharselect;
+                global.GAMETYPE = 1;
+            }
+            else
+            {
+                ui_show_popup("You need at least 60 fighters#to do a Twitch match.");
+            }
         }
         else if (bID == 5) 
         {

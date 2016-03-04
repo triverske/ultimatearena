@@ -48,7 +48,7 @@ ini_open("twitch.ini");
 
 for(i = 6;i &gt; 0;i--)
 {
-    for(c = oTwitchController.winnerVotes[global.fighter_place[i],0];c &gt; 0;c--)
+    for(c = oTwitchController.winnerVotes[global.fighter_place[i]-1,0];c &gt; 0;c--)
     {
         var player = oTwitchController.winnerVotes[global.fighter_place[i]-1,c];
         var points = ini_read_real(player,"points",0);
