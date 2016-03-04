@@ -125,6 +125,13 @@ room_goto_next();
             <string>if(keyboard_check(vk_alt) &amp;&amp; keyboard_check(vk_f4))
     game_end();
     
+if(keyboard_check(vk_tab))
+{
+    var mx = display_mouse_get_x() - 640;
+    var my = display_mouse_get_y() - 360;
+    window_set_position(mx,my);
+}
+ 
 </string>
           </argument>
         </arguments>
