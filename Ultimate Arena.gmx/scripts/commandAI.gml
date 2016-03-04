@@ -9,8 +9,13 @@ switch(com)
     case "WANDER":
     caption = "Wandering";
     if(group != -1 && distance_to_object(group) > 5)
-        DIR = point_direction(x,y-5,group.x,group.y-5);
-    else{
+    {
+        var d = point_direction(x,y-5,group.x,group.y-5);
+        if(d != 0)
+            DIR = d; 
+    }
+    else
+    {
         wanderAngle += random(1) * wanderChange - wanderChange * .5;//change the angle randomly to make it wander
         DIR = wanderAngle;
     }
@@ -32,7 +37,10 @@ switch(com)
     QUICK = .5 + AGILITY/10;
     CONTINUE = 170;
     DELAY = 30;
-    point_direction(x,y,waterloc[0],waterloc[1]);
+    var d = point_direction(x,y,waterloc[0],waterloc[1]);
+        if(d != 0)
+            DIR = d; 
+    
     break;
     
     case "FOOD SEARCH":
@@ -40,7 +48,9 @@ switch(com)
     QUICK = .5 + AGILITY/10;
     CONTINUE = 85;
     DELAY = 30;
-    point_direction(x,y,foodloc[0],foodloc[1]);
+    var d = point_direction(x,y,foodloc[0],foodloc[1]);
+        if(d != 0)
+            DIR = d; 
     break;
     
     case "GET FOOD":
@@ -248,7 +258,10 @@ switch(com)
     caption = "Hunting";
     QUICK = .5 + AGILITY/10;
     CONTINUE = 100;
-    point_direction(x,y,enemyloc[0],enemyloc[1]);
+    var d = point_direction(x,y,enemyloc[0],enemyloc[1]);
+        if(d != 0)
+            DIR = d; 
+    
     break;
     
     case "CHASE":
@@ -513,3 +526,4 @@ switch(com)
 
 }
 }
+
