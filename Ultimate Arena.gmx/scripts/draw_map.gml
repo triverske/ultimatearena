@@ -60,6 +60,12 @@ with(oSBow)
 draw_set_color(c_red);
 with (oFighter)
 {
+    if(STATE == "SLEEP")
+    {
+        draw_sprite(spr_sleep,0,x,y-12);
+    }
+
+
     if(other.showGroups){
     if(group!=-1){
         var c=-1;
