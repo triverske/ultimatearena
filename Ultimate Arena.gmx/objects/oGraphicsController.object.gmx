@@ -118,6 +118,36 @@ with(zui_main())
         }
         zui_create(0,0,oUIExitButton,-1);
     }
+    
+    with(zui_create(0,0,objUIWindow,-100))
+    {
+        wID = "Test";
+        callback = arena_ui;
+        zui_set_size(global.WSCALE,55);
+        zui_set_anchor(0,0);
+        for(var i=0;i&lt;4;i++)
+        {
+            with (zui_create(120+20*i,35,oUIImageButton))
+            {
+                type = i;
+                bID = i;
+                callback = arena_ui;
+                image = sSideMenu;
+                zui_set_size(18,18);
+            }
+        } 
+        for(var i=0;i&lt;5;i++)
+        {
+            with (zui_create(240+44*i,28,oUIImageButton))
+            {
+                type = i;
+                bID = i + 4;
+                callback = arena_ui;
+                image = sGameButtons;
+                zui_set_size(42,42);
+            }
+        } 
+    }
 }
 alarm[0] = global.GAME_SPEED;
 </string>

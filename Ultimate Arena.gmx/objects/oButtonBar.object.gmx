@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>// This object controls the little menu in the top left during an arena game.
 
+/*
 with (zui_main())
 {   
     for(i=0;i&lt;4;i++)
@@ -52,6 +53,7 @@ with (zui_main())
         }
     } 
 }
+*/
 </string>
           </argument>
         </arguments>
@@ -75,7 +77,7 @@ with (zui_main())
           <argument>
             <kind>1</kind>
             <string>display_set_gui_size(window_get_width(),window_get_height());
-draw_rectangle_colour(0,0,484,55,c_0,c_0,c_0,c_0,0);
+//draw_rectangle_colour(0,0,window_get_width(),55,c_0,c_0,c_0,c_0,0);
 
 
 draw_set_halign(fa_center);
