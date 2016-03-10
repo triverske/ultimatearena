@@ -39,7 +39,7 @@ instance_create(0,0,obj_hoverStats);
 draw_set_valign(fa_top);
 
 //show_debug_overlay(true);
-global.GAME_SPEED = 4;
+global.GAME_SPEED = global.SAVE_SPEED;
 global.fighters_remaining = global.fighters;
 tile_size = 32;
 instance_create(0,0,oSignDeaths);

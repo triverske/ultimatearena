@@ -11,7 +11,7 @@ with (objUIButton)
     {
         if (bID == 0)
         {
-            if(global.GAME_SPEED != 0)
+            if(global.GAME_SPEED != 0 && global.GAME_SPEED < 20)
                 global.GAME_SPEED++;
         }
         if (bID == 1)

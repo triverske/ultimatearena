@@ -191,7 +191,7 @@ with (zui_main())
     {
         wID = "Arena Settings";
         callback  = fighter_select_buttons;
-        zui_set_size(250,214);
+        zui_set_size(250,230);
         zui_set_position(WS * .4,HS * .5 );
         with (zui_create(0, 0, objUIWindowCaption)) 
         {
@@ -206,7 +206,27 @@ with (zui_main())
             fcount = global.fighters;
             callback = fighter_select_buttons;
             lID = "fightercount";
-
+        }
+        with (zui_create(__width/2, 70, objUILabel)) 
+        {
+            callback = fighter_select_buttons;
+            lID = "gamespeed";
+        }
+        with (zui_create(__width/2 + 70, 70, objUIButton)) 
+        {
+            zui_set_anchor(.5,.5);
+            zui_set_size(20, 20);
+            caption = "&gt;";
+            callback = fighter_select_buttons;
+            bID = 10;
+        }
+        with (zui_create(__width/2 - 70, 70, objUIButton)) 
+        {
+            zui_set_anchor(.5,.5);
+            zui_set_size(20, 20);
+            caption = "&lt;";
+            callback = fighter_select_buttons;
+            bID = 9;
         }
         
         with (zui_create(5, __height - 35, objUIButton)) 

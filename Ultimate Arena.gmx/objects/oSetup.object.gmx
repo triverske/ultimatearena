@@ -29,6 +29,7 @@
 
 
 global.ENDLESS = 0;
+global.SAVE_SPEED = 4;
 global.seed = 0;
 
 var i = 1;

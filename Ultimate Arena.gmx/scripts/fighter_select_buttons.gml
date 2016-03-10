@@ -122,6 +122,16 @@ with (objUIButton)
         {
             var w = get_integer_async("Enter A Seed",0);
         }
+        else if (bID == 9)
+        {
+            if(global.SAVE_SPEED < 20)
+                global.SAVE_SPEED++;
+        }
+        if (bID == 10)
+        {
+            if (global.SAVE_SPEED != 0 && global.SAVE_SPEED > 1)
+                global.SAVE_SPEED--;
+        }
     }
 }
 with (objUIWindow)
@@ -191,6 +201,10 @@ with (objUILabel)
         else if (lID == "seed")
         {
             caption = "Seed: " +  string(random_get_seed());
+        }
+        else if (lID == "gamespeed")
+        {
+            caption = string(floor(60/global.SAVE_SPEED*10)) + "X SPEED";
         }
     }
 }

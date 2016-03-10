@@ -96,7 +96,7 @@ draw_text(50,35,global.TIME_STRING);
 if (global.GAME_SPEED == 0)
     draw_text(150,10,"PAUSED");
 else
-    draw_text(150,10,string(60/global.GAME_SPEED*10) + "X SPEED");
+    draw_text(150,10,string(floor(60/global.GAME_SPEED*10)) + "X SPEED");
 
 </string>
           </argument>
