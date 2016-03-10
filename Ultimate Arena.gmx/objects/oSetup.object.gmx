@@ -29,6 +29,7 @@
 
 
 global.ENDLESS = 0;
+global.seed = 0;
 
 var i = 1;
 global.TAG_COUNT = 0;
@@ -58,6 +59,8 @@ else
 
 }
 randomize();
+
+
 // variables
 tile_size = 32;  // the size of your tiles
 show_minimap = true;
@@ -74,7 +77,7 @@ global.bck_minimap = 0;
 // argument4: defines the size of the beaches (0 = no beach)
 // argument5: is the map seamlessly repeating or not
 
-scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
+//scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
 
 global.boxColor = 0;
 global.GAMETYPE = 0;
@@ -132,6 +135,10 @@ if(keyboard_check(vk_tab))
     window_set_position(mx,my);
 }
  
+if(keyboard_check_pressed(vk_space))
+{
+    show_debug_message(string(random_get_seed()));
+}
 </string>
           </argument>
         </arguments>

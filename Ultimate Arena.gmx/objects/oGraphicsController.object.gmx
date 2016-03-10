@@ -136,7 +136,7 @@ with(zui_main())
                 zui_set_size(18,18);
             }
         } 
-        for(var i=0;i&lt;5;i++)
+        for(var i=0;i&lt;6;i++)
         {
             with (zui_create(240+44*i,28,oUIImageButton))
             {

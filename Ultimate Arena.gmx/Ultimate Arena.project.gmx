@@ -214,6 +214,7 @@
         <script>scripts\create_window_charedit.gml</script>
         <script>scripts\create_window_fighterlist.gml</script>
         <script>scripts\create_window_fighter.gml</script>
+        <script>scripts\create_window_sandbox.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>

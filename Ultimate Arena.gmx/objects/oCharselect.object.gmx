@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>global.IDselected = -1;
-regen = 0;
+regen = 1;
 startgame = 0;
 
 var WS = global.WSCALE;
@@ -137,13 +137,19 @@ with (zui_main())
     {
         wID = "Arena Settings";
         callback  = fighter_select_buttons;
-        zui_set_size(250,140);
+        zui_set_size(250,190);
         zui_set_position(WS * .4,HS * .5 + 220);
         with (zui_create(0, 0, objUIWindowCaption)) 
         {
             caption = "Map Settings";
             draggable = 0;
             type = 1;
+        }
+        with (zui_create(125, 37, objUILabel)) 
+        {
+            caption = "Seed: " +  string(random_get_seed());
+            callback = fighter_select_buttons;
+            lID = "seed";
         }
         
         with (zui_create(5, __height - 35, objUIButton)) 
@@ -163,8 +169,15 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 1;
         }
-        
         with (zui_create(5, __height - 105, objUIButton)) 
+        {
+            zui_set_anchor(0, 0);
+            zui_set_size(240, 30);
+            caption = "Create From Seed";
+            callback = fighter_select_buttons;
+            bID = 8;
+        }
+        with (zui_create(5, __height - 140, objUIButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -275,48 +288,75 @@ global.fighters = fcount;
 
 if (regen == 1)
 {
-tile_size = 32;  // the size of your tiles
-show_minimap = true;
-
-// generate a map
-
-// argument0: defines the size (MUST be a power of 2!) Large sizes (&gt; 1024) take a while to load
-// argument1: defines the level of fluctuation (low = much variation in terrain, high = little variation in terrain) 
-//           This must be lower than the map size! (MUST be a power of 2!)
-// argument2: defines the waterlevel (lower = less water)
-// argument3: defines the mountain level (higher = less mountains)
-// argument4: defines the size of the beaches (0 = no beach)
-// argument5: is the map seamlessly repeating or not
-
-var WS = global.WSCALE;
-var HS = global.HSCALE;
-
-//scr_load_map("MapTest2.png");
-scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
-regen = 0;
-with(objUIWindow)
-{
-    if (wID == "Map Window")
+    randomize();
+    tile_size = 32;  // the size of your tiles
+    show_minimap = true;
+    
+    var WS = global.WSCALE;
+    var HS = global.HSCALE;
+    
+    //scr_load_map("MapTest2.png");
+    scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
+    regen = 0;
+    with(objUIWindow)
     {
-        zui_destroy();
-    }
-}
-with (zui_main()) 
-{
-    with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
-    {
-        wID = "Map Window";
-        zui_set_size(HS*(512/720),HS*(512/720)+24);
-        zui_set_position(WS*.75,HS / 2);
-        callback = fighter_select_buttons;
-        
-        with (zui_create(0, 0, objUIWindowCaption)) 
+        if (wID == "Map Window")
         {
-            caption = "Map Settings";
-            draggable = 0; 
+            zui_destroy();
+        }
+    }
+    with (zui_main()) 
+    {
+        with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
+        {
+            wID = "Map Window";
+            zui_set_size(HS*(512/720),HS*(512/720)+24);
+            zui_set_position(WS*.75,HS / 2);
+            callback = fighter_select_buttons;
+            
+            with (zui_create(0, 0, objUIWindowCaption)) 
+            {
+                caption = "Map Settings";
+                draggable = 0; 
+            }
         }
     }
 }
+if (regen == 2)
+{
+    random_set_seed(global.seed);
+    tile_size = 32;  // the size of your tiles
+    show_minimap = true;
+    
+    var WS = global.WSCALE;
+    var HS = global.HSCALE;
+    
+    //scr_load_map("MapTest2.png");
+    scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
+    regen = 0;
+    with(objUIWindow)
+    {
+        if (wID == "Map Window")
+        {
+            zui_destroy();
+        }
+    }
+    with (zui_main()) 
+    {
+        with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
+        {
+            wID = "Map Window";
+            zui_set_size(HS*(512/720),HS*(512/720)+24);
+            zui_set_position(WS*.75,HS / 2);
+            callback = fighter_select_buttons;
+            
+            with (zui_create(0, 0, objUIWindowCaption)) 
+            {
+                caption = "Map Settings";
+                draggable = 0; 
+            }
+        }
+    }
 }
 
 var charcount = 0;
@@ -372,6 +412,36 @@ if (startgame == 1)
     
     startgame = 0;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="63">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var i_d = ds_map_find_value(async_load, "id");
+
+if ds_map_find_value(async_load, "status")
+{
+    global.seed = ds_map_find_value(async_load, "value");
+    regen = 2;
+}
+
 </string>
           </argument>
         </arguments>

@@ -28,7 +28,7 @@ with(zui_create(WS - 200,HS/2,objUIWindow,-1))
         }
         
 
-    bID = 10;
+    bID = 80;
     zui_set_size(186,40);
     callback = arena_ui;
     
@@ -36,7 +36,7 @@ with(zui_create(WS - 200,HS/2,objUIWindow,-1))
     with(zui_create(__width - 5,__height - 45,objUIButton))
     {
         zui_set_anchor(1,0);
-        bID = 9;
+        bID = 79;
         if(global.otherUpdates)
         {
         caption = "Other Updates On";

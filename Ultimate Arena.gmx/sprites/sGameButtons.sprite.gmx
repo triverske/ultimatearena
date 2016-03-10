@@ -25,5 +25,6 @@
     <frame index="2">images\sGameButtons_2.png</frame>
     <frame index="3">images\sGameButtons_3.png</frame>
     <frame index="4">images\sGameButtons_4.png</frame>
+    <frame index="5">images\sGameButtons_5.png</frame>
   </frames>
 </sprite>

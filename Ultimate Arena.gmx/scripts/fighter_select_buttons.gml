@@ -120,7 +120,7 @@ with (objUIButton)
         }
         else if (bID == 8)
         {
-            
+            var w = get_integer_async("Enter A Seed",0);
         }
     }
 }
@@ -187,6 +187,10 @@ with (objUILabel)
         if (lID == "fightercount")
         {
             caption = "Fighter Count: " + string(global.fighters) + " / " + string(fcount);
+        }
+        else if (lID == "seed")
+        {
+            caption = "Seed: " +  string(random_get_seed());
         }
     }
 }
