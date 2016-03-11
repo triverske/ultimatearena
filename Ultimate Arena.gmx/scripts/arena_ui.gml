@@ -78,7 +78,7 @@ with (objUIButton)
             }
             with (zui_main()) 
             {
-                
+                create_window_sandbox();
             }
         }
         if (bID == 7)
