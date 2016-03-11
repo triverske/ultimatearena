@@ -242,6 +242,17 @@ if(keyboard_check_pressed(vk_space))
     }
 }
 
+
+if (keyboard_check_pressed(vk_subtract))
+{
+    if(global.GAME_SPEED != 0 &amp;&amp; global.GAME_SPEED &lt; 20)
+        global.GAME_SPEED++;
+}
+if (keyboard_check_pressed(vk_add))
+{
+    if (global.GAME_SPEED != 0 &amp;&amp; global.GAME_SPEED &gt; 1)
+        global.GAME_SPEED--;
+}
 </string>
           </argument>
         </arguments>
