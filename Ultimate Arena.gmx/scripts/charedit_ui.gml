@@ -20,7 +20,14 @@ with(oUIListBox)
             global.editStats[3] = min(10,ini_read_real("character","skill",5));
             global.editStats[4] = min(10,ini_read_real("character","luck",5));
             var gen = ini_read_real("character","gender",0)
+            var s1 = ini_read_string("think","s1","");
             ini_close();
+            
+            with(objUIWindow)
+            {
+                if(wID == "Phrase Editor")
+                    text = s1
+            }
             
             with(objUICheckbox)
             {
@@ -105,6 +112,18 @@ with(objUIButton)
             ini_write_real("character","skill",global.editStats[3]);
             ini_write_real("character","luck",global.editStats[4]);
             
+            with(objUIWindow)
+            {
+                if(wID == "Phrase Editor")
+                {
+                    if(text != "")
+                    {
+                        ini_write_string("think","s1",text);
+                        ini_write_real("think","total",1);
+                    }
+                }
+            }
+            
             ini_close();
             
             for(i=0;i<5;i++)
@@ -187,6 +206,10 @@ with(objUIButton)
                     color = c_white;
             }
         }
+        if(bID == 10) //Change catchphrase
+        {
+            get_string_async("Enter a catchphrase","");
+        }
     }
 }
 with(oUIImage)
@@ -207,9 +230,23 @@ with(objUIField)
         //code here for saving text to .ini
     }
 }
-with(objUICheckbox)
+with(objUIWindow)
 {
     if(argument0 == id)
     {
+        if(wID == "Phrase Editor")
+        {
+            draw_set_valign(fa_top);
+            draw_set_halign(fa_left);
+            draw_sprite(spr_updateBox,0,0,29);
+            draw_sprite_stretched(global.newImage,1,5,29+5,64,64);
+            
+            if(text != "")
+                draw_text_ext(75,29+5,text,14,305);
+            else
+                draw_text_ext(75,29+5,"NO CATCHPHRASE",14,305);
+                
+            draw_text(338,29+59,"00:00:00");
+        }
     }
 }

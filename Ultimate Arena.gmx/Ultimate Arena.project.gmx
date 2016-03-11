@@ -56,9 +56,7 @@
       <filename>MapTest.png</filename>
     </datafile>
   </datafiles>
-  <NewExtensions>
-    <extension index="0">extensions\IRC Chat Connection for Twitch</extension>
-  </NewExtensions>
+  <NewExtensions/>
   <sounds name="sound">
     <sound>sound\snd_notification</sound>
     <sound>sound\snd_blip</sound>

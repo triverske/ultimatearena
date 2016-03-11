@@ -118,7 +118,7 @@ with (objUIButton)
         }
         else if (bID == 9)
         {
-            ui_show_popup_credits("Ultimate Arena v" + global.VERSION + "##Developed by House Bonneau & Triverske##Programmers: Troy Bonneau, Matt Mozingo##Copyright 2016");     
+            ui_show_popup_credits();     
         }
         else if (bID == 10)
         {

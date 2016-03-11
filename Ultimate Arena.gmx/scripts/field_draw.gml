@@ -30,11 +30,11 @@ if mouse_check_button_released(mb_left)
     {
         if(mouse_y > y && mouse_y < (y + 16))
         {
-            notActive = false;
+            active = false;
         }
     }
     else
-        notActive = true;
+        active = true;
 }
 
 /*

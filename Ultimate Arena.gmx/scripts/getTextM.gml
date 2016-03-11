@@ -27,6 +27,13 @@ else if(global.GENDER[ID1] == 1)
     f = string_replace(e,"@1","her");
     c = string_replace(f,"*1","her");
 }
+else if(global.GENDER[ID1] == 2)
+{
+    d = string_replace(c,"$1",global.NAMES[ID]);
+    e = string_replace(d,"%1","they");
+    f = string_replace(e,"@1","their");
+    return string_replace(f,"*1","them");
+}
 
 if (ID2 != 0)
 {
@@ -44,6 +51,14 @@ if (ID2 != 0)
         f = string_replace(e,"@2","her");
         c = string_replace(f,"*2","her");
     }
+    else if(global.GENDER[ID2] == 2)
+    {
+        d = string_replace(c,"$2",global.NAMES[ID]);
+        e = string_replace(d,"%2","they");
+        f = string_replace(e,"@2","their");
+        return string_replace(f,"*2","them");
+    }
+    
     if (ID3 != 0)
     {
         if (global.GENDER[ID3] == 0)
@@ -60,6 +75,13 @@ if (ID2 != 0)
             f = string_replace(e,"@3","her");
             c = string_replace(f,"*3","her");
         }
+        else if(global.GENDER[ID3] == 2)
+        {
+            d = string_replace(c,"$3",global.NAMES[ID]);
+            e = string_replace(d,"%3","they");
+            f = string_replace(e,"@3","their");
+            return string_replace(f,"*3","them");
+        }
         if (ID4 != 0)
         {
             if (global.GENDER[ID4] == 0)
@@ -75,6 +97,13 @@ if (ID2 != 0)
                 e = string_replace(d,"%4","she");
                 f = string_replace(e,"@4","her");
                 c = string_replace(f,"*4","her");
+            }
+            else if(global.GENDER[ID4] == 2)
+            {
+                d = string_replace(c,"$4",global.NAMES[ID]);
+                e = string_replace(d,"%4","they");
+                f = string_replace(e,"@4","their");
+                return string_replace(f,"*4","them");
             }
         }
     }

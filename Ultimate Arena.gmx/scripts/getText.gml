@@ -8,7 +8,6 @@ total1 = ini_read_real(state,"total",1);
 ini_close();
 ini_open("Characters/" + global.FILES[ID])
 total2 = ini_read_real(state,"total",0);
-//show_message(global.NAMES[ID] + string(total2));
 ini_close();
 randvar = ceil(random(total1 + total2));
 
@@ -22,11 +21,8 @@ else
 {
     ini_open("Characters/" + global.FILES[ID]);
     c = ini_read_string(state,"s"+string(randvar - total1),"ERROR " + global.FILES[ID]);
-    //show_error("MADE IT", false);
-
     ini_close();
 }
-
 
 
 if (global.GENDER[ID] == 0)
@@ -42,4 +38,11 @@ else if(global.GENDER[ID] == 1)
     e = string_replace(d,"%1","she");
     f = string_replace(e,"@1","her");
     return string_replace(f,"*1","her");
+}
+else if(global.GENDER[ID] == 2)
+{
+    d = string_replace(c,"$1",global.NAMES[ID]);
+    e = string_replace(d,"%1","they");
+    f = string_replace(e,"@1","their");
+    return string_replace(f,"*1","them");
 }
