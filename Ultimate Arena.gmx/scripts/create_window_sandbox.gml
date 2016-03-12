@@ -29,7 +29,7 @@ with(zui_create(445,348,objUIWindow,-1))
             zui_set_size(90,90);
             image = sSandboxButton;
             callback = arena_ui;
-            bID = 13;
+            bID = 83;
         }
     }
     else if (global.GAMETYPE == 1)
