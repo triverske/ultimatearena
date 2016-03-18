@@ -102,6 +102,44 @@ with (zui_main())
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(keyboard_check_pressed(vk_control))
+{
+    if(!instance_exists(objUIWindow))
+    {
+        ini_open("settings.ini");
+        var e = floor(ini_read_real("settings","addcharacters",1));
+        e = !e;
+        ini_write_real("settings","addcharacters",e);
+        ini_close();
+        
+        if(e == 0)
+            ui_show_popup("Additional Default Characters#have been disabled.");
+        else
+            ui_show_popup("Additional Default Characters#have been enabled.");
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>

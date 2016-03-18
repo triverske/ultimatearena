@@ -90,12 +90,15 @@ global.SELECTIONTIME = ini_read_real("twitch","time",60);
 global.vsync = ini_read_real("settings","vsync",0);
 
 var v = ini_read_real("settings","version",1);
-
+var e = ini_read_real("settings","addcharacters",1);
 if(v &lt; real(global.VERSION))
 {
-    ini_write_real("settings","version",real(global.VERSION));
-    add_default_events();
-    add_default_characters();
+    if(e == 1)
+    {
+        ini_write_real("settings","version",real(global.VERSION));
+        add_default_events();
+        add_default_characters();
+    }
 }
 ini_close();
 
