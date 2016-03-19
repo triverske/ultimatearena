@@ -25,8 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.VERSION = "1.11";
+            <string>global.VERSION = "1.2";
 
+
+global.ENDLESS = 0;
 
 var i = 1;
 global.TAG_COUNT = 0;
@@ -80,6 +82,7 @@ global.GAMETYPE = 0;
 global.CODENAME = "Basilisk";
 ini_open("settings.ini");
 global.TWITCHENABLED = ini_read_real("twitch","enable",0);
+global.SELECTIONTIME = ini_read_real("twitch","time",60);
 global.vsync = ini_read_real("settings","vsync",0);
 
 var v = ini_read_real("settings","version",1);
@@ -92,8 +95,9 @@ if(v &lt; real(global.VERSION))
 }
 ini_close();
 
-//if(global.TWITCHENABLED)
+if(global.TWITCHENABLED)
     instance_create(0,0,oTwitchController);
+    
 room_goto_next();
 //audio_play_sound(snd_wario,1,0);
 </string>
@@ -121,6 +125,13 @@ room_goto_next();
             <string>if(keyboard_check(vk_alt) &amp;&amp; keyboard_check(vk_f4))
     game_end();
     
+if(keyboard_check(vk_tab))
+{
+    var mx = display_mouse_get_x() - 640;
+    var my = display_mouse_get_y() - 360;
+    window_set_position(mx,my);
+}
+ 
 </string>
           </argument>
         </arguments>

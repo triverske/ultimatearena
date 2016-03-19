@@ -100,6 +100,7 @@ c.gotoroom = rm_twitchCharselect;
 
 draw_set_color(c_white);
 draw_set_halign(fa_left);
+draw_set_valign(fa_top);
 //First Place
 draw_sprite_stretched(fimage[1],0,50,50,128,128);
 draw_text(180,50,fnames[1] + " Wins!");

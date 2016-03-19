@@ -118,6 +118,7 @@
     <sprite>sprites\sTrap</sprite>
     <sprite>sprites\spr_hoverStats</sprite>
     <sprite>sprites\spr_alert</sprite>
+    <sprite>sprites\spr_sleep</sprite>
     <sprite>sprites\spr_deadLocation</sprite>
     <sprite>sprites\spr_nameBar</sprite>
     <sprite>sprites\spr_updateBox</sprite>

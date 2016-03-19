@@ -42,8 +42,24 @@ defaultE[4,4] = "$1 couldn't recover from Ebola.";
 defaultE[4,5] = "$1 falls to Ebola";
 defaultE[4,6] = "$1 is no match for the mighty Ebola virus.";
 
+defaultE[5,0] = "Acid Rain";
+defaultE[5,1] = "Acid Rain begins to fall from the sky!";
+defaultE[5,2] = 10;
+defaultE[5,3] = 3;
+defaultE[5,4] = "$1's skin burns and melts off onto the ground.";
+defaultE[5,5] = "$1 succumbs to the rain.";
+defaultE[5,6] = "$1's shelter gives way, leaving them dead in the rain.";
 
-for(i = 0;i < 5;i++)
+defaultE[6,0] = "Woodland Creatures";
+defaultE[6,1] = "Angry Woodland Creatures flood the Arena!";
+defaultE[6,2] = 10;
+defaultE[6,3] = 3;
+defaultE[6,4] = "$1 is knawed in half by a rabbit.";
+defaultE[6,5] = "$1 gets ran over by an angry deer.";
+defaultE[6,6] = "$1 dies trying to pet a squirrel.";
+
+
+for(i = 0;i < 7;i++)
 {
     ini_open(working_directory + "events\" + defaultE[i,0] + ".ini");
     ini_write_string("event","name",defaultE[i,0]);
