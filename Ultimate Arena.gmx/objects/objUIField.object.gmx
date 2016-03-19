@@ -31,6 +31,8 @@ valign = 1;
 caption = "";
 maximum = 25; // 0 = no limit
 callback = -1;
+width = 200;
+active = 0;
 field_init(1,1,c_1,c_0,c_white,c_1,c_0,c_white,c_1,c_0,c_white,2,0,1)
 </string>
           </argument>
@@ -58,7 +60,7 @@ field_init(1,1,c_1,c_0,c_white,c_1,c_0,c_white,c_1,c_0,c_white,2,0,1)
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
-field_draw(0,0,x,y,200,0,caption,keyboard_string,maximum);
+field_draw(0,0,x,y,width,active,caption,keyboard_string,maximum);
 
 if(callback &gt;= 0)
     script_execute(callback,id);

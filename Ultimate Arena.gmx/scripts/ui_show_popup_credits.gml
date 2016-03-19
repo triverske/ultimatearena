@@ -12,8 +12,14 @@ with (objZUIMain) {
    caption = "Ultimate Arena Credits";
   }
   
-  with (zui_create(zui_get_width() * 0.5, zui_get_height() * 0.5 - 8, objUILabel)) {
-   caption = argument0;
+  with (zui_create(zui_get_width() * 0.5, zui_get_height() * 0.5 - 8, objUILabel)) 
+  {
+   caption = 
+   "Ultimate Arena v" + global.VERSION + "##
+   Developed by House Bonneau & Triverske#
+   Programmers: Troy Bonneau, Matt Mozingo##
+   Github Contributors#SquirrelJay, zeaga, Proncs#
+   Copyright 2016";
   }
   
   with (zui_create(zui_get_width() * 0.5, zui_get_height() - 24, objUIButton)) {

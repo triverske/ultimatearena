@@ -88,6 +88,7 @@ ini_close();
 c = instance_create(0,0,oRoomTransition);
 c.gotoroom = rm_twitchWinroom;
 }
+global.SAVE_SPEED = global.GAME_SPEED;
 global.GAME_SPEED = 0;
 global.scrollspeed1 = 0;
 global.scrollspeed2 = 0;

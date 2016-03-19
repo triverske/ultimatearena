@@ -39,7 +39,7 @@ instance_create(0,0,obj_hoverStats);
 draw_set_valign(fa_top);
 
 //show_debug_overlay(true);
-global.GAME_SPEED = 4;
+global.GAME_SPEED = global.SAVE_SPEED;
 global.fighters_remaining = global.fighters;
 tile_size = 32;
 instance_create(0,0,oSignDeaths);
@@ -117,6 +117,36 @@ with(zui_main())
             draggable = 1;
         }
         zui_create(0,0,oUIExitButton,-1);
+    }
+    
+    with(zui_create(0,0,objUIWindow,-100))
+    {
+        wID = "Test";
+        callback = arena_ui;
+        zui_set_size(global.WSCALE,55);
+        zui_set_anchor(0,0);
+        for(var i=0;i&lt;4;i++)
+        {
+            with (zui_create(120+20*i,35,oUIImageButton))
+            {
+                type = i;
+                bID = i;
+                callback = arena_ui;
+                image = sSideMenu;
+                zui_set_size(18,18);
+            }
+        } 
+        for(var i=0;i&lt;6;i++)
+        {
+            with (zui_create(240+44*i,28,oUIImageButton))
+            {
+                type = i;
+                bID = i + 4;
+                callback = arena_ui;
+                image = sGameButtons;
+                zui_set_size(42,42);
+            }
+        } 
     }
 }
 alarm[0] = global.GAME_SPEED;
@@ -212,6 +242,17 @@ if(keyboard_check_pressed(vk_space))
     }
 }
 
+
+if (keyboard_check_pressed(vk_subtract))
+{
+    if(global.GAME_SPEED != 0 &amp;&amp; global.GAME_SPEED &lt; 20)
+        global.GAME_SPEED++;
+}
+if (keyboard_check_pressed(vk_add))
+{
+    if (global.GAME_SPEED != 0 &amp;&amp; global.GAME_SPEED &gt; 1)
+        global.GAME_SPEED--;
+}
 </string>
           </argument>
         </arguments>

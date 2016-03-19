@@ -10,7 +10,6 @@
  * Returns nothing
  *
  */
-
 width         = argument0;
 height        = argument0;
 featuresize   = argument1;
@@ -29,25 +28,30 @@ var totalstone = 5;
 global.stone = 0;
 
 // create heightmap
-for (var i = 0; i < width; i += featuresize) {
-  for (var j = 0; j < height; j += featuresize) {
-    scr_set_sample(i, j, random_range(-1, 1));
-  }
+for (var i = 0; i < width; i += featuresize) 
+{
+    for (var j = 0; j < height; j += featuresize) 
+    {
+        scr_set_sample(i, j, random_range(-1, 1));
+    }
 }
 
 // build map
 var samplesize = featuresize;
 var scale = 1.0;
-while (samplesize > 1) {
-  scr_diamond_square(samplesize, scale);
-  samplesize /= 2;
-  scale /= 2.0;
+while (samplesize > 1) 
+{
+    scr_diamond_square(samplesize, scale);
+    samplesize /= 2;
+    scale /= 2.0;
 }
     
 // set tiles (Here you can add the tiles/terrains you want in the map)
 global.grid = grid;
-for (var i = 0; i < width; i += 1) {
-    for (var j = 0; j < height; j += 1) {
+for (var i = 0; i < width; i += 1) 
+{
+    for (var j = 0; j < height; j += 1) 
+    {
         // tiles
         if (scr_sample(i,j) > mountainlevel)
             global.grid[i,j] = 3; // mountain

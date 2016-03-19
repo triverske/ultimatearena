@@ -24,7 +24,7 @@ defaultC[22] = "Columbus";
 defaultC[23] = "Newton";
 defaultC[24] = "Mozart";
 defaultC[25] = "da Vinci";
-defaultC[26] = "Ghandi";
+defaultC[26] = "Gandhi";
 defaultC[27] = "Mandela";
 defaultC[28] = "Tesla";
 defaultC[29] = "Marx";
@@ -55,6 +55,11 @@ defaultC[53] = "Kanye West";
 defaultC[54] = "Zuckerberg"
 defaultC[55] = "John Carmack";
 defaultC[56] = "Troy Bonneau";
+defaultC[57] = "Elton John";
+defaultC[58] = "Mussolini";
+defaultC[59] = "A Stray Dog";
+defaultC[60] = "Notch";
+defaultC[61] = "Jeb Bush";
 
 v = sprite_duplicate(sDefaultCharacters);
 

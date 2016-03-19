@@ -7,7 +7,6 @@ draw_set_valign(fa_top);
 draw_set_halign(fa_left);
 draw_set_color(c_white); draw_set_font(font0);
 surface_set_target(updates);
-draw_rectangle_colour(0,0,390,74*25,c_0,c_0,c_0,c_0,0);
 with (oUpdateBox)
 {
     draw_sprite(spr_updateBox,boxColor,0,y);

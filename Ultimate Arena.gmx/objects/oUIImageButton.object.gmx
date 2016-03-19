@@ -31,6 +31,7 @@ type = 0;
 colortype = 0;
 drawGui = 0;
 color = c_white;
+alpha = 1;
 </string>
           </argument>
         </arguments>
@@ -173,13 +174,16 @@ color = c_white;
             <string>if(drawGui == 0)
 {
 
-    if (zui_get_hover()) {
-     if (pressed)
-      darken = 2;
-     else
-      darken = 1;
-    } else {
-     darken = 0;
+    if (zui_get_hover()) 
+    {
+        if (pressed)
+             darken = 2;
+        else
+             darken = 1;
+    } 
+    else 
+    {
+        darken = 0;
     }
     
     ui_draw_sprite_panel(sprButton, 0, 8, -6, -6, __width + 12, __height + 12);
@@ -194,21 +198,23 @@ color = c_white;
     if(darken == 1)
     {
         draw_set_alpha(.60)
+        alpha = .6;
     }
     else if(darken == 2)
     {
         draw_set_alpha(.3)
+        alpha = .3;
     } 
     
     
-    draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,1);
+    draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,alpha);
     
     
     /*
     draw_set_color(c_black);
     draw_rectangle(0,0,zui_get_width(),zui_get_height(),0); */
     draw_set_alpha(1); 
-}
+}   alpha = 1;
 </string>
           </argument>
         </arguments>

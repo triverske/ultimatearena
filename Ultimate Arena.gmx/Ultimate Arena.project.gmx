@@ -56,9 +56,7 @@
       <filename>MapTest.png</filename>
     </datafile>
   </datafiles>
-  <NewExtensions>
-    <extension index="0">extensions\IRC Chat Connection for Twitch</extension>
-  </NewExtensions>
+  <NewExtensions/>
   <sounds name="sound">
     <sound>sound\snd_notification</sound>
     <sound>sound\snd_blip</sound>
@@ -214,6 +212,7 @@
         <script>scripts\create_window_charedit.gml</script>
         <script>scripts\create_window_fighterlist.gml</script>
         <script>scripts\create_window_fighter.gml</script>
+        <script>scripts\create_window_sandbox.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>

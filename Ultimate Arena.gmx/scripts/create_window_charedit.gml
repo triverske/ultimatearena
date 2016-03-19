@@ -1,6 +1,5 @@
-with(zui_create(window_get_width()*.6, window_get_height()/2, objUIWindow))
+with(zui_create(window_get_width()*.6, window_get_height()/2 - 60, objUIWindow))
 {
-
     zui_set_size(500, 298);
     wID = "Editor Window";
     
@@ -247,4 +246,23 @@ with(zui_create(window_get_width()*.6, window_get_height()/2, objUIWindow))
         stat = 4;
     }
     
+}
+with(zui_create(window_get_width()*.6, window_get_height()/2 + 184, objUIWindow))
+{
+    zui_set_size(390, 144);
+    wID = "Phrase Editor";
+    callback = charedit_ui;
+    text = "NO CATCHPHRASE";
+    with(zui_create(0, 0, objUIWindowCaption))
+    {
+        caption = "Phrase Editor";
+    }
+    with (zui_create(__width * .5, __height - 36, objUIButton)) 
+    {
+        zui_set_anchor(.5,0);
+        zui_set_size(240, 30);
+        caption = "Change Catchphrase";
+        callback = charedit_ui;
+        bID = 10;
+    }
 }
