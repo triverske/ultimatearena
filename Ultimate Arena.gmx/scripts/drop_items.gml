@@ -4,15 +4,32 @@ with(instance_create(x,y,oItems))
     for(i=0;i<20;i++)
     {
         INV[i] = other.INV[i];
-        if(INV[i] != 0)
+        if(INV[i] > 0)
             check = 1;
     }
     
-    wspearid = other.wspearid;
-    sspearid = other.sspearid;
-    wbowid = other.wbowid;
-    sbowid = other.sbowid;
-    
-    if(check == 0)
+    if(!check)
         instance_destroy();
+        
+    if(INV[4]>0)
+    {
+        wspearid = other.wspearid;
+        wspearid.owner = id;
+    }
+    if(INV[5]>0)
+    {
+        sspearid = other.sspearid;
+        sspearid.owner = id;
+    }
+    if(INV[6]>0)
+    {
+        wbowid = other.wbowid;
+        wbowid.owner = id;
+    }
+    if(INV[7]>0)
+    {
+        sbowid = other.sbowid;
+        sbowid.owner = id;
+    }
+    
 }

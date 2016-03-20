@@ -116,6 +116,14 @@ with (objUIButton)
                 }
             }
         }
+        else if (bID == 6)
+        {
+            if(!directory_exists("saves"))
+                directory_create("saves");
+            var file = get_open_filename_ext("ini file|*.ini","",working_directory+"saves","Load Game");
+            if(file != "")
+                load_game(file);
+        }
         else if (bID == 9)
         {
             ui_show_popup_credits();     

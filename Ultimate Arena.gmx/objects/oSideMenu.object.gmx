@@ -45,6 +45,8 @@ for(i = 0;i &lt; global.fighters+1;i++)
 {
     global.killArray[i] = 0;
     global.DEATH_ARRAY[i] = 0;
+    xpArray[i] = 0;
+    sanityArray[i] = 0;
 }
 
 

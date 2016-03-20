@@ -30,7 +30,8 @@
 
 global.ENDLESS = 0;
 global.SAVE_SPEED = 4;
-global.seed = 0;
+global.loadingGame = 0;
+global.saveFile = "";
 
 var i = 1;
 global.TAG_COUNT = 0;
@@ -60,7 +61,7 @@ else
 
 }
 randomize();
-
+global.seed = random_get_seed();
 
 // variables
 tile_size = 32;  // the size of your tiles
@@ -205,7 +206,11 @@ display_set_gui_size(global.WSCALE,global.HSCALE);
           <argument>
             <kind>1</kind>
             <string>if (room == rm_game)
-    ui_show_exit();
+{
+    global.SAVE_SPEED = global.GAME_SPEED;
+    global.GAME_SPEED = 0;
+    ui_show_pause();
+}
 </string>
           </argument>
         </arguments>

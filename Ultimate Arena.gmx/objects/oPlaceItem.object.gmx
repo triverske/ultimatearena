@@ -65,13 +65,38 @@
     else if(image == sItems)
     {
         var e = instance_create(xPos,yPos,oItems);
-        e.INV[20] = 0;
+        for(var i=19; i&gt;-1; i--)
+            e.INV[i] = 0;
         e.INV[2] = 2;
         e.INV[3] = 2;
-        e.wspearid = irandom(1);
-        e.sspearid = irandom(1);
-        e.wbowid = irandom(1);
-        e.sbowid = irandom(1);
+        if(irandom(1))
+        {
+            e.INV[4] = 1;
+            e.wspearid = instance_create(-100,-100,oWSpear);
+        }
+        else
+            e.wspearid = 0;
+        if(irandom(1))
+        {
+            e.INV[5] = 1;
+            e.sspearid = instance_create(-100,-100,oSSpear);
+        }
+        else
+            e.sspearid = 0;
+        if(irandom(1))
+        {
+            e.INV[6] = 1;
+            e.wbowid = instance_create(-100,-100,oWBow);
+        }
+        else
+            e.wbowid = 0;
+        if(irandom(1))
+        {
+            e.INV[7] = 1;
+            e.sbowid = instance_create(-100,-100,oSBow);
+        }
+        else
+            e.sbowid = 0;
     }
     audio_play_sound(snd_blip,0,0);
     instance_destroy();

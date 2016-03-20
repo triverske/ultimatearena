@@ -234,6 +234,7 @@ switch(com)
     INV[9]--;
     INV[11]--;
     wspearid = instance_create(-100,-100,oWSpear);
+    wspearid.owner = id;
     INV[4]++;
     XP+=6;
     DELAY = 360;
@@ -247,6 +248,7 @@ switch(com)
     INV[9]--;
     INV[10]--;
     wbowid = instance_create(-100,-100,oWBow);
+    wbowid.owner = id;
     INV[6]++;
     XP+=8;
     DELAY = 720;
