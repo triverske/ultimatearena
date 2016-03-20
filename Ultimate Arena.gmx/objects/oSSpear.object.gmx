@@ -29,6 +29,7 @@
     sprite_index = sSSpear;
 HP = 100;
 dropped = 0;
+owner = -1;
 </string>
           </argument>
         </arguments>

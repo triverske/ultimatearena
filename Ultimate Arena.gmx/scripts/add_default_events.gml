@@ -61,7 +61,7 @@ defaultE[6,6] = "$1 dies trying to pet a squirrel.";
 
 for(i = 0;i < 7;i++)
 {
-    ini_open(working_directory + "events\" + defaultE[i,0] + ".ini");
+    ini_open(working_directory+"events\" + defaultE[i,0] + ".ini");
     ini_write_string("event","name",defaultE[i,0]);
     ini_write_string("event","description",defaultE[i,1]);
     ini_write_real("event","death_percentage",defaultE[i,2]);

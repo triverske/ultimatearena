@@ -66,7 +66,6 @@ QUICK  = .5;// The max movement in a cycle (in pixels)
 SIGHT  = 5+SKILL; // How far a fighter can "see".
 STATE  = "WANDER";
 CONTINUE = 1; // How much more likely will the current action be on the next cycle?
-ENERGY_RATE = .1;
 
 caption = "Wandering";
 
@@ -233,7 +232,7 @@ if(group != -1){
     if(group == id){
         var c = 0;
         with(oFighter){
-            if(group == other.group)
+            if(group == other.group &amp;&amp; id != other.id)
                 c = 1;
         }
         if(c==0)
@@ -242,7 +241,7 @@ if(group != -1){
     else{
         if(!instance_exists(group)){
             with(oFighter){
-                if(group == other.group)
+                if(group == other.group &amp;&amp; id != other.id)
                     group = other.id;
             }
             group = id;
@@ -936,16 +935,28 @@ if(alarm[0] == 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>check = 0;
+            <string>var check = 0;
 
-if(INV[4] == 0)
+if(INV[4] == 0 &amp;&amp; other.INV[4]&gt;0)
+{
     wspearid = other.wspearid;
-if(INV[5] == 0)
+    wspearid.owner = id;
+}
+if(INV[5] == 0 &amp;&amp; other.INV[5]&gt;0)
+{
     sspearid = other.sspearid;
-if(INV[6] == 0)
+    sspearid.owner = id;
+}
+if(INV[6] == 0 &amp;&amp; other.INV[6]&gt;0)
+{
     wbowid = other.wbowid;
-if(INV[7] == 0)
+    wbowid.owner = id;
+}
+if(INV[7] == 0 &amp;&amp; other.INV[7]&gt;0)
+{
     sbowid = other.sbowid;
+    sbowid.owner = id;
+}
     
 for(i=0;i&lt;20;i++)
 {

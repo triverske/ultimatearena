@@ -309,6 +309,7 @@ global.fighters = fcount;
 if (regen == 1)
 {
     randomize();
+    global.seed = random_get_seed();
     tile_size = 32;  // the size of your tiles
     show_minimap = true;
     
@@ -408,14 +409,14 @@ if (startgame == 1)
             global.STATS[charcount,3] = max(min(10,ini_read_real("character","skill",5)),1);
             global.STATS[charcount,4] = max(min(10,ini_read_real("character","luck",5)),1);
             
-            cImage = ini_read_string("character","image","sFighterImage");
+            global.IMAGES[charcount] = global.cIMAGES[i];
+            /*cImage = ini_read_string("character","image","sFighterImage");
             if (cImage != "sFighterImage")
                 global.IMAGES[charcount] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
             else
-                global.IMAGES[charcount] = sFighterImage; 
+                global.IMAGES[charcount] = sFighterImage;*/
             ini_close();
-            }
-        
+        }
         }
     }
     global.IMAGES[0] = sFighterImage;

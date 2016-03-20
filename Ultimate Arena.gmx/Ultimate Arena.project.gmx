@@ -161,7 +161,8 @@
       <script>scripts\ui_exit.gml</script>
       <script>scripts\ui_show_popup.gml</script>
       <script>scripts\ui_show_popup_credits.gml</script>
-      <script>scripts\ui_show_exit.gml</script>
+      <script>scripts\ui_show_pause.gml</script>
+      <script>scripts\ui_save.gml</script>
       <script>scripts\zui_draw.gml</script>
       <script>scripts\zui_set_visible.gml</script>
     </scripts>
@@ -227,6 +228,9 @@
     <script>scripts\initialize_events.gml</script>
     <script>scripts\draw_hover_stats.gml</script>
     <script>scripts\string_to_color.gml</script>
+    <script>scripts\save_game.gml</script>
+    <script>scripts\load_game.gml</script>
+    <script>scripts\load_game_finish.gml</script>
     <scripts name="twitch">
       <script>scripts\getPoints.gml</script>
       <script>scripts\trace.gml</script>
