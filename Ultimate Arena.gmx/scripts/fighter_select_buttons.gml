@@ -132,6 +132,33 @@ with (objUIButton)
             if (global.SAVE_SPEED != 0 && global.SAVE_SPEED > 1)
                 global.SAVE_SPEED--;
         }
+        else if(bID == 11) //random 100
+        {
+            with (oUIListBox)
+            {
+                var t = 0;
+                if(length < 100)
+                {
+                    ui_show_popup("You need at least 100 fighters#to use this option.");
+                }
+                else
+                {
+                
+                    for (i = 0;i < length; i++)
+                        selected[i] = 1;
+                        
+                    while(t < 100)
+                    {
+                        var w = irandom(length-1);
+                        if(selected[w] == 1)
+                        {
+                            t++
+                            selected[w] = 0;
+                        }
+                    }
+                }
+            }      
+        }
     }
 }
 with (objUIWindow)

@@ -246,7 +246,6 @@
       <script>scripts\irc_get_viewers.gml</script>
     </scripts>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\font0</font>
     <font>fonts\font4</font>

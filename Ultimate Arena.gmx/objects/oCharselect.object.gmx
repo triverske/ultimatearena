@@ -106,7 +106,7 @@ with (zui_main())
     {
         wID = "Selected Character";
         callback  = fighter_select_buttons;
-        zui_set_size(250,98);
+        zui_set_size(250,136);
         zui_set_position(WS * .4,floor(HS * .2));
         /*
         with (zui_create(5, __height - 70, objUIButton)) 
@@ -117,14 +117,15 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 2;
         }
+        */
         with (zui_create(5, __height - 35, objUIButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
-            caption = "Search By Name";
+            caption = "Select Random 100";
             callback = fighter_select_buttons;
-            bID = 8;
-        }*/
+            bID = 11;
+        }
         with (zui_create(0, 0, objUIWindowCaption)) 
         {
             caption = "Character Selection";
