@@ -92,18 +92,18 @@ for(var i=1; i&lt;global.fighters+1; i++){
 
 //INVENTORY
 /*
-0.  Land Mine
-1.  Booby Trap
-2.  Food
-3.  (Water)
-4.  Wooden Spear 
-5.  Steel Spear
-6.  Wooden Bow
-7.  Steel Bow
-8.  Medkit
-9.  Wood
-10. Rope
-11. Stone
+0.  Land Mine(3)
+1.  Booby Trap(3)
+2.  Food(3)
+3.  (Water)(can't hold unless supplied)
+4.  Wooden Spear(1)
+5.  Steel Spear(1)
+6.  Wooden Bow(1)
+7.  Steel Bow(1)
+8.  Medkit(3)
+9.  Wood(3)
+10. Rope(3)
+11. Stone(3)
 12. 
 13. 
 14. 
@@ -223,32 +223,7 @@ speed = random(QUICK);
 
 sendCommand(STATE,CONTINUE); 
 
-if (SANITY &lt; 0)
-    INSANE = 1;
-else
-    INSANE = 0;
-    
-if(group != -1){
-    if(group == id){
-        var c = 0;
-        with(oFighter){
-            if(group == other.group &amp;&amp; id != other.id)
-                c = 1;
-        }
-        if(c==0)
-            group = -1;
-    }
-    else{
-        if(!instance_exists(group)){
-            with(oFighter){
-                if(group == other.group &amp;&amp; id != other.id)
-                    group = other.id;
-            }
-            group = id;
-        }
-    }
-}
-
+//Determine time based stats
 if(STATE == "SLEEP")
 {
     if(time%(40+ENDURANCE*5) == 0)
@@ -297,150 +272,17 @@ else{
     }
     else if(time%(96-ENDURANCE*2) == 0 &amp;&amp; HP &lt; 100)
         HP+=floor(random(3));
-}
-
-if (TIRED &lt; 30)
-    sendCommand("SLEEP",30);
-if (TIRED &lt; 0)
-    sendCommand("SLEEP",60);
-
-if(HP &lt; 25 &amp;&amp; INV[8] &gt; 0)
-    sendCommand("USE MEDKIT", 30);
-else if(HP &lt; 50 &amp;&amp; INV[8] &gt; 0)
-    sendCommand("USE MEDKIT", 10);
-    
-if (time%360 == 0){
-    SANITY-=floor(random(3));
-    SANMAX-=floor(random(3));
-    }
-    
-if(INV[9] &gt; 0 &amp;&amp; INV[11] &gt; 0)
-    sendCommand("MAKE SPEAR", 30);
-if(INV[9] &gt; 0 &amp;&amp; INV[10] &gt; 0)
-    sendCommand("MAKE BOW", 30);
-if(INV[2] &gt; 0 &amp;&amp; INV[10] &gt; 0)
-    sendCommand("MAKE MEDKIT", 15);
-if(INV[2] &gt; 0 &amp;&amp; INV[10] &gt; 0 &amp;&amp; HP &lt; 50)
-    sendCommand("MAKE MEDKIT", 15);
-if(INV[10] &gt; 0 &amp;&amp; INV[11] &gt; 0)
-    sendCommand("MAKE TRAP", 30);
-
-instance_deactivate_object(self);
-var c = instance_nearest(x,y-5,oFighter);
-instance_activate_object(self);
-var d = distance_to_object(c);
-otherFighter = c;
-
-if(instance_exists(c)){
-if(d&lt;SIGHT &amp;&amp; c.group==-1 &amp;&amp; opinion[c.fighterID]&gt;0 &amp;&amp; c.opinion[fighterID]&gt;0 &amp;&amp; !(INSANE^c.INSANE)){
-    if(irandom(LUCK)!=0){
-        sendCommand("GROUP UP",20);
-    }
-}
-if(group!=c.group^(group==c.group &amp;&amp; INSANE &amp;&amp; irandom(10)==0))
+}    
+if(time%360 == 0)
 {
-if(d &lt; SIGHT)
-{
-    if(INV[4] &gt; 0)
-        sendCommand("ATTACK WSPEAR",150);
-    if(INV[5] &gt; 0)
-        sendCommand("ATTACK SSPEAR",200);
+    SANITY-=irandom(3);
+    SANMAX-=irandom(3);
 }
-if(d &lt; 2*SIGHT)
-{
-    if(INV[6] &gt; 0)
-        sendCommand("ATTACK WBOW",LUCK*30);
-}
-if(d &lt; 3*SIGHT)
-{
-    if(INV[7] &gt; 0)
-        sendCommand("ATTACK SBOW",LUCK*40);
-}
-if (fight)
-{     
-    if(INV[4] == 0 &amp;&amp; INV[5] == 0 &amp;&amp; INV[6] == 0 &amp;&amp; INV[7] == 0)
-        sendCommand("ATTACK UNARMED",100);
-    if (water)
-        sendCommand("ATTACK DROWN",5 + (5*LUCK));
-    fight = 0;
-}
-}
-}
-   
-if (water)
-{
-    water = 0;
-    if(THIRST &lt; 10)
-        sendCommand("DRINK",100);
-    else if(THIRST &lt; 50)
-        sendCommand("DRINK",20);
-    else if(THIRST &lt; 70)
-        sendCommand("DRINK",5);
-    if(time &gt; bathetime+360)
-        sendCommand("BATHE",1);
-}
-if (tree)
-{
-    tree = 0;
-    if(INV[2] != 3)
-        sendCommand("GET FOOD",30);
-}
-if (wood)
-{
-    wood = 0;
-    if(INV[9] != 2)
-        sendCommand("GET WOOD",30);
-}
-if (rope)
-{
-    rope = 0;
-    if(INV[10] == 0)
-        sendCommand("GET ROPE",30);
-}
-if (stone)
-{
-    stone = 0;
-    if(INV[11] == 0)
-        sendCommand("GET STONE",30);
-}
-if (wspear)
-{
-    wspear = 0;
-    if(INV[4] == 0)
-        sendCommand("GET WSPEAR", 50);
-}
-if (sspear)
-{
-    sspear = 0;
-    if(INV[5] == 0)
-        sendCommand("GET SSPEAR", 50);
-}
-if (wbow)
-{
-    wbow = 0;
-    if(INV[6] == 0)
-        sendCommand("GET WBOW", 50);
-}
-if (sbow)
-{
-    sbow = 0;
-    if(INV[7] == 0)
-        sendCommand("GET SBOW", 50);
-}
-
-if (INSANE = 1)
-{
-    sendCommand("Suicide",5);
-    if(SKILL &gt; 4)
-    {
-        if(instance_exists(otherFighter))
-        {
-            enemyloc[0] = otherFighter.x;
-            enemyloc[1] = otherFighter.y;
-            sendCommand("HUNT", 50);
-        }
-    }
-}
+//check stats for negative values
+if (SANITY &lt; 0)
+    INSANE = 1;
+else
+    INSANE = 0;
     
 if (HUNGER &lt; 1)
 {
@@ -456,40 +298,211 @@ else if (THIRST &lt; 1)
     instance_destroy();
     createUpdate(getText("die_thirst",fighterID),fighterID,1);
 }
- 
+//check if group still exists
+if(group != -1){
+    if(group == id){
+        var c = 0;
+        with(oFighter){
+            if(group == other.group &amp;&amp; id != other.id)
+                c = 1;
+        }
+        if(c==0)
+            group = -1;
+    }
+    else{
+        if(!instance_exists(group)){
+            with(oFighter){
+                if(group == other.group &amp;&amp; id != other.id)
+                    group = other.id;
+            }
+            group = id;
+        }
+    }
+}
+//check if only group left
+if(group == id)
+{
+    var c = 0;
+    with(oFighter)
+    {
+        if(group != other.group)
+            c = 1;
+    }
+    if(c==0)
+    {
+        sendCommand("END GROUP",5);
+    }
+}
+//Send Commands
 sendCommand("WANDER",5);
 
 if(irandom(100) == 1)
     sendCommand("THINK",1);
-    
 if(irandom(10000) == 1)
     sendCommand("THINK RARE",1);
-
+    
+if (TIRED &lt; 30)
+    sendCommand("SLEEP",30);
+if (TIRED &lt; 0)
+    sendCommand("SLEEP",60);
+    
 if(HUNGER &lt; 50 &amp;&amp; INV[2] &gt; 0)
     sendCommand("EAT",20);
 else if(HUNGER &lt; 70 &amp;&amp; INV[2] &gt; 0)
     sendCommand("EAT",5);
-else if(THIRST &lt; 50 &amp;&amp; waterloc[0] != 0)
-    sendCommand("WATER SEARCH",67);
-else if(HUNGER &lt; 50 &amp;&amp; INV[2] == 0 &amp;&amp; foodloc[0] != 0)
-    sendCommand("FOOD SEARCH",67);
-
-enemyNear = collision_circle(x,y-5,SIGHT,oFighter,0,1);
-if (enemyNear &amp;&amp; group!=enemyNear.group)
+    
+if(INV[3] &gt; 0)
 {
-    if(HP &gt; 20 - (100 - SANITY) / 5)
-        sendCommand("CHASE",50);
-    else
-        sendCommand("RUN",45);  
+    if(THIRST &lt; 10)
+        sendCommand("DRINK SUPPLY",100);
+    else if(THIRST &lt; 50)
+        sendCommand("DRINK SUPPLY",20);
+    else if(THIRST &lt; 70)
+        sendCommand("DRINK SUPPLY",5);
 }
+
+if(HP &lt; 25 &amp;&amp; INV[8] &gt; 0)
+    sendCommand("USE MEDKIT", 30);
+else if(HP &lt; 50 &amp;&amp; INV[8] &gt; 0)
+    sendCommand("USE MEDKIT", 10);
+    
+if(INV[2] &gt; 0 &amp;&amp; INV[10] &gt; 0 &amp;&amp; INV[8] &lt; 3)
+    sendCommand("MAKE MEDKIT", 15);
+if(INV[2] &gt; 0 &amp;&amp; INV[10] &gt; 0 &amp;&amp; INV[8] &lt; 3 &amp;&amp; HP &lt; 50)
+    sendCommand("MAKE MEDKIT", 15);
+if(INV[9] &gt; 0 &amp;&amp; INV[11] &gt; 0 &amp;&amp; INV[4] &lt; 1)
+    sendCommand("MAKE SPEAR", 30);
+if(INV[9] &gt; 0 &amp;&amp; INV[10] &gt; 0 &amp;&amp; INV[6] &lt; 1)
+    sendCommand("MAKE BOW", 30);
+if(INV[10] &gt; 0 &amp;&amp; INV[11] &gt; 0 &amp;&amp; INV[1] &lt; 3)
+    sendCommand("MAKE TRAP", 30);
+    
+if(INV[0] &gt; 0)
+    if(irandom(20) == 1)
+        sendCommand("PLACE MINE", 1);
+    
+instance_deactivate_object(self);
+var c = instance_nearest(x,y-5,oFighter);
+instance_activate_object(self);
+var d = distance_to_object(c);
+otherFighter = c;
+
+if(instance_exists(c))
+{
+if(d&lt;SIGHT &amp;&amp; c.group==-1 &amp;&amp; opinion[c.fighterID]&gt;0 &amp;&amp; c.opinion[fighterID]&gt;0 &amp;&amp; !(INSANE^c.INSANE))
+{
+    if(irandom(LUCK)!=0)
+    {
+        sendCommand("GROUP UP",20);
+    }
+}
+if(group!=c.group || (group==c.group &amp;&amp; INSANE &amp;&amp; irandom(10)==0))
+{
+    if(d &lt; SIGHT)
+    {
+        if(INV[4] &gt; 0)
+            sendCommand("ATTACK WSPEAR",150);
+        if(INV[5] &gt; 0)
+            sendCommand("ATTACK SSPEAR",200);
+            
+        if(HP &gt; 20 - (100 - SANITY) / 5)
+            sendCommand("CHASE",50);
+        else if(group!=c.group)
+            sendCommand("RUN",45);
+    }
+    if(d &lt; 2*SIGHT)
+    {
+        if(INV[6] &gt; 0)
+            sendCommand("ATTACK WBOW",LUCK*30);
+    }
+    if(d &lt; 3*SIGHT)
+    {
+        if(INV[7] &gt; 0)
+            sendCommand("ATTACK SBOW",LUCK*40);
+    }
+    if (fight)
+    {     
+        if(INV[4] == 0 &amp;&amp; INV[5] == 0 &amp;&amp; INV[6] == 0 &amp;&amp; INV[7] == 0)
+            sendCommand("ATTACK UNARMED",100);
+        if (water)
+            sendCommand("ATTACK DROWN",5 + (5*LUCK));
+    }
+}
+}
+
+if (INSANE = 1)
+{
+    sendCommand("Suicide",5);
+    if(SKILL &gt; 4)
+    {
+        if(instance_exists(otherFighter))
+        {
+            enemyloc[0] = otherFighter.x;
+            enemyloc[1] = otherFighter.y;
+            sendCommand("HUNT", 50);
+        }
+    }
+}
+   
+if (water)
+{
+    if(THIRST &lt; 10)
+        sendCommand("DRINK",100);
+    else if(THIRST &lt; 50)
+        sendCommand("DRINK",20);
+    else if(THIRST &lt; 70)
+        sendCommand("DRINK",5);
+    if(time &gt; bathetime+360)
+        sendCommand("BATHE",1);
+}
+if (tree)
+{
+    if(INV[2]&lt;3)
+        sendCommand("GET FOOD",30);
+}
+if (wood)
+{
+    if(INV[9]&lt;3)
+        sendCommand("GET WOOD",30);
+}
+if (rope)
+{
+    if(INV[10]&lt;3)
+        sendCommand("GET ROPE",30);
+}
+if (stone)
+{
+    if(INV[11]&lt;3)
+        sendCommand("GET STONE",30);
+}
+/*if (wspear)
+{
+    if(INV[4]&lt;1)
+        sendCommand("GET WSPEAR", 50);
+}
+if (sspear)
+{
+    if(INV[5]&lt;1)
+        sendCommand("GET SSPEAR", 50);
+}
+if (wbow)
+{
+    if(INV[6]&lt;1)
+        sendCommand("GET WBOW", 50);
+}
+if (sbow)
+{
+    if(INV[7]&lt;1)
+        sendCommand("GET SBOW", 50);
+}*/
 
 var waterNear0 = 0;
 var waterNear1 = 0;
-for(var i=max(round(x/2)-5,0); i&lt;min(round(x/2)+5,256); i++){
-    for(var j=max(round(y/2)-5,0); j&lt;min(round(y/2)+5,256); j++){
+for(var i=max(round((x-SIGHT)/2),0); i&lt;min(round((x+SIGHT)/2),256); i++){
+    for(var j=max(round((y-SIGHT)/2),0); j&lt;min(round((y+SIGHT)/2),256); j++){
         if(global.grid[i,j] == 0 &amp;&amp; abs(round(x/2)-i)+abs(round(y/2)-j)&lt;abs(round(x/2)-waterNear0)+abs(round(y/2)-waterNear1)){
             waterNear0 = i;
-            waterNear0 = j;
+            waterNear1 = j;
         }
     }
 }
@@ -498,19 +511,19 @@ if(!(waterNear0==0 &amp;&amp; waterNear1==0) &amp;&amp; SKILL &gt; 2)
     waterloc[0] = waterNear0*2;
     waterloc[1] = waterNear1*2;
 }
-foodNear = collision_circle(x,y-5,SIGHT,oTree,0,0);
-if (foodNear &amp;&amp; SKILL &gt; 2)
+var foodNear = instance_nearest(x,y-5,oTree);
+if(foodNear != noone &amp;&amp; point_distance(x,y-5,foodNear.x,foodNear.y) &lt; SIGHT &amp;&amp; foodNear.foodcount &gt; 0 &amp;&amp; SKILL &gt; 2)
 {
-    var c = instance_nearest(x,y,oTree);
-    foodloc[0] = c.x;
-    foodloc[1] = c.y;
+    foodloc[0] = foodNear.x;
+    foodloc[1] = foodNear.y;
 }
 
-if(INV[0] &gt; 0)
-    if(irandom(20) == 1)
-        sendCommand("PLACE MINE", 1);
+else if(THIRST &lt; 50 &amp;&amp; INV[3] &lt; 1 &amp;&amp; !(waterloc[0]==0 &amp;&amp; waterloc[1]==0))
+    sendCommand("WATER SEARCH",67);
+else if(HUNGER &lt; 50 &amp;&amp; INV[2] &lt; 1 &amp;&amp; !(foodloc[0]==0 &amp;&amp; foodloc[1]==0))
+    sendCommand("FOOD SEARCH",67);
 
-
+//Check for escape
 var esc = irandom(100000)
 if(x &gt; 490 || x &lt; 10  || y &gt; 490 || y &lt; 10) //Make sure fighter doesn't leave arena
 {
@@ -542,6 +555,19 @@ if(x &gt; 490 || x &lt; 10  || y &gt; 490 || y &lt; 10) //Make sure fighter does
     }
 }
 
+//reset position checks
+fight = 0;
+water = 0;
+tree = 0;
+wood = 0;
+rope = 0;
+stone = 0;
+wspear = 0;
+sspear = 0;
+wbow = 0;
+sbow = 0;
+
+//pick command
 if (DELAY &lt; 1)
     commandAI(getCommand());
 </string>
@@ -568,9 +594,7 @@ if (DELAY &lt; 1)
             <kind>1</kind>
             <string>if (alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
 {
-
     alarm[0] = global.GAME_SPEED;
-
 }
 //check if on water
 if(alarm[0] == 1)
@@ -1006,7 +1030,7 @@ if(check == 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(alarm[0] == 1)
+            <string>if(alarm[0] == 1 &amp;&amp; other.foodcount &gt;0)
 {
     tree = 1;
     treeid = other.id;

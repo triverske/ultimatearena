@@ -87,5 +87,6 @@
     <frame index="64">images\sDefaultCharacters_64.png</frame>
     <frame index="65">images\sDefaultCharacters_65.png</frame>
     <frame index="66">images\sDefaultCharacters_66.png</frame>
+    <frame index="67">images\sDefaultCharacters_67.png</frame>
   </frames>
 </sprite>
