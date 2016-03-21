@@ -79,7 +79,7 @@ with (oFighter)
             if(c==-1)
             {
                 other.groups[other.totalGroups,0] = group;
-                other.groups[other.totalGroups,1] = make_colour_rgb(irandom(255),irandom(255),irandom(255));
+                other.groups[other.totalGroups,1] = make_color_hsv((other.totalGroups*14)%255,255,(other.totalGroups%2+1)*127);
                 c=other.totalGroups;
                 other.totalGroups++;
             }

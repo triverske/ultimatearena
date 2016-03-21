@@ -4,3 +4,4 @@ with (zui_get_parent()) {
 
  zui_destroy();
 }
+global.GAME_SPEED = global.SAVE_SPEED;

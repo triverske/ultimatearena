@@ -65,6 +65,7 @@ defaultC[63] = "Phil Collins";
 defaultC[64] = "Mr. Rogers";
 defaultC[65] = "Putin";
 defaultC[66] = "Taylor Swift";
+defaultC[67] = "Matt Mozingo";
 
 v = sprite_duplicate(sDefaultCharacters);
 
@@ -83,6 +84,7 @@ for(i = 0;i < array_length_1d(defaultC);i++)
             ini_write_real("character","gender",0)
             
         sprite_save(v,i,working_directory + "characters\" +defaultC[i]+".png");
+        ini_close();
     }
 }
 

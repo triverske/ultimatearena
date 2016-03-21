@@ -10,9 +10,7 @@ switch(com)
     caption = "Wandering";
     if(group != -1 && distance_to_object(group) > 5)
     {
-        var d = point_direction(x,y-5,group.x,group.y-5);
-        if(d != 0)
-            DIR = d; 
+        DIR = point_direction(x,y-5,group.x,group.y-5)+random_range(-15,15);
     }
     else
     {
@@ -37,9 +35,7 @@ switch(com)
     QUICK = .5 + AGILITY/10;
     CONTINUE = 170;
     DELAY = 30;
-    var d = point_direction(x,y,waterloc[0],waterloc[1]);
-        if(d != 0)
-            DIR = d; 
+    DIR = point_direction(x,y,waterloc[0],waterloc[1]);
     
     break;
     
@@ -48,9 +44,7 @@ switch(com)
     QUICK = .5 + AGILITY/10;
     CONTINUE = 85;
     DELAY = 30;
-    var d = point_direction(x,y,foodloc[0],foodloc[1]);
-        if(d != 0)
-            DIR = d; 
+    DIR = point_direction(x,y-5,foodloc[0],foodloc[1]);
     break;
     
     case "GET FOOD":
@@ -197,9 +191,18 @@ switch(com)
     caption = "Drinking Water";
     QUICK = 0;
     DELAY = 3;
-    INV[3]--;
     THIRST = 100;
     CONTINUE = 0;
+    createUpdate(getText("drink",fighterID),fighterID,0);
+    break;
+    
+    case "DRINK SUPPLY":
+    caption = "Drinking Water";
+    QUICK = 0;
+    DELAY = 3;
+    THIRST = 100;
+    CONTINUE = 0;
+    INV[3]--;
     createUpdate(getText("drink",fighterID),fighterID,0);
     break;
     
@@ -259,34 +262,22 @@ switch(com)
     case "HUNT":
     caption = "Hunting";
     QUICK = .5 + AGILITY/10;
-    CONTINUE = 100;
-    var d = point_direction(x,y,enemyloc[0],enemyloc[1]);
-        if(d != 0)
-            DIR = d; 
-    
+    CONTINUE = 150;
+    DIR = point_direction(x,y-5,enemyloc[0],enemyloc[1]-5);
     break;
     
     case "CHASE":
-    
     QUICK = .7 + AGILITY/10;
-    CONTINUE = 80;
-    instance_deactivate_object(self);
-    c = instance_nearest(x,y-5,oFighter);
-    instance_activate_object(self);
-    DIR = c.DIR;
-    caption = "Chasing " + c.NAME;
-    //createUpdate(global.NAMES[fighterID] + " began chasing " + global.NAMES[c.fighterID],fighterID,1);
+    CONTINUE = 70;
+    DIR = point_direction(x,y-5,otherFighter.x,otherFighter.y-5)
+    caption = "Chasing " + otherFighter.NAME;
     break;
     
     case "RUN":
     caption = "Running";
     QUICK = .7 + AGILITY/10;
-    CONTINUE = 70;
-    instance_deactivate_object(self);
-    c = instance_nearest(x,y-5,oFighter);
-    instance_activate_object(self);
-    DIR = c.DIR-180;
-    //createUpdate(global.NAMES[fighterID] + " began chasing another fighter.");
+    CONTINUE = 80;
+    DIR = point_direction(otherFighter.x,otherFighter.y-5,x,y-5)
     break;
     
     case "SUICIDE":
@@ -303,8 +294,22 @@ switch(com)
     createUpdateM(getTextM("group_up",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,0);
     break;
     
+    case "END GROUP":
+    with(oFighter)
+    {
+        group = -1;
+        for(var i=0; i<global.fighters+1; i++)
+            opinion[i] = -5;
+    }
+    createUpdate(NAME+" decided to end the alliance once and for all.",fighterID,0);
+    break;
+    
     case "ATTACK UNARMED":
-    otherFighter.opinion[fighterID]--;
+    with(oFighter)
+    {
+        if(id != other.id && group == other.otherFighter.group)
+            opinion[other.fighterID]--;
+    }
     caption = "Attacking " + otherFighter.NAME;
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
@@ -331,7 +336,11 @@ switch(com)
     break;
     
     case "ATTACK WSPEAR":
-    otherFighter.opinion[fighterID]--;
+    with(oFighter)
+    {
+        if(id != other.id && group == other.otherFighter.group)
+            opinion[other.fighterID]--;
+    }
     caption = "Attacking " + otherFighter.NAME + " with Spear";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
@@ -368,7 +377,11 @@ switch(com)
     break;
     
     case "ATTACK SSPEAR":
-    otherFighter.opinion[fighterID]--;
+    with(oFighter)
+    {
+        if(id != other.id && group == other.otherFighter.group)
+            opinion[other.fighterID]--;
+    }
     caption = "Attacking " + otherFighter.NAME + " with Spear";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
@@ -405,7 +418,11 @@ switch(com)
     break;
         
     case "ATTACK WBOW":
-    otherFighter.opinion[fighterID]--;
+    with(oFighter)
+    {
+        if(id != other.id && group == other.otherFighter.group)
+            opinion[other.fighterID]--;
+    }
     caption = "Attacking " + otherFighter.NAME + " with Bow";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
@@ -442,7 +459,11 @@ switch(com)
     break;
     
     case "ATTACK SBOW":
-    otherFighter.opinion[fighterID]--;
+    with(oFighter)
+    {
+        if(id != other.id && group == other.otherFighter.group)
+            opinion[other.fighterID]--;
+    }
     caption = "Attacking " + otherFighter.NAME + " with Bow";
     QUICK = 0;
     CONTINUE = 15 * (HP/25);
@@ -479,6 +500,11 @@ switch(com)
     break;
     
     case "ATTACK DROWN":
+    with(oFighter)
+    {
+        if(id != other.id && group == other.otherFighter.group)
+            opinion[other.fighterID]-=2;
+    }
     QUICK = 0;
     CONTINUE = 0;
     createUpdateM(getTextM("kill_drown",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);

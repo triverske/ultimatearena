@@ -298,9 +298,6 @@ draw_rectangle_colour(0,520,960,540,c_olive,c_olive,c_gray,c_gray,false); */
 //draw_surface(updates,890,0);
 //draw_surface(oSideMenu.sidemenu,50,110);
 //draw_surface(oSponsorMenu.sponsormenu,750,110);
-
-
-
 </string>
           </argument>
         </arguments>

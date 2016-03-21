@@ -97,11 +97,13 @@ if(instance_exists(global.mapwindow))
         yPos -= 18;
         
         c = instance_nearest(xPos,yPos,oFighter)
-        
-        var dis = 10 * (global.HSCALE/1280)
-        if(dif(c.x,xPos) &lt; dis)
-            if(dif(c.y,yPos) &lt; dis)
-                draw_hover_stats(c);
+        if(instance_exists(c))
+        {
+            var dis = 10 * (global.HSCALE/1280)
+            if(dif(c.x,xPos) &lt; dis)
+                if(dif(c.y,yPos) &lt; dis)
+                    draw_hover_stats(c);
+        }
     }
 }
 </string>

@@ -157,6 +157,7 @@
       <script>scripts\zui_x_node_init.gml</script>
       <script>scripts\ui_lerp_filter.gml</script>
       <script>scripts\ui_draw_sprite_panel.gml</script>
+      <script>scripts\ui_resume.gml</script>
       <script>scripts\ui_popup_close.gml</script>
       <script>scripts\ui_exit.gml</script>
       <script>scripts\ui_show_popup.gml</script>
@@ -315,6 +316,7 @@
       <object>objects\objUIWindowCaption</object>
     </objects>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
     <room>rooms\rm_splashscreen</room>
