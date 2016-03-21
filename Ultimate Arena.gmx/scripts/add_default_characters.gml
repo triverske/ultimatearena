@@ -60,6 +60,11 @@ defaultC[58] = "Mussolini";
 defaultC[59] = "A Stray Dog";
 defaultC[60] = "Notch";
 defaultC[61] = "Jeb Bush";
+defaultC[62] = "Van Gogh";
+defaultC[63] = "Phil Collins";
+defaultC[64] = "Mr. Rogers";
+defaultC[65] = "Putin";
+defaultC[66] = "Taylor Swift";
 
 v = sprite_duplicate(sDefaultCharacters);
 
@@ -72,7 +77,7 @@ for(i = 0;i < array_length_1d(defaultC);i++)
         ini_write_string("character","name",defaultC[i]);
         ini_write_string("character","image",defaultC[i]+".png");
         
-        if(i == 35 || i == 36 || i == 17 || i == 42)
+        if(i == 35 || i == 36 || i == 17 || i == 42 || i == 66)
             ini_write_real("character","gender",1)
         else
             ini_write_real("character","gender",0)
