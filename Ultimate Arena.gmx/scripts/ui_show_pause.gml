@@ -3,11 +3,13 @@
 var exitcheck = 0;
 
 with(objUIWindowCaption)
-    if(caption == "NOTICE")
+    if(caption == "PAUSED")
         exitcheck = 1;
         
 if(exitcheck == 0)
 {
+    global.SAVE_SPEED = global.GAME_SPEED;
+    global.GAME_SPEED = 0;
     with (objZUIMain) 
     {
         var _black = zui_create(0, 0, objUIBlack, -1000);

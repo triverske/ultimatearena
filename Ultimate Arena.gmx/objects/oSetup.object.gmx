@@ -207,8 +207,6 @@ display_set_gui_size(global.WSCALE,global.HSCALE);
             <kind>1</kind>
             <string>if (room == rm_game)
 {
-    global.SAVE_SPEED = global.GAME_SPEED;
-    global.GAME_SPEED = 0;
     ui_show_pause();
 }
 </string>
