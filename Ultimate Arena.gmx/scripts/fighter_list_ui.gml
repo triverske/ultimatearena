@@ -5,8 +5,8 @@
 var WS = global.WSCALE;
 var HS = global.HSCALE;
 
-var d = sID;
-if (d > 0 && instance_number(objUIWindow) < 100)
+var d = sID+1;
+if (instance_number(objUIWindow) < 100)
 {
     with (objUIWindowCaption) 
     {

@@ -44,7 +44,7 @@ switch(com)
     QUICK = .5 + AGILITY/10;
     CONTINUE = 85;
     DELAY = 30;
-    DIR = point_direction(x,y-5,foodloc[0],foodloc[1]);
+    DIR = point_direction(x,y,foodloc[0],foodloc[1]);
     break;
     
     case "GET FOOD":

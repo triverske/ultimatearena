@@ -8,7 +8,7 @@ list = argument[0];
 
 if(argument_count > 1)
 {
-    length = argument[2] - argument[1];
+    length = argument[2] - argument[1] + 1;
     for(i=0;i<=argument[2];i++)
     {
         ypos[i] = i*16;
@@ -20,7 +20,6 @@ if(argument_count > 1)
     {
         list[i] = list[i + minimum];
     }
-    
 
 
 }

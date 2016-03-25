@@ -63,8 +63,8 @@ with(objUIButton)
             file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
             if(file != "")
             {
-                newsp = sprite_add(file,0,0,0,0,0);
-                surf = surface_create(128,128);
+                var newsp = sprite_add(file,0,0,0,0,0);
+                var surf = surface_create(128,128);
                 surface_set_target(surf);
                 draw_sprite_stretched(newsp,0,0,0,128,128);
                 surface_reset_target();
