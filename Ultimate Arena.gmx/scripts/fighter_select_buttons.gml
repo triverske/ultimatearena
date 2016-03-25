@@ -204,15 +204,18 @@ with (oUIListBox)
 {
     if (argument0 == id )
     {
-        if (selected[argument0.sID] == 0)
+        if(sID != -1)
         {
-            selected[argument0.sID] = 1;
-            global.IDselected = argument0.sID;
-        }
-        else
-        {
-            selected[argument0.sID] = 0;
-            global.IDselected = argument0.sID;
+            if (selected[sID] == 0)
+            {
+                selected[sID] = 1;
+                global.IDselected = sID;
+            }
+            else
+            {
+                selected[sID] = 0;
+                global.IDselected = sID;
+            }
         }
     }
 }
