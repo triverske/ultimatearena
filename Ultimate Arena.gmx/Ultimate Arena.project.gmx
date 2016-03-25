@@ -316,7 +316,6 @@
       <object>objects\objUIWindowCaption</object>
     </objects>
   </objects>
-  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
     <room>rooms\rm_splashscreen</room>
