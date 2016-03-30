@@ -73,8 +73,15 @@ with (zui_main())
          caption = "Edit Characters";
          callback = title_buttons;
          bID = 1;
-    }      
+    }
     with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 270, objUIButton)) 
+    {
+         zui_set_size(180, 24);
+         caption = "Edit Events";
+         callback = title_buttons;
+         bID = 7;
+    }
+    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 300, objUIButton)) 
     {
          zui_set_size(180, 24);
          caption = "Github";
@@ -84,7 +91,7 @@ with (zui_main())
     }
     if(global.TWITCHENABLED)
     {
-        with  (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 300, objUIButton)) 
+        with  (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 330, objUIButton)) 
         {
              //zui_set_anchor(0, 0);
              zui_set_size(180, 24);
@@ -94,7 +101,7 @@ with (zui_main())
              bID = 4;
         }  
     }
-    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 330, objUIButton)) 
+    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2  + 360, objUIButton)) 
     {
          //zui_set_anchor(0, 0);
          zui_set_size(180, 24);

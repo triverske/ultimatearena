@@ -14,6 +14,7 @@ ini_write_real("Map","arena_events",global.arena_events);
 ini_write_real("Map","landmines",global.landmines);
 ini_write_real("Map","custom_sounds",global.custom_sounds);
 ini_write_real("Map","custon_updates",global.custom_updates);
+ini_write_real("Map","fighterGroups",global.fighterGroups);
 ini_write_real("Map","otherUpdates",global.otherUpdates);
 ini_write_real("Map","update_count",global.update_count);
 for(var i=1; i<global.fighters+1; i++)

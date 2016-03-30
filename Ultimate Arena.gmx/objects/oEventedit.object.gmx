@@ -26,39 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>global.IDselected = -1;
-global.newImage = sFighterImage;
-global.editColor = 0;
 
-global.editColors[0,0] = 255;
-global.editColors[0,1] = 255;
-global.editColors[0,2] = 255;
-
-global.editColors[1,0] = 255;
-global.editColors[1,1] = 64;
-global.editColors[1,2] = 64;
-
-global.editColors[2,0] = 255;
-global.editColors[2,1] = 175;
-global.editColors[2,2] = 64;
-
-global.editColors[3,0] = 255;
-global.editColors[3,1] = 255;
-global.editColors[3,2] = 64;
-
-global.editColors[4,0] = 64;
-global.editColors[4,1] = 255;
-global.editColors[4,2] = 64;
-
-global.editColors[5,0] = 0;
-global.editColors[5,1] = 192;
-global.editColors[5,2] = 192;
-
-global.editColors[6,0] = 0;
-global.editColors[6,1] = 64;
-global.editColors[6,2] = 255;
-
-for(i=0;i&lt;5;i++)
-    global.editStats[i] = 5;
+eventInfo[0] = "NAME";
+eventInfo[1] = "DESCRIPTION";
+eventInfo[2] = 0;
     
 with(zui_main())
 {
@@ -67,25 +38,25 @@ with(zui_main())
         zui_set_anchor(0, 0);
         zui_set_size(260, window_get_height());
         zui_set_position(0, 0);
-        wID = "Character List";
+        wID = "Event List";
         with(zui_create(0, 0, objUIWindowCaption))
-            caption = "Characters (Click to edit)";
+            caption = "Events (Click to edit)";
             
         with(zui_create(0, 24, oUIListBox))
         {
             zui_set_anchor(0, 0);
             zui_set_size(window_get_width()/5, window_get_height()-64);
-            callback = charedit_ui;
-            initialize_listbox(global.cNAME);
+            callback = eventedit_ui;
+            initialize_listbox(global.EVENT);
             with(zui_create(0, 0, oUIListBoxScroll)){}
         }
         with (zui_create(5, __height - 35, objUIButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(120, 30);
-            caption = "Delete Character";
-            callback = charedit_ui;
-            bID = 5;
+            caption = "Delete Event";
+            callback = eventedit_ui;
+            bID = 1;
             type = 2;
         }
         
@@ -94,21 +65,13 @@ with(zui_main())
             zui_set_anchor(0,0);
             zui_set_size(124, 30);
             caption = "Go Back";
-            callback = charedit_ui;
+            callback = eventedit_ui;
             bID = 0;
         }
         
     }
-    create_window_charedit();
+    create_window_eventedit();
     
-}
-
-with(oUIImageButton)
-{
-    if(global.editColor != type)
-        color = c_gray;
-    else
-        color = c_white;
 }
 </string>
           </argument>

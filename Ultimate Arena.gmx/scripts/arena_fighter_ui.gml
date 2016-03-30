@@ -32,6 +32,14 @@ with (objUIButton)
                 }
             }
         }
+        if(bID == 3)
+        {
+            with(fID)
+            {
+                if(group != -1)
+                    group = -1;
+            }
+        }
     
     }
 }

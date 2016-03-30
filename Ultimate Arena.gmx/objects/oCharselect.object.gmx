@@ -32,6 +32,8 @@ startgame = 0;
 var WS = global.WSCALE;
 var HS = global.HSCALE;
 
+global.custom_sounds = 0;
+
 with (zui_main()) 
 {
     with (zui_create(0, 0, objUIWindow, -1))
@@ -252,7 +254,7 @@ with (zui_main())
             bID = 5;
         }
         
-        with (zui_create(5, __height - 105, objUIButton)) 
+        /*with (zui_create(5, __height - 105, objUIButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -261,6 +263,16 @@ with (zui_main())
             type = 3;
             callback = fighter_select_buttons;
             bID = 6;
+        }*/
+        with (zui_create(5, __height - 105, objUIButton)) 
+        {
+            zui_set_anchor(0, 0);
+            zui_set_size(240, 30);
+            caption = "Groups On";
+            global.fighterGroups = 1;
+            type = 3;
+            callback = fighter_select_buttons;
+            bID = 12;
         }
         
         with (zui_create(5, __height - 140, objUIButton)) 

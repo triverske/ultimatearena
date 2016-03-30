@@ -178,6 +178,7 @@ global.ENDLESS = ini_read_real("Map","ENDLESS",0);
 global.GAMETYPE = ini_read_real("Map","GAMETYPE",0);
 global.TWITCHENABLED = ini_read_real("Map","TWITCHENABLED",0);
 global.custom_sounds = ini_read_real("Map","custom_sounds",0);
+global.fighterGroups = ini_read_real("Map","fighterGroups",0);
 global.custom_updates = ini_read_real("Map","custon_updates",0);
 global.otherUpdates = ini_read_real("Map","otherUpdates",0);
 global.update_count = ini_read_real("Map","update_count",0);

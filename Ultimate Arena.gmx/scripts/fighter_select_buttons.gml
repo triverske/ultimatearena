@@ -159,6 +159,21 @@ with (objUIButton)
                 }
             }      
         }
+        else if (bID == 12)
+        {
+            if (type == 2)
+            {
+                type = 3;
+                global.fighterGroups = 1;
+                caption = "Groups On";
+            }
+            else
+            {
+                type = 2;
+                global.fighterGroups = 0;
+                caption = "Groups Off";
+            }
+        }
     }
 }
 with (objUIWindow)

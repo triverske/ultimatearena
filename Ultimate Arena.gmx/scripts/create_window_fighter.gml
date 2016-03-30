@@ -8,7 +8,7 @@ with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
 {
     fID = -1;
     fighter = argument0;
-    zui_set_size(312,200);
+    zui_set_size(312,228);
     callback = arena_ui;
     with (zui_create(0, 0, objUIWindowCaption)) 
     {
@@ -23,12 +23,12 @@ with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
             other.fID = id;
     }
     
-    with (zui_create(0, 174, oUIImage)) 
+    with (zui_create(0, 202, oUIImage)) 
     {
         type = 0;
         image = spr_nameBar;
     }
-    with(zui_create(156, 186, objUILabel))
+    with(zui_create(156, 214, objUILabel))
     {
         caption = "Wandering";
         halign = fa_center;
@@ -95,6 +95,15 @@ with(zui_create(WS/2-WS*.1,HS/2,objUIWindow,-1))
         caption = "Kill";
         callback = arena_fighter_ui;
         bID = 1;
+        fID = other.fID
+    }
+    with (zui_create(156, 174, objUIButton))
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(150, 24);
+        caption = "Remove from Group";
+        callback = arena_fighter_ui;
+        bID = 3;
         fID = other.fID
     }
     
