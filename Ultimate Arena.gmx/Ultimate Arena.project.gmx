@@ -316,6 +316,7 @@
       <object>objects\objUICheckbox</object>
       <object>objects\objUIBlack</object>
       <object>objects\objUIField</object>
+      <object>objects\objUIMultiField</object>
       <object>objects\objUIWindowCaption</object>
     </objects>
   </objects>

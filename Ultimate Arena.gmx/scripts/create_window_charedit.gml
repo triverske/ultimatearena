@@ -20,10 +20,14 @@ with(zui_create(window_get_width()*.6, window_get_height()/2 - 60, objUIWindow))
         caption = "Name: ";
         halign = fa_left;
     }
-    with(zui_create(252, 39, objUIField))
+    with(zui_create(250, 36, objUIField))
     {
         callback = charedit_ui;
-        fID = 0
+        fID = 0;
+        width = 120;
+        zui_set_anchor(0,0);
+        zui_set_size(width,18);
+        maxLength = string_width("Vermin Supreme");
     }
     with(zui_create(200, 75, objUILabel))
     {
@@ -57,21 +61,21 @@ with(zui_create(window_get_width()*.6, window_get_height()/2 - 60, objUIWindow))
         bID = 6;
     }
     */
-    for(i=0;i<7;i++)
+    for(var i=0;i<7;i++)
     {
         with (zui_create(5 + 28*i, 223, oUIImageButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(26, 26);
             image = spr_chareditFighters;
-            type = other.i;
+            type = i;
             callback = charedit_ui;
             bID = 9;
         }
     }
     
     with (zui_create(5, 263, objUIButton)) 
-    {
+    {                                           
         zui_set_anchor(0,0);
         zui_set_size(192, 30);
         caption = "Change Image";
@@ -245,8 +249,22 @@ with(zui_create(window_get_width()*.6, window_get_height()/2 - 60, objUIWindow))
         bID = 8;
         stat = 4;
     }
+    with(zui_create(200, 236, objUILabel))
+    {
+        caption = "Catchphrase: ";
+        halign = fa_left;
+    }
+    with(zui_create(290, 227, objUIField))
+    {
+        callback = charedit_ui;
+        fID = 1;
+        width = 204;
+        maxLength = 600;
+        zui_set_anchor(0,0);
+        zui_set_size(width,18);
+    }
     
-}
+}/*
 with(zui_create(window_get_width()*.6, window_get_height()/2 + 184, objUIWindow))
 {
     zui_set_size(390, 144);

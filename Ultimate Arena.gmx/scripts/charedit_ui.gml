@@ -10,7 +10,6 @@ with(oUIListBox)
         else
         {
             global.IDselected = argument0.sID;
-            keyboard_string = global.cNAME[sID];
             global.newImage = global.cIMAGES[sID];
             
             ini_open(working_directory + "characters\" + global.fNAME[sID])
@@ -23,10 +22,11 @@ with(oUIListBox)
             var s1 = ini_read_string("think","s1","");
             ini_close();
             
-            with(objUIWindow)
-            {
-                if(wID == "Phrase Editor")
-                    text = s1
+            with(objUIField){
+                if(fID == 0)
+                    content = global.cNAME[other.sID];
+                if(fID == 1)
+                    content = s1;
             }
             
             with(objUICheckbox)
@@ -59,7 +59,7 @@ with(objUIButton)
         }
         if(bID == 1)
         {
-            var charname = keyboard_string;
+            //var charname = keyboard_string;
             file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
             if(file != "")
             {
@@ -87,13 +87,17 @@ with(objUIButton)
                     image = global.newImage;
                 }
             }
-            keyboard_string = charname;
+            //keyboard_string = charname;
         }
         if(bID == 2) //Save Character
         {
-            ini_open(working_directory + "characters\" + keyboard_string + ".ini");
-            ini_write_string("character","name",keyboard_string);
-            ini_write_string("character","image",keyboard_string+".png");
+            with(objUIField){
+                if(fID == 0)
+                    var charname = content;
+            }
+            ini_open(working_directory + "characters\" + charname + ".ini");
+            ini_write_string("character","name",charname);
+            ini_write_string("character","image",charname+".png");
             
             ini_write_real("character","colorr",global.editColors[global.editColor,0]);
             ini_write_real("character","colorg",global.editColors[global.editColor,1]);
@@ -112,13 +116,10 @@ with(objUIButton)
             ini_write_real("character","skill",global.editStats[3]);
             ini_write_real("character","luck",global.editStats[4]);
             
-            with(objUIWindow)
-            {
-                if(wID == "Phrase Editor")
-                {
-                    if(text != "")
-                    {
-                        ini_write_string("think","s1",text);
+            with(objUIField){
+                if(fID == 1){
+                    if(content != ""){
+                        ini_write_string("think","s1",content);
                         ini_write_real("think","total",1);
                     }
                 }
@@ -135,13 +136,13 @@ with(objUIButton)
                 
             if(global.newImage != sFighterImage)
             {
-                sprite_save(global.newImage,0,working_directory + "characters\" + keyboard_string +".png");
+                sprite_save(global.newImage,0,working_directory + "characters\" + charname +".png");
             }
             else
             {
                 //Gamemaker doesn't let you save images from the resource tree.
                 tempSprite = sprite_duplicate(sFighterImage);
-                sprite_save(tempSprite,0,working_directory + "characters\" + keyboard_string +".png");
+                sprite_save(tempSprite,0,working_directory + "characters\" + charname +".png");
                 sprite_delete(tempSprite);
             }
             
@@ -229,7 +230,7 @@ with(objUIField)
         }
         //code here for saving text to .ini
     }
-}
+}/*
 with(objUIWindow)
 {
     if(argument0 == id)

@@ -107,9 +107,9 @@ type = 0;
             <kind>1</kind>
             <string>if (zui_get_hover()) {
  if (pressed)
-  draw_set_color($cccccc);
+  draw_set_color($aaaaaa);
  else
-  draw_set_color($aaaaaa); 
+  draw_set_color($cccccc); 
 } else {
  draw_set_color($ffffff);
 }

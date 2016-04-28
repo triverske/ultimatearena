@@ -25,54 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.IDselected = -1;
-
-eventInfo[0] = "NAME";
-eventInfo[1] = "DESCRIPTION";
-eventInfo[2] = 0;
-    
-with(zui_main())
-{
-    with(zui_create(0, 0, objUIWindow))
-    {
-        zui_set_anchor(0, 0);
-        zui_set_size(260, window_get_height());
-        zui_set_position(0, 0);
-        wID = "Event List";
-        with(zui_create(0, 0, objUIWindowCaption))
-            caption = "Events (Click to edit)";
-            
-        with(zui_create(0, 24, oUIListBox))
-        {
-            zui_set_anchor(0, 0);
-            zui_set_size(window_get_width()/5, window_get_height()-64);
-            callback = eventedit_ui;
-            initialize_listbox(global.EVENT,0,global.EVENT_COUNT-1);
-            with(zui_create(0, 0, oUIListBoxScroll)){}
-        }
-        with (zui_create(5, __height - 35, objUIButton)) 
-        {
-            zui_set_anchor(0,0);
-            zui_set_size(120, 30);
-            caption = "Delete Event";
-            callback = eventedit_ui;
-            bID = 1;
-            type = 2;
-        }
-        
-        with (zui_create(__width - 129, __height - 35, objUIButton)) 
-        {
-            zui_set_anchor(0,0);
-            zui_set_size(124, 30);
-            caption = "Go Back";
-            callback = eventedit_ui;
-            bID = 0;
-        }
-        
-    }
-    create_window_eventedit();
-    
-}
+            <string>color = $404040;
+halign = 1;
+valign = 1;
+caption = "";
+maximum = 25; // 0 = no limit
+callback = -1;
+width = 200;
+active = 0;
+fields = 1;
+field_init(1,1,c_1,c_0,c_white,c_1,c_0,c_white,c_1,c_0,c_white,2,0,1)
 </string>
           </argument>
         </arguments>
@@ -95,10 +57,16 @@ with(zui_main())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(font0);
-draw_set_color(c_white);
-draw_set_valign(fa_top);
+            <string>draw_set_color(color);
 draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
+for(i=0; i&lt;fields; i++){
+    field_draw(i,0,x,y,width,active,caption,keyboard_string,maximum);
+}
+
+if(callback &gt;= 0)
+    script_execute(callback,id);
 </string>
           </argument>
         </arguments>

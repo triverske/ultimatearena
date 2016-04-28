@@ -171,19 +171,20 @@ alpha = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(drawGui == 0)
-{
-
-    if (zui_get_hover()) 
-    {
-        if (pressed)
-             darken = 2;
-        else
-             darken = 1;
+            <string>if(drawGui == 0){
+    if (zui_get_hover()){
+        if(pressed){
+            darken = 2;
+            draw_set_color($aaaaaa);
+        }
+        else{
+            darken = 1;
+            draw_set_color($cccccc); 
+        }
     } 
-    else 
-    {
+    else {
         darken = 0;
+        draw_set_color($ffffff);
     }
     
     ui_draw_sprite_panel(sprButton, 0, 8, -6, -6, __width + 12, __height + 12);
@@ -197,7 +198,7 @@ alpha = 1;
     */
     if(darken == 1)
     {
-        draw_set_alpha(.60)
+        draw_set_alpha(.6)
         alpha = .6;
     }
     else if(darken == 2)
