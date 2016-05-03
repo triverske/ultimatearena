@@ -30,6 +30,7 @@ global.arena_events = 1;
 global.custom_updates = 1;
 global.custom_sounds = 1;
 global.landmines = 1;
+global.fighterGroups = 1;
 startgame = 0;
 timeRemainingM = 0;
 timeRemainingS = 0;

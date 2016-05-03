@@ -35,12 +35,15 @@ pcol2 = c_0;
 pcol3 = c_white;
 height = 18;
 caption = "";
-content = "";
+content[0] = "";
 maxLength = 194;
 maxLines = 1;
 callback = -1;
 width = 200;
 active = 0;
+fields = 1;
+activeField = 0;
+
 </string>
           </argument>
         </arguments>
@@ -118,13 +121,13 @@ draw_rectangle(round(x+1),round(y+1),round(x+width-1),round(y+height-1),0);
 if(active){
 if(maxLength &gt; 0){
     while(string_width(keyboard_string)&gt;maxLength){
-        content = string_delete(keyboard_string,string_length(keyboard_string),1);
-        keyboard_string = content;
+        content[activeField] = string_delete(keyboard_string,string_length(keyboard_string),1);
+        keyboard_string = content[activeField];
     }
-    content = keyboard_string;
+    content[activeField] = keyboard_string;
 }
 else if(string_width(keyboard_string)&lt;width-6)
-    content=keyboard_string;
+    content[activeField]=keyboard_string;
 }
 
 //drawing the text
@@ -133,8 +136,8 @@ if(active)
 else
     draw_set_colour(pcol3); //passive
 
-var vstring = content;
-if(content!=""){ //visible text
+var vstring = content[activeField];
+if(content[activeField]!=""){ //visible text
     while(string_width(vstring)&gt;width-6)
         vstring = string_delete(vstring,1,1);
     draw_text(round(x+3),round(y+1),vstring);

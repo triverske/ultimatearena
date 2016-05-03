@@ -16,7 +16,7 @@ with (objUIButton)
                         selected[i] = 0;
                     
                     if(id != global.select_list)   
-                        global.select_list.selected[i] = selected[list[i]];
+                        global.select_list.selected[list[i]] = selected[i];
                 }
             }
         
@@ -27,8 +27,10 @@ with (objUIButton)
             {
                 for (i = 0;i < length; i++)
                 {
-                    show_debug_message(string(i));
-                    global.select_list.selected[i] = 1;
+                    if(id == global.select_list)
+                        global.select_list.selected[i] = 1;
+                    else
+                        global.select_list.selected[list[i]] = 1;
                 }
             }
         
@@ -45,6 +47,6 @@ with (oUIListBox)
         else
             selected[sID] = 0;
             
-        global.select_list.selected[sID] = selected[list[sID]];
+        global.select_list.selected[list[sID]] = selected[sID];
     }
 }

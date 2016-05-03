@@ -39,11 +39,7 @@ with (objUIButton)
                         callback = tag_ui;
                         initialize_listbox(global.TAGS);
                 
-    
-                        with(zui_create(0,0,oUIListBoxScroll))
-                        {
-        
-                        } 
+                        with(zui_create(0,0,oUIListBoxScroll)){} 
                     }
                     zui_create(0,0,oUIExitButton,-1);
                 }
@@ -159,6 +155,21 @@ with (objUIButton)
                 }
             }      
         }
+        else if (bID == 12)
+        {
+            if (type == 2)
+            {
+                type = 3;
+                global.fighterGroups = 1;
+                caption = "Groups On";
+            }
+            else
+            {
+                type = 2;
+                global.fighterGroups = 0;
+                caption = "Groups Off";
+            }
+        }
     }
 }
 with (objUIWindow)
@@ -175,17 +186,27 @@ with (objUIWindow)
             draw_sprite_stretched(sFighterImage,0,5,29,64,64);
             draw_text(73,29,"NO FIGHTER SELECTED");
             draw_text(73,44,"Gender:");
+            draw_text(73,59,"STR: ");
+            draw_text(133,59,"AGI: ");
+            draw_text(193,59,"END: ");
+            draw_text(103,74,"SKL: ");
+            draw_text(163,74,"LCK: ");
         }
         else
         {
             ini_open(working_directory + "characters\" + global.fNAME[global.IDselected]);
             if (ini_read_real("character","gender",0))
-                gen = "Female";
+                var gen = "Female";
             else
-                gen = "Male";
+                var gen = "Male";
             draw_sprite_stretched(global.cIMAGES[global.IDselected],0,5,29,64,64);
             draw_text(73,29,global.cNAME[global.IDselected]);
             draw_text(73,44,"Gender: " + gen);
+            draw_text(73,59,"STR: "+string_format(ini_read_real("character","strength",5),2,0));
+            draw_text(133,59,"AGI: "+string_format(ini_read_real("character","agility",5),2,0));
+            draw_text(193,59,"END: "+string_format(ini_read_real("character","endurance",5),2,0));
+            draw_text(103,74,"SKL: "+string_format(ini_read_real("character","skill",5),2,0));
+            draw_text(163,74,"LCK: "+string_format(ini_read_real("character","luck",5),2,0));
             ini_close();
             
         }

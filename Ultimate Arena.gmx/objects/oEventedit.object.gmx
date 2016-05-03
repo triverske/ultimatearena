@@ -2,7 +2,7 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -25,69 +25,53 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>zui_set_size(16, 16);
+            <string>global.IDselected = -1;
 
-pressed = 0;
-value = 0;
-callback = -1
-type = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="56">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (pressed) {
- pressed = 0;
- if (zui_get_hover()) {
-  if(type == 1){
-   objUICheckbox.value = 0;
-   value = 1;
-  }
-  else
-   value = !value;
- }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="53">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (zui_get_hover()) {
- pressed = 1;
+eventInfo[0] = "NAME";
+eventInfo[1] = "DESCRIPTION";
+eventInfo[2] = 0;
+    
+with(zui_main())
+{
+    with(zui_create(0, 0, objUIWindow))
+    {
+        zui_set_anchor(0, 0);
+        zui_set_size(260, window_get_height());
+        zui_set_position(0, 0);
+        wID = "Event List";
+        with(zui_create(0, 0, objUIWindowCaption))
+            caption = "Events (Click to edit)";
+            
+        with(zui_create(0, 24, oUIListBox))
+        {
+            zui_set_anchor(0, 0);
+            zui_set_size(window_get_width()/5, window_get_height()-64);
+            callback = eventedit_ui;
+            initialize_listbox(global.EVENT,0,global.EVENT_COUNT-1);
+            with(zui_create(0, 0, oUIListBoxScroll)){}
+        }
+        with (zui_create(5, __height - 35, objUIButton)) 
+        {
+            zui_set_anchor(0,0);
+            zui_set_size(120, 30);
+            caption = "Delete Event";
+            callback = eventedit_ui;
+            bID = 1;
+            type = 2;
+        }
+        
+        with (zui_create(__width - 129, __height - 35, objUIButton)) 
+        {
+            zui_set_anchor(0,0);
+            zui_set_size(124, 30);
+            caption = "Go Back";
+            callback = eventedit_ui;
+            bID = 0;
+        }
+        
+    }
+    create_window_eventedit();
+    
 }
 </string>
           </argument>
@@ -111,25 +95,10 @@ type = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (zui_get_hover()) {
- if (pressed)
-  draw_set_color($aaaaaa);
- else
-  draw_set_color($cccccc); 
-} else {
- draw_set_color($ffffff);
-}
-
-draw_sprite_ext(sprCheckBox, 0, -1, -1, 1, 1, 0, draw_get_color(), 1);
-
-if(type == 0 &amp;&amp; value)
- draw_sprite_ext(sprCheckBox, 1, -1, -1, 1, 1, 0, draw_get_color(), 1);
-if(type == 1 &amp;&amp; value) //radio
-{
- draw_sprite_ext(sprCheckBox, 2, -1, -1, 1, 1, 0, draw_get_color(), 1);
-}
-if (callback &gt;= 0)
-    script_execute(callback, id);
+            <string>draw_set_font(font0);
+draw_set_color(c_white);
+draw_set_valign(fa_top);
+draw_set_halign(fa_left);
 </string>
           </argument>
         </arguments>

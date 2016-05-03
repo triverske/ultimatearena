@@ -22,18 +22,22 @@ if(global.cIMAGES[0] == -1)
     sprite_delete(tempSprite);
     global.cIMAGES[0] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
 }
-            
-tags = ini_read_string("character","tags","");
+
+global.TAG_COUNT=0;
+global.TAG_LIST=0;
+global.TAGS = 0;
+var tags = ini_read_string("character","tags","");
+
 if (tags != "")
 {
-    tagcount = string_parse_number(tags,",",true);
+    var tagcount = string_parse_number(tags,",",true);
+    
     for(r = 0; r < tagcount; r++)
     {
         global.TAGS[global.TAG_COUNT] = string_extract(tags,",",r);
         global.TAG_LIST[r,0] = 0;
         global.TAG_COUNT++;
     }
-
 }
 
 ini_close();
@@ -60,35 +64,30 @@ while(global.fNAME[i] != "")
         sprite_delete(tempSprite);
         global.cIMAGES[i] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
     }
-            
-            
+    
     tags = ini_read_string("character","tags","");
     if (tags != "")
     {
-        tagcount = string_parse_number(tags,",",true) ;
+        tagcount = string_parse_number(tags,",",true);
         for(r = 0; r < tagcount; r++)
         {
-        
-            curtag = string_extract(tags,",",r);
-            notInArray = 1;
+            var curtag = string_extract(tags,",",r);
+            var notInArray = 1;
             for(c = 0;c < global.TAG_COUNT; c++)
             {
-                
                 if(global.TAGS[c] == curtag)
                 {
                     notInArray = 0
                     global.TAG_LIST[c,array_length_2d(global.TAG_LIST, c)] = i;
                 }
             }
-            if(notInArray == 1)
+            if(notInArray)
             {
                 global.TAGS[global.TAG_COUNT] = curtag;
                 global.TAG_LIST[global.TAG_COUNT,0] = i;
                 global.TAG_COUNT++;
-            }              
-            
+            }    
         }
-
     }
     ini_close();
     i++;

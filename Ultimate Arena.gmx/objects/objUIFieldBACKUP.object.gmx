@@ -2,7 +2,7 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -25,70 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>zui_set_size(16, 16);
-
-pressed = 0;
-value = 0;
-callback = -1
-type = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="56">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (pressed) {
- pressed = 0;
- if (zui_get_hover()) {
-  if(type == 1){
-   objUICheckbox.value = 0;
-   value = 1;
-  }
-  else
-   value = !value;
- }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="53">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (zui_get_hover()) {
- pressed = 1;
-}
+            <string>color = $404040;
+halign = 1;
+valign = 1;
+caption = "";
+maximum = 25; // 0 = no limit
+callback = -1;
+width = 200;
+active = 0;
+fields = 1;
+field_init(1,1,c_1,c_0,c_white,c_1,c_0,c_white,c_1,c_0,c_white,2,0,1)
 </string>
           </argument>
         </arguments>
@@ -111,25 +57,16 @@ type = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (zui_get_hover()) {
- if (pressed)
-  draw_set_color($aaaaaa);
- else
-  draw_set_color($cccccc); 
-} else {
- draw_set_color($ffffff);
+            <string>draw_set_color(color);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
+for(i=0; i&lt;fields; i++){
+    field_draw(i,0,x,y,width,active,caption,keyboard_string,maximum);
 }
 
-draw_sprite_ext(sprCheckBox, 0, -1, -1, 1, 1, 0, draw_get_color(), 1);
-
-if(type == 0 &amp;&amp; value)
- draw_sprite_ext(sprCheckBox, 1, -1, -1, 1, 1, 0, draw_get_color(), 1);
-if(type == 1 &amp;&amp; value) //radio
-{
- draw_sprite_ext(sprCheckBox, 2, -1, -1, 1, 1, 0, draw_get_color(), 1);
-}
-if (callback &gt;= 0)
-    script_execute(callback, id);
+if(callback &gt;= 0)
+    script_execute(callback,id);
 </string>
           </argument>
         </arguments>

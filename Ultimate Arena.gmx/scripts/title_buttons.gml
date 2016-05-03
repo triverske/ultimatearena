@@ -124,6 +124,12 @@ with (objUIButton)
             if(file != "")
                 load_game(file);
         }
+        else if (bID == 7) // Edit Characters
+        {
+            c = instance_create(0,0,oRoomTransition);
+            c.gotoroom = rm_eventedit;
+            global.GAMETYPE = 0;
+        }
         else if (bID == 9)
         {
             ui_show_popup_credits();     

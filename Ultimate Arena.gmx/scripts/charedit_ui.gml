@@ -3,48 +3,69 @@ with(oUIListBox)
 {
     if(argument0 == id)
     {
-        if(global.IDselected == argument0.sID)
+        if(listID == 0)
         {
-            global.IDselected = -1;
+            if(global.IDselected == sID)
+            {
+                global.IDselected = -1;
+            }
+            else
+            {
+                global.IDselected = sID;
+                global.newImage = global.cIMAGES[sID];
+                
+                ini_open(working_directory + "characters\" + global.fNAME[sID])
+                global.editStats[0] = min(10,ini_read_real("character","strength",5));
+                global.editStats[1] = min(10,ini_read_real("character","agility",5));
+                global.editStats[2] = min(10,ini_read_real("character","endurance",5));
+                global.editStats[3] = min(10,ini_read_real("character","skill",5));
+                global.editStats[4] = min(10,ini_read_real("character","luck",5));
+                var gen = ini_read_real("character","gender",0)
+                var s1 = ini_read_string("think","s1","");
+                ini_close();
+                
+                with(objUIField){
+                    if(fID == 0)
+                        content = global.cNAME[other.sID];
+                    if(fID == 1)
+                        content = s1;
+                }
+                
+                with(objUICheckbox)
+                {
+                    if(gen == cID)
+                        value = 1;
+                    else
+                        value = 0;
+                }
+                with(oUIListBox)
+                {
+                if(listID == 1)
+                {
+                    for(var i=0; i<global.TAG_COUNT; i++){
+                        selected[i] = 1;
+                        for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
+                            if(global.TAG_LIST[i,j] == other.sID){
+                                selected[i] = 0;
+                                break;
+                            }
+                        }
+                    }
+                }
+                }
+                with(objUILabel)
+                    if(lID > 0)
+                        caption = string(global.editStats[lID - 1]);
+            }
         }
-        else
+        else if(listID == 1)
         {
-            global.IDselected = argument0.sID;
-            keyboard_string = global.cNAME[sID];
-            global.newImage = global.cIMAGES[sID];
-            
-            ini_open(working_directory + "characters\" + global.fNAME[sID])
-            global.editStats[0] = min(10,ini_read_real("character","strength",5));
-            global.editStats[1] = min(10,ini_read_real("character","agility",5));
-            global.editStats[2] = min(10,ini_read_real("character","endurance",5));
-            global.editStats[3] = min(10,ini_read_real("character","skill",5));
-            global.editStats[4] = min(10,ini_read_real("character","luck",5));
-            var gen = ini_read_real("character","gender",0)
-            var s1 = ini_read_string("think","s1","");
-            ini_close();
-            
-            with(objUIWindow)
-            {
-                if(wID == "Phrase Editor")
-                    text = s1
-            }
-            
-            with(objUICheckbox)
-            {
-                if(gen == cID)
-                {
-                    value = 1;
-                }
+            if(sID != -1){
+                if(selected[sID] == 0)
+                    selected[sID] = 1;
                 else
-                {
-                    value = 0;
-                }
+                    selected[sID] = 0;
             }
-            
-            
-            with(objUILabel)
-                if(lID > 0)
-                    caption = string(global.editStats[lID - 1]);
         }
     }
 }
@@ -59,7 +80,7 @@ with(objUIButton)
         }
         if(bID == 1)
         {
-            var charname = keyboard_string;
+            //var charname = keyboard_string;
             file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
             if(file != "")
             {
@@ -87,13 +108,17 @@ with(objUIButton)
                     image = global.newImage;
                 }
             }
-            keyboard_string = charname;
+            //keyboard_string = charname;
         }
         if(bID == 2) //Save Character
         {
-            ini_open(working_directory + "characters\" + keyboard_string + ".ini");
-            ini_write_string("character","name",keyboard_string);
-            ini_write_string("character","image",keyboard_string+".png");
+            with(objUIField){
+                if(fID == 0)
+                    var charname = content;
+            }
+            ini_open(working_directory + "characters\" + charname + ".ini");
+            ini_write_string("character","name",charname);
+            ini_write_string("character","image",charname+".png");
             
             ini_write_real("character","colorr",global.editColors[global.editColor,0]);
             ini_write_real("character","colorg",global.editColors[global.editColor,1]);
@@ -112,18 +137,29 @@ with(objUIButton)
             ini_write_real("character","skill",global.editStats[3]);
             ini_write_real("character","luck",global.editStats[4]);
             
-            with(objUIWindow)
-            {
-                if(wID == "Phrase Editor")
-                {
-                    if(text != "")
-                    {
-                        ini_write_string("think","s1",text);
+            with(objUIField){
+                if(fID == 1){
+                    if(content != ""){
+                        ini_write_string("think","s1",content);
                         ini_write_real("think","total",1);
                     }
                 }
             }
-            
+            var tagstring = "";
+            with(oUIListBox){
+                if(listID == 1){
+                    for(var i=0; i<global.TAG_COUNT; i++){
+                        if(selected[i] == 0){
+                            if(tagstring == "")
+                                tagstring+= global.TAGS[i];
+                            else
+                                tagstring+= ","+global.TAGS[i];
+                        }
+                        selected[i]=1;
+                    }
+                }
+            }
+            ini_write_string("character","tags",tagstring);
             ini_close();
             
             for(i=0;i<5;i++)
@@ -135,13 +171,13 @@ with(objUIButton)
                 
             if(global.newImage != sFighterImage)
             {
-                sprite_save(global.newImage,0,working_directory + "characters\" + keyboard_string +".png");
+                sprite_save(global.newImage,0,working_directory + "characters\" + charname +".png");
             }
             else
             {
                 //Gamemaker doesn't let you save images from the resource tree.
                 tempSprite = sprite_duplicate(sFighterImage);
-                sprite_save(tempSprite,0,working_directory + "characters\" + keyboard_string +".png");
+                sprite_save(tempSprite,0,working_directory + "characters\" + charname +".png");
                 sprite_delete(tempSprite);
             }
             
@@ -210,6 +246,19 @@ with(objUIButton)
         {
             get_string_async("Enter a catchphrase","");
         }
+        if(bID == 11)
+        {
+            with(oUIListBox){
+                if(listID == 1){
+                    delete_tag(sID);
+                    initialize_listbox(global.TAGS);
+                }
+            }
+        }
+        if(bID == 12)
+        {
+            get_string_async("Enter tag name","");
+        }
     }
 }
 with(oUIImage)
@@ -229,7 +278,7 @@ with(objUIField)
         }
         //code here for saving text to .ini
     }
-}
+}/*
 with(objUIWindow)
 {
     if(argument0 == id)

@@ -299,7 +299,7 @@ else if (THIRST &lt; 1)
     createUpdate(getText("die_thirst",fighterID),fighterID,1);
 }
 //check if group still exists
-if(group != -1){
+if(global.fighterGroups &amp;&amp; group != -1){
     if(group == id){
         var c = 0;
         with(oFighter){
@@ -320,7 +320,7 @@ if(group != -1){
     }
 }
 //check if only group left
-if(group == id)
+if(global.fighterGroups &amp;&amp; group == id)
 {
     var c = 0;
     with(oFighter)
@@ -389,14 +389,14 @@ otherFighter = c;
 
 if(instance_exists(c))
 {
-if(d&lt;SIGHT &amp;&amp; c.group==-1 &amp;&amp; opinion[c.fighterID]&gt;0 &amp;&amp; c.opinion[fighterID]&gt;0 &amp;&amp; !(INSANE^c.INSANE))
+if(global.fighterGroups &amp;&amp; d&lt;SIGHT &amp;&amp; c.group==-1 &amp;&amp; opinion[c.fighterID]&gt;0 &amp;&amp; c.opinion[fighterID]&gt;0 &amp;&amp; !(INSANE^c.INSANE))
 {
     if(irandom(LUCK)!=0)
     {
         sendCommand("GROUP UP",20);
     }
 }
-if(group!=c.group || (group==c.group &amp;&amp; INSANE &amp;&amp; irandom(10)==0))
+if(global.fighterGroups &amp;&amp; (group!=c.group || (group==c.group &amp;&amp; INSANE &amp;&amp; irandom(10)==0)))
 {
     if(d &lt; SIGHT)
     {

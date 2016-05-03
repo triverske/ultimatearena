@@ -74,8 +74,9 @@ with(zui_main())
         with(zui_create(0, 24, oUIListBox))
         {
             zui_set_anchor(0, 0);
-            zui_set_size(window_get_width()/5, window_get_height()-64);
+            zui_set_size(260, window_get_height()-64);
             callback = charedit_ui;
+            listID = 0;
             initialize_listbox(global.cNAME);
             with(zui_create(0, 0, oUIListBoxScroll)){}
         }
@@ -136,9 +137,36 @@ with(oUIImageButton)
 {
     if (ds_map_find_value(async_load, "result") != "")
     {
-        with(objUIWindow)
+        global.TAGS[global.TAG_COUNT]=ds_map_find_value(async_load, "result");
+        global.TAG_LIST[global.TAG_COUNT,0] = global.IDselected;
+        global.TAG_COUNT++;
+        ini_open(working_directory+"characters\"+global.fNAME[global.IDselected]);
+        var prevtag = ini_read_string("character","tags","");
+        if(prevtag!= "")
+            ini_write_string("character","tags",prevtag+","+global.TAGS[global.TAG_COUNT-1]);
+        else
+            ini_write_string("character","tags",global.TAGS[global.TAG_COUNT-1]);
+        ini_close();
+        initialize_characters();
+        with(oUIListBox){
+            if(listID == 1){
+                initialize_listbox(global.TAGS);
+                selected=0;
+                for(var i=0; i&lt;global.TAG_COUNT; i++){
+                    selected[i] = 1;
+                    for(var j=0; j&lt;array_length_2d(global.TAG_LIST,i); j++){
+                        if(global.TAG_LIST[i,j] == global.IDselected){
+                            selected[i] = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        /*with(objUIWindow)
             if(wID = "Phrase Editor")
-                text = keyboard_string+": '" + ds_map_find_value(async_load, "result") + "'";
+                text = keyboard_string+": '" + ds_map_find_value(async_load, "result") + "'";*/
+            
     }
 }
 

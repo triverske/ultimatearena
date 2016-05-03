@@ -202,16 +202,19 @@
       <script>scripts\fighter_list_ui.gml</script>
       <script>scripts\tag_ui.gml</script>
       <script>scripts\tag_draw_ui.gml</script>
+      <script>scripts\tag_select_draw_ui.gml</script>
       <script>scripts\fighter_select_buttons.gml</script>
       <script>scripts\arena_fighter_ui.gml</script>
       <script>scripts\drawcall_fighter.gml</script>
       <script>scripts\fighter_select_draw_ui.gml</script>
       <script>scripts\selection_ui.gml</script>
       <script>scripts\charedit_ui.gml</script>
+      <script>scripts\eventedit_ui.gml</script>
       <scripts name="windows">
         <script>scripts\create_window_map.gml</script>
         <script>scripts\create_window_updates.gml</script>
         <script>scripts\create_window_charedit.gml</script>
+        <script>scripts\create_window_eventedit.gml</script>
         <script>scripts\create_window_fighterlist.gml</script>
         <script>scripts\create_window_fighter.gml</script>
         <script>scripts\create_window_sandbox.gml</script>
@@ -228,6 +231,7 @@
     <script>scripts\initialize_characters.gml</script>
     <script>scripts\initialize_events.gml</script>
     <script>scripts\draw_hover_stats.gml</script>
+    <script>scripts\delete_tag.gml</script>
     <script>scripts\string_to_color.gml</script>
     <script>scripts\save_game.gml</script>
     <script>scripts\load_game.gml</script>
@@ -260,6 +264,7 @@
       <object>objects\oTitleMenu</object>
       <object>objects\oCharselect</object>
       <object>objects\oCharedit</object>
+      <object>objects\oEventedit</object>
       <object>objects\oTwitchCharselect</object>
       <object>objects\oTwitchCharbox</object>
       <object>objects\oTwitchCharbox2</object>
@@ -313,6 +318,7 @@
       <object>objects\objUICheckbox</object>
       <object>objects\objUIBlack</object>
       <object>objects\objUIField</object>
+      <object>objects\objUIMultiField</object>
       <object>objects\objUIWindowCaption</object>
     </objects>
   </objects>
@@ -321,6 +327,7 @@
     <room>rooms\rm_splashscreen</room>
     <room>rooms\rm_title</room>
     <room>rooms\rm_charedit</room>
+    <room>rooms\rm_eventedit</room>
     <room>rooms\rm_charselect</room>
     <room>rooms\rm_tycoon</room>
     <room>rooms\rm_twitchCharselect</room>

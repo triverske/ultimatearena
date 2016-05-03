@@ -33,9 +33,10 @@ global.SAVE_SPEED = 4;
 global.loadingGame = 0;
 global.saveFile = "";
 
-var i = 1;
 global.TAG_COUNT = 0;
+global.TAG_LIST[0,0] = 0;
 
+var i = 1;
 draw_set_font(font0);
 if(directory_exists(working_directory + "characters"))
 {
