@@ -2,48 +2,42 @@
 
 with (oUIListBox)
 {
-    if (argument0 == id )
+if (argument0 == id )
+{
+with (zui_main()) 
+{
+with(zui_create(445,348,objUIWindow,-1)) 
+{
+    zui_set_size(260,420);
+    callback = tag_ui;
+    tagname = global.TAGS[argument0.sID];
+    with (zui_create(0, 0, objUIWindowCaption)) 
     {
-        with (zui_main()) 
-        {
-            with(zui_create(445,348,objUIWindow,-1)) 
-            {
-                
-                zui_set_size(260,420);
-                callback = tag_ui;
-                tagname = global.TAGS[argument0.sID];
-                with (zui_create(0, 0, objUIWindowCaption)) 
-                {
-                    caption = "Tag: " + other.tagname;
-                    draggable = 1;
-                }
-                with(zui_create(0,24,oUIListBox))
-                    {
-                        draw_callback = tag_draw_ui;
-                        callback = selection_ui;
-                        zui_set_anchor(0,0);
-                        zui_set_size(260,356);
-                        tmpArrayLength = array_length_2d(global.TAG_LIST,argument0.sID);
-                        //show_debug_message(string(tmpArrayLength));
-                        for(i = 0;i < tmpArrayLength; i++)
-                            tmpArray[i] = global.TAG_LIST[argument0.sID,i];
-                        
-                        initialize_listbox(tmpArray,0,tmpArrayLength);
-                        tmpArray = 0;
-                        for (i = 0;i < length; i++)
-                        {
-                            selected[i] = global.select_list.selected[i];
-                        }
-                        other.listID = id;
-                
-    
-                        with(zui_create(0,0,oUIListBoxScroll))
-                        {
+        caption = "Tag: " + other.tagname;
+        draggable = 1;
+    }
+    with(zui_create(0,24,oUIListBox))
+    {
+        draw_callback = tag_draw_ui;
+        callback = selection_ui;
+        zui_set_anchor(0,0);
+        zui_set_size(260,356);
+        var tmpArrayLength = array_length_2d(global.TAG_LIST,argument0.sID);
+        show_debug_message(string(tmpArrayLength));
+        var tmpArray;
+        for(i = 0;i < tmpArrayLength; i++)
+            tmpArray[i] = global.TAG_LIST[argument0.sID,i];
         
-                        } 
-                    }
-                zui_create(0,0,oUIExitButton,-1);
-                with (zui_create(5, __height - 35, objUIButton)) 
+        initialize_listbox(tmpArray,0,tmpArrayLength-1);
+        for (i=0;i<length;i++)
+        {
+            selected[i] = global.select_list.selected[list[i]];
+        }
+        other.listID = id;
+        with(zui_create(0,0,oUIListBoxScroll)){} 
+    }
+    zui_create(0,0,oUIExitButton,-1);
+    with (zui_create(5, __height - 35, objUIButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(150, 30);
@@ -61,10 +55,7 @@ with (oUIListBox)
         bID = 1;
         listID = other.listID;
     }
-                
-        
-            }
-        }
-    }
-    
+}
+}
+}
 }

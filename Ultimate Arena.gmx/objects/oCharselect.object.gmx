@@ -33,7 +33,6 @@ var WS = global.WSCALE;
 var HS = global.HSCALE;
 
 global.custom_sounds = 0;
-
 with (zui_main()) 
 {
     with (zui_create(0, 0, objUIWindow, -1))
@@ -53,20 +52,16 @@ with (zui_main())
             zui_set_size(260,display_get_gui_height()-64);
             click_mode = 0;
             callback = fighter_select_buttons;
-            //draw_callback = drawcall_fighter;
             initialize_listbox(global.cNAME);
             global.select_list = id;
             draw_callback = fighter_select_draw_ui;
-            for (i = 0;i &lt; length; i++)
+            for(i=length-1;i&gt;=0; i--)
             {
                 selected[i] = 1;
             }
             
             other.listID = id;
-            with(zui_create(0,0,oUIListBoxScroll))
-            {
-    
-            } 
+            with(zui_create(0,0,oUIListBoxScroll)){}
         }
         
         with (zui_create(5, __height - 35, objUIButton)) 
@@ -108,18 +103,19 @@ with (zui_main())
     {
         wID = "Selected Character";
         callback  = fighter_select_buttons;
-        zui_set_size(250,136);
-        zui_set_position(WS * .4,floor(HS * .2));
-        /*
+        zui_set_size(250,168);
+        zui_set_position(WS * .4,HS * .5 - 208);
+        //zui_set_position(WS * .4,floor(HS * .2));
+        
         with (zui_create(5, __height - 70, objUIButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
-            caption = "Search By Tag";
+            caption = "Select By Tag";
             callback = fighter_select_buttons;
             bID = 2;
         }
-        */
+        
         with (zui_create(5, __height - 35, objUIButton)) 
         {
             zui_set_anchor(0, 0);

@@ -202,6 +202,7 @@
       <script>scripts\fighter_list_ui.gml</script>
       <script>scripts\tag_ui.gml</script>
       <script>scripts\tag_draw_ui.gml</script>
+      <script>scripts\tag_select_draw_ui.gml</script>
       <script>scripts\fighter_select_buttons.gml</script>
       <script>scripts\arena_fighter_ui.gml</script>
       <script>scripts\drawcall_fighter.gml</script>
@@ -230,6 +231,7 @@
     <script>scripts\initialize_characters.gml</script>
     <script>scripts\initialize_events.gml</script>
     <script>scripts\draw_hover_stats.gml</script>
+    <script>scripts\delete_tag.gml</script>
     <script>scripts\string_to_color.gml</script>
     <script>scripts\save_game.gml</script>
     <script>scripts\load_game.gml</script>

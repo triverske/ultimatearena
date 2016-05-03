@@ -1,4 +1,4 @@
-selected[list[i]] = global.select_list.selected[i];
+selected[i] = global.select_list.selected[list[i]];
 
 
 ui_draw_sprite_panel(sListBoxItem, 0, 16, 0, ypos[i], __width - 15, 16);

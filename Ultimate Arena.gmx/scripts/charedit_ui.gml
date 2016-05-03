@@ -3,48 +3,69 @@ with(oUIListBox)
 {
     if(argument0 == id)
     {
-        if(global.IDselected == argument0.sID)
+        if(listID == 0)
         {
-            global.IDselected = -1;
-        }
-        else
-        {
-            global.IDselected = argument0.sID;
-            global.newImage = global.cIMAGES[sID];
-            
-            ini_open(working_directory + "characters\" + global.fNAME[sID])
-            global.editStats[0] = min(10,ini_read_real("character","strength",5));
-            global.editStats[1] = min(10,ini_read_real("character","agility",5));
-            global.editStats[2] = min(10,ini_read_real("character","endurance",5));
-            global.editStats[3] = min(10,ini_read_real("character","skill",5));
-            global.editStats[4] = min(10,ini_read_real("character","luck",5));
-            var gen = ini_read_real("character","gender",0)
-            var s1 = ini_read_string("think","s1","");
-            ini_close();
-            
-            with(objUIField){
-                if(fID == 0)
-                    content = global.cNAME[other.sID];
-                if(fID == 1)
-                    content = s1;
-            }
-            
-            with(objUICheckbox)
+            if(global.IDselected == sID)
             {
-                if(gen == cID)
-                {
-                    value = 1;
-                }
-                else
-                {
-                    value = 0;
-                }
+                global.IDselected = -1;
             }
-            
-            
-            with(objUILabel)
-                if(lID > 0)
-                    caption = string(global.editStats[lID - 1]);
+            else
+            {
+                global.IDselected = sID;
+                global.newImage = global.cIMAGES[sID];
+                
+                ini_open(working_directory + "characters\" + global.fNAME[sID])
+                global.editStats[0] = min(10,ini_read_real("character","strength",5));
+                global.editStats[1] = min(10,ini_read_real("character","agility",5));
+                global.editStats[2] = min(10,ini_read_real("character","endurance",5));
+                global.editStats[3] = min(10,ini_read_real("character","skill",5));
+                global.editStats[4] = min(10,ini_read_real("character","luck",5));
+                var gen = ini_read_real("character","gender",0)
+                var s1 = ini_read_string("think","s1","");
+                ini_close();
+                
+                with(objUIField){
+                    if(fID == 0)
+                        content = global.cNAME[other.sID];
+                    if(fID == 1)
+                        content = s1;
+                }
+                
+                with(objUICheckbox)
+                {
+                    if(gen == cID)
+                        value = 1;
+                    else
+                        value = 0;
+                }
+                with(oUIListBox)
+                {
+                if(listID == 1)
+                {
+                    for(var i=0; i<global.TAG_COUNT; i++){
+                        selected[i] = 1;
+                        for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
+                            if(global.TAG_LIST[i,j] == other.sID){
+                                selected[i] = 0;
+                                break;
+                            }
+                        }
+                    }
+                }
+                }
+                with(objUILabel)
+                    if(lID > 0)
+                        caption = string(global.editStats[lID - 1]);
+            }
+        }
+        else if(listID == 1)
+        {
+            if(sID != -1){
+                if(selected[sID] == 0)
+                    selected[sID] = 1;
+                else
+                    selected[sID] = 0;
+            }
         }
     }
 }
@@ -124,7 +145,21 @@ with(objUIButton)
                     }
                 }
             }
-            
+            var tagstring = "";
+            with(oUIListBox){
+                if(listID == 1){
+                    for(var i=0; i<global.TAG_COUNT; i++){
+                        if(selected[i] == 0){
+                            if(tagstring == "")
+                                tagstring+= global.TAGS[i];
+                            else
+                                tagstring+= ","+global.TAGS[i];
+                        }
+                        selected[i]=1;
+                    }
+                }
+            }
+            ini_write_string("character","tags",tagstring);
             ini_close();
             
             for(i=0;i<5;i++)
@@ -210,6 +245,19 @@ with(objUIButton)
         if(bID == 10) //Change catchphrase
         {
             get_string_async("Enter a catchphrase","");
+        }
+        if(bID == 11)
+        {
+            with(oUIListBox){
+                if(listID == 1){
+                    delete_tag(sID);
+                    initialize_listbox(global.TAGS);
+                }
+            }
+        }
+        if(bID == 12)
+        {
+            get_string_async("Enter tag name","");
         }
     }
 }

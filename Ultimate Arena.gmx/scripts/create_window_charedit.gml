@@ -1,4 +1,4 @@
-with(zui_create(window_get_width()*.6, window_get_height()/2 - 60, objUIWindow))
+with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
 {
     zui_set_size(500, 298);
     wID = "Editor Window";
@@ -264,7 +264,54 @@ with(zui_create(window_get_width()*.6, window_get_height()/2 - 60, objUIWindow))
         zui_set_size(width,18);
     }
     
-}/*
+}
+with(zui_create(window_get_width()*.8, window_get_height()/2 - 60, objUIWindow))
+{
+    zui_set_size(200, 298);
+    wID = "Character Tags";
+    with(zui_create(0,0,objUIWindowCaption))
+    {
+        caption = "Character Tags";
+    }
+    with(zui_create(0,24,oUIListBox))
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(200,298-64);
+        click_mode = 0;
+        callback = charedit_ui;
+        draw_callback = tag_select_draw_ui;
+        other.listID = id;
+        listID = 1;
+        initialize_listbox(global.TAGS);
+        for(i=length-1;i>=0; i--)
+        {
+            selected[i] = 1;
+        }
+        with(zui_create(0,0,oUIListBoxScroll)){}
+    }
+    with (zui_create(5, __height - 35, objUIButton)) 
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(100, 30);
+        caption = "Delete Tag";
+        callback = charedit_ui;
+        bID = 11;
+        type = 2;
+        listID = other.listID;
+    }
+    
+    with (zui_create(__width - 89, __height - 35, objUIButton)) 
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(84, 30);
+        caption = "Add Tag";
+        callback = charedit_ui;
+        bID = 12;
+        listID = other.listID;
+    }
+}
+
+/*
 with(zui_create(window_get_width()*.6, window_get_height()/2 + 184, objUIWindow))
 {
     zui_set_size(390, 144);
