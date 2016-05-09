@@ -85,6 +85,7 @@ with(objUIButton)
             for(var i=1; i<=objUIMultiField.fields; i++){
                 ini_write_string("text","s"+string(i),objUIMultiField.content[i-1]);
             }
+            ini_write_real("text","total",objUIMultiField.fields);
             ini_close();
             
             initialize_events();

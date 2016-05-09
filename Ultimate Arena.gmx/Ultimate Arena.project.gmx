@@ -194,7 +194,6 @@
     </scripts>
     <script>scripts\scr_generate_map.gml</script>
     <script>scripts\scr_load_map.gml</script>
-    <script>scripts\scr_display_map.gml</script>
     <script>scripts\string_extract.gml</script>
     <scripts name="ui">
       <script>scripts\arena_ui.gml</script>
@@ -218,6 +217,7 @@
         <script>scripts\create_window_fighterlist.gml</script>
         <script>scripts\create_window_fighter.gml</script>
         <script>scripts\create_window_sandbox.gml</script>
+        <script>scripts\create_window_mapeditor.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>
@@ -250,6 +250,8 @@
       <script>scripts\irc_refresh_followers.gml</script>
       <script>scripts\irc_get_viewers.gml</script>
     </scripts>
+    <script>scripts\save_map.gml</script>
+    <script>scripts\load_map.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
