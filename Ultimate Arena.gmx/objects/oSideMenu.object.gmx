@@ -32,11 +32,16 @@ global.TIME_DAYS = 1;
 global.TIME_STRING = "00:12:00";
 global.NAMES[0] = " ";
 killleader = 0;
+killleaderprev = 0;
 killleaderkills = 0;
 xpleader = 0;
+xpleaderprev = 0;
 xpleaderxp = 0;
 sanityleader = 0;
+sanityleaderprev = 0;
 sanityleaders = 0;
+
+update[3] = 0;
 
 instance_create(0,0,oButtonBar);
 alarm[0] = global.GAME_SPEED;
@@ -164,7 +169,15 @@ if (global.TIME_SECONDS == 60)
     }
 }
 
+if(killleaderprev != killleader)
+    update[0] = 120;
 
+if(xpleaderprev != xpleader)
+    update[1] = 120;
+    
+if(sanityleaderprev != sanityleader)
+    update[2] = 120;
+    
 if(!surface_exists(sidemenu))
 {
     sidemenu = surface_create(100,500);
@@ -212,19 +225,33 @@ draw_text(50,125,string(global.kill_count));
 draw_text(50,145,"EVENT KILLS");
 draw_text(50,160,string(global.event_kills));
 
-
 draw_text(50,196,"KILL LEADER");
 draw_sprite_stretched(global.IMAGES[killleader],1,26,212,48,48);
+if(update[0] &gt; 0)
+{
+    draw_sprite_stretched(spr_breakingUpdate,update[0],26,212,48,48);
+    update[0]--;
+}
 draw_text(50,260,global.NAMES[killleader]);
 draw_text(50,274,"KILLS: " + string(killleaderkills));
 
 draw_text(50,300,"CPU'S CHOICE");
 draw_sprite_stretched(global.IMAGES[xpleader],1,26,316,48,48);
+if(update[1] &gt; 0)
+{
+    draw_sprite_stretched(spr_breakingUpdate,update[1],26,316,48,48);
+    update[1]--;
+}
 draw_text(50,364,global.NAMES[xpleader]);
 draw_text(50,378,"KILLS: " + string(global.killArray[xpleader]));
 
 draw_text(50,404,"LEAST SANE");
 draw_sprite_stretched(global.IMAGES[sanityleader],1,26,420,48,48);
+if(update[2] &gt; 0)
+{
+    draw_sprite_stretched(spr_breakingUpdate,update[2],26,420,48,48);
+    update[2]--;
+}
 draw_text(50,468,global.NAMES[sanityleader]);
 draw_text(50,482,"SANITY: " + string(sanityleaders) + "%");
 
@@ -237,6 +264,10 @@ if (alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
     alarm[0] = global.GAME_SPEED;
 
 }
+
+sanityleaderprev = sanityleader;
+xpleaderprev = xpleader;
+killleaderprev = killleader;
 </string>
           </argument>
         </arguments>
