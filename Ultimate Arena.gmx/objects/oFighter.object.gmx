@@ -396,7 +396,7 @@ if(global.fighterGroups &amp;&amp; d&lt;SIGHT &amp;&amp; c.group==-1 &amp;&amp; 
         sendCommand("GROUP UP",20);
     }
 }
-if(!global.fighterGroups || (group!=c.group || (group==c.group &amp;&amp; INSANE &amp;&amp; irandom(10)==0)))
+if(!global.fighterGroups || (group!=c.group || (group==-1 || INSANE &amp;&amp; irandom(10)==0)))
 {
     if(d &lt; SIGHT)
     {
