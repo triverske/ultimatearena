@@ -7,6 +7,8 @@ if !surface_exists(map)
 surface_set_target(map);
 draw_background(global.bck_minimap,0,0);
 
+
+
 with (obj_deadLocation)
 {
     draw_self();
@@ -54,6 +56,18 @@ with(oSBow)
 {
     if(dropped)
         draw_self();
+}
+
+with(oArenaEvent)
+{
+    draw_set_color(c_red);
+    draw_set_alpha(1);
+    draw_circle(x,y,radius0,1);
+    draw_set_alpha(.1);
+    draw_circle(x,y,radius0,0);
+    draw_set_alpha(.5);
+    draw_circle(x,y,radius1,1);
+    draw_set_alpha(1);
 }
 
 
