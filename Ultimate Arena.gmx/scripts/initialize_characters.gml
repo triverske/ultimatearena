@@ -97,3 +97,4 @@ while(global.fNAME[i] != "")
 file_find_close();
 global.lNAME = i;
 global.fighters = i;
+global.FIGHTER_COUNT = i;
