@@ -36,6 +36,8 @@ global.saveFile = "";
 global.TAG_COUNT = 0;
 global.TAG_LIST[0,0] = 0;
 
+global.eventRadius = 100;
+
 var i = 1;
 draw_set_font(font0);
 if(directory_exists(working_directory + "characters"))
@@ -144,6 +146,17 @@ if(keyboard_check(vk_tab))
 if(keyboard_check_pressed(vk_space))
 {
     show_debug_message(string(random_get_seed()));
+}
+
+if(mouse_wheel_down())
+{
+    if(global.eventRadius &gt; 10)
+        global.eventRadius -= 5;
+}
+if(mouse_wheel_up())
+{
+    if(global.eventRadius &lt; 500)
+        global.eventRadius += 5;
 }
 </string>
           </argument>
