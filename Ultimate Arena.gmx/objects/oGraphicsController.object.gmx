@@ -33,6 +33,7 @@ global.otherUpdates = 1;
 global.update_count = 0;
 global.kill_count = 0;
 global.event_kills = 0;
+global.LANDMINE_KILLS = 0;
 global.DEADLOC[global.fighters,0] = 0;
 global.DEADLOC[global.fighters,1] = 0;
 
