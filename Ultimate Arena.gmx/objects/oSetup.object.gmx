@@ -36,6 +36,19 @@ global.saveFile = "";
 global.TAG_COUNT = 0;
 global.TAG_LIST[0,0] = 0;
 
+global.eventRadius = 100;
+global.CREDITS = 0;
+global.INSANE = 0;
+global.FACEBOOK = 0;
+global.TWITTER = 0;
+global.GITHUB = 0;
+global.DAYS = 0;
+global.WILD_RIDE = 0;
+global.LANDMINE_KILLS = 0;
+global.update_count = 0;
+global.kill_count = 0;
+global.TIME_DAYS = 0;
+
 var i = 1;
 draw_set_font(font0);
 if(directory_exists(working_directory + "characters"))
@@ -145,6 +158,118 @@ if(keyboard_check_pressed(vk_space))
 {
     show_debug_message(string(random_get_seed()));
 }
+
+if(mouse_wheel_down())
+{
+    if(global.eventRadius &gt; 10)
+        global.eventRadius -= 5;
+}
+if(mouse_wheel_up())
+{
+    if(global.eventRadius &lt; 500)
+        global.eventRadius += 5;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Achievements
+
+if(global.FIGHTER_COUNT &gt; 99)
+    if(!steam_get_achievement("ACH_FIGHTER_100"))
+        steam_set_achievement("ACH_FIGHTER_100");
+        
+if(global.FIGHTER_COUNT &gt; 199)
+    if(!steam_get_achievement("ACH_FIGHTER_200"))
+        steam_set_achievement("ACH_FIGHTER_200");
+        
+if(global.FIGHTER_COUNT &gt; 499)
+    if(!steam_get_achievement("ACH_FIGHTER_500"))
+        steam_set_achievement("ACH_FIGHTER_500");
+        
+if(global.FIGHTER_COUNT &gt; 999)
+    if(!steam_get_achievement("ACH_FIGHTER_1000"))
+        steam_set_achievement("ACH_FIGHTER_1000");
+        
+if(global.EVENT_COUNT &gt; 9)
+    if(!steam_get_achievement("ACH_EVENT_10"))
+        steam_set_achievement("ACH_EVENT_10");
+
+if(global.EVENT_COUNT &gt; 29)
+    if(!steam_get_achievement("ACH_EVENT_30"))
+        steam_set_achievement("ACH_EVENT_30");
+        
+if(global.LANDMINE_KILLS &gt; 49)
+    if(!steam_get_achievement("ACH_LAND_50"))
+        steam_set_achievement("ACH_LAND_50");
+        
+if(global.LANDMINE_KILLS &gt; 89)
+    if(!steam_get_achievement("ACH_LAND_90"))
+        steam_set_achievement("ACH_LAND_90");
+        
+if(global.update_count &gt; 499)
+    if(!steam_get_achievement("ACH_UPDATE_500"))
+        steam_set_achievement("ACH_UPDATE_500");
+        
+if(global.update_count &gt; 999)
+    if(!steam_get_achievement("ACH_UPDATE_1000"))
+        steam_set_achievement("ACH_UPDATE_1000");
+        
+if(global.kill_count &gt; 59)
+    if(!steam_get_achievement("ACH_KILL_60"))
+        steam_set_achievement("ACH_KILL_60");
+        
+if(global.kill_count &gt; 79)
+    if(!steam_get_achievement("ACH_KILL_80"))
+        steam_set_achievement("ACH_KILL_80");
+        
+if(global.WILD_RIDE)
+    if(!steam_get_achievement("ACH_WILD_RIDE"))
+        steam_set_achievement("ACH_WILD_RIDE");
+        
+if(global.TIME_DAYS &gt; 6)
+    if(!steam_get_achievement("ACH_DAYS_7"))
+        steam_set_achievement("ACH_DAYS_7");
+        
+if(global.TIME_DAYS &gt; 9)
+    if(!steam_get_achievement("ACH_DAYS_10"))
+        steam_set_achievement("ACH_DAYS_10");
+        
+if(global.TWITTER)
+    if(!steam_get_achievement("ACH_TWITTER"))
+        steam_set_achievement("ACH_TWITTER");
+        
+if(global.FACEBOOK)
+    if(!steam_get_achievement("ACH_FACEBOOK"))
+        steam_set_achievement("ACH_FACEBOOK");
+        
+if(global.CREDITS)
+    if(!steam_get_achievement("ACH_CREDITS"))
+        steam_set_achievement("ACH_CREDITS");
+        
+if(global.GITHUB)
+    if(!steam_get_achievement("ACH_GITHUB"))
+        steam_set_achievement("ACH_GITHUB");
+        
+if(global.INSANE)
+    if(!steam_get_achievement("ACH_SANITY"))
+        steam_set_achievement("ACH_SANITY");
 </string>
           </argument>
         </arguments>

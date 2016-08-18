@@ -162,7 +162,8 @@ with (objUIButton)
         {
             if (!instance_exists(oArenaEvent))
                 if(global.arena_events)
-                    oGraphicsController.event_timer = 1;
+                    with(instance_create(0,0,oPlaceItem))
+                        event = 1;
         }
         
         

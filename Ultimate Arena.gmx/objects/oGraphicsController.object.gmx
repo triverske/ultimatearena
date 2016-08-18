@@ -33,6 +33,7 @@ global.otherUpdates = 1;
 global.update_count = 0;
 global.kill_count = 0;
 global.event_kills = 0;
+global.LANDMINE_KILLS = 0;
 global.DEADLOC[global.fighters,0] = 0;
 global.DEADLOC[global.fighters,1] = 0;
 
@@ -196,9 +197,6 @@ if(event_timer == 0 &amp;&amp; !instance_exists(oArenaEvent))
     s.name = ini_read_string("event","name","ERROR");
     s.death_percentage = ini_read_real("event","death_percentage",0);
     ini_close();
-    
-
-
 }
 
 alarm[0] = global.GAME_SPEED;

@@ -133,6 +133,7 @@ with (objUIButton)
         else if (bID == 9)
         {
             ui_show_popup_credits();     
+            global.CREDITS = 1;
         }
         else if (bID == 10)
         {
@@ -160,9 +161,9 @@ with (objUIButton)
         else if (bID == 11)
         {
             url_open("https://github.com/triverske/ultimatearena");
-            
+            global.GITHUB = 1;
         }
-        if (bID == 12) // Endless Arena
+        else if (bID == 12) // Endless Arena
         {
             if (global.lNAME < 2)
             {
@@ -175,6 +176,16 @@ with (objUIButton)
                 global.GAMETYPE = 0;
                 global.ENDLESS = 1;
             }
+        }
+        else if (bID == 13)
+        {
+            url_open("https://www.facebook.com/Triverske/");
+            global.FACEBOOK = 1;
+        }
+        else if (bID == 14)
+        {
+            url_open("https://www.twitter.com/triverske/");
+            global.TWITTER = 1;
         }
     }
 }
