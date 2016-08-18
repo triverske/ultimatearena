@@ -55,7 +55,7 @@ value = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (pvalue != value) {
+            <string>/*if (pvalue != value) {
  var scroll_value = ui_lerp_filter(value, minimum, maximum);
  var scroll_x = scroll_value * (__width - 16) + 8;
 

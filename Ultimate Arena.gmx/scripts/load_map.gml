@@ -1,4 +1,4 @@
-var file;
+/*var file;
 file = get_open_filename_ext("Map File|*.uam", "", working_directory, "Load Map");
 
 if(file != "")
