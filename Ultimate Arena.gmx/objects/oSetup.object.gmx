@@ -130,15 +130,8 @@ if !directory_exists("characters\test")
    directory_create("characters\test");
    }
 
-FILELIST = ds_list_create(); 
-var _find=file_find_first(working_directory+"characters\*", fa_directory); 
-ds_list_add(FILELIST, _find); 
-while (_find!="")
-{ 
-_find = file_find_next(); 
-if(directory_exists(working_directory + "characters\" + _find))
-ds_list_add(FILELIST, _find); 
-} file_find_close();
+   
+
     
 room_goto_next();
 </string>
