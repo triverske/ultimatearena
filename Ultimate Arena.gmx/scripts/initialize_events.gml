@@ -1,5 +1,5 @@
 directory[0] = "";
-initialize_directories("events");
+initialize_directory("events");
 var l = array_length_1d(directory);
 
 if(l != 0)

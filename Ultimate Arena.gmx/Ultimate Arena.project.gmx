@@ -270,7 +270,7 @@
     </scripts>
     <script>scripts\save_map.gml</script>
     <script>scripts\load_map.gml</script>
-    <script>scripts\initialize_directories.gml</script>
+    <script>scripts\initialize_directory.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>

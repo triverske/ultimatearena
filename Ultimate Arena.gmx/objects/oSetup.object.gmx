@@ -49,10 +49,91 @@ global.update_count = 0;
 global.kill_count = 0;
 global.TIME_DAYS = 0;
 
-var i = 1;
 draw_set_font(font0);
 if(directory_exists(working_directory + "characters"))
 {
+    //OLD FORMAT CONVERTER
+    var f = file_find_first(working_directory + "characters\*.ini", 0);
+    if(f != "")
+    {
+        show_debug_message(working_directory + "characters\" + f);
+        var a = file_text_open_read(working_directory + "characters\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        
+        if(file_exists(working_directory + "characters\" + dir + ".png"))
+            var spr = sprite_add(working_directory + "characters\" + dir + ".png",0,0,0,0,0);
+        else
+            var spr = sprite_duplicate(sFighterImage);
+        
+        directory_create(working_directory + "characters\" + dir);
+        
+        sprite_save(spr,0,working_directory + "characters\" +dir + "\" + dir + ".png");
+        sprite_delete(spr);
+        
+        var a = file_text_open_write(working_directory + "characters\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "characters\" + f);
+    }
+    
+    var f = file_find_next();
+    while(f != "")
+    {
+        show_debug_message(working_directory + "characters\" + f);
+        var a = file_text_open_read(working_directory + "characters\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        
+        if(file_exists(working_directory + "characters\" + dir + ".png"))
+            var spr = sprite_add(working_directory + "characters\" + dir + ".png",0,0,0,0,0);
+        else
+            var spr = sprite_duplicate(sFighterImage);
+        
+        directory_create(working_directory + "characters\" + dir);
+        
+        sprite_save(spr,0,working_directory + "characters\" +dir + "\" + dir + ".png");
+        sprite_delete(spr);
+        
+        var a = file_text_open_write(working_directory + "characters\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "characters\" + f);
+        var f = file_find_next();
+    }
+    file_find_close();
     initialize_characters();
 }
 else
@@ -62,9 +143,72 @@ else
     initialize_characters();
 }
 
-var i = 1;
 if(directory_exists(working_directory + "events"))
 {
+    //OLD FORMAT CONVERTER
+    var f = file_find_first(working_directory + "events\*.ini", 0);
+    if(f != "")
+    {
+        show_debug_message(working_directory + "events\" + f);
+        var a = file_text_open_read(working_directory + "events\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        directory_create(working_directory + "events\" + dir);
+        
+        var a = file_text_open_write(working_directory + "events\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "events\" + f);
+    }
+    
+    var f = file_find_next();
+    while(f != "")
+    {
+        show_debug_message(working_directory + "events\" + f);
+        var a = file_text_open_read(working_directory + "events\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        directory_create(working_directory + "events\" + dir);
+        
+        var a = file_text_open_write(working_directory + "events\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "events\" + f);
+        var f = file_find_next();
+    }
+    file_find_close();
     initialize_events();
 }
 else
