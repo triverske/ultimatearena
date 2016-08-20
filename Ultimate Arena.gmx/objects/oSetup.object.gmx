@@ -55,7 +55,7 @@ initialize_workshop();
 draw_set_font(font0);
 if(directory_exists(working_directory + "characters"))
 {
-    //OLD FORMAT CONVERTER
+    //OLD FORMAT CONVERTER - I'm so sorry.
     var f = file_find_first(working_directory + "characters\*.ini", 0);
     if(f != "")
     {
@@ -221,26 +221,13 @@ else
     initialize_events();
 
 }
+
 randomize();
 global.seed = random_get_seed();
 
-// variables
-tile_size = 32;  // the size of your tiles
-show_minimap = true;
-
 global.mapsurf = 0;
 global.bck_minimap = 0;
-// generate a map
 
-// argument0: defines the size (MUST be a power of 2!) Large sizes (&gt; 1024) take a while to load
-// argument1: defines the level of fluctuation (low = much variation in terrain, high = little variation in terrain) 
-//           This must be lower than the map size! (MUST be a power of 2!)
-// argument2: defines the waterlevel (lower = less water)
-// argument3: defines the mountain level (higher = less mountains)
-// argument4: defines the size of the beaches (0 = no beach)
-// argument5: is the map seamlessly repeating or not
-
-//scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
 
 global.boxColor = 0;
 global.GAMETYPE = 0;
@@ -266,14 +253,6 @@ ini_close();
 
 if(global.TWITCHENABLED)
     instance_create(0,0,oTwitchController);
-    
-
-if !directory_exists("characters\test")
-   {
-   directory_create("characters\test");
-   }
-
-   
 
     
 room_goto_next();

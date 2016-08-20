@@ -6,7 +6,7 @@ var l = array_length_1d(directory);
 
 if(l != 0)
 {
-    for(i=0;i<l;i++)
+    for(i=0;i<l-1;i++)
     {
         global.fNAME[i] = directory[i] + "\" + directory[i] + ".ini";
         ini_open(working_directory + "characters\" + global.fNAME[i]);

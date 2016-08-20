@@ -164,6 +164,8 @@ with(objUIButton)
             global.charVersion++;
             ini_write_real("character","version",global.charVersion);
             
+            global.workshopID = ini_read_real("character","workshopID",-1);
+            
             newGender = 0;
             with(objUICheckbox)
             {
