@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(i = 1;i &lt; global.fighters+1;i++)
+            <string>for(var i = 1;i &lt; global.fighters+1;i++)
 {
     if (global.DEATH_ARRAY[i] == 0)
     {
@@ -46,9 +46,9 @@ ini_close();
 //First = 10, 2-5,3-4,4-3,5-2,6,1
 ini_open("twitch.ini");
 
-for(i = 6;i &gt; 0;i--)
+for(var i = 6;i &gt; 0;i--)
 {
-    for(c = oTwitchController.winnerVotes[global.fighter_place[i]-1,0];c &gt; 0;c--)
+    for(var c = oTwitchController.winnerVotes[global.fighter_place[i]-1,0];c &gt; 0;c--)
     {
         var player = oTwitchController.winnerVotes[global.fighter_place[i]-1,c];
         var points = ini_read_real(player,"points",0);
@@ -85,7 +85,7 @@ for(i = 6;i &gt; 0;i--)
 }
 
 ini_close();
-c = instance_create(0,0,oRoomTransition);
+var c = instance_create(0,0,oRoomTransition);
 c.gotoroom = rm_twitchWinroom;
 }
 global.SAVE_SPEED = global.GAME_SPEED;

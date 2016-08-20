@@ -6,7 +6,7 @@ p4 = argument3;
 status = argument4;
 var yPos = 36;
 
-c = 61/100
+var c = 61/100
 if(p4<0)
     p4 = 0;
 

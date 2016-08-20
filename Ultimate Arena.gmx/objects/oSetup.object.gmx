@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>global.VERSION = "1.5";
 
-
 global.ENDLESS = 0;
 global.SAVE_SPEED = 4;
 global.loadingGame = 0;
@@ -49,31 +48,31 @@ global.update_count = 0;
 global.kill_count = 0;
 global.TIME_DAYS = 0;
 
-var i = 1;
 draw_set_font(font0);
+
 if(directory_exists(working_directory + "characters"))
-{
     initialize_characters();
-}
-else
-{
+else{
     directory_create("characters");
     add_default_characters();
     initialize_characters();
 }
-
-var i = 1;
 if(directory_exists(working_directory + "events"))
-{
     initialize_events();
-}
-else
-{
+else{
     directory_create("events");
     add_default_events();
     initialize_events();
 
 }
+if(directory_exists(working_directory + "maps"))
+    initialize_maps();
+else{
+    directory_create("maps");
+    add_default_maps();
+    initialize_maps();
+}
+
 randomize();
 global.seed = random_get_seed();
 

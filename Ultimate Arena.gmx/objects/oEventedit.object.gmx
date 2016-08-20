@@ -27,9 +27,9 @@
             <kind>1</kind>
             <string>global.IDselected = -1;
 
-eventInfo[0] = "NAME";
-eventInfo[1] = "DESCRIPTION";
-eventInfo[2] = 0;
+//eventInfo[0] = "NAME";
+//eventInfo[1] = "DESCRIPTION";
+//eventInfo[2] = 0;
     
 with(zui_main())
 {

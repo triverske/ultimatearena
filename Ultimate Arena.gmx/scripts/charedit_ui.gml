@@ -75,7 +75,7 @@ with(objUIButton)
     {
         if(bID == 0)
         {
-            c = instance_create(0,0,oRoomTransition);
+            var c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_title;
         }
         if(bID == 1)

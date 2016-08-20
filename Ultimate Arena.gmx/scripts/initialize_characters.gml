@@ -28,11 +28,11 @@ global.TAG_LIST=0;
 global.TAGS = 0;
 var tags = ini_read_string("character","tags","");
 
-if (tags != "")
+if(tags != "")
 {
     var tagcount = string_parse_number(tags,",",true);
     
-    for(r = 0; r < tagcount; r++)
+    for(var r=0; r<tagcount; r++)
     {
         global.TAGS[global.TAG_COUNT] = string_extract(tags,",",r);
         global.TAG_LIST[r,0] = 0;
@@ -69,11 +69,11 @@ while(global.fNAME[i] != "")
     if (tags != "")
     {
         tagcount = string_parse_number(tags,",",true);
-        for(r = 0; r < tagcount; r++)
+        for(var r=0; r<tagcount; r++)
         {
             var curtag = string_extract(tags,",",r);
             var notInArray = 1;
-            for(c = 0;c < global.TAG_COUNT; c++)
+            for(var c=0; c<global.TAG_COUNT; c++)
             {
                 if(global.TAGS[c] == curtag)
                 {

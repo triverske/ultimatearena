@@ -41,13 +41,13 @@ alarm[0] = global.SELECTIONTIME * 60;
 
 irc_send_message("The voting period has begun.");
 
-for(i = 0;i &lt; global.lNAME;i+=6)
+for(var i = 0;i &lt; global.lNAME;i+=6)
 {
-    for(z = 0;z &lt; 6;z++)
+    for(var z = 0;z &lt; 6;z++)
     {
         if(z+i &lt; global.lNAME)
         {
-            c = instance_create(i/6 * 110,z * 110 + 110,oTwitchCharbox);
+            var c = instance_create(i/6 * 110,z * 110 + 110,oTwitchCharbox);
             c.name = global.cNAME[z+i];
             c.ID = z+i;
         }

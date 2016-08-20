@@ -51,7 +51,7 @@ with(objUIButton)
     {
         if(bID == 0)//Go Back
         {
-            c = instance_create(0,0,oRoomTransition);
+            var c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_title;
         }
         if(bID == 1)//Delete Event

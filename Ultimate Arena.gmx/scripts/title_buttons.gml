@@ -12,7 +12,7 @@ with (objUIButton)
             }
             else
             {  
-                c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,oRoomTransition);
                 c.gotoroom = rm_charselect;
                 global.GAMETYPE = 0;
                 global.ENDLESS = 0;
@@ -20,7 +20,7 @@ with (objUIButton)
         }
         else if (bID == 1) // Edit Characters
         {
-            c = instance_create(0,0,oRoomTransition);
+            var c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_charedit;
             global.GAMETYPE = 0;
         }
@@ -47,7 +47,7 @@ with (objUIButton)
         {
             if(global.fighters > 60)
             {
-                c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,oRoomTransition);
                 c.gotoroom = rm_twitchCharselect;
                 global.GAMETYPE = 1;
             }
@@ -126,8 +126,9 @@ with (objUIButton)
         }
         else if (bID == 7) // Edit Characters
         {
-            c = instance_create(0,0,oRoomTransition);
-            c.gotoroom = rm_eventedit;
+            var c = instance_create(0,0,oRoomTransition);
+            //c.gotoroom = rm_eventedit;
+            c.gotoroom = rm_mapedit;
             global.GAMETYPE = 0;
         }
         else if (bID == 9)
@@ -171,7 +172,7 @@ with (objUIButton)
             }
             else
             {  
-                c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,oRoomTransition);
                 c.gotoroom = rm_charselect;
                 global.GAMETYPE = 0;
                 global.ENDLESS = 1;
