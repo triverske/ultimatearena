@@ -44,6 +44,35 @@ with(oUIListBox)
                         else
                             value = 0;
                     }
+                    if(bID == 1)
+                    {
+                        if(global.workshopID != -1)
+                            value = 1;
+                        else
+                            value = 0;
+                            
+                        if(global.creator != steam_get_user_account_id() && global.creator != -1)
+                        {
+                            with(objUILabel)
+                            {
+                                if(caption == "Add to Steam Workshop")
+                                    __visible = 0;
+                            }
+                            global.copyProtection = 1;
+                            __visible = 0;
+                        }
+                        else
+                        {
+                            with(objUILabel)
+                            {
+                                if(caption == "Add to Steam Workshop")
+                                    __visible = 1;
+                            }
+                            global.copyProtection = 0;
+                            __visible = 1;
+                            show_debug_message("character created by user");
+                        }
+                    }
                 }
                 with(oUIListBox)
                 {
@@ -152,13 +181,16 @@ with(objUIButton)
             
             if(global.creator == -1)
             {
-                ini_write_real("character","creator",steam_get_user_steam_id());
-                global.creator = steam_get_user_steam_id();
+                ini_write_real("character","creator",steam_get_user_account_id());
+                global.creator = steam_get_user_account_id();
             }
             
-            with(objUIField){
-                if(fID == 1){
-                    if(content != ""){
+            with(objUIField)
+            {
+                if(fID == 1)
+                {
+                    if(content != "")
+                    {
                         ini_write_string("think","s1",content);
                         ini_write_real("think","total",1);
                     }
@@ -201,7 +233,7 @@ with(objUIButton)
             }
             
             show_debug_message("WORKSHOP " + string(global.workshop))
-            if(global.workshop)
+            if(global.workshop && !global.copyProtection)
             {
                 show_debug_message("WORKSHOPID " + string(global.workshopID))
                 if(global.workshopID == -1)
@@ -218,9 +250,6 @@ with(objUIButton)
                 else
                 {
                     var workshopName = charname;
-                    ini_open(working_directory + "characters\" + workshopName + "\" + workshopName + ".ini");
-                    ini_write_string("character","workshopID",global.workshopID);
-                    ini_close();
                     
                     var app_id = steam_get_app_id();
                     updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);

@@ -140,6 +140,7 @@
     <sprite>sprites\spr_nameBar</sprite>
     <sprite>sprites\spr_updateBox</sprite>
     <sprite>sprites\spr_breakingUpdate</sprite>
+    <sprite>sprites\sArenaEvent</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>

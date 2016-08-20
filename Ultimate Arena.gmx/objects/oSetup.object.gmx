@@ -48,6 +48,8 @@ global.update_count = 0;
 global.kill_count = 0;
 global.TIME_DAYS = 0;
 
+new_item = -1;
+
 initialize_workshop();
 
 draw_set_font(font0);
@@ -456,7 +458,7 @@ if(event_id == new_item)
         global.workshopID = async_load[? "published_file_id"];
         workshopName = global.charname;
         ini_open(working_directory + "characters\" + workshopName + "\" + workshopName + ".ini");
-        ini_write_string("character","workshopID",string(global.workshopID));
+        ini_write_real("character","workshopID",global.workshopID);
         ini_close();
         
         var app_id = steam_get_app_id();
