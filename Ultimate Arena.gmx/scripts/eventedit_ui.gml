@@ -105,7 +105,7 @@ with(objUIButton)
         {
             if(global.IDselected != -1)
             {
-                file_delete(working_directory + "events\" + global.EVENT[global.IDselected]);
+                directory_destroy(working_directory + "events\" + global.eNAME[global.IDselected]);
                 initialize_events();
                 keyboard_string = "";
                 room_restart();
