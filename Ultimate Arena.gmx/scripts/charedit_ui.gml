@@ -230,14 +230,12 @@ with(objUIButton)
             {
                 //Gamemaker doesn't let you save images from the resource tree.
                 tempSprite = sprite_duplicate(sFighterImage);
-                sprite_save(tempSprite,0,working_directory + "characters\" + charname +".png");
+                sprite_save(tempSprite,0,working_directory + "characters\" + charname + "\" + charname + ".png");
                 sprite_delete(tempSprite);
             }
             
-            show_debug_message("WORKSHOP " + string(global.workshop))
             if(global.workshop && !global.copyProtection)
             {
-                show_debug_message("WORKSHOPID " + string(global.workshopID))
                 if(global.workshopID == -1)
                 {
                     with(oSetup)

@@ -1,5 +1,6 @@
 global.cNAME = 0;
 
+directory = 0;
 directory[0] = "";
 initialize_directory("characters");
 var l = array_length_1d(directory);

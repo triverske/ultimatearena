@@ -28,12 +28,15 @@ for(i=0;i<s;i++)
         var name = ini_read_string(type,"name","NAMING ERROR");
         ini_close();
         
+        file_find_close();
+        
+        show_debug_message(game_save_id + type + "s\" + name + "\");
         if(!directory_exists(game_save_id + type + "s\" + name + "\"))
         {
             directory_create(game_save_id + type + "s\" + name + "\");
         
             var f = file_find_first(steam_map [? "folder"] + "\*", 0);
-        
+            
             file_copy_win(steam_map [? "folder"] + "\" + f,game_save_id + type + "s\" + name + "\" + f);
             
             var f = file_find_next();
@@ -45,5 +48,6 @@ for(i=0;i<s;i++)
             file_find_close();
         }
     }
+    file_find_close();
     ds_map_destroy(steam_map);
 }
