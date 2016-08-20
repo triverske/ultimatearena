@@ -18,6 +18,5 @@ while (_find != "")
         directory[i] = _find;
         i++
     }
-    show_debug_message(argument0 + "\" + _find);
 } 
 file_find_close();

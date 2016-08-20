@@ -18,7 +18,7 @@ with (objZUIMain) {
    "Ultimate Arena v" + global.VERSION + "##
    Developed by House Bonneau & Triverske#
    Programmers: Troy Bonneau, Matt Mozingo##
-   Github Contributors#SquirrelJay, zeaga, Proncs#
+   Github Contributors#SquirrelJay, zeaga, Proncs,#YellowAfterLife
    Copyright 2016";
   }
   

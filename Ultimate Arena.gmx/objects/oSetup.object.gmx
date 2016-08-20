@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.VERSION = "1.5";
-
+            <string>global.VERSION = "2.0";
 
 global.ENDLESS = 0;
 global.SAVE_SPEED = 4;
@@ -48,6 +47,8 @@ global.LANDMINE_KILLS = 0;
 global.update_count = 0;
 global.kill_count = 0;
 global.TIME_DAYS = 0;
+
+initialize_workshop();
 
 draw_set_font(font0);
 if(directory_exists(working_directory + "characters"))
@@ -264,11 +265,7 @@ ini_close();
 if(global.TWITCHENABLED)
     instance_create(0,0,oTwitchController);
     
-/*
-var app_id = steam_get_app_id(); 
- new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
 
-*/
 if !directory_exists("characters\test")
    {
    directory_create("characters\test");
@@ -449,32 +446,36 @@ if(global.INSANE)
           <argument>
             <kind>1</kind>
             <string>var event_id = async_load[? "id"];
- if event_id == new_item
-    {
+
+if(event_id == new_item)
+{
     var type = async_load[? "event_type"];
-    if type == "ugc_create_item"
-       {
-       show_debug_message("b");
-       global.Publish_ID = async_load[? "published_file_id"];
-       
-       var app_id = steam_get_app_id();
-        updateHandle = steam_ugc_start_item_update(app_id, global.Publish_ID);
-        var c = steam_ugc_set_item_title(updateHandle, "Trump");
-        show_debug_message(string(c));
-        var c = steam_ugc_set_item_description( updateHandle, "testing workshop...");
-        show_debug_message(string(c));
+    
+    if(type == "ugc_create_item")
+    {
+        global.workshopID = async_load[? "published_file_id"];
+        workshopName = global.charname;
+        ini_open(working_directory + "characters\" + workshopName + "\" + workshopName + ".ini");
+        ini_write_string("character","workshopID",string(global.workshopID));
+        ini_close();
+        
+        var app_id = steam_get_app_id();
+        updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+        
+        steam_ugc_set_item_title(updateHandle, workshopName );
+        steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " character to Ultimate Arena");
         steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+        
         var tagArray;
         tagArray[0] = "Character";
-        tagArray[1] = "Test";
+        
         steam_ugc_set_item_tags(updateHandle, tagArray);
-        var c = steam_ugc_set_item_preview(updateHandle, working_directory + "characters\Trump.png");
-        show_debug_message(string(c));
-        var c = steam_ugc_set_item_content(updateHandle, working_directory + "characters\" );
-        show_debug_message(string(c));
-        requestId = steam_ugc_submit_item_update(updateHandle, "Version 1.2");
-       }
+        steam_ugc_set_item_preview(updateHandle, working_directory + "characters\" + workshopName + "\" + workshopName + ".png");
+        steam_ugc_set_item_content(updateHandle, working_directory + "characters\" + workshopName + "\");
+        
+        requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
     }
+}
 </string>
           </argument>
         </arguments>

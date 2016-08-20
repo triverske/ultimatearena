@@ -8,7 +8,6 @@ if(l != 0)
 {
     for(i=0;i<l;i++)
     {
-        show_debug_message(directory[i]);
         global.fNAME[i] = directory[i] + "\" + directory[i] + ".ini";
         ini_open(working_directory + "characters\" + global.fNAME[i]);
         global.cNAME[i] = ini_read_string("character","name","NAMING ERROR");
@@ -16,17 +15,17 @@ if(l != 0)
         
         cImage = ini_read_string("character","image","sFighterImage");
         
-        if (cImage != "sFighterImage")
-            global.cIMAGES[i] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
+        if(cImage != "sFighterImage")
+            global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[i] + "\" + directory[i] + ".png",1,0,0,0,0);
         else
             global.cIMAGES[i] = sFighterImage; 
             
         if(global.cIMAGES[i] == -1)
         {
             tempSprite = sprite_duplicate(sFighterImage);
-            sprite_save(tempSprite,0,working_directory + "characters\" + global.fNAME[i] + cImage);
+            sprite_save(tempSprite,0,working_directory + "characters\" + directory[i] + "\" + directory[i] + ".png");
             sprite_delete(tempSprite);
-            global.cIMAGES[i] = sprite_add(working_directory + "characters\" + global.fNAME[i] + cImage,1,0,0,0,0);
+            global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[i] + "\" + directory[i] + ".png",1,0,0,0,0);
         }
         
         tags = ini_read_string("character","tags","");
