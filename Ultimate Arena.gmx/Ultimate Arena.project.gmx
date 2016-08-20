@@ -147,6 +147,8 @@
     <background>background\noise1</background>
     <background>background\noise</background>
     <background>background\back_tile</background>
+    <background>background\back_tile2</background>
+    <background>background\back_tile3</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">

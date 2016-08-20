@@ -434,6 +434,7 @@ if(event_id == new_item)
     
     if(type == "ugc_create_item")
     {
+        //I'm just going to pray that this continues working.
         if(room == rm_charedit)
         {
             global.workshopID = async_load[? "published_file_id"];
@@ -479,6 +480,30 @@ if(event_id == new_item)
             steam_ugc_set_item_tags(updateHandle, tagArray);
             steam_ugc_set_item_preview(updateHandle, working_directory + "events\" + workshopName + "\" + workshopName + ".png");
             steam_ugc_set_item_content(updateHandle, working_directory + "events\" + workshopName + "\");
+            
+            requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+        }
+        else if(room == rm_mapedit)
+        {
+            global.workshopID = async_load[? "published_file_id"];
+            workshopName = global.charname;
+            ini_open(working_directory + "maps\" + workshopName + "\" + workshopName + ".ini");
+            ini_write_real("map","workshopID",global.workshopID);
+            ini_close();
+            
+            var app_id = steam_get_app_id();
+            updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+            
+            steam_ugc_set_item_title(updateHandle, workshopName );
+            steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " map to Ultimate Arena");
+            steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+            
+            var tagArray;
+            tagArray[0] = "Map";
+            
+            steam_ugc_set_item_tags(updateHandle, tagArray);
+            steam_ugc_set_item_preview(updateHandle, working_directory + "maps\" + workshopName + "\" + workshopName + ".png");
+            steam_ugc_set_item_content(updateHandle, working_directory + "maps\" + workshopName + "\");
             
             requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
         }

@@ -31,6 +31,8 @@
 bg_x = 0;
 bg_y = 0;
 hue = 0;
+
+image = choose(back_tile,back_tile2,back_tile3);
 </string>
           </argument>
         </arguments>
@@ -57,7 +59,7 @@ hue = 0;
 bg_y+= .5;
 hue+= .2;
 
-if(bg_x == background_get_width(back_tile))
+if(bg_x == background_get_width(image))
 { 
     bg_x = 0;
     bg_y = 0;
@@ -69,7 +71,7 @@ if(hue == 256)
 if(room != rm_splashscreen)
 {
     draw_set_alpha(1)
-    draw_background_tiled(back_tile,bg_x,bg_y);
+    draw_background_tiled(image,bg_x,bg_y);
     draw_set_color(make_color_hsv(hue,255,255));
     draw_set_alpha(.1)
     draw_rectangle(0,0,SW,SH,0);
