@@ -257,16 +257,6 @@ with(objUIButton)
         }
     }
 }
-with(objUIField)
-{
-    if(argument0 == id)
-    {
-        if(fID == 0)
-        {
-        }
-        //code here for saving text to .ini
-    }
-}
 
 with(objUICheckbox)
 {

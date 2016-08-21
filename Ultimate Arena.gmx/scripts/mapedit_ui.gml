@@ -9,9 +9,10 @@ with(oUIListBox){
             var mname = global.MAPS[sID];
             var mcolors = "";
             ini_open(working_directory+"maps\"+mname+'\'+mname+'.ini');
-            for(var i=0; i<256; i++){
+            
+            for(var i=0; i<256; i++)
                 mcolors[i] = ini_read_string("Map","Colors"+string(i),"");
-            }
+            
             oMapedit.treeArray = 0;
             for(var i=0; i<30; i++){
                 if(ini_read_string("Trees",string(i),"ERROR") == "ERROR")
@@ -19,6 +20,11 @@ with(oUIListBox){
                 oMapedit.treeArray[i,0] = real(string_copy(ini_read_string("Trees",string(i),"000000"),1,3));
                 oMapedit.treeArray[i,1] = real(string_copy(ini_read_string("Trees",string(i),"000000"),4,3));
             }
+            
+            global.creator = ini_read_real("map","creator",-1);
+            global.charVersion = ini_read_real("map","version",1);
+            global.workshopID = ini_read_real("map","workshopID",-1);
+            
             ini_close();
             keyboard_string = "";
             with(objUIField){
@@ -72,6 +78,39 @@ with(oUIListBox){
                 cursorType = 0;
                 cursorSize = 0;
             }
+            
+            with(objUICheckbox)
+            {
+                if(bID == 1)
+                {
+                    if(global.workshopID != -1)
+                        value = 1;
+                    else
+                        value = 0;
+                        
+                    if(global.creator != steam_get_user_account_id() && global.creator != -1)
+                    {
+                        with(objUILabel)
+                        {
+                            if(caption == "Add to Steam Workshop")
+                                __visible = 0;
+                        }
+                        global.copyProtection = 1;
+                        __visible = 0;
+                    }
+                    else
+                    {
+                        with(objUILabel)
+                        {
+                            if(caption == "Add to Steam Workshop")
+                                __visible = 1;
+                        }
+                        global.copyProtection = 0;
+                        __visible = 1;
+                        show_debug_message("map created by user");
+                    }
+                }
+            }
         }
     }
 }
@@ -122,9 +161,12 @@ with(objUIButton){
             with(objUIField){
                 if(content == "")
                     exit;
+                else
+                    global.charname = content;
             }
             with(oMapedit){
-                var name = keyboard_string;
+                var name = global.charname;
+                
                 ini_open(working_directory+"maps\"+name+'\'+name+'.ini');
                 surface_save(mapeditSurf,working_directory+"maps\"+name+'\'+name+'.png');
                 if(overlayImage != sBlankMap){
@@ -145,6 +187,52 @@ with(objUIButton){
                 keyboard_string = "";
                 surface_free(mapeditSurf);
                 ds_grid_destroy(mapGrid);
+            }
+            
+            if(global.creator == -1)
+            {
+                ini_write_real("event","creator",steam_get_user_account_id());
+                global.creator = steam_get_user_account_id();
+            }
+            
+            if(global.workshop && !global.copyProtection)
+            {
+                if(global.workshopID == -1)
+                {
+                    with(oSetup)
+                    {
+                        var app_id = steam_get_app_id(); 
+                        new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
+                        
+                        workshopName = name;
+                        workshopType = 0;
+                    }
+                }
+                else
+                {
+                    var workshopName = name;
+                    
+                    var app_id = steam_get_app_id();
+                    updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+                    
+                    steam_ugc_set_item_title(updateHandle, workshopName );
+                    steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " map to Ultimate Arena");
+                    steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+                    
+                    var tagArray;
+                    tagArray[0] = "Map";
+                    
+                    steam_ugc_set_item_tags(updateHandle, tagArray);
+                    
+                    if(file_exists(working_directory+"maps\"+name+'\'+name+'overlay.png'))
+                        steam_ugc_set_item_preview(updateHandle, working_directory+"maps\"+name+'\'+name+'overlay.png');
+                    else
+                        steam_ugc_set_item_preview(updateHandle, working_directory + "maps\" + workshopName + "\" + maps + ".png");
+                        
+                    steam_ugc_set_item_content(updateHandle, working_directory + "maps\" + workshopName + "\");
+                    
+                    requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+                }
             }
             initialize_maps();
             room_restart();
@@ -224,4 +312,10 @@ with(objUIButton){
             }
         }
     }
+}
+
+with(objUICheckbox)
+{
+    if(bID == 1)
+        global.workshop = value;
 }

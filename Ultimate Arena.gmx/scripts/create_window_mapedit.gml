@@ -197,8 +197,8 @@ with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)-1
         bID = 13;
     }
 }
-with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)+195, objUIWindow)){
-    zui_set_size(200,180);
+with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)+185, objUIWindow)){
+    zui_set_size(200,200);
     wID = "File Window";
     
     with(zui_create(5, 5, objUIButton)) {                                           
@@ -235,5 +235,19 @@ with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)+1
         caption = "Overlay: Off";
         callback = mapedit_ui;
         bID = 12;
+    }
+    
+    with(zui_create(15, __height - 14, objUICheckbox))
+    {
+        type = 0;
+        callback = mapedit_ui;
+        cID = 0;
+        value = 0;
+        bID = 1;
+    }
+    with(zui_create(40, __height - 14, objUILabel))
+    {
+        caption = "Add to Steam Workshop";
+        halign = fa_left;
     }
 }

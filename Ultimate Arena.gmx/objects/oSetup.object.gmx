@@ -514,9 +514,13 @@ if(event_id == new_item)
             tagArray[0] = "Map";
             
             steam_ugc_set_item_tags(updateHandle, tagArray);
-            steam_ugc_set_item_preview(updateHandle, working_directory + "maps\" + workshopName + "\" + workshopName + ".png");
-            steam_ugc_set_item_content(updateHandle, working_directory + "maps\" + workshopName + "\");
             
+            if(file_exists(working_directory+"maps\"+workshopName+'\'+workshopName+'overlay.png'))
+                steam_ugc_set_item_preview(updateHandle, working_directory+"maps\"+workshopName+'\'+workshopName+'overlay.png');
+            else
+                steam_ugc_set_item_preview(updateHandle, working_directory + "maps\" + workshopName + "\" + maps + ".png");
+                    
+            steam_ugc_set_item_content(updateHandle, working_directory + "maps\" + workshopName + "\");
             requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
         }
     }
