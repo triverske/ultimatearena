@@ -11,7 +11,7 @@ for(var i=0; i<global.fighters+2; i++)
     
 for(var i=0; i<ini_read_real("Map","trees",0); i++)
 {
-    c = instance_create(ini_read_real("Trees",string(i)+"x",0),ini_read_real("Trees",string(i)+"y",0),oTree);
+    var c = instance_create(ini_read_real("Trees",string(i)+"x",0),ini_read_real("Trees",string(i)+"y",0),oTree);
     c.foodcount = ini_read_real("Trees",string(i)+"food",0);
 }
 
@@ -38,7 +38,7 @@ for(var i=1; i<global.fighters+1; i++)
     
 for(var i=0; i<global.fighters_remaining; i++)
 { 
-    c = instance_create(ini_read_real("Fighters",string(i)+"x",0),ini_read_real("Fighters",string(i)+"y",0),oFighter);
+    var c = instance_create(ini_read_real("Fighters",string(i)+"x",0),ini_read_real("Fighters",string(i)+"y",0),oFighter);
     c.fighterID = ini_read_real("Fighters",string(i)+"fighterID",0);
     global.IDLIST[c.fighterID] = c;
     c.color = global.COLORS[c.fighterID];

@@ -40,7 +40,7 @@ if(instance_exists(global.mapwindow))
         
         yPos -= 24;
         
-        c = instance_nearest(xPos,yPos,oFighter)
+        var c = instance_nearest(xPos,yPos,oFighter);
         var open = 0;
         var d = c.fighterID
         if(dif(c.x,xPos) &lt; 10)

@@ -78,6 +78,10 @@ else if (type == 2)
     if(surface_exists(image))
         draw_surface_part(image,left,top,width,height,0,0);
 }
+else if (type == 3)
+{
+    draw_rectangle_colour(0,0,width,height,color,color,color,color,0);
+}
 
 if(callback &gt;= 0)
     script_execute(callback, id);

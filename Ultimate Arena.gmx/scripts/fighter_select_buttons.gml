@@ -9,7 +9,7 @@ with (objUIButton)
     {
         if (bID == 0) //return to title
         {
-            c = instance_create(0,0,oRoomTransition);
+            var c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_title;
         }
         else if (bID == 1) //regen map
@@ -22,7 +22,7 @@ with (objUIButton)
             {
             with (zui_main()) 
             {
-                with(zui_create(445,348,objUIWindow,-1))
+                with(zui_create(WS/2,HS/2,objUIWindow,-1))
                 {
                     wID = "Search By Tag";
                     //callback = fighter_select_buttons;
@@ -169,6 +169,31 @@ with (objUIButton)
                 global.fighterGroups = 0;
                 caption = "Groups Off";
             }
+        }
+        else if(bID == 13){//Select Map
+            if(global.MAP_COUNT > 0){
+                with(zui_main()){
+                    with(zui_create(WS/2,HS/2,objUIWindow,-1)){
+                        wID = "Select Map";
+                        //callback = fighter_select_buttons;
+                        zui_set_size(160,224);
+                        with(zui_create(0,0,objUIWindowCaption)){
+                            caption = "Select Map";
+                            draggable = 1;
+                        }
+                        with(zui_create(0,24,oUIListBox)){
+                            zui_set_anchor(0,0);
+                            zui_set_size(160,200);
+                            callback = map_ui;
+                            initialize_listbox(global.MAPS,0,global.MAP_COUNT-1);
+                            with(zui_create(0,0,oUIListBoxScroll)){} 
+                        }
+                        zui_create(0,0,oUIExitButton,-1);
+                    }
+                }
+            }
+            else
+                ui_show_popup("No Maps Found");
         }
     }
 }

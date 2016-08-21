@@ -73,7 +73,7 @@ for(var i = 0;i&lt;global.fighters+2;i++)
 
 for(var i = 0;i &lt; global.trees; i++)
 {
-    c = instance_create(global.treeloc[i,0],global.treeloc[i,1],oTree);
+    var c = instance_create(global.treeloc[i,0],global.treeloc[i,1],oTree);
     c.foodcount = ceil(random(3));
 }
 
@@ -89,7 +89,7 @@ for(var i = 0;i &lt; global.stone; i++)
 for(var i = 1;i &lt; global.fighters+1; i++)
 { 
     global.deathCause[i] = "Death by ???";
-    c = instance_create(0,0,oFighter);
+    var c = instance_create(0,0,oFighter);
     c.fighterID = i;
     global.IDLIST[i] = c;
     c.color = global.COLORS[i];
