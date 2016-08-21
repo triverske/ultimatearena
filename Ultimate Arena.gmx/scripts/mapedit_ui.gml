@@ -56,6 +56,10 @@ with(oUIListBox){
                     overlayImage = sprite_create_from_surface(surf,0,0,256,256,0,0,0,0);
                     surface_free(surf);
                     overlayOn = true;
+                    with(objUIButton){
+                        if(bID == 11)
+                            caption = "Remove Overlay Image";
+                    }
                 }
                 with(objUIButton){
                     if(bID == 12){
@@ -147,23 +151,36 @@ with(objUIButton){
         }
         else if(bID == 11){//Import Image Overlay
             with(oMapedit){
-                var file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
-                if(file != ""){
-                    if(overlayImage != sBlankMap)
-                        sprite_delete(overlayImage);
-                    overlayImage = sprite_add(file,0,0,0,0,0);
-                    var surf = surface_create(256,256);
-                    surface_set_target(surf);
-                    draw_sprite_stretched(overlayImage,0,0,0,256,256);
-                    surface_reset_target();
+                if(overlayImage != sBlankMap){
                     sprite_delete(overlayImage);
-                    overlayImage = sprite_create_from_surface(surf,0,0,256,256,0,0,0,0);
-                    surface_free(surf);
+                    overlayImage = sBlankMap;
+                    overlayOn = false;
                     with(objUIButton){
                         if(bID == 12)
-                            caption = "Overlay: On";
+                            caption = "Overlay: Off";
                     }
-                    overlayOn = true;
+                    other.caption = "Import Overlay Image";
+                }
+                else{
+                    var file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
+                    if(file != ""){
+                        if(overlayImage != sBlankMap)
+                            sprite_delete(overlayImage);
+                        overlayImage = sprite_add(file,0,0,0,0,0);
+                        var surf = surface_create(256,256);
+                        surface_set_target(surf);
+                        draw_sprite_stretched(overlayImage,0,0,0,256,256);
+                        surface_reset_target();
+                        sprite_delete(overlayImage);
+                        overlayImage = sprite_create_from_surface(surf,0,0,256,256,0,0,0,0);
+                        surface_free(surf);
+                        overlayOn = true;
+                        with(objUIButton){
+                            if(bID == 12)
+                                caption = "Overlay: On";
+                        }
+                    }
+                    other.caption = "Remove Overlay Image";
                 }
             }
         }

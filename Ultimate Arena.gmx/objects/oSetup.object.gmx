@@ -223,7 +223,7 @@ else
 
 }
 
-if(directory_exists(working_directory + "events"))
+if(directory_exists(working_directory + "maps"))
     initialize_maps();
 else{
     directory_create("maps");

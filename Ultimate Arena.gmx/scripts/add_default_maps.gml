@@ -1,6 +1,6 @@
 var defaultM=0,defaultT=0,s = sprite_duplicate(sDefaultMaps);
 
-for(var i=1; i<2; i++){
+for(var i=1; i<4; i++){
     ini_open("DefaultMap"+string(i)+".ini");
     for(var j=255; j>-1; j--)
         defaultM[j] = ini_read_string("Map","Colors"+string(j),"ERROR");

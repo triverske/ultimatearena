@@ -218,7 +218,7 @@ with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)+1
     with(zui_create(5, 75, objUIButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
-        caption = "Import Image Overlay";
+        caption = "Import Overlay Image";
         callback = mapedit_ui;
         bID = 11;
     }

@@ -21,5 +21,7 @@
   <height>256</height>
   <frames>
     <frame index="0">images\sDefaultMaps_0.png</frame>
+    <frame index="1">images\sDefaultMaps_1.png</frame>
+    <frame index="2">images\sDefaultMaps_2.png</frame>
   </frames>
 </sprite>
