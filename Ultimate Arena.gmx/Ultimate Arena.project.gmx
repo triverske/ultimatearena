@@ -209,6 +209,7 @@
       <script>scripts\title_buttons.gml</script>
       <script>scripts\fighter_list_ui.gml</script>
       <script>scripts\tag_ui.gml</script>
+      <script>scripts\map_ui.gml</script>
       <script>scripts\tag_draw_ui.gml</script>
       <script>scripts\tag_select_draw_ui.gml</script>
       <script>scripts\fighter_select_buttons.gml</script>

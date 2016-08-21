@@ -124,8 +124,8 @@ with (zui_main())
     {
         wID = "Arena Settings";
         callback  = fighter_select_buttons;
-        zui_set_size(250,190);
-        zui_set_position(WS * .4,HS * .5 + 220);
+        zui_set_size(250,226);
+        zui_set_position(WS * .4,HS * .5 + 237);
         with (zui_create(0, 0, objUIWindowCaption)) 
         {
             caption = "Map Settings";
@@ -147,8 +147,15 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 0;
         }
-        
         with (zui_create(5, __height - 70, objUIButton)) 
+        {
+            zui_set_anchor(0, 0);
+            zui_set_size(240, 30);
+            caption = "Select Saved Map";
+            callback = fighter_select_buttons;
+            bID = 13;
+        }
+        with (zui_create(5, __height - 105, objUIButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -156,7 +163,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 1;
         }
-        with (zui_create(5, __height - 105, objUIButton)) 
+        with (zui_create(5, __height - 140, objUIButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -164,7 +171,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 8;
         }
-        with (zui_create(5, __height - 140, objUIButton)) 
+        with (zui_create(5, __height - 175, objUIButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);

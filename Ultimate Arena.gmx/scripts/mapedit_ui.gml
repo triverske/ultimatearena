@@ -6,9 +6,9 @@ with(oUIListBox){
         }
         else{
             global.IDselected = sID;
-            ini_open(working_directory+"maps\"+global.MAPS[sID]+'\'+global.MAPS[sID]+'.ini')
             var mname = global.MAPS[sID];
             var mcolors = "";
+            ini_open(working_directory+"maps\"+mname+'\'+mname+'.ini');
             for(var i=0; i<256; i++){
                 mcolors[i] = ini_read_string("Map","Colors"+string(i),"");
             }
@@ -16,7 +16,7 @@ with(oUIListBox){
             for(var i=0; i<30; i++){
                 if(ini_read_string("Trees",string(i),"ERROR") == "ERROR")
                     break;
-                oMapedit.treeArray[i,0] = real(string_copy(ini_read_string("Trees",string(i),"00000"),1,3));
+                oMapedit.treeArray[i,0] = real(string_copy(ini_read_string("Trees",string(i),"000000"),1,3));
                 oMapedit.treeArray[i,1] = real(string_copy(ini_read_string("Trees",string(i),"000000"),4,3));
             }
             ini_close();
