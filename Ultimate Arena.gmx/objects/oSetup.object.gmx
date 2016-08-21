@@ -32,6 +32,7 @@ global.SAVE_SPEED = 4;
 global.loadingGame = 0;
 global.saveFile = "";
 
+global.TAGS = 0;
 global.TAG_COUNT = 0;
 global.TAG_LIST[0,0] = 0;
 

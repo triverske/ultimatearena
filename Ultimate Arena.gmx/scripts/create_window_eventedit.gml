@@ -1,5 +1,8 @@
 with(zui_create(window_get_width()*.6, window_get_height()/2 - 60, objUIWindow))
 {
+    global.charVersion = 1;
+    global.workshopID = -1;
+    global.creator = -1;
     zui_set_size(500, 298);
     wID = "Editor Window";
     
@@ -109,12 +112,25 @@ with(zui_create(window_get_width()*.6, window_get_height()/2 - 60, objUIWindow))
         callback = eventedit_ui;
         bID = 2;
     }
-    with (zui_create(202, 263, objUIButton)) 
+    with (zui_create(220, 263, objUIButton)) 
     {
         zui_set_anchor(0,0);
-        zui_set_size(158, 30);
+        zui_set_size(130, 30);
         caption = "New Event";
         callback = eventedit_ui;
         bID = 3;
+    }
+    with(zui_create(25, __height - 20, objUICheckbox))
+    {
+        type = 0;
+        callback = eventedit_ui;
+        cID = 0;
+        value = 0;
+        bID = 1;
+    }
+    with(zui_create(55, __height - 20, objUILabel))
+    {
+        caption = "Add to Steam Workshop";
+        halign = fa_left;
     }
 }

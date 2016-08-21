@@ -22,9 +22,13 @@ with(oUIListBox)
                 global.editStats[4] = min(10,ini_read_real("character","luck",5));
                 var gen = ini_read_real("character","gender",0)
                 var s1 = ini_read_string("think","s1","");
+                global.creator = ini_read_real("character","creator",-1);
+                global.charVersion = ini_read_real("character","version",1);
+                global.workshopID = ini_read_real("character","workshopID",-1);
                 ini_close();
                 
-                with(objUIField){
+                with(objUIField)
+                {
                     if(fID == 0)
                         content = global.cNAME[other.sID];
                     if(fID == 1)
@@ -33,10 +37,42 @@ with(oUIListBox)
                 
                 with(objUICheckbox)
                 {
-                    if(gen == cID)
-                        value = 1;
-                    else
-                        value = 0;
+                    if(bID == 0)
+                    {
+                        if(gen == cID)
+                            value = 1;
+                        else
+                            value = 0;
+                    }
+                    if(bID == 1)
+                    {
+                        if(global.workshopID != -1)
+                            value = 1;
+                        else
+                            value = 0;
+                            
+                        if(global.creator != steam_get_user_account_id() && global.creator != -1)
+                        {
+                            with(objUILabel)
+                            {
+                                if(caption == "Add to Steam Workshop")
+                                    __visible = 0;
+                            }
+                            global.copyProtection = 1;
+                            __visible = 0;
+                        }
+                        else
+                        {
+                            with(objUILabel)
+                            {
+                                if(caption == "Add to Steam Workshop")
+                                    __visible = 1;
+                            }
+                            global.copyProtection = 0;
+                            __visible = 1;
+                            show_debug_message("character created by user");
+                        }
+                    }
                 }
                 with(oUIListBox)
                 {
@@ -75,7 +111,7 @@ with(objUIButton)
     {
         if(bID == 0)
         {
-            var c = instance_create(0,0,oRoomTransition);
+            c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_title;
         }
         if(bID == 1)
@@ -112,22 +148,30 @@ with(objUIButton)
         }
         if(bID == 2) //Save Character
         {
-            with(objUIField){
+            with(objUIField)
                 if(fID == 0)
                     var charname = content;
-            }
-            ini_open(working_directory + "characters\" + charname + ".ini");
+            
+            global.charname = charname;
+            ini_open(working_directory + "characters\" + charname + "\" + charname + ".ini");
             ini_write_string("character","name",charname);
             ini_write_string("character","image",charname+".png");
             
             ini_write_real("character","colorr",global.editColors[global.editColor,0]);
             ini_write_real("character","colorg",global.editColors[global.editColor,1]);
             ini_write_real("character","colorb",global.editColors[global.editColor,2]);
+            
+            global.charVersion++;
+            ini_write_real("character","version",global.charVersion);
+            
+            global.workshopID = ini_read_real("character","workshopID",-1);
+            
             newGender = 0;
             with(objUICheckbox)
             {
-                if(value == 1)
-                    other.newGender = cID;
+                if(bID == 0)
+                    if(value == 1)
+                        other.newGender = cID;
             }
             ini_write_real("character","gender",newGender)
             
@@ -137,9 +181,18 @@ with(objUIButton)
             ini_write_real("character","skill",global.editStats[3]);
             ini_write_real("character","luck",global.editStats[4]);
             
-            with(objUIField){
-                if(fID == 1){
-                    if(content != ""){
+            if(global.creator == -1)
+            {
+                ini_write_real("character","creator",steam_get_user_account_id());
+                global.creator = steam_get_user_account_id();
+            }
+            
+            with(objUIField)
+            {
+                if(fID == 1)
+                {
+                    if(content != "")
+                    {
                         ini_write_string("think","s1",content);
                         ini_write_real("think","total",1);
                     }
@@ -171,14 +224,49 @@ with(objUIButton)
                 
             if(global.newImage != sFighterImage)
             {
-                sprite_save(global.newImage,0,working_directory + "characters\" + charname +".png");
+                sprite_save(global.newImage,0,working_directory + "characters\" + charname + "\" + charname + ".png");
             }
             else
             {
                 //Gamemaker doesn't let you save images from the resource tree.
                 tempSprite = sprite_duplicate(sFighterImage);
-                sprite_save(tempSprite,0,working_directory + "characters\" + charname +".png");
+                sprite_save(tempSprite,0,working_directory + "characters\" + charname + "\" + charname + ".png");
                 sprite_delete(tempSprite);
+            }
+            
+            if(global.workshop && !global.copyProtection)
+            {
+                if(global.workshopID == -1)
+                {
+                    with(oSetup)
+                    {
+                        var app_id = steam_get_app_id(); 
+                        new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
+                        
+                        workshopName = charname;
+                        workshopType = 0;
+                    }
+                }
+                else
+                {
+                    var workshopName = charname;
+                    
+                    var app_id = steam_get_app_id();
+                    updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+                    
+                    steam_ugc_set_item_title(updateHandle, workshopName );
+                    steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " character to Ultimate Arena");
+                    steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+                    
+                    var tagArray;
+                    tagArray[0] = "Character";
+                    
+                    steam_ugc_set_item_tags(updateHandle, tagArray);
+                    steam_ugc_set_item_preview(updateHandle, working_directory + "characters\" + workshopName + "\" + workshopName + ".png");
+                    steam_ugc_set_item_content(updateHandle, working_directory + "characters\" + workshopName + "\");
+                    
+                    requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+                }
             }
             
             initialize_characters();
@@ -195,7 +283,7 @@ with(objUIButton)
         {
             if(global.IDselected != -1)
             {
-                file_delete(working_directory + "characters\" + global.fNAME[global.IDselected]);
+                directory_destroy(working_directory + "characters\" + global.cNAME[global.IDselected]);
                 initialize_characters();
                 keyboard_string = "";
                 room_restart();
@@ -248,8 +336,10 @@ with(objUIButton)
         }
         if(bID == 11)
         {
-            with(oUIListBox){
-                if(listID == 1){
+            with(oUIListBox)
+            {
+                if(listID == 1)
+                {
                     delete_tag(sID);
                     initialize_listbox(global.TAGS);
                 }
@@ -269,33 +359,9 @@ with(oUIImage)
             image = global.cIMAGES[global.IDselected];
     }
 }
-with(objUIField)
+with(objUICheckbox)
 {
-    if(argument0 == id)
-    {
-        if(fID == 0)
-        {
-        }
-        //code here for saving text to .ini
-    }
-}/*
-with(objUIWindow)
-{
-    if(argument0 == id)
-    {
-        if(wID == "Phrase Editor")
-        {
-            draw_set_valign(fa_top);
-            draw_set_halign(fa_left);
-            draw_sprite(spr_updateBox,0,0,29);
-            draw_sprite_stretched(global.newImage,1,5,29+5,64,64);
-            
-            if(text != "")
-                draw_text_ext(75,29+5,text,14,305);
-            else
-                draw_text_ext(75,29+5,"NO CATCHPHRASE",14,305);
-                
-            draw_text(338,29+59,"00:00:00");
-        }
-    }
+    if(bID == 1)
+        global.workshop = value;
 }
+
