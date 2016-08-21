@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.VERSION = "1.5";
+            <string>global.VERSION = "2.0";
 
 global.ENDLESS = 0;
 global.SAVE_SPEED = 4;
@@ -48,13 +48,14 @@ global.update_count = 0;
 global.kill_count = 0;
 global.TIME_DAYS = 0;
 
-draw_set_font(font0);
+new_item = -1;
 
+initialize_workshop();
+
+draw_set_font(font0);
 if(directory_exists(working_directory + "characters"))
-<<<<<<< HEAD
-=======
 {
-    //OLD FORMAT CONVERTER
+    //OLD FORMAT CONVERTER - I'm so sorry.
     var f = file_find_first(working_directory + "characters\*.ini", 0);
     if(f != "")
     {
@@ -136,16 +137,14 @@ if(directory_exists(working_directory + "characters"))
         var f = file_find_next();
     }
     file_find_close();
->>>>>>> refs/remotes/triverske/2.0
     initialize_characters();
-else{
+}
+else
+{
     directory_create("characters");
     add_default_characters();
     initialize_characters();
 }
-<<<<<<< HEAD
-if(directory_exists(working_directory + "events"))
-=======
 
 if(directory_exists(working_directory + "events"))
 {
@@ -213,15 +212,17 @@ if(directory_exists(working_directory + "events"))
         var f = file_find_next();
     }
     file_find_close();
->>>>>>> refs/remotes/triverske/2.0
     initialize_events();
-else{
+}
+else
+{
     directory_create("events");
     add_default_events();
     initialize_events();
 
 }
-if(directory_exists(working_directory + "maps"))
+
+if(directory_exists(working_directory + "events"))
     initialize_maps();
 else{
     directory_create("maps");
@@ -232,23 +233,9 @@ else{
 randomize();
 global.seed = random_get_seed();
 
-// variables
-tile_size = 32;  // the size of your tiles
-show_minimap = true;
-
 global.mapsurf = 0;
 global.bck_minimap = 0;
-// generate a map
 
-// argument0: defines the size (MUST be a power of 2!) Large sizes (&gt; 1024) take a while to load
-// argument1: defines the level of fluctuation (low = much variation in terrain, high = little variation in terrain) 
-//           This must be lower than the map size! (MUST be a power of 2!)
-// argument2: defines the waterlevel (lower = less water)
-// argument3: defines the mountain level (higher = less mountains)
-// argument4: defines the size of the beaches (0 = no beach)
-// argument5: is the map seamlessly repeating or not
-
-//scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
 
 global.boxColor = 0;
 global.GAMETYPE = 0;
@@ -274,18 +261,6 @@ ini_close();
 
 if(global.TWITCHENABLED)
     instance_create(0,0,oTwitchController);
-    
-/*
-var app_id = steam_get_app_id(); 
- new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
-
-*/
-if !directory_exists("characters\test")
-   {
-   directory_create("characters\test");
-   }
-
-   
 
     
 room_goto_next();
@@ -460,32 +435,88 @@ if(global.INSANE)
           <argument>
             <kind>1</kind>
             <string>var event_id = async_load[? "id"];
- if event_id == new_item
-    {
+
+if(event_id == new_item)
+{
     var type = async_load[? "event_type"];
-    if type == "ugc_create_item"
-       {
-       show_debug_message("b");
-       global.Publish_ID = async_load[? "published_file_id"];
-       
-       var app_id = steam_get_app_id();
-        updateHandle = steam_ugc_start_item_update(app_id, global.Publish_ID);
-        var c = steam_ugc_set_item_title(updateHandle, "Trump");
-        show_debug_message(string(c));
-        var c = steam_ugc_set_item_description( updateHandle, "testing workshop...");
-        show_debug_message(string(c));
-        steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
-        var tagArray;
-        tagArray[0] = "Character";
-        tagArray[1] = "Test";
-        steam_ugc_set_item_tags(updateHandle, tagArray);
-        var c = steam_ugc_set_item_preview(updateHandle, working_directory + "characters\Trump.png");
-        show_debug_message(string(c));
-        var c = steam_ugc_set_item_content(updateHandle, working_directory + "characters\" );
-        show_debug_message(string(c));
-        requestId = steam_ugc_submit_item_update(updateHandle, "Version 1.2");
-       }
+    
+    if(type == "ugc_create_item")
+    {
+        //I'm just going to pray that this continues working.
+        if(room == rm_charedit)
+        {
+            global.workshopID = async_load[? "published_file_id"];
+            workshopName = global.charname;
+            ini_open(working_directory + "characters\" + workshopName + "\" + workshopName + ".ini");
+            ini_write_real("character","workshopID",global.workshopID);
+            ini_close();
+            
+            var app_id = steam_get_app_id();
+            updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+            
+            steam_ugc_set_item_title(updateHandle, workshopName );
+            steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " character to Ultimate Arena");
+            steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+            
+            var tagArray;
+            tagArray[0] = "Character";
+            
+            steam_ugc_set_item_tags(updateHandle, tagArray);
+            steam_ugc_set_item_preview(updateHandle, working_directory + "characters\" + workshopName + "\" + workshopName + ".png");
+            steam_ugc_set_item_content(updateHandle, working_directory + "characters\" + workshopName + "\");
+            
+            requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+        }
+        else if(room == rm_eventedit)
+        {
+            global.workshopID = async_load[? "published_file_id"];
+            workshopName = global.charname;
+            ini_open(working_directory + "events\" + workshopName + "\" + workshopName + ".ini");
+            ini_write_real("event","workshopID",global.workshopID);
+            ini_close();
+            
+            var app_id = steam_get_app_id();
+            updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+            
+            steam_ugc_set_item_title(updateHandle, workshopName );
+            steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " event to Ultimate Arena");
+            steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+            
+            var tagArray;
+            tagArray[0] = "Event";
+            
+            steam_ugc_set_item_tags(updateHandle, tagArray);
+            steam_ugc_set_item_preview(updateHandle, working_directory + "events\" + workshopName + "\" + workshopName + ".png");
+            steam_ugc_set_item_content(updateHandle, working_directory + "events\" + workshopName + "\");
+            
+            requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+        }
+        else if(room == rm_mapedit)
+        {
+            global.workshopID = async_load[? "published_file_id"];
+            workshopName = global.charname;
+            ini_open(working_directory + "maps\" + workshopName + "\" + workshopName + ".ini");
+            ini_write_real("map","workshopID",global.workshopID);
+            ini_close();
+            
+            var app_id = steam_get_app_id();
+            updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+            
+            steam_ugc_set_item_title(updateHandle, workshopName );
+            steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " map to Ultimate Arena");
+            steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+            
+            var tagArray;
+            tagArray[0] = "Map";
+            
+            steam_ugc_set_item_tags(updateHandle, tagArray);
+            steam_ugc_set_item_preview(updateHandle, working_directory + "maps\" + workshopName + "\" + workshopName + ".png");
+            steam_ugc_set_item_content(updateHandle, working_directory + "maps\" + workshopName + "\");
+            
+            requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+        }
     }
+}
 </string>
           </argument>
         </arguments>

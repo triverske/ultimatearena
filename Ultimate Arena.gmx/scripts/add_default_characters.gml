@@ -68,10 +68,9 @@ defaultC[3] = "Moby Dick";
 defaultC[2] = "Tom Sawyer";
 defaultC[1] = "Shakespeare";
 defaultC[0] = "Hitler";
+v = sprite_duplicate(sDefaultCharacters);
 
-var v = sprite_duplicate(sDefaultCharacters);
-
-for(var i=0; i<array_length_1d(defaultC); i++)
+for(i = 0;i < array_length_1d(defaultC);i++)
 {
     if(!directory_exists(working_directory + "characters\" + defaultC[i]))
     {   
@@ -90,5 +89,4 @@ for(var i=0; i<array_length_1d(defaultC); i++)
         ini_close();
     }
 }
-
 game_restart();

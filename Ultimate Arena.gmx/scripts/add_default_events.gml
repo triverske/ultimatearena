@@ -60,25 +60,16 @@ defaultE[0,5] = "$1 tries to climb a nearby tree to get away from the cats, but 
 defaultE[0,6] = "$1 trips, giving the cats enough time to incapacitate *1.";
 defaultE[0,7] = "$1 dies trying to pet one of the cats.";
 
-<<<<<<< HEAD
-for(var i=0; i<7; i++){
-    ini_open(working_directory+"events\" + defaultE[i,0] + ".ini");
-=======
 for(i = 0;i < 7;i++)
 {
     ini_open(working_directory+"events\" + defaultE[i,0] + "\" + defaultE[i,0] + ".ini");
->>>>>>> refs/remotes/triverske/2.0
     ini_write_string("event","name",defaultE[i,0]);
     ini_write_string("event","description",defaultE[i,1]);
     ini_write_real("event","death_percentage",defaultE[i,2]);
-
     ini_write_real("text","total",defaultE[i,3]);
-
-    for(var c=1; c<=defaultE[i,3]; c++)
+    for(c = 1; c <= defaultE[i,3]; c++)
+    {
         ini_write_string("text","s"+string(c),defaultE[i,c+3]);
-<<<<<<< HEAD
-=======
     }
     ini_close();
->>>>>>> refs/remotes/triverske/2.0
 }

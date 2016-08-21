@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="11" name="datafiles">
+  <datafiles number="14" name="datafiles">
     <datafile>
       <name>text.ini</name>
       <exists>-1</exists>
@@ -56,7 +56,9 @@
       <filename>DefaultMap1.ini</filename>
     </datafile>
   </datafiles>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\WinDev</extension>
+  </NewExtensions>
   <sounds name="sound">
     <sound>sound\snd_notification</sound>
     <sound>sound\snd_blip</sound>
@@ -123,9 +125,12 @@
     <sprite>sprites\spr_updateBox</sprite>
     <sprite>sprites\spr_breakingUpdate</sprite>
     <sprite>sprites\sBlankMap</sprite>
+    <sprite>sprites\sArenaEvent</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>
+    <background>background\back_tile2</background>
+    <background>background\back_tile3</background>
     <background>background\noise1</background>
     <background>background\noise</background>
     <background>background\back_tile</background>
@@ -235,9 +240,11 @@
     <script>scripts\add_default_characters.gml</script>
     <script>scripts\add_default_events.gml</script>
     <script>scripts\add_default_maps.gml</script>
+    <script>scripts\initialize_directory.gml</script>
     <script>scripts\initialize_characters.gml</script>
     <script>scripts\initialize_events.gml</script>
     <script>scripts\initialize_maps.gml</script>
+    <script>scripts\initialize_workshop.gml</script>
     <script>scripts\draw_hover_stats.gml</script>
     <script>scripts\delete_tag.gml</script>
     <script>scripts\string_to_color.gml</script>
@@ -270,10 +277,10 @@
   <objects name="objects">
     <objects name="Menus &amp; Setup">
       <object>objects\oSetup</object>
+      <object>objects\oCharselect</object>
       <object>objects\oSplashscreen</object>
       <object>objects\obj_backgroundAnimation</object>
       <object>objects\oTitleMenu</object>
-      <object>objects\oCharselect</object>
       <object>objects\oCharedit</object>
       <object>objects\oEventedit</object>
       <object>objects\oMapedit</object>
