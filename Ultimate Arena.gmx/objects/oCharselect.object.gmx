@@ -314,7 +314,11 @@ if (regen == 1)
     var HS = global.HSCALE;
     
     //scr_load_map("TrumpTest.png");
+<<<<<<< HEAD
     scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
+=======
+    //scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
+>>>>>>> refs/remotes/triverske/2.0
     regen = 0;
     with(objUIWindow)
     {

@@ -73,10 +73,11 @@ var v = sprite_duplicate(sDefaultCharacters);
 
 for(var i=0; i<array_length_1d(defaultC); i++)
 {
-    if(!file_exists(working_directory + "characters\" + defaultC[i] + ".ini"))
-    {
-        show_debug_message(defaultC[i]);
-        ini_open(working_directory + "characters\" + defaultC[i] + ".ini");
+    if(!directory_exists(working_directory + "characters\" + defaultC[i]))
+    {   
+        directory_create(working_directory + "characters\" + defaultC[i]);
+        show_debug_message("Created Directory characters\" + defaultC[i]);
+        ini_open(working_directory + "characters\" + defaultC[i] + "\" + defaultC[i] + ".ini");
         ini_write_string("character","name",defaultC[i]);
         ini_write_string("character","image",defaultC[i]+".png");
         
@@ -85,7 +86,7 @@ for(var i=0; i<array_length_1d(defaultC); i++)
         else
             ini_write_real("character","gender",0)
             
-        sprite_save(v,i,working_directory + "characters\" +defaultC[i]+".png");
+        sprite_save(v,i,working_directory + "characters\" + defaultC[i] + "\" + defaultC[i] + ".png");
         ini_close();
     }
 }

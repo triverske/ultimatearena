@@ -51,13 +51,169 @@ global.TIME_DAYS = 0;
 draw_set_font(font0);
 
 if(directory_exists(working_directory + "characters"))
+<<<<<<< HEAD
+=======
+{
+    //OLD FORMAT CONVERTER
+    var f = file_find_first(working_directory + "characters\*.ini", 0);
+    if(f != "")
+    {
+        show_debug_message(working_directory + "characters\" + f);
+        var a = file_text_open_read(working_directory + "characters\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        
+        if(file_exists(working_directory + "characters\" + dir + ".png"))
+            var spr = sprite_add(working_directory + "characters\" + dir + ".png",0,0,0,0,0);
+        else
+            var spr = sprite_duplicate(sFighterImage);
+        
+        directory_create(working_directory + "characters\" + dir);
+        
+        sprite_save(spr,0,working_directory + "characters\" +dir + "\" + dir + ".png");
+        sprite_delete(spr);
+        
+        var a = file_text_open_write(working_directory + "characters\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "characters\" + f);
+    }
+    
+    var f = file_find_next();
+    while(f != "")
+    {
+        show_debug_message(working_directory + "characters\" + f);
+        var a = file_text_open_read(working_directory + "characters\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        
+        if(file_exists(working_directory + "characters\" + dir + ".png"))
+            var spr = sprite_add(working_directory + "characters\" + dir + ".png",0,0,0,0,0);
+        else
+            var spr = sprite_duplicate(sFighterImage);
+        
+        directory_create(working_directory + "characters\" + dir);
+        
+        sprite_save(spr,0,working_directory + "characters\" +dir + "\" + dir + ".png");
+        sprite_delete(spr);
+        
+        var a = file_text_open_write(working_directory + "characters\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "characters\" + f);
+        var f = file_find_next();
+    }
+    file_find_close();
+>>>>>>> refs/remotes/triverske/2.0
     initialize_characters();
 else{
     directory_create("characters");
     add_default_characters();
     initialize_characters();
 }
+<<<<<<< HEAD
 if(directory_exists(working_directory + "events"))
+=======
+
+if(directory_exists(working_directory + "events"))
+{
+    //OLD FORMAT CONVERTER
+    var f = file_find_first(working_directory + "events\*.ini", 0);
+    if(f != "")
+    {
+        show_debug_message(working_directory + "events\" + f);
+        var a = file_text_open_read(working_directory + "events\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        directory_create(working_directory + "events\" + dir);
+        
+        var a = file_text_open_write(working_directory + "events\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "events\" + f);
+    }
+    
+    var f = file_find_next();
+    while(f != "")
+    {
+        show_debug_message(working_directory + "events\" + f);
+        var a = file_text_open_read(working_directory + "events\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        directory_create(working_directory + "events\" + dir);
+        
+        var a = file_text_open_write(working_directory + "events\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "events\" + f);
+        var f = file_find_next();
+    }
+    file_find_close();
+>>>>>>> refs/remotes/triverske/2.0
     initialize_events();
 else{
     directory_create("events");
@@ -119,8 +275,20 @@ ini_close();
 if(global.TWITCHENABLED)
     instance_create(0,0,oTwitchController);
     
+/*
+var app_id = steam_get_app_id(); 
+ new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
+
+*/
+if !directory_exists("characters\test")
+   {
+   directory_create("characters\test");
+   }
+
+   
+
+    
 room_goto_next();
-//audio_play_sound(snd_wario,1,0);
 </string>
           </argument>
         </arguments>
@@ -274,6 +442,55 @@ if(global.INSANE)
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="69">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var event_id = async_load[? "id"];
+ if event_id == new_item
+    {
+    var type = async_load[? "event_type"];
+    if type == "ugc_create_item"
+       {
+       show_debug_message("b");
+       global.Publish_ID = async_load[? "published_file_id"];
+       
+       var app_id = steam_get_app_id();
+        updateHandle = steam_ugc_start_item_update(app_id, global.Publish_ID);
+        var c = steam_ugc_set_item_title(updateHandle, "Trump");
+        show_debug_message(string(c));
+        var c = steam_ugc_set_item_description( updateHandle, "testing workshop...");
+        show_debug_message(string(c));
+        steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+        var tagArray;
+        tagArray[0] = "Character";
+        tagArray[1] = "Test";
+        steam_ugc_set_item_tags(updateHandle, tagArray);
+        var c = steam_ugc_set_item_preview(updateHandle, working_directory + "characters\Trump.png");
+        show_debug_message(string(c));
+        var c = steam_ugc_set_item_content(updateHandle, working_directory + "characters\" );
+        show_debug_message(string(c));
+        requestId = steam_ugc_submit_item_update(updateHandle, "Version 1.2");
+       }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="4">
       <action>
         <libid>1</libid>
@@ -334,6 +551,31 @@ display_set_gui_size(global.WSCALE,global.HSCALE);
 {
     ui_show_pause();
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="18">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>test = ds_map_create();
+
+steam_ugc_get_item_update_progress(updateHandle, test); 
 </string>
           </argument>
         </arguments>
