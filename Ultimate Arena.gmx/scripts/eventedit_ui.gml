@@ -52,13 +52,6 @@ with(oUIListBox)
                 
             with(objUICheckbox)
             {
-                if(bID == 0)
-                {
-                    if(gen == cID)
-                        value = 1;
-                    else
-                        value = 0;
-                }
                 if(bID == 1)
                 {
                     if(global.workshopID != -1)
@@ -164,7 +157,7 @@ with(objUIButton)
                 }
                 else
                 {
-                    var workshopName = cename;
+                    var workshopName = ename;
                     
                     var app_id = steam_get_app_id();
                     updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
@@ -264,16 +257,7 @@ with(objUIButton)
         }
     }
 }
-with(objUIField)
-{
-    if(argument0 == id)
-    {
-        if(fID == 0)
-        {
-        }
-        //code here for saving text to .ini
-    }
-}
+
 with(objUICheckbox)
 {
     if(bID == 1)

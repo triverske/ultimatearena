@@ -235,7 +235,6 @@
       <script>scripts\scr_diamond_square.gml</script>
     </scripts>
     <script>scripts\scr_generate_map.gml</script>
-    <script>scripts\create_default_maps.gml</script>
     <script>scripts\scr_load_map.gml</script>
     <script>scripts\generate_map_from_sprite.gml</script>
     <script>scripts\string_extract.gml</script>
@@ -276,6 +275,7 @@
     <script>scripts\add_default_characters.gml</script>
     <script>scripts\add_default_events.gml</script>
     <script>scripts\add_default_maps.gml</script>
+    <script>scripts\create_default_maps.gml</script>
     <script>scripts\initialize_directory.gml</script>
     <script>scripts\initialize_characters.gml</script>
     <script>scripts\initialize_events.gml</script>
@@ -313,10 +313,10 @@
   <objects name="objects">
     <objects name="Menus &amp; Setup">
       <object>objects\oSetup</object>
-      <object>objects\oCharselect</object>
       <object>objects\oSplashscreen</object>
       <object>objects\obj_backgroundAnimation</object>
       <object>objects\oTitleMenu</object>
+      <object>objects\oCharselect</object>
       <object>objects\oCharedit</object>
       <object>objects\oEventedit</object>
       <object>objects\oMapedit</object>

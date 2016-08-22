@@ -147,6 +147,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 0;
         }
+        
         with (zui_create(5, __height - 70, objUIButton)) 
         {
             zui_set_anchor(0, 0);

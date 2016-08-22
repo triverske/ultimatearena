@@ -10,6 +10,7 @@ for(var i=1; i<4; i++){
     
     directory_create("maps\Default Map "+string(i));
     ini_open(working_directory+"maps\Default Map "+string(i)+"\Default Map "+string(i)+".ini");
+    ini_write_string("Map","name","DefaultMap"+string(i));
     for(j=0; j<256; j++)
         ini_write_string("Map","Colors"+string(j),defaultM[j]);
     for(j=0; j<30; j++)

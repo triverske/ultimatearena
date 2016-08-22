@@ -22,8 +22,8 @@ for(i=0;i<s;i++)
             var type = "character";
         else if(ini_section_exists("event"))
             var type = "event";
-        else if(ini_section_exists("map"))
-            var type = "map";
+        else if(ini_section_exists("Map"))
+            var type = "Map";
             
         var name = ini_read_string(type,"name","NAMING ERROR");
         ini_close();

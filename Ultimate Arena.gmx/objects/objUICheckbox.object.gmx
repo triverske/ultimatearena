@@ -31,6 +31,7 @@ pressed = 0;
 value = 0;
 callback = -1
 type = 0;
+bID = -1;
 </string>
           </argument>
         </arguments>
@@ -56,6 +57,7 @@ type = 0;
             <string>if (pressed) {
  pressed = 0;
  if (zui_get_hover()) {
+ audio_play_sound(snd_blip,0,0);
   if(type == 1){
    objUICheckbox.value = 0;
    value = 1;

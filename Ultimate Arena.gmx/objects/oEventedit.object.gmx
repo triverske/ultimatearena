@@ -25,11 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.IDselected = -1;
+            <string>global.copyProtection = 0;
+global.IDselected = -1;
 
-//eventInfo[0] = "NAME";
-//eventInfo[1] = "DESCRIPTION";
-//eventInfo[2] = 0;
+eventInfo[0] = "NAME";
+eventInfo[1] = "DESCRIPTION";
+eventInfo[2] = 0;
     
 with(zui_main())
 {
@@ -47,7 +48,7 @@ with(zui_main())
             zui_set_anchor(0, 0);
             zui_set_size(window_get_width()/5, window_get_height()-64);
             callback = eventedit_ui;
-            initialize_listbox(global.EVENT,0,global.EVENT_COUNT-1);
+            initialize_listbox(global.eNAME,0,global.EVENT_COUNT-1);
             with(zui_create(0, 0, oUIListBoxScroll)){}
         }
         with (zui_create(5, __height - 35, objUIButton)) 

@@ -56,6 +56,8 @@ if(l != 0)
         ini_close();
     }
 }
+
+
 global.lNAME = i;
 global.fighters = i;
 global.FIGHTER_COUNT = i;

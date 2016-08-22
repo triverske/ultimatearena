@@ -294,7 +294,7 @@ with(objUIButton)
             file = get_open_filename("Sound File|*.ogg", "");
             if(file != "")
             {
-                //with the current setup I don't think it's possible to get a file then save it in the character directory
+                file_copy_win(file,working_directory + "characters\test.ogg");
             }
         }
         if(bID == 7) //Increase Stat
@@ -359,9 +359,9 @@ with(oUIImage)
             image = global.cIMAGES[global.IDselected];
     }
 }
+
 with(objUICheckbox)
 {
     if(bID == 1)
         global.workshop = value;
 }
-

@@ -56,6 +56,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
         cID = 1;
         bID = 0;
     }
+    
     /*
     with (zui_create(200, 105, objUIButton)) 
     {
@@ -64,8 +65,8 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
         caption = "Add Death Sound";
         callback = charedit_ui;
         bID = 6;
-    }
-    */
+    } */
+    
     for(var i=0;i<7;i++)
     {
         with (zui_create(5 + 28*i, 223, oUIImageButton)) 

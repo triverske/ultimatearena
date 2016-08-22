@@ -11,4 +11,5 @@ if(l != 0)
         global.eNAME[i] = directory[i];
     }
 }
+
 global.EVENT_COUNT = i;
