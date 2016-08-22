@@ -124,12 +124,14 @@ with(objUIButton){
             if(global.IDselected != -1){
                 directory_destroy(working_directory+"maps\"+global.MAPS[global.IDselected]);
                 keyboard_string = "";
-                if(overlayImage != sBlankMap)
-                    sprite_delete(overlayImage);
-                surface_free(mapeditSurf);
-                ds_grid_destroy(mapGrid);
-                initialize_maps();
-                room_restart();
+                with(oMapedit){
+                    if(overlayImage != sBlankMap)
+                        sprite_delete(overlayImage);
+                    surface_free(mapeditSurf);
+                    ds_grid_destroy(mapGrid);
+                    initialize_maps();
+                    room_restart();
+                }
             }
         }
         else if(bID == 2) //Water
@@ -169,6 +171,7 @@ with(objUIButton){
                 
                 ini_open(working_directory+"maps\"+name+'\'+name+'.ini');
                 surface_save(mapeditSurf,working_directory+"maps\"+name+'\'+name+'.png');
+                ini_write_string("Map","name",name);
                 if(overlayImage != sBlankMap){
                     sprite_save(overlayImage,0,working_directory+"maps\"+name+'\'+name+'overlay.png');
                     sprite_delete(overlayImage);
@@ -191,8 +194,10 @@ with(objUIButton){
             
             if(global.creator == -1)
             {
-                ini_write_real("event","creator",steam_get_user_account_id());
+                ini_open(working_directory+"maps\"+name+'\'+name+'.ini');
+                ini_write_real("map","creator",steam_get_user_account_id());
                 global.creator = steam_get_user_account_id();
+                ini_close();
             }
             
             if(global.workshop && !global.copyProtection)

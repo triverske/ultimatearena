@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>global.IDselected = -1;
+global.creator = -1;
 overlayImage = sBlankMap;
 overlayOn = false;
 cursorType = 0;
