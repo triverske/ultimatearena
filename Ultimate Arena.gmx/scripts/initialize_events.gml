@@ -1,11 +1,15 @@
-var i = 1;
-global.EVENT[0] = file_find_first(working_directory+"events\*.ini", 0);
-    global.EVENT[i] = file_find_next();
-    
-    while(global.EVENT[i] != "")
+directory = 0;
+directory[0] = "";
+initialize_directory("events");
+var l = array_length_1d(directory);
+
+if(l != 0)
+{
+    for(i=0;i<l-1;i++)
     {
-        i++;
-        global.EVENT[i] = file_find_next();
+        global.EVENT[i] = directory[i] + "\" + directory[i] + ".ini";
+        global.eNAME[i] = directory[i];
     }
-    file_find_close();
-    global.EVENT_COUNT = i;
+}
+
+global.EVENT_COUNT = i;

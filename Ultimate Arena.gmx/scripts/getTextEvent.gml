@@ -17,15 +17,15 @@ ini_close();
 
 if (global.GENDER[ID] == 0)
 {
-    var d = string_replace(c,"$1",global.NAMES[ID]);
-    var e = string_replace(d,"%1","he");
-    var f = string_replace(e,"@1","his");
-    return string_replace(f,"*1","him");
+    c = string_replace(c,"$1",global.NAMES[ID]);
+    c = string_replace(c,"%1","he");
+    c = string_replace(c,"@1","his");
+    return string_replace(c,"*1","him");
 }
 else if(global.GENDER[ID] == 1)
 {
-    d = string_replace(c,"$1",global.NAMES[ID]);
-    e = string_replace(d,"%1","she");
-    f = string_replace(e,"@1","her");
-    return string_replace(f,"*1","her");
+    c = string_replace(c,"$1",global.NAMES[ID]);
+    c = string_replace(c,"%1","she");
+    c = string_replace(c,"@1","her");
+    return string_replace(c,"*1","her");
 }

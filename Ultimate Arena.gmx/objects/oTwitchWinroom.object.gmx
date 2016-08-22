@@ -72,7 +72,7 @@ for(i = 0;i &lt; 61; i++)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>c = instance_create(0,0,oRoomTransition);
+            <string>var c = instance_create(0,0,oRoomTransition);
 c.gotoroom = rm_twitchCharselect;
 </string>
           </argument>

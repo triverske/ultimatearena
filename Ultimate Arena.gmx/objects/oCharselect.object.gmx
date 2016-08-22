@@ -124,8 +124,8 @@ with (zui_main())
     {
         wID = "Arena Settings";
         callback  = fighter_select_buttons;
-        zui_set_size(250,190);
-        zui_set_position(WS * .4,HS * .5 + 220);
+        zui_set_size(250,226);
+        zui_set_position(WS * .4,HS * .5 + 237);
         with (zui_create(0, 0, objUIWindowCaption)) 
         {
             caption = "Map Settings";
@@ -152,11 +152,19 @@ with (zui_main())
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
+            caption = "Select Saved Map";
+            callback = fighter_select_buttons;
+            bID = 13;
+        }
+        with (zui_create(5, __height - 105, objUIButton)) 
+        {
+            zui_set_anchor(0, 0);
+            zui_set_size(240, 30);
             caption = "Regenerate Map";
             callback = fighter_select_buttons;
             bID = 1;
         }
-        with (zui_create(5, __height - 105, objUIButton)) 
+        with (zui_create(5, __height - 140, objUIButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -164,7 +172,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 8;
         }
-        with (zui_create(5, __height - 140, objUIButton)) 
+        with (zui_create(5, __height - 175, objUIButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -294,7 +302,7 @@ with (zui_main())
           <argument>
             <kind>1</kind>
             <string>var fcount = 0;
-for(i = 0; i &lt; global.select_list.length; i++)
+for(var i = 0; i &lt; global.select_list.length; i++)
 {
     if (global.select_list.selected[i] == 0)
         fcount++;
@@ -313,8 +321,7 @@ if (regen == 1)
     var WS = global.WSCALE;
     var HS = global.HSCALE;
     
-    scr_load_map("TrumpTest.png");
-    //scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
+    scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
     regen = 0;
     with(objUIWindow)
     {
@@ -400,7 +407,7 @@ if (startgame == 1)
         ui_show_popup("Only 100 can participate in a match.");
     else
     {
-        c = instance_create(0,0,oRoomTransition);
+        var c = instance_create(0,0,oRoomTransition);
         c.gotoroom = rm_game;
     }
     

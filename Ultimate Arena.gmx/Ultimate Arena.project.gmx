@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="9" name="datafiles">
+  <datafiles number="17" name="datafiles">
     <datafile>
       <name>text.ini</name>
       <exists>-1</exists>
@@ -22,6 +22,57 @@
       <filename>text.ini</filename>
     </datafile>
     <datafile>
+      <name>DefaultMap1.ini</name>
+      <exists>-1</exists>
+      <size>69406</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>DefaultMap1.ini</filename>
+    </datafile>
+    <datafile>
+      <name>DefaultMap2.ini</name>
+      <exists>-1</exists>
+      <size>69406</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>DefaultMap2.ini</filename>
+    </datafile>
+    <datafile>
+      <name>DefaultMap3.ini</name>
+      <exists>-1</exists>
+      <size>69406</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>DefaultMap3.ini</filename>
+    </datafile>
+    <datafile>
       <name>settings.ini</name>
       <exists>-1</exists>
       <size>129</size>
@@ -38,42 +89,10 @@
       </ConfigOptions>
       <filename>settings.ini</filename>
     </datafile>
-    <datafile>
-      <name>TrumpTest.png</name>
-      <exists>-1</exists>
-      <size>162622</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>TrumpTest.png</filename>
-    </datafile>
-    <datafile>
-      <name>MapTest.png</name>
-      <exists>-1</exists>
-      <size>7813</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>MapTest.png</filename>
-    </datafile>
   </datafiles>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\WinDev</extension>
+  </NewExtensions>
   <sounds name="sound">
     <sound>sound\snd_notification</sound>
     <sound>sound\snd_blip</sound>
@@ -123,6 +142,7 @@
     <sprite>sprites\sprite36</sprite>
     <sprite>sprites\sSandboxButton</sprite>
     <sprite>sprites\sDefaultCharacters</sprite>
+    <sprite>sprites\sDefaultMaps</sprite>
     <sprite>sprites\sWood</sprite>
     <sprite>sprites\sRope</sprite>
     <sprite>sprites\sStone</sprite>
@@ -138,9 +158,13 @@
     <sprite>sprites\spr_nameBar</sprite>
     <sprite>sprites\spr_updateBox</sprite>
     <sprite>sprites\spr_breakingUpdate</sprite>
+    <sprite>sprites\sBlankMap</sprite>
+    <sprite>sprites\sArenaEvent</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>
+    <background>background\back_tile2</background>
+    <background>background\back_tile3</background>
     <background>background\noise1</background>
     <background>background\noise</background>
     <background>background\back_tile</background>
@@ -212,12 +236,14 @@
     </scripts>
     <script>scripts\scr_generate_map.gml</script>
     <script>scripts\scr_load_map.gml</script>
+    <script>scripts\generate_map_from_sprite.gml</script>
     <script>scripts\string_extract.gml</script>
     <scripts name="ui">
       <script>scripts\arena_ui.gml</script>
       <script>scripts\title_buttons.gml</script>
       <script>scripts\fighter_list_ui.gml</script>
       <script>scripts\tag_ui.gml</script>
+      <script>scripts\map_ui.gml</script>
       <script>scripts\tag_draw_ui.gml</script>
       <script>scripts\tag_select_draw_ui.gml</script>
       <script>scripts\fighter_select_buttons.gml</script>
@@ -227,11 +253,13 @@
       <script>scripts\selection_ui.gml</script>
       <script>scripts\charedit_ui.gml</script>
       <script>scripts\eventedit_ui.gml</script>
+      <script>scripts\mapedit_ui.gml</script>
       <scripts name="windows">
         <script>scripts\create_window_map.gml</script>
         <script>scripts\create_window_updates.gml</script>
         <script>scripts\create_window_charedit.gml</script>
         <script>scripts\create_window_eventedit.gml</script>
+        <script>scripts\create_window_mapedit.gml</script>
         <script>scripts\create_window_fighterlist.gml</script>
         <script>scripts\create_window_fighter.gml</script>
         <script>scripts\create_window_sandbox.gml</script>
@@ -246,8 +274,13 @@
     <script>scripts\string_rtrim.gml</script>
     <script>scripts\add_default_characters.gml</script>
     <script>scripts\add_default_events.gml</script>
+    <script>scripts\add_default_maps.gml</script>
+    <script>scripts\create_default_maps.gml</script>
+    <script>scripts\initialize_directory.gml</script>
     <script>scripts\initialize_characters.gml</script>
     <script>scripts\initialize_events.gml</script>
+    <script>scripts\initialize_maps.gml</script>
+    <script>scripts\initialize_workshop.gml</script>
     <script>scripts\draw_hover_stats.gml</script>
     <script>scripts\delete_tag.gml</script>
     <script>scripts\string_to_color.gml</script>
@@ -270,6 +303,7 @@
     </scripts>
     <script>scripts\save_map.gml</script>
     <script>scripts\load_map.gml</script>
+    <script>scripts\draw_circle_center.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -285,6 +319,7 @@
       <object>objects\oCharselect</object>
       <object>objects\oCharedit</object>
       <object>objects\oEventedit</object>
+      <object>objects\oMapedit</object>
       <object>objects\oTwitchCharselect</object>
       <object>objects\oTwitchCharbox</object>
       <object>objects\oTwitchCharbox2</object>
@@ -348,6 +383,7 @@
     <room>rooms\rm_title</room>
     <room>rooms\rm_charedit</room>
     <room>rooms\rm_eventedit</room>
+    <room>rooms\rm_mapedit</room>
     <room>rooms\rm_charselect</room>
     <room>rooms\rm_tycoon</room>
     <room>rooms\rm_twitchCharselect</room>

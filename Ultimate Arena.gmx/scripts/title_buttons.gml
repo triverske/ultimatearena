@@ -12,7 +12,7 @@ with (objUIButton)
             }
             else
             {  
-                c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,oRoomTransition);
                 c.gotoroom = rm_charselect;
                 global.GAMETYPE = 0;
                 global.ENDLESS = 0;
@@ -20,11 +20,11 @@ with (objUIButton)
         }
         else if (bID == 1) // Edit Characters
         {
-            c = instance_create(0,0,oRoomTransition);
+            var c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_charedit;
             global.GAMETYPE = 0;
         }
-        else if (bID == 2)
+        else if (bID == 2)//Fullscreen
         {
             if window_get_fullscreen()
             {
@@ -39,7 +39,7 @@ with (objUIButton)
                 room_restart();
             }
         }
-        else if (bID == 3)
+        else if (bID == 3)//Exit Game
         {
             game_end();
         }
@@ -47,7 +47,7 @@ with (objUIButton)
         {
             if(global.fighters > 60)
             {
-                c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,oRoomTransition);
                 c.gotoroom = rm_twitchCharselect;
                 global.GAMETYPE = 1;
             }
@@ -56,7 +56,7 @@ with (objUIButton)
                 ui_show_popup("You need at least 60 fighters#to do a Twitch match.");
             }
         }
-        else if (bID == 5) 
+        else if (bID == 5)//Settings
         {
             with (zui_main()) 
             {
@@ -116,7 +116,7 @@ with (objUIButton)
                 }
             }
         }
-        else if (bID == 6)
+        else if (bID == 6) //Load Game
         {
             if(!directory_exists("saves"))
                 directory_create("saves");
@@ -126,16 +126,16 @@ with (objUIButton)
         }
         else if (bID == 7) // Edit Characters
         {
-            c = instance_create(0,0,oRoomTransition);
+            var c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_eventedit;
             global.GAMETYPE = 0;
         }
-        else if (bID == 9)
+        else if (bID == 9)//Credits
         {
             ui_show_popup_credits();     
             global.CREDITS = 1;
         }
-        else if (bID == 10)
+        else if (bID == 10)//VSYNC
         {
             if (type == 2)
             {
@@ -158,7 +158,7 @@ with (objUIButton)
                 caption = "VSYNC Off";
             }
         }
-        else if (bID == 11)
+        else if (bID == 11)//Github
         {
             url_open("https://github.com/triverske/ultimatearena");
             global.GITHUB = 1;
@@ -171,21 +171,26 @@ with (objUIButton)
             }
             else
             {  
-                c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,oRoomTransition);
                 c.gotoroom = rm_charselect;
                 global.GAMETYPE = 0;
                 global.ENDLESS = 1;
             }
         }
-        else if (bID == 13)
+        else if (bID == 13)//Facebook
         {
             url_open("https://www.facebook.com/Triverske/");
             global.FACEBOOK = 1;
         }
-        else if (bID == 14)
+        else if (bID == 14)//Twitter
         {
             url_open("https://www.twitter.com/triverske/");
             global.TWITTER = 1;
+        }
+        else if(bID == 15){//Map Editor
+            var c = instance_create(0,0,oRoomTransition);
+            c.gotoroom = rm_mapedit;
+            global.GAMETYPE = 0;
         }
     }
 }

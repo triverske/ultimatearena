@@ -91,7 +91,7 @@ s2l = string_length(global.KILL_STRING)*12;
 
 if (s1c &gt; s1p-1 || start)
 {
-    c = instance_create(WS,HS-40,oTextScroll);
+    var c = instance_create(WS,HS-40,oTextScroll);
     c.text = global.DEATH_STRING;
     c.color = make_color_rgb(0,228,228);
     c.length = s1l;
@@ -106,7 +106,7 @@ else
 
 if (s2c &gt; s2p-1 || start)
 {
-    c = instance_create(WS,HS-19,oTextScroll);
+    var c = instance_create(WS,HS-19,oTextScroll);
     c.text = global.KILL_STRING;
     c.color = c_red;
     c.length = s2l;

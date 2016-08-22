@@ -1,6 +1,9 @@
 with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
 {
-    zui_set_size(500, 298);
+    global.charVersion = 1;
+    global.workshopID = -1;
+    global.creator = -1;
+    zui_set_size(500, 330);
     wID = "Editor Window";
     
     with(zui_create(0, 0, objUIWindowCaption))
@@ -44,13 +47,16 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
         callback = charedit_ui;
         cID = 0;
         value = 1;
+        bID = 0
     }
     with(zui_create(325, 75, objUICheckbox))
     {
         type = 1;
         callback = charedit_ui;
         cID = 1;
+        bID = 0;
     }
+    
     /*
     with (zui_create(200, 105, objUIButton)) 
     {
@@ -59,8 +65,8 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
         caption = "Add Death Sound";
         callback = charedit_ui;
         bID = 6;
-    }
-    */
+    } */
+    
     for(var i=0;i<7;i++)
     {
         with (zui_create(5 + 28*i, 223, oUIImageButton)) 
@@ -74,7 +80,21 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
         }
     }
     
-    with (zui_create(5, 263, objUIButton)) 
+    with(zui_create(240, __height - 55, objUICheckbox))
+    {
+        type = 0;
+        callback = charedit_ui;
+        cID = 0;
+        value = 0;
+        bID = 1;
+    }
+    with(zui_create(270, __height - 55, objUILabel))
+    {
+        caption = "Add to Steam Workshop";
+        halign = fa_left;
+    }
+    
+    with (zui_create(5, 261, objUIButton)) 
     {                                           
         zui_set_anchor(0,0);
         zui_set_size(192, 30);
@@ -82,18 +102,18 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
         callback = charedit_ui;
         bID = 1;
     }
-    with (zui_create(365, 263, objUIButton)) 
+    with (zui_create(202, __height - 5, objUIButton)) 
     {
-        zui_set_anchor(0,0);
-        zui_set_size(130, 30);
+        zui_set_anchor(0,1);
+        zui_set_size(293, 30);
         caption = "Save Character";
         callback = charedit_ui;
         bID = 2;
     }
-    with (zui_create(202, 263, objUIButton)) 
+    with (zui_create(5, __height - 5, objUIButton)) 
     {
-        zui_set_anchor(0,0);
-        zui_set_size(158, 30);
+        zui_set_anchor(0,1);
+        zui_set_size(192, 30);
         caption = "New Character";
         callback = charedit_ui;
         bID = 4;

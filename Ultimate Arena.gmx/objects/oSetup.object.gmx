@@ -25,14 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.VERSION = "1.5";
-
+            <string>global.VERSION = "2.0";
 
 global.ENDLESS = 0;
 global.SAVE_SPEED = 4;
 global.loadingGame = 0;
 global.saveFile = "";
 
+global.TAGS = 0;
 global.TAG_COUNT = 0;
 global.TAG_LIST[0,0] = 0;
 
@@ -49,10 +49,95 @@ global.update_count = 0;
 global.kill_count = 0;
 global.TIME_DAYS = 0;
 
-var i = 1;
+new_item = -1;
+
+initialize_workshop();
+
 draw_set_font(font0);
 if(directory_exists(working_directory + "characters"))
 {
+    //OLD FORMAT CONVERTER - I'm so sorry.
+    var f = file_find_first(working_directory + "characters\*.ini", 0);
+    if(f != "")
+    {
+        show_debug_message(working_directory + "characters\" + f);
+        var a = file_text_open_read(working_directory + "characters\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        
+        if(file_exists(working_directory + "characters\" + dir + ".png"))
+            var spr = sprite_add(working_directory + "characters\" + dir + ".png",0,0,0,0,0);
+        else
+            var spr = sprite_duplicate(sFighterImage);
+        
+        directory_create(working_directory + "characters\" + dir);
+        
+        sprite_save(spr,0,working_directory + "characters\" +dir + "\" + dir + ".png");
+        sprite_delete(spr);
+        
+        var a = file_text_open_write(working_directory + "characters\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "characters\" + f);
+    }
+    
+    var f = file_find_next();
+    while(f != "")
+    {
+        show_debug_message(working_directory + "characters\" + f);
+        var a = file_text_open_read(working_directory + "characters\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        
+        if(file_exists(working_directory + "characters\" + dir + ".png"))
+            var spr = sprite_add(working_directory + "characters\" + dir + ".png",0,0,0,0,0);
+        else
+            var spr = sprite_duplicate(sFighterImage);
+        
+        directory_create(working_directory + "characters\" + dir);
+        
+        sprite_save(spr,0,working_directory + "characters\" +dir + "\" + dir + ".png");
+        sprite_delete(spr);
+        
+        var a = file_text_open_write(working_directory + "characters\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "characters\" + f);
+        var f = file_find_next();
+    }
+    file_find_close();
     initialize_characters();
 }
 else
@@ -62,9 +147,72 @@ else
     initialize_characters();
 }
 
-var i = 1;
 if(directory_exists(working_directory + "events"))
 {
+    //OLD FORMAT CONVERTER
+    var f = file_find_first(working_directory + "events\*.ini", 0);
+    if(f != "")
+    {
+        show_debug_message(working_directory + "events\" + f);
+        var a = file_text_open_read(working_directory + "events\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        directory_create(working_directory + "events\" + dir);
+        
+        var a = file_text_open_write(working_directory + "events\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "events\" + f);
+    }
+    
+    var f = file_find_next();
+    while(f != "")
+    {
+        show_debug_message(working_directory + "events\" + f);
+        var a = file_text_open_read(working_directory + "events\" + f)
+        var s = 0;
+        var z = 0;
+        s[0] = "";
+        while(!file_text_eof(a))
+        {
+            s[z] = file_text_read_string(a);
+            file_text_readln(a);
+            z++;
+        }
+        file_text_close(a);
+        
+        var dir = string_extract(f,".",0)
+        directory_create(working_directory + "events\" + dir);
+        
+        var a = file_text_open_write(working_directory + "events\" +dir + "\" + dir + ".ini");
+        for(i=0;i&lt;z;i++)
+        {
+            file_text_write_string(a,s[i]);
+            file_text_writeln(a);
+        }
+        
+        file_text_close(a);
+        
+        file_delete(working_directory + "events\" + f);
+        var f = file_find_next();
+    }
+    file_find_close();
     initialize_events();
 }
 else
@@ -74,26 +222,24 @@ else
     initialize_events();
 
 }
+
+if(directory_exists(working_directory + "maps"))
+{
+    initialize_maps();
+}
+else
+{
+    directory_create("maps");
+    add_default_maps();
+    initialize_maps();
+}
+
 randomize();
 global.seed = random_get_seed();
 
-// variables
-tile_size = 32;  // the size of your tiles
-show_minimap = true;
-
 global.mapsurf = 0;
 global.bck_minimap = 0;
-// generate a map
 
-// argument0: defines the size (MUST be a power of 2!) Large sizes (&gt; 1024) take a while to load
-// argument1: defines the level of fluctuation (low = much variation in terrain, high = little variation in terrain) 
-//           This must be lower than the map size! (MUST be a power of 2!)
-// argument2: defines the waterlevel (lower = less water)
-// argument3: defines the mountain level (higher = less mountains)
-// argument4: defines the size of the beaches (0 = no beach)
-// argument5: is the map seamlessly repeating or not
-
-//scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
 
 global.boxColor = 0;
 global.GAMETYPE = 0;
@@ -119,9 +265,9 @@ ini_close();
 
 if(global.TWITCHENABLED)
     instance_create(0,0,oTwitchController);
+
     
 room_goto_next();
-//audio_play_sound(snd_wario,1,0);
 </string>
           </argument>
         </arguments>
@@ -270,6 +416,115 @@ if(global.GITHUB)
 if(global.INSANE)
     if(!steam_get_achievement("ACH_SANITY"))
         steam_set_achievement("ACH_SANITY");
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="69">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var event_id = async_load[? "id"];
+
+if(event_id == new_item)
+{
+    var type = async_load[? "event_type"];
+    
+    if(type == "ugc_create_item")
+    {
+        //I'm just going to pray that this continues working.
+        if(room == rm_charedit)
+        {
+            global.workshopID = async_load[? "published_file_id"];
+            workshopName = global.charname;
+            ini_open(working_directory + "characters\" + workshopName + "\" + workshopName + ".ini");
+            ini_write_real("character","workshopID",global.workshopID);
+            ini_close();
+            
+            var app_id = steam_get_app_id();
+            updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+            
+            steam_ugc_set_item_title(updateHandle, workshopName );
+            steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " character to Ultimate Arena");
+            steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+            
+            var tagArray;
+            tagArray[0] = "Character";
+            
+            steam_ugc_set_item_tags(updateHandle, tagArray);
+            steam_ugc_set_item_preview(updateHandle, working_directory + "characters\" + workshopName + "\" + workshopName + ".png");
+            steam_ugc_set_item_content(updateHandle, working_directory + "characters\" + workshopName + "\");
+            
+            requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+        }
+        else if(room == rm_eventedit)
+        {
+            global.workshopID = async_load[? "published_file_id"];
+            workshopName = global.charname;
+            ini_open(working_directory + "events\" + workshopName + "\" + workshopName + ".ini");
+            ini_write_real("event","workshopID",global.workshopID);
+            ini_close();
+            
+            var app_id = steam_get_app_id();
+            updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+            
+            steam_ugc_set_item_title(updateHandle, workshopName );
+            steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " event to Ultimate Arena");
+            steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+            
+            var tagArray;
+            tagArray[0] = "Event";
+            
+            steam_ugc_set_item_tags(updateHandle, tagArray);
+            steam_ugc_set_item_preview(updateHandle, working_directory + "events\" + workshopName + "\" + workshopName + ".png");
+            steam_ugc_set_item_content(updateHandle, working_directory + "events\" + workshopName + "\");
+            
+            requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+        }
+        else if(room == rm_mapedit)
+        {
+            global.workshopID = async_load[? "published_file_id"];
+            workshopName = global.charname;
+            ini_open(working_directory + "maps\" + workshopName + "\" + workshopName + ".ini");
+            ini_write_real("map","workshopID",global.workshopID);
+            ini_close();
+            
+            var app_id = steam_get_app_id();
+            updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+            
+            steam_ugc_set_item_title(updateHandle, workshopName );
+            steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " map to Ultimate Arena");
+            steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+            
+            var tagArray;
+            tagArray[0] = "Map";
+            
+            steam_ugc_set_item_tags(updateHandle, tagArray);
+            
+            if(file_exists(working_directory+"maps\"+workshopName+'\'+workshopName+'overlay.png'))
+                steam_ugc_set_item_preview(updateHandle, working_directory+"maps\"+workshopName+'\'+workshopName+'overlay.png');
+            else
+                steam_ugc_set_item_preview(updateHandle, working_directory + "maps\" + workshopName + "\" + maps + ".png");
+                    
+            steam_ugc_set_item_content(updateHandle, working_directory + "maps\" + workshopName + "\");
+            requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

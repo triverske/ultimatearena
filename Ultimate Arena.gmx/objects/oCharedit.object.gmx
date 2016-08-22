@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>global.IDselected = -1;
+global.copyProtection = 0;
 global.newImage = sFighterImage;
 global.editColor = 0;
 

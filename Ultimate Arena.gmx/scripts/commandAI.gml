@@ -315,7 +315,7 @@ switch(com)
     CONTINUE = 15 * (HP/25);
     hit = irandom(STRENGTH);
     otherFighter.HP -= hit;
-    c = irandom(6);
+    var c = irandom(6);
     if(c == 6)
         XP++;
     if (otherFighter.HP <= 0)
@@ -356,7 +356,7 @@ switch(com)
         }
     }
     otherFighter.HP -= hit;
-    c = irandom(5);
+    var c = irandom(5);
     if(c = 5)
         XP++;
     if (otherFighter.HP <= 0)
@@ -397,7 +397,7 @@ switch(com)
         }
     }
     otherFighter.HP -= hit;
-    c = irandom(5);
+    var c = irandom(5);
     if(c = 5)
         XP+=2;
     if(otherFighter.HP <= 0)
@@ -438,7 +438,7 @@ switch(com)
         }
     }
     otherFighter.HP -= hit;
-    c = irandom(4);
+    var c = irandom(4);
     if(c = 4)
         XP++;
     if (otherFighter.HP <= 0)
@@ -479,7 +479,7 @@ switch(com)
         }
     }
     otherFighter.HP -= hit;
-    c = irandom(4);
+    var c = irandom(4);
     if(c = 4)
         XP+=2;
     if (otherFighter.HP <= 0)
@@ -523,7 +523,7 @@ switch(com)
     caption = "Placing Landmine";
     QUICK = 0;
     CONTINUE = 0;
-    c = irandom(10)
+    var c = irandom(10)
     if(c+SKILL>=5)
     {
         var w = instance_create(x,y,oMine);
