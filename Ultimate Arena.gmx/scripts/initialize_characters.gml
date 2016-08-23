@@ -1,4 +1,7 @@
 global.cNAME = 0;
+global.TAGS = 0;
+global.TAG_LIST = 0;
+global.TAG_COUNT = 0;
 
 directory = 0;
 directory[0] = "";
@@ -7,14 +10,14 @@ var l = array_length_1d(directory);
 
 if(l != 0)
 {
-    for(i=0;i<l-1;i++)
+    for(var i=0;i<l-1;i++)
     {
         global.fNAME[i] = directory[i] + "\" + directory[i] + ".ini";
         ini_open(working_directory + "characters\" + global.fNAME[i]);
         global.cNAME[i] = ini_read_string("character","name","NAMING ERROR");
         global.cSOUNDS[i] = ini_read_string("character","deathsound","");
         
-        cImage = ini_read_string("character","image","sFighterImage");
+        var cImage = ini_read_string("character","image","sFighterImage");
         
         if(cImage != "sFighterImage")
             global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[i] + "\" + directory[i] + ".png",1,0,0,0,0);
@@ -29,10 +32,10 @@ if(l != 0)
             global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[i] + "\" + directory[i] + ".png",1,0,0,0,0);
         }
         
-        tags = ini_read_string("character","tags","");
+        var tags = ini_read_string("character","tags","");
         if (tags != "")
         {
-            tagcount = string_parse_number(tags,",",true);
+            var tagcount = string_parse_number(tags,",",true);
             for(r = 0; r < tagcount; r++)
             {
                 var curtag = string_extract(tags,",",r);
