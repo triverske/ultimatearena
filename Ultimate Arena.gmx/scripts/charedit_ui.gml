@@ -117,7 +117,7 @@ with(objUIButton)
         if(bID == 1)
         {
             //var charname = keyboard_string;
-            file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
+            var file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
             if(file != "")
             {
                 var newsp = sprite_add(file,0,0,0,0,0);
@@ -132,9 +132,7 @@ with(objUIButton)
                 surface_free(surf);
             }
             else
-            {
                 global.newImage = sFighterImage;
-            }
             
             with(oUIImage)
             {
@@ -356,7 +354,7 @@ with(oUIImage)
     if(argument0 == id)
     {
         if(global.IDselected >= 0)
-            image = global.cIMAGES[global.IDselected];
+            image = global.newImage;
     }
 }
 
