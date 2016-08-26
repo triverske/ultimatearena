@@ -161,8 +161,10 @@ with(objUIButton){
         }
         else if(bID == 10){//Save Map
             with(objUIField){
-                if(content == "")
+                if(content == ""){
+                    ui_show_popup("Please enter a name.");
                     exit;
+                }
                 else
                     global.charname = content;
             }
@@ -232,7 +234,7 @@ with(objUIButton){
                     if(file_exists(working_directory+"maps\"+name+'\'+name+'overlay.png'))
                         steam_ugc_set_item_preview(updateHandle, working_directory+"maps\"+name+'\'+name+'overlay.png');
                     else
-                        steam_ugc_set_item_preview(updateHandle, working_directory + "maps\" + workshopName + "\" + maps + ".png");
+                        steam_ugc_set_item_preview(updateHandle, working_directory + "maps\" + workshopName + "\" + name + ".png");
                         
                     steam_ugc_set_item_content(updateHandle, working_directory + "maps\" + workshopName + "\");
                     
@@ -288,6 +290,10 @@ with(objUIButton){
         }
         else if(bID == 13){//Clear Trees
             oMapedit.treeArray = 0;
+            with(objUILabel){
+                if(lID == 1)
+                    caption = "0/30 Trees";
+            }
         }
         else if(bID == 14)//Brush 1
             oMapedit.cursorSize = 0;

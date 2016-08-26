@@ -287,16 +287,16 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
 }
 with(zui_create(window_get_width()*.8, window_get_height()/2 - 60, objUIWindow))
 {
-    zui_set_size(200, 298);
+    zui_set_size(200, 330);
     wID = "Character Tags";
     with(zui_create(0,0,objUIWindowCaption))
     {
         caption = "Character Tags";
     }
-    with(zui_create(0,24,oUIListBox))
+    with(zui_create(0,64,oUIListBox))
     {
         zui_set_anchor(0,0);
-        zui_set_size(200,298-64);
+        zui_set_size(200,330-104);
         click_mode = 0;
         callback = charedit_ui;
         draw_callback = tag_select_draw_ui;
@@ -309,6 +309,24 @@ with(zui_create(window_get_width()*.8, window_get_height()/2 - 60, objUIWindow))
         }
         with(zui_create(0,0,oUIListBoxScroll)){}
     }
+    with (zui_create(5, 34, objUIField)) 
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(100, 30);
+        callback = charedit_ui;
+        fID = 2;
+        width = 100;
+        maxLength = 150;
+    }
+    with (zui_create(__width - 89, 29, objUIButton)) 
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(84, 30);
+        caption = "Add Tag";
+        callback = charedit_ui;
+        bID = 12;
+        listID = other.listID;
+    }
     with (zui_create(5, __height - 35, objUIButton)) 
     {
         zui_set_anchor(0,0);
@@ -319,15 +337,12 @@ with(zui_create(window_get_width()*.8, window_get_height()/2 - 60, objUIWindow))
         type = 2;
         listID = other.listID;
     }
-    
-    with (zui_create(__width - 89, __height - 35, objUIButton)) 
+    with (zui_create(__width-45, __height - 30, objUILabel)) 
     {
-        zui_set_anchor(0,0);
-        zui_set_size(84, 30);
-        caption = "Add Tag";
-        callback = charedit_ui;
-        bID = 12;
-        listID = other.listID;
+        lID = 6;
+        caption = "0/"+string(global.TAG_COUNT)+" Tags";
+        halign = fa_middle;
+        valign = fa_top;
     }
 }
 

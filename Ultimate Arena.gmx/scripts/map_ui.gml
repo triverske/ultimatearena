@@ -85,16 +85,13 @@ if (argument0 == id )
     background_assign(global.bck_minimap,background_create_from_surface(surf, 0, 0, 512, 512, 0, 0));
     
     // create trees
-    while(global.trees < totaltrees)
-    {
-        for(var i=0; i<30; i++){
-            if(ini_read_string("Trees",string(i),"ERROR") == "ERROR")
-                break;
-            global.treeloc[global.trees,0] = real(string_copy(ini_read_string("Trees",string(i),"000000"),1,3));
-            global.treeloc[global.trees,1] = real(string_copy(ini_read_string("Trees",string(i),"000000"),4,3));
-            draw_sprite(sTree,0,global.treeloc[global.trees,0],global.treeloc[global.trees,1]);
-            global.trees++;
-        }
+    for(var i=0; i<30; i++){
+        if(ini_read_string("Trees",string(i),"ERROR") == "ERROR")
+            break;
+        global.treeloc[global.trees,0] = real(string_copy(ini_read_string("Trees",string(i),"000000"),1,3));
+        global.treeloc[global.trees,1] = real(string_copy(ini_read_string("Trees",string(i),"000000"),4,3));
+        draw_sprite(sTree,0,global.treeloc[global.trees,0],global.treeloc[global.trees,1]);
+        global.trees++;
     }
     
     ini_close();

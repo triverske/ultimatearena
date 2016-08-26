@@ -58,6 +58,7 @@ global.editColors[6,0] = 0;
 global.editColors[6,1] = 64;
 global.editColors[6,2] = 255;
 
+tempTags = 0;
 for(i=0;i&lt;5;i++)
     global.editStats[i] = 5;
     
@@ -167,7 +168,6 @@ with(oUIImageButton)
         /*with(objUIWindow)
             if(wID = "Phrase Editor")
                 text = keyboard_string+": '" + ds_map_find_value(async_load, "result") + "'";*/
-            
     }
 }
 

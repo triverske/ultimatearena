@@ -133,9 +133,9 @@ with (objUIButton)
             with (oUIListBox)
             {
                 var t = 0;
-                if(length < 100)
+                if(length < 250)
                 {
-                    ui_show_popup("You need at least 100 fighters#to use this option.");
+                    ui_show_popup("You need at least 250 fighters#to use this option.");
                 }
                 else
                 {
@@ -143,7 +143,7 @@ with (objUIButton)
                     for (i = 0;i < length; i++)
                         selected[i] = 1;
                         
-                    while(t < 100)
+                    while(t < 250)
                     {
                         var w = irandom(length-1);
                         if(selected[w] == 1)

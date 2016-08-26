@@ -30,7 +30,7 @@ callback = -1;
 draw_callback = -1;
 click_mode = 0;
 type = 0;
-sliderLoc = 0;
+sliderPos = 0;
 list = 0;
 length = 0;
 sID = -1;
@@ -197,9 +197,9 @@ else
     offset = 0
     
 for(i=0;i&lt;=length;i++)
-    {
-        ypos[i] = (i*16) - offset;
-    }
+{
+    ypos[i] = (i*16) - offset;
+}
 //ui_draw_sprite_panel(sListBox, type, 8, -6, -6, __width +12, __height + 12);
 //ui_draw_sprite_panel(sListBox, type, 8, __width - 6, -6, 18, __height + 12);
 

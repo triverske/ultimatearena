@@ -385,7 +385,6 @@
     <room>rooms\rm_eventedit</room>
     <room>rooms\rm_mapedit</room>
     <room>rooms\rm_charselect</room>
-    <room>rooms\rm_tycoon</room>
     <room>rooms\rm_twitchCharselect</room>
     <room>rooms\rm_twitchWinroom</room>
     <room>rooms\rm_game</room>
