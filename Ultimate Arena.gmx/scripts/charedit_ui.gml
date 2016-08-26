@@ -13,6 +13,7 @@ with(oUIListBox)
             {
                 global.IDselected = sID;
                 global.newImage = global.cIMAGES[sID];
+                oCharedit.tempTags = 0;
                 
                 ini_open(working_directory + "characters\" + global.fNAME[sID])
                 global.editStats[0] = min(10,ini_read_real("character","strength",5));
@@ -74,6 +75,7 @@ with(oUIListBox)
                         }
                     }
                 }
+                var ts = 0;
                 with(oUIListBox)
                 {
                 if(listID == 1)
@@ -82,6 +84,7 @@ with(oUIListBox)
                         selected[i] = 1;
                         for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
                             if(global.TAG_LIST[i,j] == other.sID){
+                                ts++;
                                 selected[i] = 0;
                                 break;
                             }
@@ -89,9 +92,12 @@ with(oUIListBox)
                     }
                 }
                 }
-                with(objUILabel)
+                with(objUILabel){
                     if(lID > 0 && lID < 6)
                         caption = string(global.editStats[lID - 1]);
+                    else if(lID == 6)
+                        caption = string(ts)+'/'+string(global.TAG_COUNT)+' Tags';
+                }
             }
         }
         else if(listID == 1)
@@ -101,6 +107,15 @@ with(oUIListBox)
                     selected[sID] = 1;
                 else
                     selected[sID] = 0;
+                var ts = 0;
+                for(var i=0; i<length; i++){
+                    if(selected[i] == 0)
+                        ts++;
+                }
+                with(objUILabel){
+                    if(lID == 6)
+                        caption = string(ts)+'/'+string(other.length)+' Tags';
+                }
             }
         }
     }
@@ -393,6 +408,15 @@ with(objUIButton)
                         length++;
                         with(__child[0])
                             sliderPos = __height/2 - 23;
+                        var ts = 0;
+                        for(var i=0; i<length; i++){
+                            if(selected[i] == 0)
+                                ts++;
+                        }
+                        with(objUILabel){
+                            if(lID == 6)
+                                caption = string(ts)+'/'+string(other.length)+' Tags';
+                        }
                     }
                 }
             }
@@ -423,14 +447,20 @@ with(objUIButton)
                     if(listID == 1){
                         initialize_listbox(global.TAGS);
                         selected=0;
+                        var ts = 0;
                         for(var i=0; i<global.TAG_COUNT; i++){
                             selected[i] = 1;
                             for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
                                 if(global.TAG_LIST[i,j] == global.IDselected){
+                                    ts++;
                                     selected[i] = 0;
                                     break;
                                 }
                             }
+                        }
+                        with(objUILabel){
+                            if(lID == 6)
+                                caption = string(ts)+'/'+string(global.TAG_COUNT)+' Tags';
                         }
                         with(__child[0])
                             sliderPos = __height/2 - 23;
