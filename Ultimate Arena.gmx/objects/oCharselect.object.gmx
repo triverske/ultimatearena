@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>global.IDselected = -1;
+global.GAME_SPEED = 12;
+global.SAVE_SPEED = 12;
+
 regen = 1;
 startgame = 0;
 
@@ -108,7 +111,7 @@ with (zui_main())
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
-            caption = "Select Random 100";
+            caption = "Select Random 250";
             callback = fighter_select_buttons;
             bID = 11;
         }
@@ -401,10 +404,10 @@ if (startgame == 1)
     }
     global.IMAGES[0] = sFighterImage;
     global.fighters = charcount;
-    if (charcount &lt; 3)
+    if (charcount &lt; 4)
         ui_show_popup("You need at least 4 characters#to begin the match.");
-    else if (charcount &gt; 100)
-        ui_show_popup("Only 100 can participate in a match.");
+    else if (charcount &gt; 250)
+        ui_show_popup("Only 250 can participate in a match.");
     else
     {
         var c = instance_create(0,0,oRoomTransition);

@@ -28,7 +28,7 @@
             <string>global.VERSION = "2.0";
 
 global.ENDLESS = 0;
-global.SAVE_SPEED = 4;
+global.SAVE_SPEED = 12;
 global.loadingGame = 0;
 global.saveFile = "";
 
@@ -361,11 +361,11 @@ if(global.EVENT_COUNT &gt; 29)
     if(!steam_get_achievement("ACH_EVENT_30"))
         steam_set_achievement("ACH_EVENT_30");
         
-if(global.LANDMINE_KILLS &gt; 49)
+if(global.LANDMINE_KILLS &gt; 99)
     if(!steam_get_achievement("ACH_LAND_50"))
         steam_set_achievement("ACH_LAND_50");
         
-if(global.LANDMINE_KILLS &gt; 89)
+if(global.LANDMINE_KILLS &gt; 199)
     if(!steam_get_achievement("ACH_LAND_90"))
         steam_set_achievement("ACH_LAND_90");
         
@@ -377,11 +377,11 @@ if(global.update_count &gt; 999)
     if(!steam_get_achievement("ACH_UPDATE_1000"))
         steam_set_achievement("ACH_UPDATE_1000");
         
-if(global.kill_count &gt; 59)
+if(global.kill_count &gt; 199)
     if(!steam_get_achievement("ACH_KILL_60"))
         steam_set_achievement("ACH_KILL_60");
         
-if(global.kill_count &gt; 79)
+if(global.kill_count &gt; 229)
     if(!steam_get_achievement("ACH_KILL_80"))
         steam_set_achievement("ACH_KILL_80");
         

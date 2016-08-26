@@ -116,70 +116,78 @@ with(objUIButton)
                     var eperc = content;
             }
             
-            global.charname = ename;
-            ini_open(working_directory + "events\" + ename + "\" + ename + ".ini");
-            ini_write_string("event","name",ename);
-            ini_write_string("event","description",edesc);
-            ini_write_real("event","death_percentage",real(eperc));
-            
-            ini_write_real("text","total",objUIMultiField.fields);
-            if(ini_section_exists("text"))
-                ini_section_delete("text");
-            for(var i=1; i<=objUIMultiField.fields; i++){
-                ini_write_string("text","s"+string(i),objUIMultiField.content[i-1]);
-            }
-            ini_write_real("text","total",objUIMultiField.fields);
-            
-            if(global.creator == -1)
+            if(ename != "")
             {
-                ini_write_real("event","creator",steam_get_user_account_id());
-                global.creator = steam_get_user_account_id();
-            }
             
-            ini_close();
-            
-            tempSprite = sprite_duplicate(sArenaEvent);
-            sprite_save(tempSprite,0,working_directory + "events\" + ename+ "\" + ename + ".png");
-            sprite_delete(tempSprite);
-            
-            if(global.workshop && !global.copyProtection)
-            {
-                if(global.workshopID == -1)
+                global.charname = ename;
+                ini_open(working_directory + "events\" + ename + "\" + ename + ".ini");
+                ini_write_string("event","name",ename);
+                ini_write_string("event","description",edesc);
+                ini_write_real("event","death_percentage",real(eperc));
+                
+                ini_write_real("text","total",objUIMultiField.fields);
+                if(ini_section_exists("text"))
+                    ini_section_delete("text");
+                for(var i=1; i<=objUIMultiField.fields; i++){
+                    ini_write_string("text","s"+string(i),objUIMultiField.content[i-1]);
+                }
+                ini_write_real("text","total",objUIMultiField.fields);
+                
+                if(global.creator == -1)
                 {
-                    with(oSetup)
+                    ini_write_real("event","creator",steam_get_user_account_id());
+                    global.creator = steam_get_user_account_id();
+                }
+                
+                ini_close();
+                
+                tempSprite = sprite_duplicate(sArenaEvent);
+                sprite_save(tempSprite,0,working_directory + "events\" + ename+ "\" + ename + ".png");
+                sprite_delete(tempSprite);
+                
+                if(global.workshop && !global.copyProtection)
+                {
+                    if(global.workshopID == -1)
                     {
-                        var app_id = steam_get_app_id(); 
-                        new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
+                        with(oSetup)
+                        {
+                            var app_id = steam_get_app_id(); 
+                            new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
+                            
+                            workshopName = ename;
+                            workshopType = 0;
+                        }
+                    }
+                    else
+                    {
+                        var workshopName = ename;
                         
-                        workshopName = ename;
-                        workshopType = 0;
+                        var app_id = steam_get_app_id();
+                        updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+                        
+                        steam_ugc_set_item_title(updateHandle, workshopName );
+                        steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " event to Ultimate Arena");
+                        steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+                        
+                        var tagArray;
+                        tagArray[0] = "Event";
+                        
+                        steam_ugc_set_item_tags(updateHandle, tagArray);
+                        steam_ugc_set_item_preview(updateHandle, working_directory + "events\" + workshopName + "\" + workshopName + ".png");
+                        steam_ugc_set_item_content(updateHandle, working_directory + "events\" + workshopName + "\");
+                        
+                        requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
                     }
                 }
-                else
-                {
-                    var workshopName = ename;
-                    
-                    var app_id = steam_get_app_id();
-                    updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
-                    
-                    steam_ugc_set_item_title(updateHandle, workshopName );
-                    steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " event to Ultimate Arena");
-                    steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
-                    
-                    var tagArray;
-                    tagArray[0] = "Event";
-                    
-                    steam_ugc_set_item_tags(updateHandle, tagArray);
-                    steam_ugc_set_item_preview(updateHandle, working_directory + "events\" + workshopName + "\" + workshopName + ".png");
-                    steam_ugc_set_item_content(updateHandle, working_directory + "events\" + workshopName + "\");
-                    
-                    requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
-                }
+                
+                initialize_events();
+                keyboard_string = "";
+                room_restart();
             }
-            
-            initialize_events();
-            keyboard_string = "";
-            room_restart();
+            else
+            {
+                ui_show_popup("Please enter a name.");
+            }
         }
         if(bID == 3) //New Event
         {
