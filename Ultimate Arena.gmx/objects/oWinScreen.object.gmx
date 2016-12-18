@@ -123,6 +123,7 @@ global.scrollspeed2 = 0;
     }
     else if (keyboard_check_pressed(vk_enter))
     {
+        file_delete("text.ini");
         room_goto(rm_title);
     }
     

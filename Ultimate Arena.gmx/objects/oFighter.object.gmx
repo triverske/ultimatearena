@@ -290,14 +290,14 @@ if(SANITY &lt; -50)
 if (HUNGER &lt; 1)
 {
     drop_items();
-    global.deathCause[fighterID] = "Death by Starvation";
+    global.deathCause[fighterID] = "Death by starvation";
     instance_destroy();
     createUpdate(getText("die_hunger",fighterID),fighterID,1);
 }
 else if (THIRST &lt; 1)
 {
     drop_items();
-    global.deathCause[fighterID] = "Death by Dehydration";
+    global.deathCause[fighterID] = "Death by dehydration";
     instance_destroy();
     createUpdate(getText("die_thirst",fighterID),fighterID,1);
 }
@@ -381,8 +381,12 @@ if(INV[10] &gt; 0 &amp;&amp; INV[11] &gt; 0 &amp;&amp; INV[1] &lt; 3)
     sendCommand("MAKE TRAP", 30);
     
 if(INV[0] &gt; 0)
-    if(irandom(20) == 1)
+    if(irandom(20) == 0)
         sendCommand("PLACE MINE", 1);
+        
+if(INV[1] &gt; 0)
+    if(irandom(20) == 0)
+        sendCommand("SET TRAP", 1);
     
 instance_deactivate_object(self);
 var c = instance_nearest(x,y-5,oFighter);
@@ -435,15 +439,11 @@ if(!global.fighterGroups || (group!=c.group || (group==-1 || INSANE &amp;&amp; i
 
 if (INSANE = 1)
 {
-    sendCommand("Suicide",5);
+    sendCommand("SUICIDE",5);
     if(SKILL &gt; 4)
     {
-        if(instance_exists(otherFighter))
-        {
-            enemyloc[0] = otherFighter.x;
-            enemyloc[1] = otherFighter.y;
+        if(instance_exists(c))
             sendCommand("HUNT", 50);
-        }
     }
 }
    
@@ -536,20 +536,20 @@ if(x &gt; 490 || x &lt; 10  || y &gt; 490 || y &lt; 10) //Make sure fighter does
 
         if (esc &lt; 480)
         {
-            global.deathCause[fighterID] = "Death by Failed Escape Attempt";
+            global.deathCause[fighterID] = "Death by failed escape attempt";
             instance_destroy();
             createUpdate(getText("arena_escape_fail",fighterID),fighterID,1);
         }
         else if (esc &lt; 490)
         {
-            global.deathCause[fighterID] = "Death by Failed Escape Attempt";
+            global.deathCause[fighterID] = "Death by failed escape attempt";
             instance_destroy();
             createUpdate(global.NAMES[fighterID]  + " was killed by the guardians.",fighterID,1);
         }
         else if (esc &lt; 492)
         {
             global.WILD_RIDE = 1;
-            global.deathCause[fighterID] = "Death by Failed Escape Attempt";
+            global.deathCause[fighterID] = "Death by failed escape attempt";
             instance_destroy();
             createUpdate(global.NAMES[fighterID]  + " died trying to get off Mr. Troy's Wild Ride!",fighterID,1);
         }
@@ -636,17 +636,17 @@ if(alarm[0] == 1)
     HP-=50;
     if(HP&lt;0)
     {
-    if(instance_exists(other.owner))
-    {
-    with(other.owner)
-        XP+=5;
-    }
-    createUpdateM(getTextM("die_trap",fighterID,other.owner,0,0),other.owner,fighterID,0,0,1);
-    with(global.IDLIST[other.owner])
-    {
-        kills++;
-    }
-    instance_destroy();
+        if(instance_exists(other.owner))
+        {
+            with(other.owner)
+                XP+=5;
+        }
+        createUpdateM(getTextM("die_trap",fighterID,other.owner,0,0),other.owner,fighterID,0,0,1);
+        
+        with(global.IDLIST[other.owner])
+            kills++;
+        global.deathCause[fighterID] = "Killed by "+global.NAMES[other.owner]+"'s trap";
+        instance_destroy();
     }
 }
 }
@@ -892,51 +892,44 @@ if(alarm[0] == 1)
 if(alarm[0] == 1)
 {
     var t = floor(random(25));
-    if(other.owner == -1)
-    {
-    if (t &lt; 25-(SKILL+LUCK))
-    {
-        other.triggered = true;
-        global.deathCause[fighterID] = "Death by Landmine";
-        createUpdate(getText("die_landmine",fighterID),fighterID,1);
-        instance_destroy();
-    }
-    else
-    {
-        createUpdate(global.NAMES[fighterID] + " encountered a land mine and disarmed it.",fighterID,0);
-        with(other)
+    if(other.owner == -1){
+        if (t &lt; 25-(SKILL+LUCK)){
+            other.triggered = true;
+            global.deathCause[fighterID] = "Death by land mine";
+            createUpdate(getText("die_mine",fighterID),fighterID,1);
             instance_destroy();
-        XP+=3;
-        INV[0]++;
-    }
-    }
-    else
-    {
-    if (t &lt; 25-(SKILL+LUCK))
-    {
-        if(instance_exists(other.owner))
-        {
-        with(other.owner)
-            XP+=5;
         }
-        other.triggered = true;
-        createUpdateM(getTextM("die_landmine_m",fighterID,other.owner,0,0),other.owner,fighterID,0,0,1);
-        with(other.owner)
-        {
-            kills++;
+        else{
+            createUpdate(getText("disarm_mine",fighterID),fighterID,0);
+            with(other)
+                instance_destroy();
+            XP+=3;
+            INV[0]++;
         }
-        global.LANDMINE_KILLS++;
-        instance_destroy();
     }
-    else
-    {
-        createUpdate(global.NAMES[fighterID] + " encountered a land mine and disarmed it.",fighterID,0);
-        with(other)
+    else{
+        if (t &lt; 25-(SKILL+LUCK)){
+            if(instance_exists(global.IDLIST[other.owner]))
+            {
+                with(global.IDLIST[other.owner])
+                    XP+=5;
+            }
+            other.triggered = true;
+            global.deathCause[fighterID] = "Killed by "+global.NAMES[other.owner]+"'s land mine";
+            createUpdateM(getTextM("die_mine_m",fighterID,other.owner,0,0),other.owner,fighterID,0,0,1);
+            with(global.IDLIST[other.owner])
+                kills++;
+            global.LANDMINE_KILLS++;
             instance_destroy();
-        XP+=3;
-        INV[0]++;
-        
-    }
+        }
+        else{
+            createUpdate(getText("disarm_mine",fighterID),fighterID,0);
+            with(other)
+                instance_destroy();
+            XP+=3;
+            INV[0]++;
+            
+        }
     }
 }
 }

@@ -1,4 +1,4 @@
-with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
+with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow))
 {
     global.charVersion = 1;
     global.workshopID = -1;
@@ -269,7 +269,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
         bID = 8;
         stat = 4;
     }
-    with(zui_create(200, 236, objUILabel))
+    /*with(zui_create(200, 236, objUILabel))
     {
         caption = "Catchphrase: ";
         halign = fa_left;
@@ -282,10 +282,10 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 60, objUIWindow))
         maxLength = 600;
         zui_set_anchor(0,0);
         zui_set_size(width,18);
-    }
+    }*/
     
 }
-with(zui_create(window_get_width()*.8, window_get_height()/2 - 60, objUIWindow))
+with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, objUIWindow))
 {
     zui_set_size(200, 330);
     wID = "Character Tags";
@@ -293,11 +293,10 @@ with(zui_create(window_get_width()*.8, window_get_height()/2 - 60, objUIWindow))
     {
         caption = "Character Tags";
     }
-    with(zui_create(0,64,oUIListBox))
+    with(zui_create(0,64,objUIListBox))
     {
         zui_set_anchor(0,0);
         zui_set_size(200,330-104);
-        click_mode = 0;
         callback = charedit_ui;
         draw_callback = tag_select_draw_ui;
         other.listID = id;
@@ -307,7 +306,7 @@ with(zui_create(window_get_width()*.8, window_get_height()/2 - 60, objUIWindow))
         {
             selected[i] = 1;
         }
-        with(zui_create(0,0,oUIListBoxScroll)){}
+        with(zui_create(0,0,objUIListBoxScroll)){}
     }
     with (zui_create(5, 34, objUIField)) 
     {
@@ -346,23 +345,79 @@ with(zui_create(window_get_width()*.8, window_get_height()/2 - 60, objUIWindow))
     }
 }
 
-/*
-with(zui_create(window_get_width()*.6, window_get_height()/2 + 184, objUIWindow))
+with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, objUIWindow))
 {
-    zui_set_size(390, 144);
-    wID = "Phrase Editor";
+    zui_set_size(800, 240);
+    wID = "Update Editor";
     callback = charedit_ui;
-    text = "NO CATCHPHRASE";
     with(zui_create(0, 0, objUIWindowCaption))
     {
-        caption = "Phrase Editor";
+        caption = "Update Text Editor";
     }
-    with (zui_create(__width * .5, __height - 36, objUIButton)) 
+    with(zui_create(10,75,objUIListBox))
     {
-        zui_set_anchor(.5,0);
-        zui_set_size(240, 30);
-        caption = "Change Catchphrase";
+        zui_set_anchor(0,0);
+        zui_set_size(780,115);
         callback = charedit_ui;
-        bID = 10;
+        draw_callback = tag_select_draw_ui;
+        listID = 2;
+            
+        with(zui_create(0,0,objUIListBoxScroll)){}
+    }
+    with (zui_create(10, 35, objUIButton)) 
+    {                                           
+        zui_set_anchor(0,0);
+        zui_set_size(30, 30);
+        caption = "<";
+        callback = charedit_ui;
+        bID = 13;
+    }
+    with(zui_create(400, 35, objUILabel))
+    {
+        caption = oCharedit.sectionName[13];
+        halign = fa_center;
+        valign = fa_top;
+        lID = 7;
+    }
+    with(zui_create(400, 50, objUILabel))
+    {
+        caption = "(One fighter)";
+        halign = fa_center;
+        valign = fa_top;
+        lID = 8;
+    }
+    with (zui_create(760, 35, objUIButton)) 
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(30, 30);
+        caption = ">";
+        callback = charedit_ui;
+        bID = 14;
+    }
+    with(zui_create(10, 206, objUIField))
+    {
+        zui_set_anchor(0,0);
+        width = 610;
+        zui_set_size(width,18);
+        callback = charedit_ui;
+        maxLength = string_width("Vermin Supreme attempts to climb one of the arena barriers, but loses his footing and falls to a painful end.");
+        fID = 3;
+    }
+    with(zui_create(630,200, objUIButton)) 
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(30,30);
+        caption = "+";
+        callback = charedit_ui;
+        bID = 15;
+    }
+    with(zui_create(690,200, objUIButton)) 
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(100,30);
+        caption = "Delete Update";
+        callback = charedit_ui;
+        type = 2;
+        bID = 16;
     }
 }

@@ -1,4 +1,4 @@
-///getTextEvent(state,ID1,ID2,...)
+///getTextEvent(state,ID1,ID2,...);
 event = argument0;
 ID = argument1;
 

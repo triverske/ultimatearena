@@ -74,7 +74,7 @@ for(i = 0;i < array_length_1d(defaultC);i++)
     if(!directory_exists(working_directory + "characters\" + defaultC[i]))
     {   
         directory_create(working_directory + "characters\" + defaultC[i]);
-        show_debug_message("Created Directory characters\" + defaultC[i]);
+        //show_debug_message("Created Directory characters\" + defaultC[i]);
         ini_open(working_directory + "characters\" + defaultC[i] + "\" + defaultC[i] + ".ini");
         ini_write_string("character","name",defaultC[i]);
         ini_write_string("character","image",defaultC[i]+".png");

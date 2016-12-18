@@ -1,4 +1,4 @@
-///getText(state,ID1,ID2,...)
+///getText(state,ID1);
 state = argument0;
 ID = argument1;
 
