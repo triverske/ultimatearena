@@ -3,11 +3,11 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="17" name="datafiles">
+  <datafiles number="19" name="datafiles">
     <datafile>
-      <name>text.ini</name>
+      <name>DefaultText.ini</name>
       <exists>-1</exists>
-      <size>2615</size>
+      <size>12338</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -19,7 +19,7 @@
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
-      <filename>text.ini</filename>
+      <filename>DefaultText.ini</filename>
     </datafile>
     <datafile>
       <name>DefaultMap1.ini</name>
@@ -200,10 +200,11 @@
       <script>scripts\ui_lerp_filter.gml</script>
       <script>scripts\ui_draw_sprite_panel.gml</script>
       <script>scripts\ui_resume.gml</script>
-      <script>scripts\ui_popup_close.gml</script>
       <script>scripts\ui_exit.gml</script>
       <script>scripts\ui_show_popup.gml</script>
+      <script>scripts\ui_show_popup_textedit.gml</script>
       <script>scripts\ui_show_popup_credits.gml</script>
+      <script>scripts\ui_popup_close.gml</script>
       <script>scripts\ui_show_pause.gml</script>
       <script>scripts\ui_save.gml</script>
       <script>scripts\zui_draw.gml</script>
@@ -254,12 +255,14 @@
       <script>scripts\charedit_ui.gml</script>
       <script>scripts\eventedit_ui.gml</script>
       <script>scripts\mapedit_ui.gml</script>
+      <script>scripts\textedit_ui.gml</script>
       <scripts name="windows">
         <script>scripts\create_window_map.gml</script>
         <script>scripts\create_window_updates.gml</script>
         <script>scripts\create_window_charedit.gml</script>
         <script>scripts\create_window_eventedit.gml</script>
         <script>scripts\create_window_mapedit.gml</script>
+        <script>scripts\create_window_textedit.gml</script>
         <script>scripts\create_window_fighterlist.gml</script>
         <script>scripts\create_window_fighter.gml</script>
         <script>scripts\create_window_sandbox.gml</script>
@@ -281,6 +284,8 @@
     <script>scripts\initialize_events.gml</script>
     <script>scripts\initialize_maps.gml</script>
     <script>scripts\initialize_workshop.gml</script>
+    <script>scripts\initialize_texts.gml</script>
+    <script>scripts\combine_texts.gml</script>
     <script>scripts\draw_hover_stats.gml</script>
     <script>scripts\delete_tag.gml</script>
     <script>scripts\string_to_color.gml</script>
@@ -304,6 +309,9 @@
     <script>scripts\save_map.gml</script>
     <script>scripts\load_map.gml</script>
     <script>scripts\draw_circle_center.gml</script>
+    <script>scripts\array_from_update_file.gml</script>
+    <script>scripts\array_from_section.gml</script>
+    <script>scripts\array_to_section.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -320,6 +328,7 @@
       <object>objects\oCharedit</object>
       <object>objects\oEventedit</object>
       <object>objects\oMapedit</object>
+      <object>objects\oTextedit</object>
       <object>objects\oTwitchCharselect</object>
       <object>objects\oTwitchCharbox</object>
       <object>objects\oTwitchCharbox2</object>
@@ -363,8 +372,8 @@
       <object>objects\objZUIDummy</object>
       <object>objects\objUIWindow</object>
       <object>objects\objUIButton</object>
-      <object>objects\oUIListBoxScroll</object>
-      <object>objects\oUIListBox</object>
+      <object>objects\objUIListBoxScroll</object>
+      <object>objects\objUIListBox</object>
       <object>objects\oUIImageButton</object>
       <object>objects\objUISlider</object>
       <object>objects\oUIExitButton</object>
@@ -384,6 +393,7 @@
     <room>rooms\rm_charedit</room>
     <room>rooms\rm_eventedit</room>
     <room>rooms\rm_mapedit</room>
+    <room>rooms\rm_textedit</room>
     <room>rooms\rm_charselect</room>
     <room>rooms\rm_twitchCharselect</room>
     <room>rooms\rm_twitchWinroom</room>

@@ -20,6 +20,7 @@ with (objZUIMain) {
    zui_set_size(96, 28);
    caption = "OK";
    callback = ui_popup_close;
+   bID = 0;
   }
  }
 }

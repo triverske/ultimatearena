@@ -43,7 +43,7 @@ with (objUIButton)
         {
             game_end();
         }
-        else if (bID == 4)
+        else if (bID == 4)//Twitch
         {
             if(global.fighters > 60)
             {
@@ -124,7 +124,7 @@ with (objUIButton)
             if(file != "")
                 load_game(file);
         }
-        else if (bID == 7) // Edit Characters
+        else if (bID == 7) // Edit Events
         {
             var c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_eventedit;
@@ -190,6 +190,11 @@ with (objUIButton)
         else if(bID == 15){//Map Editor
             var c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_mapedit;
+            global.GAMETYPE = 0;
+        }
+        else if(bID == 16){//Update Editor
+            var c = instance_create(0,0,oRoomTransition);
+            c.gotoroom = rm_textedit;
             global.GAMETYPE = 0;
         }
     }

@@ -1,4 +1,7 @@
 ///createUpdateM(text,ID1,ID2,ID3,ID4,Dead)
+if(argument0 == "ERROR" || argument0 == "")
+    exit;
+
 global.update_count++;
 
 if (argument5 > 0 && global.deadUpdates)

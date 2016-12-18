@@ -32,14 +32,14 @@ with (objUIButton)
                         caption = "Search By Tag";
                         draggable = 1;
                     }
-                    with(zui_create(0,24,oUIListBox))
+                    with(zui_create(0,24,objUIListBox))
                     {
                         zui_set_anchor(0,0);
                         zui_set_size(160,200);
                         callback = tag_ui;
                         initialize_listbox(global.TAGS);
                 
-                        with(zui_create(0,0,oUIListBoxScroll)){} 
+                        with(zui_create(0,0,objUIListBoxScroll)){} 
                     }
                     zui_create(0,0,oUIExitButton,-1);
                 }
@@ -130,7 +130,7 @@ with (objUIButton)
         }
         else if(bID == 11) //random 100
         {
-            with (oUIListBox)
+            with (objUIListBox)
             {
                 var t = 0;
                 if(length < 250)
@@ -181,12 +181,12 @@ with (objUIButton)
                             caption = "Select Map";
                             draggable = 1;
                         }
-                        with(zui_create(0,24,oUIListBox)){
+                        with(zui_create(0,24,objUIListBox)){
                             zui_set_anchor(0,0);
                             zui_set_size(160,200);
                             callback = map_ui;
                             initialize_listbox(global.MAPS,0,global.MAP_COUNT-1);
-                            with(zui_create(0,0,oUIListBoxScroll)){} 
+                            with(zui_create(0,0,objUIListBoxScroll)){} 
                         }
                         zui_create(0,0,oUIExitButton,-1);
                     }
@@ -246,7 +246,7 @@ with (objUIWindow)
     }
 }
 
-with (oUIListBox)
+with (objUIListBox)
 {
     if (argument0 == id )
     {

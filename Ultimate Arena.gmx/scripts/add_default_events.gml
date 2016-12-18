@@ -1,3 +1,5 @@
+var defaultE;
+
 defaultE[0,0] = "Cats";
 defaultE[0,1] = "Rabid cats begin swarming the fighters from all sides";
 defaultE[0,2] = 10;

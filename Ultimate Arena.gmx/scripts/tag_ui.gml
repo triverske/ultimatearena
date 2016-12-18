@@ -1,6 +1,6 @@
 ///tag_ui(id)
 
-with (oUIListBox)
+with (objUIListBox)
 {
 if (argument0 == id )
 {
@@ -16,7 +16,7 @@ with(zui_create(445,348,objUIWindow,-1))
         caption = "Tag: " + other.tagname;
         draggable = 1;
     }
-    with(zui_create(0,24,oUIListBox))
+    with(zui_create(0,24,objUIListBox))
     {
         draw_callback = tag_draw_ui;
         callback = selection_ui;
@@ -34,7 +34,7 @@ with(zui_create(445,348,objUIWindow,-1))
             selected[i] = global.select_list.selected[list[i]];
         }
         other.listID = id;
-        with(zui_create(0,0,oUIListBoxScroll)){} 
+        with(zui_create(0,0,objUIListBoxScroll)){} 
     }
     zui_create(0,0,oUIExitButton,-1);
     with (zui_create(5, __height - 35, objUIButton)) 

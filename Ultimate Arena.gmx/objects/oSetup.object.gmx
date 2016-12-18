@@ -60,7 +60,7 @@ if(directory_exists(working_directory + "characters"))
     var f = file_find_first(working_directory + "characters\*.ini", 0);
     if(f != "")
     {
-        show_debug_message(working_directory + "characters\" + f);
+        //show_debug_message(working_directory + "characters\" + f);
         var a = file_text_open_read(working_directory + "characters\" + f)
         var s = 0;
         var z = 0;
@@ -100,7 +100,7 @@ if(directory_exists(working_directory + "characters"))
     var f = file_find_next();
     while(f != "")
     {
-        show_debug_message(working_directory + "characters\" + f);
+        //show_debug_message(working_directory + "characters\" + f);
         var a = file_text_open_read(working_directory + "characters\" + f)
         var s = 0;
         var z = 0;
@@ -153,7 +153,7 @@ if(directory_exists(working_directory + "events"))
     var f = file_find_first(working_directory + "events\*.ini", 0);
     if(f != "")
     {
-        show_debug_message(working_directory + "events\" + f);
+        //show_debug_message(working_directory + "events\" + f);
         var a = file_text_open_read(working_directory + "events\" + f)
         var s = 0;
         var z = 0;
@@ -184,7 +184,7 @@ if(directory_exists(working_directory + "events"))
     var f = file_find_next();
     while(f != "")
     {
-        show_debug_message(working_directory + "events\" + f);
+        //show_debug_message(working_directory + "events\" + f);
         var a = file_text_open_read(working_directory + "events\" + f)
         var s = 0;
         var z = 0;
@@ -232,6 +232,16 @@ else
     directory_create("maps");
     add_default_maps();
     initialize_maps();
+}
+
+if(directory_exists(working_directory + "texts"))
+{
+    initialize_texts();
+}
+else
+{
+    directory_create("texts");
+    initialize_texts();
 }
 
 randomize();
@@ -300,10 +310,10 @@ if(keyboard_check(vk_tab))
     window_set_position(mx,my);
 }
  
-if(keyboard_check_pressed(vk_space))
+/*if(keyboard_check_pressed(vk_space))
 {
     show_debug_message(string(random_get_seed()));
-}
+}*/
 
 if(mouse_wheel_down())
 {
@@ -564,6 +574,30 @@ else
 
 
 display_set_gui_size(global.WSCALE,global.HSCALE);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(file_exists("text.ini"))
+    file_delete("text.ini");
 </string>
           </argument>
         </arguments>

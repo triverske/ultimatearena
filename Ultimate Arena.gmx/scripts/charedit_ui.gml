@@ -1,5 +1,5 @@
 ///charedit_ui(id)
-with(oUIListBox)
+with(objUIListBox)
 {
     if(argument0 == id)
     {
@@ -22,7 +22,7 @@ with(oUIListBox)
                 global.editStats[3] = min(10,ini_read_real("character","skill",5));
                 global.editStats[4] = min(10,ini_read_real("character","luck",5));
                 var gen = ini_read_real("character","gender",0)
-                var s1 = ini_read_string("think","s1","");
+                //var s1 = ini_read_string("think","s1","");
                 global.creator = ini_read_real("character","creator",-1);
                 global.charVersion = ini_read_real("character","version",1);
                 global.workshopID = ini_read_real("character","workshopID",-1);
@@ -32,8 +32,10 @@ with(oUIListBox)
                 {
                     if(fID == 0)
                         content = global.cNAME[other.sID];
-                    if(fID == 1)
-                        content = s1;
+                    //else if(fID == 1)
+                        //content = s1;
+                    else if(fID == 3)
+                        content = "";
                 }
                 
                 with(objUICheckbox)
@@ -75,22 +77,31 @@ with(oUIListBox)
                         }
                     }
                 }
+                with(oCharedit){
+                    array_from_update_file(working_directory + "characters\" + global.fNAME[other.sID]);
+                    array_from_section();
+                }
                 var ts = 0;
-                with(oUIListBox)
+                with(objUIListBox)
                 {
-                if(listID == 1)
-                {
-                    for(var i=0; i<global.TAG_COUNT; i++){
-                        selected[i] = 1;
-                        for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
-                            if(global.TAG_LIST[i,j] == other.sID){
-                                ts++;
-                                selected[i] = 0;
-                                break;
+                    if(listID == 1)
+                    {
+                        for(var i=0; i<global.TAG_COUNT; i++){
+                            selected[i] = 1;
+                            for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
+                                if(global.TAG_LIST[i,j] == other.sID){
+                                    ts++;
+                                    selected[i] = 0;
+                                    break;
+                                }
                             }
                         }
                     }
-                }
+                    else if(listID == 2){
+                        initialize_listbox(oCharedit.currentList);
+                        for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
+                            selected[i] = !oCharedit.toggleList[i];
+                    }
                 }
                 with(objUILabel){
                     if(lID > 0 && lID < 6)
@@ -118,6 +129,12 @@ with(oUIListBox)
                 }
             }
         }
+        else if(listID == 2){
+            if(oCharedit.currentList[sID] != ""){
+                selected[sID] = !selected[sID];
+                oCharedit.toggleList[sID] = !oCharedit.toggleList[sID];
+            }
+        }
     }
 }
 with(objUIButton)
@@ -130,7 +147,7 @@ with(objUIButton)
             c = instance_create(0,0,oRoomTransition);
             c.gotoroom = rm_title;
         }
-        if(bID == 1) // Change Image
+        else if(bID == 1) // Change Image
         {
             //var charname = keyboard_string;
             var file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
@@ -160,7 +177,7 @@ with(objUIButton)
             }
             //keyboard_string = charname;
         }
-        if(bID == 2) //Save Character
+        else if(bID == 2) //Save Character
         {
             with(objUIField)
                 if(fID == 0)
@@ -204,7 +221,7 @@ with(objUIButton)
                     global.creator = steam_get_user_account_id();
                 }
                 
-                with(objUIField)
+                /*with(objUIField)
                 {
                     if(fID == 1)
                     {
@@ -214,9 +231,23 @@ with(objUIButton)
                             ini_write_real("think","total",1);
                         }
                     }
+                }*/
+                
+                with(oCharedit){
+                    array_to_section();
+                    for(var i=0; i<55; i++){
+                        if(textList[i,0] != ""){
+                            ini_write_real(section[i],"total",string_length(textList[i,0]));
+                            ini_write_string(section[i],"toggle",textList[i,0]);
+                            for(var j=0; j<string_length(textList[i,0]); j++){
+                                ini_write_string(section[i],"s"+string(j+1),textList[i,j+1]);
+                            }
+                        }
+                    }
                 }
+                
                 var tagstring = "";
-                with(oUIListBox){
+                with(objUIListBox){
                     if(listID == 1){
                         for(var i=0; i<global.TAG_COUNT; i++){
                             if(selected[i] == 0){
@@ -236,6 +267,8 @@ with(objUIButton)
                             }
                         }
                     }
+                    else if(listID == 2)
+                        sID = -1;
                 }
                 ini_write_string("character","tags",tagstring);
                 ini_close();
@@ -303,13 +336,13 @@ with(objUIButton)
                 ui_show_popup("Please enter a name.");
             }
         }
-        if(bID == 4)//New Character
+        else if(bID == 4)//New Character
         {
             global.newImage = sFighterImage;
             keyboard_string = "";
             room_restart();
         }
-        if(bID == 5)//Delete Character
+        else if(bID == 5)//Delete Character
         {
             if(global.IDselected != -1)
             {
@@ -319,7 +352,7 @@ with(objUIButton)
                 room_restart();
             }
         }
-        if(bID == 6) //Add sound
+        else if(bID == 6) //Add sound
         {
             file = get_open_filename("Sound File|*.ogg", "");
             if(file != "")
@@ -327,7 +360,7 @@ with(objUIButton)
                 file_copy_win(file,working_directory + "characters\test.ogg");
             }
         }
-        if(bID == 7) //Increase Stat
+        else if(bID == 7) //Increase Stat
         {
             global.editStats[stat]++;
             
@@ -338,7 +371,7 @@ with(objUIButton)
                 if(lID == other.stat + 1)
                     caption = string(global.editStats[other.stat]);
         }
-        if(bID == 8) //Decrease Stat
+        else if(bID == 8) //Decrease Stat
         {
             global.editStats[stat]--;
             
@@ -349,7 +382,7 @@ with(objUIButton)
                 if(lID == other.stat + 1)
                     caption = string(global.editStats[other.stat]);
         }
-        if(bID == 9) //Fighter Color
+        else if(bID == 9) //Fighter Color
         {
             global.editColor = type;
             with(oUIImageButton)
@@ -360,13 +393,13 @@ with(objUIButton)
                     color = c_white;
             }
         }
-        if(bID == 10) //Change catchphrase
+        else if(bID == 10) //Change catchphrase
         {
             get_string_async("Enter a catchphrase","");
         }
-        if(bID == 11) //Delete Tag
+        else if(bID == 11) //Delete Tag
         {
-            with(oUIListBox)
+            with(objUIListBox)
             {
                 if(listID == 1)
                 {
@@ -385,7 +418,7 @@ with(objUIButton)
                 }
             }
         }
-        if(bID == 12) //Add Tag
+        else if(bID == 12) //Add Tag
         {
             if(global.IDselected==-1){
                 with(objUIField){
@@ -400,7 +433,7 @@ with(objUIButton)
                         }
                     }
                 }
-                with(oUIListBox){
+                with(objUIListBox){
                     if(listID == 1){
                         list[array_length_1d(list)] = oCharedit.tempTags[array_length_1d(oCharedit.tempTags)-1];
                         selected[array_length_1d(list)-1]=0;
@@ -443,7 +476,7 @@ with(objUIButton)
                     ini_write_string("character","tags",global.TAGS[global.TAG_COUNT-1]);
                 ini_close();
                 //initialize_characters();
-                with(oUIListBox){
+                with(objUIListBox){
                     if(listID == 1){
                         initialize_listbox(global.TAGS);
                         selected=0;
@@ -464,6 +497,154 @@ with(objUIButton)
                         }
                         with(__child[0])
                             sliderPos = __height/2 - 23;
+                    }
+                }
+            }
+        }
+        else if(bID == 13){ //Cycle commands left
+            with(oCharedit){
+                array_to_section();
+                
+                command--;
+                if(command < 0)
+                    command = 54;
+                    
+                array_from_section();
+                
+                with(objUIListBox){
+                    if(listID == 2){
+                        initialize_listbox(other.currentList);
+                        sID = -1;
+                        selected = 0;
+                        for(var i=array_length_1d(other.currentList)-1; i>-1; i--)
+                            selected[i] = !other.toggleList[i];
+                    }
+                }
+                
+                with(objUILabel){
+                    if(lID == 7)
+                        caption = other.sectionName[other.command];
+                    else if(lID == 8){
+                        switch(other.command){
+                            case 11: 
+                            case 15: case 16: case 17: case 18: case 19: case 20: case 21: case 22: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: 
+                            case 34: case 36: case 42: case 43: case 50: case 51: case 52: case 53: case 54:
+                                caption = "(Two fighters)"; break;
+                            default:
+                                caption = "(One fighter)"; break;
+                        }
+                    }
+                }
+            }
+            
+            keyboard_string = "";
+            with(objUIField){
+                if(fID == 3)
+                    content = "";
+            }
+        }
+        else if(bID == 14){ //Cycle commands right
+            with(oCharedit){
+                array_to_section();
+                
+                command++;
+                if(command > 54)
+                    command = 0;
+                    
+                array_from_section();
+                
+                with(objUIListBox){
+                    if(listID == 2){
+                        initialize_listbox(other.currentList);
+                        sID = -1;
+                        selected = 0;
+                        for(var i=array_length_1d(other.currentList)-1; i>-1; i--)
+                            selected[i] = !other.toggleList[i];
+                    }
+                }
+                
+                with(objUILabel){
+                    if(lID == 7)
+                        caption = other.sectionName[other.command];
+                    else if(lID == 8){
+                        switch(other.command){
+                            case 11: 
+                            case 15: case 16: case 17: case 18: case 19: case 20: case 21: case 22: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: 
+                            case 34: case 36: case 42: case 43: case 50: case 51: case 52: case 53: case 54:
+                                caption = "(Two fighters)"; break;
+                            default:
+                                caption = "(One fighter)"; break;
+                        }
+                    }
+                }
+            }
+            
+            keyboard_string = "";
+            with(objUIField){
+                if(fID == 3)
+                    content = "";
+            }
+        
+        }
+        else if(bID == 15){ //Add update
+            with(objUIField){
+                if(fID == 3){
+                    if(content != ""){
+                        if(oCharedit.currentList[0] == ""){
+                            oCharedit.currentList[0] = content;
+                            oCharedit.toggleList[0] = 1;
+                        
+                        }
+                        else{
+                            oCharedit.currentList[array_length_1d(oCharedit.currentList)] = content;
+                            oCharedit.toggleList[array_length_1d(oCharedit.toggleList)] = 1;
+                        }
+                        content = "";
+                        
+                        with(objUIListBox){
+                            if(listID == 2){
+                                initialize_listbox(oCharedit.currentList);
+                                sID = array_length_1d(oCharedit.currentList)-1;
+                                selected = 0;
+                                for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
+                                    selected[i] = !oCharedit.toggleList[i];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else if(bID == 16){ //Delete update
+            with(objUIListBox){
+                if(listID == 2){
+                    if(sID != -1){
+                        with(oCharedit){
+                            var copy1 = currentList;
+                            var copy2 = toggleList;
+                            currentList = 0;
+                            toggleList = 0;
+                            
+                            for(var i=array_length_1d(copy1)-2; i>-1; i--){
+                                if(i < other.sID){
+                                    currentList[i] = copy1[i];
+                                    toggleList[i] = copy2[i];
+                                }
+                                else{
+                                    currentList[i] = copy1[i+1];
+                                    toggleList[i] = copy2[i+1];
+                                }
+                            }
+                            
+                            if(currentList == 0){
+                                currentList[0] = "";
+                                toggleList[0] = 0;
+                            }
+                        }
+                        initialize_listbox(oCharedit.currentList);
+                        sID = -1;
+                        selected = 0;
+                        for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
+                            selected[i] = !oCharedit.toggleList[i];
                     }
                 }
             }

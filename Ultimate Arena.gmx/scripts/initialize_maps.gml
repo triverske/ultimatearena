@@ -1,5 +1,5 @@
 global.MAPS[0] = file_find_first(working_directory+"maps\*", fa_directory);
-show_debug_message(global.MAPS[0]);
+//show_debug_message(global.MAPS[0]);
 
 if(global.MAPS[0] != ""){
     var i = 0;
@@ -11,7 +11,7 @@ if(global.MAPS[0] != ""){
         while(global.MAPS[i] != "" && !file_exists(working_directory+"maps\"+global.MAPS[i]+'\'+global.MAPS[i]+'.ini')){
             global.MAPS[i] = file_find_next();
         }
-        show_debug_message(global.MAPS[i]);
+        //show_debug_message(global.MAPS[i]);
     }
     until(global.MAPS[i] == "");
     file_find_close();

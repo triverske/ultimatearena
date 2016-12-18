@@ -1,4 +1,4 @@
-///getTextM(state,ID1,ID2,...)
+///getTextM(state,ID1,ID2,...);
 var state = argument[0];
 
 ini_open("text.ini");

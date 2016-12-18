@@ -10,7 +10,7 @@ for(i=0;i<s;i++)
 {
     steam_map = ds_map_create();
     steam_ugc_get_item_install_info(steam_list[| i], steam_map); 
-    show_debug_message(steam_map [? "folder"]);
+    //show_debug_message(steam_map [? "folder"]);
     
     
     var f = file_find_first(steam_map [? "folder"] + "\*.ini", 0);
@@ -30,7 +30,7 @@ for(i=0;i<s;i++)
         
         file_find_close();
         
-        show_debug_message(game_save_id + type + "s\" + name + "\");
+        //show_debug_message(game_save_id + type + "s\" + name + "\");
         if(!directory_exists(game_save_id + type + "s\" + name + "\"))
         {
             directory_create(game_save_id + type + "s\" + name + "\");

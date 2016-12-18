@@ -49,7 +49,7 @@ with (zui_main())
             caption = "Select Characters";
         }
 
-        with(zui_create(0,24,oUIListBox))
+        with(zui_create(0,24,objUIListBox))
         {
             zui_set_anchor(0,0);
             zui_set_size(260,display_get_gui_height()-64);
@@ -64,7 +64,7 @@ with (zui_main())
             }
             
             other.listID = id;
-            with(zui_create(0,0,oUIListBoxScroll)){}
+            with(zui_create(0,0,objUIListBoxScroll)){}
         }
         
         with (zui_create(5, __height - 35, objUIButton)) 
@@ -366,7 +366,6 @@ if (regen == 2)
 var charcount = 0;
 if (startgame == 1)
 {
-    
     with (global.select_list)
     {
         for(i =0;i &lt; length;i++)
@@ -410,6 +409,7 @@ if (startgame == 1)
         ui_show_popup("Only 250 can participate in a match.");
     else
     {
+        combine_texts();
         var c = instance_create(0,0,oRoomTransition);
         c.gotoroom = rm_game;
     }

@@ -25,40 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.IDselected = -1;
-global.copyProtection = 0;
-global.newImage = sFighterImage;
-global.editColor = 0;
-
-global.editColors[0,0] = 255;
-global.editColors[0,1] = 255;
-global.editColors[0,2] = 255;
-
-global.editColors[1,0] = 255;
-global.editColors[1,1] = 64;
-global.editColors[1,2] = 64;
-
-global.editColors[2,0] = 255;
-global.editColors[2,1] = 175;
-global.editColors[2,2] = 64;
-
-global.editColors[3,0] = 255;
-global.editColors[3,1] = 255;
-global.editColors[3,2] = 64;
-
-global.editColors[4,0] = 64;
-global.editColors[4,1] = 255;
-global.editColors[4,2] = 64;
-
-global.editColors[5,0] = 0;
-global.editColors[5,1] = 192;
-global.editColors[5,2] = 192;
-
-global.editColors[6,0] = 0;
-global.editColors[6,1] = 64;
-global.editColors[6,2] = 255;
-
-section[54] = "";
+            <string>section[54] = "";
 section[0] = "eat";
 section[1] = "drink";
 section[2] = "bathe";
@@ -172,72 +139,73 @@ sectionName[52] = "ATTACK STEEL SPEAR";
 sectionName[53] = "ATTACK WOODEN BOW";
 sectionName[54] = "ATTACK STEEL BOW";
 
-command = 13;
+global.IDselected = 0;
+global.copyProtection = 0;
+
+command = 0;
 textList = 0;
 currentList = 0;
 toggleList = 0;
 
-tempTags = 0;
-for(i=0;i&lt;5;i++)
-    global.editStats[i] = 5;
-    
+array_from_update_file("DefaultText.ini");
+array_from_section();
+
 with(zui_main())
 {
     with(zui_create(0, 0, objUIWindow))
     {
-        zui_set_anchor(0, 0);
+        zui_set_anchor(0,0);
         zui_set_size(260, window_get_height());
-        zui_set_position(0, 0);
-        wID = "Character List";
+        wID = "Update List";
         with(zui_create(0, 0, objUIWindowCaption))
-            caption = "Characters (Click to edit)";
+            caption = "Update Files (Toggle active)";
             
         with(zui_create(0, 24, objUIListBox))
         {
-            zui_set_anchor(0, 0);
+            zui_set_anchor(0,0);
             zui_set_size(260, window_get_height()-64);
-            callback = charedit_ui;
+            callback = textedit_ui;
+            draw_callback = tag_select_draw_ui;
             listID = 0;
-            initialize_listbox(global.cNAME);
+            initialize_listbox(global.TEXT);
+            sID = 0;
+            for(var i=length-1;i&gt;=0; i--)
+            {
+                if(global.TEXTTOGGLE[i])
+                    selected[i] = 0;
+                else
+                    selected[i] = 1;
+            }
             with(zui_create(0, 0, objUIListBoxScroll)){}
         }
-        with (zui_create(5, __height - 35, objUIButton)) 
+        with(zui_create(5, __height - 35, objUIButton))
         {
             zui_set_anchor(0,0);
-            zui_set_size(120, 30);
-            caption = "Delete Character";
-            callback = charedit_ui;
-            bID = 5;
+            zui_set_size(140, 30);
+            caption = "Delete Update File";
+            callback = textedit_ui;
             type = 2;
+            bID = 1;
         }
         
-        with (zui_create(__width - 129, __height - 35, objUIButton)) 
+        with(zui_create(__width - 109, __height - 35, objUIButton)) 
         {
             zui_set_anchor(0,0);
-            zui_set_size(124, 30);
+            zui_set_size(104, 30);
             caption = "Go Back";
-            callback = charedit_ui;
+            callback = textedit_ui;
             bID = 0;
         }
         
     }
-    create_window_charedit();
-    
-}
-
-with(oUIImageButton)
-{
-    if(global.editColor != type)
-        color = c_gray;
-    else
-        color = c_white;
+    create_window_textedit();
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="63">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -254,42 +222,26 @@ with(oUIImageButton)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (ds_map_find_value(async_load, "status"))
-{
-    if (ds_map_find_value(async_load, "result") != "")
-    {
-        global.TAGS[global.TAG_COUNT]=ds_map_find_value(async_load, "result");
-        global.TAG_LIST[global.TAG_COUNT,0] = global.IDselected;
-        global.TAG_COUNT++;
-        ini_open(working_directory+"characters\"+global.fNAME[global.IDselected]);
-        var prevtag = ini_read_string("character","tags","");
-        if(prevtag!= "")
-            ini_write_string("character","tags",prevtag+","+global.TAGS[global.TAG_COUNT-1]);
-        else
-            ini_write_string("character","tags",global.TAGS[global.TAG_COUNT-1]);
-        ini_close();
-        initialize_characters();
-        with(objUIListBox){
-            if(listID == 1){
-                initialize_listbox(global.TAGS);
-                selected=0;
-                for(var i=0; i&lt;global.TAG_COUNT; i++){
-                    selected[i] = 1;
-                    for(var j=0; j&lt;array_length_2d(global.TAG_LIST,i); j++){
-                        if(global.TAG_LIST[i,j] == global.IDselected){
-                            selected[i] = 0;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        /*with(objUIWindow)
-            if(wID = "Phrase Editor")
-                text = keyboard_string+": '" + ds_map_find_value(async_load, "result") + "'";*/
+            <string>if(global.IDselected == 0){
+    with(objUIButton){
+        if(bID == 1 || bID == 4 || bID == 5)
+            zui_set_visible(0);
+    }
+    with(objUIField){
+        if(fID == 0)
+            zui_set_visible(0);
     }
 }
-
+else{
+    with(objUIButton){
+        if(bID == 1 || bID == 4 || bID == 5)
+            zui_set_visible(1);
+    }
+    with(objUIField){
+        if(fID == 0)
+            zui_set_visible(1);
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -312,7 +264,7 @@ with(oUIImageButton)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(font0);
+            <string>/*draw_set_font(font0);
 draw_set_color(c_white);
 draw_set_valign(fa_top);
 draw_set_halign(fa_left);

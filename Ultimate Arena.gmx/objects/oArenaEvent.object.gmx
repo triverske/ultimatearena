@@ -113,7 +113,7 @@ radius1 = 0;
             {
                 with(c)
                 {
-                    global.deathCause[fighterID] = "Death by Arena Event";
+                    global.deathCause[fighterID] = "Death by arena event";
                     drop_items();
                     instance_destroy();
                 }
