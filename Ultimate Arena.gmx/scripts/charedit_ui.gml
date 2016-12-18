@@ -82,27 +82,27 @@ with(objUIListBox)
                     array_from_section();
                 }
                 var ts = 0;
-                with(objUIListBox)
+                with(oUIListBox)
                 {
-                    if(listID == 1)
-                    {
-                        for(var i=0; i<global.TAG_COUNT; i++){
-                            selected[i] = 1;
-                            for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
-                                if(global.TAG_LIST[i,j] == other.sID){
-                                    ts++;
-                                    selected[i] = 0;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    else if(listID == 2){
-                        initialize_listbox(oCharedit.currentList);
-                        for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
-                            selected[i] = !oCharedit.toggleList[i];
-                    }
-                }
+					if(listID == 1)
+					{
+						for(var i=0; i<global.TAG_COUNT; i++){
+							selected[i] = 1;
+							for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
+								if(global.TAG_LIST[i,j] == other.sID){
+									ts++;
+									selected[i] = 0;
+									break;
+								}
+							}
+						}
+					}
+					else if(listID == 2){
+						initialize_listbox(oCharedit.currentList);
+						for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
+							selected[i] = !oCharedit.toggleList[i];
+					}
+				}
                 with(objUILabel){
                     if(lID > 0 && lID < 6)
                         caption = string(global.editStats[lID - 1]);
