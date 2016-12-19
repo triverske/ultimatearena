@@ -160,6 +160,8 @@
     <sprite>sprites\spr_breakingUpdate</sprite>
     <sprite>sprites\sBlankMap</sprite>
     <sprite>sprites\sArenaEvent</sprite>
+    <sprite>sprites\sUpdateFile</sprite>
+    <sprite>sprites\spr_snow</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>

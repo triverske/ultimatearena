@@ -242,12 +242,63 @@ with(objUIButton){
                             }
                         }
                     }
+                    ini_write_real("text","version",global.charVersion + 1);
+                    ini_write_real("text","creator",steam_get_user_account_id());
                     ini_close();
+                    global.charname = global.TEXT[global.IDselected]; 
+                    var ename = global.TEXT[global.IDselected];
                 }
                 with(objUIListBox){
                     if(listID == 1)
                         sID = -1;
                 }
+                
+                if(global.workshop)
+                {
+                    if(global.workshopID == -1)
+                    {
+                        with(oSetup)
+                        {
+                            var app_id = steam_get_app_id(); 
+                            new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
+                            
+                            workshopName = ename;
+                            workshopType = 0;
+                        }
+                    }
+                    else
+                    {
+                        if(global.uploadImage == -1)
+                        {
+                            tempSprite = sprite_duplicate(sUpdateFile);
+                            sprite_save(tempSprite,0,working_directory + "texts\" + ename+ "\" + ename + ".png");
+                            sprite_delete(tempSprite);
+                        }
+                        else
+                        {
+                            sprite_save(global.uploadImage,0,working_directory + "texts\" + ename+ "\" + ename + ".png");
+                        }
+                    
+                        var workshopName = ename;
+                        
+                        var app_id = steam_get_app_id();
+                        updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+                        
+                        steam_ugc_set_item_title(updateHandle, workshopName );
+                        steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " update file to Ultimate Arena");
+                        steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+                        
+                        var tagArray;
+                        tagArray[0] = "Update";
+                        
+                        steam_ugc_set_item_tags(updateHandle, tagArray);
+                        steam_ugc_set_item_preview(updateHandle, working_directory + "texts\" + workshopName + "\" + workshopName + ".png");
+                        steam_ugc_set_item_content(updateHandle, working_directory + "texts\" + workshopName + "\");
+                        
+                        requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+                    }
+                }
+                
                 ui_show_popup("Successfully saved");
             }
         }
@@ -263,6 +314,7 @@ with(objUIButton){
                     //directory_create(working_directory+"texts\"+nam+"\");
                     ini_open(working_directory+"texts\"+nam+"\"+nam+".ini");
                     ini_write_real("toggle","toggle",1);
+                    ini_write_string("text","name",nam);
                     ini_close();
                     
                     keyboard_string = "";
@@ -306,4 +358,10 @@ with(objUIButton){
             }
         }
     }
+}
+
+with(objUICheckbox)
+{
+    if(bID == 1)
+        global.workshop = value;
 }

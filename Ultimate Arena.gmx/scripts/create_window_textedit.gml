@@ -1,6 +1,6 @@
 with(zui_create((window_get_width()-260)*.5+260, window_get_height()/2, objUIWindow))
 {
-    zui_set_size(800, 600);
+    zui_set_size(800, 620);
     wID = "Editor Window";
     
     with(zui_create(0, 0, objUIWindowCaption))
@@ -98,6 +98,21 @@ with(zui_create((window_get_width()-260)*.5+260, window_get_height()/2, objUIWin
         caption = "$1 is used for a fighter's name, %1 for he/she, @1 for his/her, *1 for him/her.#Use $2, %2, @2, and *2 when a second fighter is involved in an update."
         halign = fa_left;
         valign = fa_bottom;
+    }
+    with(zui_create(550, __height - 14, objUICheckbox))
+    {
+        type = 0;
+        callback = textedit_ui;
+        cID = 0;
+        value = 0;
+        bID = 1;
+        __visible = 0;
+    }
+    with(zui_create(585, __height - 14, objUILabel))
+    {
+        caption = "Add to Steam Workshop";
+        halign = fa_left;
+        __visible = 0;
     }
 }
 
