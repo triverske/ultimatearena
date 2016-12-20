@@ -2,46 +2,42 @@
 with(objUIListBox){
     if(argument0 == id){
         if(listID == 0){
-            if(global.IDselected == sID){
-                selected[sID] = !selected[sID];
-                global.TEXTTOGGLE[sID] = !selected[sID];
+            global.IDselected = sID;
+            global.TEXTTOGGLE[sID] = !selected[sID];
+            
+            with(oTextedit){
+                if(other.sID == 0)
+                    array_from_update_file("DefaultText.ini");
+                else
+                    array_from_update_file(working_directory+"texts\"+global.TEXT[other.sID]+"\"+global.TEXT[other.sID]+".ini");
+                array_from_section();
             }
-            else{
-                global.IDselected = sID;
-                
-                with(oTextedit){
-                    if(other.sID == 0)
-                        array_from_update_file("DefaultText.ini");
-                    else
-                        array_from_update_file(working_directory+"texts\"+global.TEXT[other.sID]+"\"+global.TEXT[other.sID]+".ini");
-                    array_from_section();
-                }
-                
-                with(objUIWindowCaption){
-                    if(__parent != other.__parent)
-                        caption = global.TEXT[other.sID];
-                }
-                
-                with(objUIListBox){
-                    if(listID == 1){
-                        initialize_listbox(oTextedit.currentList);
-                        sID = -1;
-                        selected = 0;
-                        for(var i=array_length_1d(oTextedit.currentList)-1; i>-1; i--)
-                            selected[i] = !oTextedit.toggleList[i];
-                    }
-                }
-                
-                keyboard_string = "";
-                with(objUIField)
-                    content = "";
+            
+            with(objUIWindowCaption){
+                if(__parent != other.__parent)
+                    caption = global.TEXT[other.sID];
             }
+            
+            with(objUIListBox){
+                if(listID == 1){
+                    initialize_listbox(oTextedit.currentList);
+                    sID = -1;
+                    selected = 0;
+                    for(var i=array_length_1d(oTextedit.currentList)-1; i>-1; i--)
+                        selected[i] = !oTextedit.toggleList[i];
+                }
+            }
+            
+            keyboard_string = "";
+            with(objUIField)
+                content = "";
         }
         else if(listID == 1){
-            if(oTextedit.currentList[sID] != ""){
-                selected[sID] = !selected[sID];
-                oTextedit.toggleList[sID] = !oTextedit.toggleList[sID];
-            }
+            if(oTextedit.currentList[sID] != "")
+                oTextedit.toggleList[sID] = !selected[sID];
+            else
+                selected[sID] = 1;
+                
         }
     }
 }
@@ -199,7 +195,7 @@ with(objUIButton){
                                     }
                                 }
                                 
-                                if(currentList == 0){
+                                if(!is_array(currentList)){
                                     currentList[0] = "";
                                     toggleList[0] = 0;
                                 }
@@ -242,12 +238,63 @@ with(objUIButton){
                             }
                         }
                     }
+                    ini_write_real("text","version",global.charVersion + 1);
+                    ini_write_real("text","creator",steam_get_user_account_id());
                     ini_close();
+                    global.charname = global.TEXT[global.IDselected]; 
+                    var ename = global.TEXT[global.IDselected];
                 }
                 with(objUIListBox){
                     if(listID == 1)
                         sID = -1;
                 }
+                
+                if(global.workshop)
+                {
+                    if(global.workshopID == -1)
+                    {
+                        with(oSetup)
+                        {
+                            var app_id = steam_get_app_id(); 
+                            new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
+                            
+                            workshopName = ename;
+                            workshopType = 0;
+                        }
+                    }
+                    else
+                    {
+                        if(global.uploadImage == -1)
+                        {
+                            tempSprite = sprite_duplicate(sUpdateFile);
+                            sprite_save(tempSprite,0,working_directory + "texts\" + ename+ "\" + ename + ".png");
+                            sprite_delete(tempSprite);
+                        }
+                        else
+                        {
+                            sprite_save(global.uploadImage,0,working_directory + "texts\" + ename+ "\" + ename + ".png");
+                        }
+                    
+                        var workshopName = ename;
+                        
+                        var app_id = steam_get_app_id();
+                        updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+                        
+                        steam_ugc_set_item_title(updateHandle, workshopName );
+                        steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " update file to Ultimate Arena");
+                        steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+                        
+                        var tagArray;
+                        tagArray[0] = "Update";
+                        
+                        steam_ugc_set_item_tags(updateHandle, tagArray);
+                        steam_ugc_set_item_preview(updateHandle, working_directory + "texts\" + workshopName + "\" + workshopName + ".png");
+                        steam_ugc_set_item_content(updateHandle, working_directory + "texts\" + workshopName + "\");
+                        
+                        requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+                    }
+                }
+                
                 ui_show_popup("Successfully saved");
             }
         }
@@ -263,6 +310,7 @@ with(objUIButton){
                     //directory_create(working_directory+"texts\"+nam+"\");
                     ini_open(working_directory+"texts\"+nam+"\"+nam+".ini");
                     ini_write_real("toggle","toggle",1);
+                    ini_write_string("text","name",nam);
                     ini_close();
                     
                     keyboard_string = "";
@@ -306,4 +354,10 @@ with(objUIButton){
             }
         }
     }
+}
+
+with(objUICheckbox)
+{
+    if(bID == 1)
+        global.workshop = value;
 }

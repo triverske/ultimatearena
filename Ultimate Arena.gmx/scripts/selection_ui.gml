@@ -42,11 +42,6 @@ with (objUIListBox)
 {
     if (argument0 == id)
     {
-        if (selected[sID] == 0)
-            selected[sID] = 1;
-        else
-            selected[sID] = 0;
-            
         global.select_list.selected[list[sID]] = selected[sID];
     }
 }

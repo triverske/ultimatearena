@@ -68,12 +68,14 @@ var t = ini_read_string("defaulttext","toggle","ERROR");
 if(t != "ERROR"){
     ini_close();
     var a = 0;
+    var b = 0;
     var k = "";
     ini_open("DefaultText.ini");
     for(var i=0; i<55; i++){
         a = ini_read_real(section[i],"total",0);
-        for(var j=0; j<a; j++){
+        for(var j=1; j<a+1; j++){
             if(string_char_at(t,1) == "1"){
+                b++;
                 k = ini_read_string(section[i],"s"+string(j),"ERROR");
                 ini_close();
                 ini_open("text.ini");
@@ -83,6 +85,12 @@ if(t != "ERROR"){
             }
             t = string_delete(t,1,1);
         }
+        ini_close();
+        ini_open("text.ini");
+        ini_write_real(section[i],"total",b);
+        ini_close();
+        ini_open("DefaultText.ini");
+        b=0;
     }
 }
 else{

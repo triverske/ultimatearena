@@ -26,6 +26,16 @@ if(argument0 == "DefaultText.ini"){
             s = string_delete(s,1,t);
         }
     }
+    global.charVersion = 0;
+    global.workshopID = -1;
+    global.creator = ini_read_real("text","creator",-1);
+    with(objUICheckbox)
+            if(bID == 1)
+                __visible = 0;
+                
+    with(objUILabel)
+        if(caption == "Add to Steam Workshop")
+            __visible = 0;
     ini_close();
 }
 else{
@@ -48,6 +58,29 @@ else{
                 textList[i,j] = ini_read_string(section[i],"s"+string(j),"ERROR");
             }
         }
+    }
+    global.charVersion = ini_read_real("text","version",1);
+    global.workshopID = ini_read_real("text","workshopID",-1);
+    global.creator = ini_read_real("text","creator",-1);
+    if(global.creator != -1 && global.creator != steam_get_user_account_id())
+    {
+        with(objUICheckbox)
+            if(bID == 1)
+                __visible = 0;
+                
+        with(objUILabel)
+            if(caption == "Add to Steam Workshop")
+                __visible = 0;
+    }
+    else
+    {
+        with(objUICheckbox)
+            if(bID == 1)
+                __visible = 1;
+                
+    with(objUILabel)
+        if(caption == "Add to Steam Workshop")
+            __visible = 1;
     }
     ini_close();
 }

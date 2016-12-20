@@ -82,27 +82,25 @@ with(objUIListBox)
                     array_from_section();
                 }
                 var ts = 0;
-                with(oUIListBox)
-                {
-					if(listID == 1)
-					{
-						for(var i=0; i<global.TAG_COUNT; i++){
-							selected[i] = 1;
-							for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
-								if(global.TAG_LIST[i,j] == other.sID){
-									ts++;
-									selected[i] = 0;
-									break;
-								}
-							}
-						}
-					}
-					else if(listID == 2){
-						initialize_listbox(oCharedit.currentList);
-						for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
-							selected[i] = !oCharedit.toggleList[i];
-					}
-				}
+                with(objUIListBox){
+                    if(listID == 1){
+                        for(var i=0; i<global.TAG_COUNT; i++){
+                            selected[i] = 1;
+                            for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
+                                if(global.TAG_LIST[i,j] == other.sID){
+                                    ts++;
+                                    selected[i] = 0;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(listID == 2){
+                        initialize_listbox(oCharedit.currentList);
+                        for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
+                            selected[i] = !oCharedit.toggleList[i];
+                    }
+                }
                 with(objUILabel){
                     if(lID > 0 && lID < 6)
                         caption = string(global.editStats[lID - 1]);
@@ -114,10 +112,6 @@ with(objUIListBox)
         else if(listID == 1)
         {
             if(sID != -1){
-                if(selected[sID] == 0)
-                    selected[sID] = 1;
-                else
-                    selected[sID] = 0;
                 var ts = 0;
                 for(var i=0; i<length; i++){
                     if(selected[i] == 0)
@@ -130,10 +124,10 @@ with(objUIListBox)
             }
         }
         else if(listID == 2){
-            if(oCharedit.currentList[sID] != ""){
-                selected[sID] = !selected[sID];
-                oCharedit.toggleList[sID] = !oCharedit.toggleList[sID];
-            }
+            if(oCharedit.currentList[sID] != "")
+                oCharedit.toggleList[sID] = !selected[sID];
+            else
+                selected[sID] = 1;
         }
     }
 }
@@ -635,7 +629,7 @@ with(objUIButton)
                                 }
                             }
                             
-                            if(currentList == 0){
+                            if(!is_array(currentList)){
                                 currentList[0] = "";
                                 toggleList[0] = 0;
                             }
