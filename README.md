@@ -4,7 +4,9 @@ A Hunger Games-like simulator game in which you throw people into an arena and w
 Steam Page
 http://store.steampowered.com/app/385240
 
+Ultimate Arena's source is free to view but we ask that you have a copy of the game if you want to use it. Please only distribute to those who own a copy of the game. For more info read our license for the full terms.
 
+If you're interested in making major adjustments/mods/changes drop us a line. We love to support our community as best as we can.
 
 A short note from the Director:
 
