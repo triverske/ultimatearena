@@ -15,6 +15,7 @@ with(zui_create((window_get_width()-260)*.5+260, window_get_height()/2, objUIWin
         draw_callback = tag_select_draw_ui;
         other.listID = id;
         listID = 1;
+        type = 1;
         initialize_listbox(oTextedit.currentList);
         for(var i=array_length_1d(oTextedit.currentList)-1; i>-1; i--)
             selected[i] = !oTextedit.toggleList[i];

@@ -38,6 +38,21 @@ if(argument0 == "DefaultText.ini"){
             __visible = 0;
     ini_close();
 }
+else if(argument0 == ""){
+    for(var i=54; i>-1; i--){
+        textList[i,0] = "";
+    }
+    global.charVersion = 1;
+    global.workshopID = -1;
+    global.creator = -1;
+    with(objUICheckbox)
+        if(bID == 1)
+            __visible = 1;
+            
+    with(objUILabel)
+        if(caption == "Add to Steam Workshop")
+            __visible = 1;
+}
 else{
     ini_open(argument0);
     for(var i=54; i>-1; i--){
@@ -78,9 +93,9 @@ else{
             if(bID == 1)
                 __visible = 1;
                 
-    with(objUILabel)
-        if(caption == "Add to Steam Workshop")
-            __visible = 1;
+        with(objUILabel)
+            if(caption == "Add to Steam Workshop")
+                __visible = 1;
     }
     ini_close();
 }

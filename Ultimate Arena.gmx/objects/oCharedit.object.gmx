@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>global.IDselected = -1;
 global.copyProtection = 0;
-global.newImage = sFighterImage;
 global.editColor = 0;
 
 global.editColors[0,0] = 255;
@@ -172,6 +171,7 @@ sectionName[52] = "ATTACK STEEL SPEAR";
 sectionName[53] = "ATTACK WOODEN BOW";
 sectionName[54] = "ATTACK STEEL BOW";
 
+newImage = sFighterImage;
 command = 13;
 textList = 0;
 currentList = 0;
@@ -180,6 +180,9 @@ toggleList = 0;
 tempTags = 0;
 for(i=0;i&lt;5;i++)
     global.editStats[i] = 5;
+    
+array_from_update_file("");
+array_from_section();
     
 with(zui_main())
 {
@@ -231,6 +234,13 @@ with(oUIImageButton)
         color = c_gray;
     else
         color = c_white;
+}
+/*
+with(objUIListBox){
+    if(listID == 0){
+        sID = 0;
+        script_execute(callback, id);
+    }
 }
 </string>
           </argument>

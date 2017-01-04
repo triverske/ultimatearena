@@ -22,6 +22,7 @@ with(zui_create(445,348,objUIWindow,-1))
         callback = selection_ui;
         zui_set_anchor(0,0);
         zui_set_size(260,356);
+        type = 1;
         var tmpArrayLength = array_length_2d(global.TAG_LIST,argument0.sID);
         show_debug_message(string(tmpArrayLength));
         var tmpArray;
