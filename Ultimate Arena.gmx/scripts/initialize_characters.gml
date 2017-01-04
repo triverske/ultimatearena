@@ -2,6 +2,7 @@ global.cNAME = 0;
 global.TAGS = 0;
 global.TAG_LIST = 0;
 global.TAG_COUNT = 0;
+global.fNAME = 0;
 
 if(is_array(global.cIMAGES)){
     for(var i=0; i<array_length_1d(global.cIMAGES); i++){
