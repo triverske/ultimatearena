@@ -201,8 +201,6 @@ with(zui_main())
     }
     create_window_textedit();
 }
-
-global.uploadImage = -1;
 </string>
           </argument>
         </arguments>

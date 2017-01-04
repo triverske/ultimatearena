@@ -12,7 +12,6 @@ with(objUIListBox)
             else
             {
                 global.IDselected = sID;
-                global.newImage = global.cIMAGES[sID];
                 oCharedit.tempTags = 0;
                 
                 ini_open(working_directory + "characters\" + global.fNAME[sID])
@@ -28,6 +27,8 @@ with(objUIListBox)
                 global.workshopID = ini_read_real("character","workshopID",-1);
                 ini_close();
                 
+                oUIImage.image = global.cIMAGES[sID]
+                    
                 with(objUIField)
                 {
                     if(fID == 0)
@@ -153,23 +154,20 @@ with(objUIButton)
                 draw_sprite_stretched(newsp,0,0,0,128,128);
                 surface_reset_target();
                 
-                global.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
+                if(oCharedit.newImage != sFighterImage)
+                    sprite_delete(oCharedit.newImage);
+                oCharedit.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
                 
                 sprite_delete(newsp);
                 surface_free(surf);
             }
-            else
-                global.newImage = sFighterImage;
-            
-            with(oUIImage)
-            {
-                if(bID == 0)
-                {
-                
-                    image = global.newImage;
-                }
+            else{
+                if(oCharedit.newImage != sFighterImage)
+                    sprite_delete(oCharedit.newImage);
+                oCharedit.newImage = sFighterImage;
             }
-            //keyboard_string = charname;
+            
+            oUIImage.image = oCharedit.newImage;
         }
         else if(bID == 2) //Save Character
         {
@@ -214,18 +212,6 @@ with(objUIButton)
                     ini_write_real("character","creator",steam_get_user_account_id());
                     global.creator = steam_get_user_account_id();
                 }
-                
-                /*with(objUIField)
-                {
-                    if(fID == 1)
-                    {
-                        if(content != "")
-                        {
-                            ini_write_string("think","s1",content);
-                            ini_write_real("think","total",1);
-                        }
-                    }
-                }*/
                 
                 with(oCharedit){
                     array_to_section();
@@ -274,16 +260,21 @@ with(objUIButton)
                     if(lID > 0 && lID < 6)
                         caption = "5";
                     
-                if(global.newImage != sFighterImage)
-                {
-                    sprite_save(global.newImage,0,working_directory + "characters\" + charname + "\" + charname + ".png");
+                if(oCharedit.newImage != sFighterImage){
+                    sprite_save(oCharedit.newImage,0,working_directory + "characters\" + charname + "\" + charname + ".png");
+                    sprite_delete(oCharedit.newImage);
+                    oCharedit.newImage = sFighterImage;
                 }
                 else
                 {
-                    //Gamemaker doesn't let you save images from the resource tree.
-                    tempSprite = sprite_duplicate(sFighterImage);
-                    sprite_save(tempSprite,0,working_directory + "characters\" + charname + "\" + charname + ".png");
-                    sprite_delete(tempSprite);
+                    if(oUIImage.image != sFighterImage)
+                        sprite_save(oUIImage.image,0,working_directory + "characters\" + charname + "\" + charname + ".png");
+                    else{
+                        //Gamemaker doesn't let you save images from the resource tree.
+                        var tempSprite = sprite_duplicate(sFighterImage);
+                        sprite_save(tempSprite,0,working_directory + "characters\" + charname + "\" + charname + ".png");
+                        sprite_delete(tempSprite);
+                    }
                 }
                 
                 if(global.workshop && !global.copyProtection)
@@ -332,7 +323,9 @@ with(objUIButton)
         }
         else if(bID == 4)//New Character
         {
-            global.newImage = sFighterImage;
+            if(oCharedit.newImage != sFighterImage)
+                sprite_delete(oCharedit.newImage);
+            oCharedit.newImage = sFighterImage;
             keyboard_string = "";
             room_restart();
         }
@@ -469,7 +462,6 @@ with(objUIButton)
                 else
                     ini_write_string("character","tags",global.TAGS[global.TAG_COUNT-1]);
                 ini_close();
-                //initialize_characters();
                 with(objUIListBox){
                     if(listID == 1){
                         initialize_listbox(global.TAGS);
@@ -645,14 +637,15 @@ with(objUIButton)
         }
     }
 }
+/*
 with(oUIImage)
 {
     if(argument0 == id)
     {
         if(global.IDselected >= 0)
-            image = global.newImage;
+            image = oCharedit.newImage;
     }
-}
+}*/
 
 with(objUICheckbox)
 {
