@@ -2,46 +2,42 @@
 with(objUIListBox){
     if(argument0 == id){
         if(listID == 0){
-            if(global.IDselected == sID){
-                selected[sID] = !selected[sID];
-                global.TEXTTOGGLE[sID] = !selected[sID];
+            global.IDselected = sID;
+            global.TEXTTOGGLE[sID] = !selected[sID];
+            
+            with(oTextedit){
+                if(other.sID == 0)
+                    array_from_update_file("DefaultText.ini");
+                else
+                    array_from_update_file(working_directory+"texts\"+global.TEXT[other.sID]+"\"+global.TEXT[other.sID]+".ini");
+                array_from_section();
             }
-            else{
-                global.IDselected = sID;
-                
-                with(oTextedit){
-                    if(other.sID == 0)
-                        array_from_update_file("DefaultText.ini");
-                    else
-                        array_from_update_file(working_directory+"texts\"+global.TEXT[other.sID]+"\"+global.TEXT[other.sID]+".ini");
-                    array_from_section();
-                }
-                
-                with(objUIWindowCaption){
-                    if(__parent != other.__parent)
-                        caption = global.TEXT[other.sID];
-                }
-                
-                with(objUIListBox){
-                    if(listID == 1){
-                        initialize_listbox(oTextedit.currentList);
-                        sID = -1;
-                        selected = 0;
-                        for(var i=array_length_1d(oTextedit.currentList)-1; i>-1; i--)
-                            selected[i] = !oTextedit.toggleList[i];
-                    }
-                }
-                
-                keyboard_string = "";
-                with(objUIField)
-                    content = "";
+            
+            with(objUIWindowCaption){
+                if(__parent != other.__parent)
+                    caption = global.TEXT[other.sID];
             }
+            
+            with(objUIListBox){
+                if(listID == 1){
+                    initialize_listbox(oTextedit.currentList);
+                    sID = -1;
+                    selected = 0;
+                    for(var i=array_length_1d(oTextedit.currentList)-1; i>-1; i--)
+                        selected[i] = !oTextedit.toggleList[i];
+                }
+            }
+            
+            keyboard_string = "";
+            with(objUIField)
+                content = "";
         }
         else if(listID == 1){
-            if(oTextedit.currentList[sID] != ""){
-                selected[sID] = !selected[sID];
-                oTextedit.toggleList[sID] = !oTextedit.toggleList[sID];
-            }
+            if(oTextedit.currentList[sID] != "")
+                oTextedit.toggleList[sID] = !selected[sID];
+            else
+                selected[sID] = 1;
+                
         }
     }
 }
@@ -199,7 +195,7 @@ with(objUIButton){
                                     }
                                 }
                                 
-                                if(currentList == 0){
+                                if(!is_array(currentList)){
                                     currentList[0] = "";
                                     toggleList[0] = 0;
                                 }
@@ -270,7 +266,7 @@ with(objUIButton){
                     {
                         if(global.uploadImage == -1)
                         {
-                            tempSprite = sprite_duplicate(sUpdateFile);
+                            var tempSprite = sprite_duplicate(sUpdateFile);
                             sprite_save(tempSprite,0,working_directory + "texts\" + ename+ "\" + ename + ".png");
                             sprite_delete(tempSprite);
                         }

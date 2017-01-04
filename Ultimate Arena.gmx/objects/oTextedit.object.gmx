@@ -166,6 +166,7 @@ with(zui_main())
             zui_set_size(260, window_get_height()-64);
             callback = textedit_ui;
             draw_callback = tag_select_draw_ui;
+            type = 1;
             listID = 0;
             initialize_listbox(global.TEXT);
             sID = 0;
@@ -200,8 +201,6 @@ with(zui_main())
     }
     create_window_textedit();
 }
-
-global.uploadImage = -1;
 </string>
           </argument>
         </arguments>

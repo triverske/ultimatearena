@@ -105,24 +105,27 @@ if (pressed) {
             <string>if(click_mode == 0)
 {
 
-if (pressed) {
+if(pressed){
 
- if (zui_get_hover()) {
- 
-    var mouseloc = global.__zui_my - __dy;
-    for(i=0;i&lt;length;i++)
-    {
-        if (ypos[i] &lt; mouseloc &amp;&amp; mouseloc &lt; ypos[i] + 16)
-        {
-            sID = i;
-            break;
+    if(zui_get_hover()){
+        var mouseloc = global.__zui_my - __dy;
+        for(i=0;i&lt;length;i++){
+            if (ypos[i] &lt;= mouseloc &amp;&amp; mouseloc &lt; ypos[i] + 16)
+            {
+                sID = i;
+                break;
+            }
+        }
+        if (callback &gt;= 0 &amp;&amp; mouseloc &lt; ypos[length-1]+16){
+            if(type == 1){
+                if(global.__zui_mx - __dx &lt;= 15){
+                    if(sID != -1)
+                        selected[sID] = !selected[sID];
+                }
+            }
+            script_execute(callback, id);
         }
     }
-    
-  if (callback &gt;= 0 &amp;&amp; mouseloc &lt; ypos[length-1]+16)
-   script_execute(callback, id);
-   
- }
 }
 }
 

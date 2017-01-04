@@ -34,7 +34,7 @@ hue = 0;
 
 image = choose(back_tile,back_tile2,back_tile3);
 
-Sname = part_system_create();
+/*Sname = part_system_create();
 particle1 = part_type_create();
 part_type_sprite(particle1,spr_snow,0,0,0);
 part_type_size(particle1,.5,1.5,0,0);
