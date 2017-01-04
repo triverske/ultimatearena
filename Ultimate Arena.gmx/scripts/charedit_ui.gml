@@ -173,15 +173,15 @@ with(objUIButton)
         {
             with(objUIField)
                 if(fID == 0)
-                    var charname = content;
+                    var name = content;
             
                     
-            if(charname != "")
+            if(name != "")
             {
-                global.charname = charname;
-                ini_open(working_directory + "characters\" + charname + "\" + charname + ".ini");
-                ini_write_string("character","name",charname);
-                ini_write_string("character","image",charname+".png");
+                global.charname = name;
+                ini_open(working_directory + "characters\" + name + "\" + name + ".ini");
+                ini_write_string("character","name",name);
+                ini_write_string("character","image",name+".png");
                 
                 ini_write_real("character","colorr",global.editColors[global.editColor,0]);
                 ini_write_real("character","colorg",global.editColors[global.editColor,1]);
@@ -261,18 +261,18 @@ with(objUIButton)
                         caption = "5";
                     
                 if(oCharedit.newImage != sFighterImage){
-                    sprite_save(oCharedit.newImage,0,working_directory + "characters\" + charname + "\" + charname + ".png");
+                    sprite_save(oCharedit.newImage,0,working_directory + "characters\" + name + "\" + name + ".png");
                     sprite_delete(oCharedit.newImage);
                     oCharedit.newImage = sFighterImage;
                 }
                 else
                 {
                     if(oUIImage.image != sFighterImage)
-                        sprite_save(oUIImage.image,0,working_directory + "characters\" + charname + "\" + charname + ".png");
+                        sprite_save(oUIImage.image,0,working_directory + "characters\" + name + "\" + name + ".png");
                     else{
                         //Gamemaker doesn't let you save images from the resource tree.
                         var tempSprite = sprite_duplicate(sFighterImage);
-                        sprite_save(tempSprite,0,working_directory + "characters\" + charname + "\" + charname + ".png");
+                        sprite_save(tempSprite,0,working_directory + "characters\" + name + "\" + name + ".png");
                         sprite_delete(tempSprite);
                     }
                 }
@@ -286,13 +286,13 @@ with(objUIButton)
                             var app_id = steam_get_app_id(); 
                             new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
                             
-                            workshopName = charname;
+                            workshopName = name;
                             workshopType = 0;
                         }
                     }
                     else
                     {
-                        var workshopName = charname;
+                        var workshopName = name;
                         
                         var app_id = steam_get_app_id();
                         updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
@@ -334,6 +334,7 @@ with(objUIButton)
             if(global.IDselected != -1)
             {
                 directory_destroy(working_directory + "characters\" + global.cNAME[global.IDselected]);
+                
                 initialize_characters();
                 keyboard_string = "";
                 room_restart();
