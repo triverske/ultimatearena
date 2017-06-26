@@ -129,6 +129,7 @@
     </sprites>
     <sprites name="In Game">
       <sprite>sprites\sFighterS</sprite>
+      <sprite>sprites\sFighterA</sprite>
       <sprite>sprites\sMine</sprite>
       <sprite>sprites\sFighter</sprite>
       <sprite>sprites\sStone</sprite>
@@ -155,6 +156,7 @@
       <sprite>sprites\sUpdateFile</sprite>
       <sprite>sprites\spr_snow</sprite>
     </sprites>
+    <sprite>sprites\sSkull</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_tile2</background>
@@ -304,9 +306,12 @@
     <script>scripts\array_from_update_file.gml</script>
     <script>scripts\array_from_section.gml</script>
     <script>scripts\array_to_section.gml</script>
+    <script>scripts\smooth_approach.gml</script>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\font0</font>
+    <font>fonts\font3</font>
     <font>fonts\font4</font>
     <font>fonts\font_board</font>
   </fonts>
@@ -392,8 +397,8 @@
     <room>rooms\rm_game</room>
   </rooms>
   <constants number="2">
-    <constant name="SW">display_get_width()</constant>
-    <constant name="SH">display_get_height()</constant>
+    <constant name="SW">floor(display_get_width() / global.gs)</constant>
+    <constant name="SH">floor(display_get_height() / global.gs)</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

@@ -48,6 +48,7 @@ global.LANDMINE_KILLS = 0;
 global.update_count = 0;
 global.kill_count = 0;
 global.TIME_DAYS = 0;
+global.gs = 2;
 
 new_item = -1;
 
@@ -276,8 +277,9 @@ ini_close();
 if(global.TWITCHENABLED)
     instance_create(0,0,oTwitchController);
 
-    
 room_goto_next();
+
+application_surface_draw_enable(0);
 </string>
           </argument>
         </arguments>
@@ -641,6 +643,30 @@ display_set_gui_size(global.WSCALE,global.HSCALE);
             <kind>1</kind>
             <string>if(file_exists("text.ini"))
     file_delete("text.ini");
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="75">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+draw_surface_stretched(application_surface,0,0,SW,SH);
 </string>
           </argument>
         </arguments>

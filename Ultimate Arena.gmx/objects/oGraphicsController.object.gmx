@@ -37,6 +37,16 @@ global.LANDMINE_KILLS = 0;
 global.DEADLOC[global.fighters,0] = 0;
 global.DEADLOC[global.fighters,1] = 0;
 
+sanityleader = -1;
+xpleader = -1;
+killleader = -1;
+
+global.log[0] = "";
+global.logi = 0;
+
+skullx = 0;
+skully = 0;
+
 instance_create(0,0,oSponsorMenu);
 instance_create(0,0,obj_hoverStats);
 draw_set_valign(fa_top);
@@ -256,42 +266,6 @@ if (keyboard_check_pressed(vk_add))
     if (global.GAME_SPEED != 0 &amp;&amp; global.GAME_SPEED &gt; 1)
         global.GAME_SPEED--;
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/*
-draw_rectangle_colour(0,0,100,499,c_0,c_0,c_0,c_0,0);
-draw_rectangle_colour(100,0,600,500,c_0,c_0,c_0,c_0,false);
-draw_rectangle_colour(600,0,950,500,c_0,c_0,c_0,c_0,false);
-draw_rectangle_colour(950,0,960,500,c_maroon,c_maroon,c_gray,c_gray,false);
-//draw_rectangle_colour(0,500,960,520,c_olive,c_olive,c_gray,c_gray,false);
-draw_rectangle_colour(0,520,960,540,c_olive,c_olive,c_gray,c_gray,false); */
-
-//draw_rectangle_colour(0,0,room_width,room_height,c_0,c_0,c_0,c_0,0);
-
-
-//draw_surface(updates,890,0);
-//draw_surface(oSideMenu.sidemenu,50,110);
-//draw_surface(oSponsorMenu.sponsormenu,750,110);
 </string>
           </argument>
         </arguments>

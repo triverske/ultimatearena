@@ -9,54 +9,42 @@ draw_background(global.bck_minimap,0,0);
 
 
 
-with (obj_deadLocation)
-{
+with(obj_deadLocation)
     draw_self();
-}
-with (oTree)
-{
+
+with(oTree)
     draw_self();
-}
-with (oMine)
-{
+
+with(oMine)
     draw_self();
-}
-with (oItems)
-{
+    
+with(oItems)
     draw_sprite(sItems,0,floor(x),floor(y))
-}
-with (oWood)
-{
+
+with(oWood)
     draw_self();
-}
-with (oRope)
-{
+
+with(oRope)
     draw_self();
-}
-with (oStone)
-{
+
+with(oStone)
     draw_self();
-}
+
 with(oWSpear)
-{
     if(dropped)
         draw_self();
-}
+
 with(oSSpear)
-{
     if(dropped)
         draw_self();
-}
+
 with(oWBow)
-{
     if(dropped)
         draw_self();
-}
+
 with(oSBow)
-{
     if(dropped)
         draw_self();
-}
 
 with(oArenaEvent)
 {
@@ -102,19 +90,29 @@ with (oFighter)
             draw_rectangle_colour(x-5,y-12,x+5,y+1,other.groups[c,1],other.groups[c,1],other.groups[c,1],other.groups[c,1],0);
         }
     }
+    
+    if(fighterID == other.sanityleader)
+    {
+        draw_sprite_ext(sFighterA,0,x+irandom_range(-2,2),y+irandom_range(-4,2),1,1,0,c_fuchsia,1);
+        draw_sprite_ext(sFighterA,0,x+irandom_range(-2,2),y+irandom_range(-4,2),1,1,0,c_fuchsia,1);
+        draw_sprite_ext(sFighterA,0,x+irandom_range(-2,2),y+irandom_range(-4,2),1,1,0,c_fuchsia,1);
+    }
+    if(fighterID == other.killleader)
+    {
+        other.skullx = smooth_approach(other.skullx,x,.1);
+        other.skully = smooth_approach(other.skully,y-12,.1);
+    }
+    
     draw_sprite_ext(sFighterS,INSANE,x,y,1,1,0,color,1);
-    //if (INV[0] != 0)
-        //draw_text(x,y+3,string(INV[0]));
 }
 
 with (oExplosion)
-{
     draw_self();
-}
+
+draw_sprite(sSkull,0,skullx,skully);
+
 with(obj_popup)
-{
     draw_self();
-}
 
 draw_rectangle_colour(1,1,511,511,c_0,c_0,c_0,c_0,true);
 

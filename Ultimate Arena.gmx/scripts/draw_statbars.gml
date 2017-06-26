@@ -11,7 +11,10 @@ if(p4<0)
     p4 = 0;
 
 draw_sprite(sStatusCheck,0,153,yPos - 10);
+
+texture_set_interpolation(1);
 draw_sprite_stretched(global.IMAGES[fighter],0,155,yPos - 8,58,58);
+texture_set_interpolation(0);
 
 if(status == 0)
 {

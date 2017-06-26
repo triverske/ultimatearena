@@ -33,6 +33,10 @@ y = random(512);
 
 radius0 = global.eventRadius;
 radius1 = 0;
+
+alarm[2] = 1;
+
+time = global.TIME_STRING;
 </string>
           </argument>
         </arguments>
@@ -56,6 +60,30 @@ radius1 = 0;
           <argument>
             <kind>1</kind>
             <string>oGraphicsController.event_timer = floor(random(20000)); 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.log[global.logi] = time + " Arena Event! " + description;
+global.logi++;
 </string>
           </argument>
         </arguments>

@@ -35,58 +35,6 @@ s2c = 0;
 s1p = 0;
 s2p = 0;
 start = true;
-
-var WS = global.WSCALE;
-var HS = global.HSCALE;
-
-
-s1l = 0; s2l = 0;
-s1l = string_length(global.DEATH_STRING)*12;
-s2l = string_length(global.KILL_STRING)*12;
-
-for(var i = 0;i &lt; 1000;i++)
-{
-    
-
-    if (s1c &gt; s1p-1 || start)
-    {
-        var c = instance_create(WS,HS-40,oTextScroll);
-        c.text = global.DEATH_STRING;
-        c.color = make_color_rgb(0,228,228);
-        c.length = s1l;
-        c.sp = 1;
-        s1c = 0;
-        s1p = s1l;
-    }
-    else
-    {
-        s1c+=global.scrollspeed1;
-    }
-    
-    if (s2c &gt; s2p-1 || start)
-    {
-        var c = instance_create(WS,HS-19,oTextScroll);
-        c.text = global.KILL_STRING;
-        c.color = c_red;
-        c.length = s2l;
-        c.sp = 2;
-        s2c = 0;
-        start = false;
-        s2p = s2l;
-    }
-    else
-    {
-        s2c+=global.scrollspeed2;
-    }
-    
-    with(oTextScroll)
-    {
-        if (sp == 1)
-            x-=global.scrollspeed1;
-        else if (sp == 2)
-            x-=global.scrollspeed2
-    }
-}
 </string>
           </argument>
         </arguments>

@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>100</depth>
+  <depth>10000</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -34,7 +34,9 @@ hue = 0;
 
 image = choose(back_tile,back_tile2,back_tile3);
 
+/* SNOW
 Sname = part_system_create();
+
 particle1 = part_type_create();
 part_type_sprite(particle1,spr_snow,0,0,0);
 part_type_size(particle1,.5,1.5,0,0);
@@ -47,16 +49,68 @@ part_type_life(particle1,30,440);
 emitter1 = part_emitter_create(Sname);
 part_emitter_region(Sname,emitter1,0,room_width,0,0,1,0);
 part_emitter_stream(Sname,emitter1,particle1,7);
+*/
 
-for(var i = 0;i &lt; 240;i++)
+Sname = part_system_create()
+
+particle1 = part_type_create();
+part_type_shape(particle1,pt_shape_square);
+part_type_size(particle1,0.01,0.10,0,0.05);
+part_type_scale(particle1,1,1);
+part_type_color1(particle1,16711680);
+part_type_alpha3(particle1,1,1,0);
+part_type_speed(particle1,1.2,5.2,0,0);
+part_type_direction(particle1,250,290,0,20);
+part_type_orientation(particle1,0,359,4,10,1);
+part_type_blend(particle1,0);
+part_type_life(particle1,60,400);
+
+particle2 = part_type_create();
+part_type_shape(particle2,pt_shape_square);
+part_type_size(particle2,0.01,0.10,0,0.05);
+part_type_scale(particle2,1,1);
+part_type_color1(particle2,make_color_rgb(255,0,0));
+part_type_alpha3(particle2,1,1,0);
+part_type_speed(particle2,1.2,5.2,0,0);
+part_type_direction(particle2,250,290,0,20);
+part_type_orientation(particle2,0,359,4,10,1);
+part_type_blend(particle2,0);
+part_type_life(particle2,60,400);
+
+particle3 = part_type_create();
+part_type_shape(particle3,pt_shape_square);
+part_type_size(particle3,0.01,0.10,0,0.05);
+part_type_scale(particle3,1,1);
+part_type_color1(particle3,make_color_rgb(255,255,255));
+part_type_alpha3(particle3,1,1,0);
+part_type_speed(particle3,1.2,5.2,0,0);
+part_type_direction(particle3,250,290,0,20);
+part_type_orientation(particle3,0,359,4,10,1);
+part_type_blend(particle3,0);
+part_type_life(particle3,60,400);
+
+emitter1 = part_emitter_create(Sname);
+part_emitter_region(Sname,emitter1,0,SW,0,0,1,0);
+part_emitter_stream(Sname,emitter1,particle1,3);
+
+emitter2 = part_emitter_create(Sname);
+part_emitter_region(Sname,emitter2,0,SW,0,0,1,0);
+part_emitter_stream(Sname,emitter2,particle2,3);
+
+part_system_automatic_draw(Sname,0);
+
+for(var i = 0;i &lt; 400;i++)
     part_system_update(Sname);
+    
+
+
 
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="74">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -77,6 +131,8 @@ for(var i = 0;i &lt; 240;i++)
 bg_y+= .5;
 hue+= .2;
 
+draw_set_alpha(1)
+
 if(bg_x == background_get_width(image))
 { 
     bg_x = 0;
@@ -94,6 +150,8 @@ if(room != rm_splashscreen)
     draw_set_alpha(.1)
     draw_rectangle(0,0,SW,SH,0);
     draw_set_alpha(1)
+    
+    part_system_drawit(Sname);
 }
 
 </string>

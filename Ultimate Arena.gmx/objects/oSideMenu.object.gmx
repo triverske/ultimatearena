@@ -178,6 +178,13 @@ if(xpleaderprev != xpleader)
 if(sanityleaderprev != sanityleader)
     update[2] = 120;
     
+with(oGraphicsController)
+{
+    sanityleader = other.sanityleader;
+    xpleader = other.xpleader;
+    killleader = other.killleader;
+}
+    
 if(!surface_exists(sidemenu))
 {
     sidemenu = surface_create(100,500);
@@ -226,7 +233,11 @@ draw_text(50,145,"EVENT KILLS");
 draw_text(50,160,string(global.event_kills));
 
 draw_text(50,196,"KILL LEADER");
+
+texture_set_interpolation(1);
 draw_sprite_stretched(global.IMAGES[killleader],1,26,212,48,48);
+texture_set_interpolation(0);
+
 if(update[0] &gt; 0)
 {
     draw_sprite_stretched(spr_breakingUpdate,update[0],26,212,48,48);
@@ -236,7 +247,11 @@ draw_text(50,260,global.NAMES[killleader]);
 draw_text(50,274,"KILLS: " + string(killleaderkills));
 
 draw_text(50,300,"CPU'S CHOICE");
+
+texture_set_interpolation(1);
 draw_sprite_stretched(global.IMAGES[xpleader],1,26,316,48,48);
+texture_set_interpolation(0);
+
 if(update[1] &gt; 0)
 {
     draw_sprite_stretched(spr_breakingUpdate,update[1],26,316,48,48);
@@ -246,7 +261,11 @@ draw_text(50,364,global.NAMES[xpleader]);
 draw_text(50,378,"KILLS: " + string(global.killArray[xpleader]));
 
 draw_text(50,404,"LEAST SANE");
+
+texture_set_interpolation(1);
 draw_sprite_stretched(global.IMAGES[sanityleader],1,26,420,48,48);
+texture_set_interpolation(0);
+
 if(update[2] &gt; 0)
 {
     draw_sprite_stretched(spr_breakingUpdate,update[2],26,420,48,48);
@@ -269,28 +288,6 @@ sanityleaderprev = sanityleader;
 xpleaderprev = xpleader;
 killleaderprev = killleader;
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
           </argument>
         </arguments>
       </action>

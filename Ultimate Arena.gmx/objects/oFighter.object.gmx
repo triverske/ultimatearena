@@ -149,6 +149,7 @@ global.fighters_remaining--;
 oSideMenu.xpArray[fighterID]=0;
 oSideMenu.sanityArray[fighterID]=101;
 global.fighter_place[global.fighters_remaining+1] = fighterID;
+show_debug_message(global.NAMES[fighterID] + " gets place " + string(global.fighters_remaining+1));
 playDeathSound(fighterID);
 
 global.deadday[fighterID] = "Died Day " + string(global.TIME_DAYS);

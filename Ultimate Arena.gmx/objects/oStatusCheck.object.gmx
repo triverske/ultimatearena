@@ -107,7 +107,10 @@ draw_statbars(HP,HUNGER,THIRST,SANITY,1);
 draw_set_color(c_white);
 draw_set_font(font0); 
 draw_text(x+63,y+1,NAME);
+
+texture_set_interpolation(1);
 draw_sprite_stretched(global.IMAGES[par.fighterID],1,x+2,y+2,58,58);
+texture_set_interpolation(0);
 }
 else
     instance_destroy();
