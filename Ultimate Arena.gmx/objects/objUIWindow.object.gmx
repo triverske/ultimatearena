@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>callback = -1;
+wID = "";
 </string>
           </argument>
         </arguments>

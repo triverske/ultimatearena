@@ -7,7 +7,8 @@ var _find = file_find_first(working_directory + argument0 + "\*", fa_directory);
 
 if(_find != "" && directory_exists(working_directory + argument0 + "\" + _find))
 {
-    directory[0] = _find;
+    
+    directory[i] = _find;
     i++;
 }
 

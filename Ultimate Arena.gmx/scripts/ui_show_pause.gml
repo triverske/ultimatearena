@@ -36,8 +36,8 @@ if(exitcheck == 0)
             {
                zui_set_size(196, 28);
                zui_set_anchor(.5,.5);
-               caption = "Save Game";
-               callback = ui_save;
+               caption = "Restart Game";
+               callback = ui_restart;
             }
             with (zui_create(zui_get_width() * 0.5, zui_get_height() - 24, objUIButton)) 
             {

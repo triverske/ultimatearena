@@ -11,6 +11,7 @@ surface_set_target(updates);
 with(oUpdateBox)
 {
     draw_sprite(spr_updateBox,boxColor,0,y);
+    draw_sprite(sCamera,0,314,60+y);
     
     texture_set_interpolation(1);
     if(fighters == 1)

@@ -32,7 +32,6 @@ var tvar = floor(random(5));
 text = "ERROR";
 trigger = 0;
 alarm[0] = 1;
-
 </string>
           </argument>
         </arguments>
@@ -84,6 +83,57 @@ global.logi++;
 
 if (y &gt; global.HSCALE)
     instance_destroy();
+    
+var px = 314;
+var py = y + 60;
+
+with(objUIWindow)
+    if(wID == "Updates")
+    {
+        px += __x - (__width / 2);
+        py += __y - (__height / 2) + 20;
+    }
+
+if(mouse_check_button_pressed(mb_left))
+{
+    if(point_in_rectangle(mouse_x,mouse_y,px,py,px+14,py+14))
+    {
+        var file = get_save_filename("Screenshot|*.png", "pic.png");
+        if(file != "")
+        {
+            var picSurf = surface_create(390,74);
+            surface_set_target(picSurf);
+            draw_sprite(spr_updateBox,boxColor,0,0);
+            
+            texture_set_interpolation(1);
+            if(fighters == 1)
+            {
+                draw_sprite_stretched(image1,1,5,5,64,64);
+                if(dead &gt; 0)
+                    draw_sprite_stretched(sDeadX,1,5,5,64,64);
+            }
+            else if(fighters == 4)
+            {
+                draw_sprite_stretched(image1,1,5,5,32,32);
+                if (image2 != global.IMAGES[0])
+                    draw_sprite_stretched(image2,1,37,37,32,32);
+                if (image3 != global.IMAGES[0])
+                    draw_sprite_stretched(image3,1,37,5,32,32);
+                if (image4 != global.IMAGES[0])
+                    draw_sprite_stretched(image4,1,5,37,32,32);
+                if (dead &gt; 0)
+                    draw_sprite_stretched(sDeadX,1,37,37,32,32);
+            }
+            texture_set_interpolation(0);
+            
+            draw_text_ext(75,5,text,14,305);
+            draw_text(338,59,time);
+            surface_reset_target();
+            surface_save(picSurf,file);
+            surface_free(picSurf);
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

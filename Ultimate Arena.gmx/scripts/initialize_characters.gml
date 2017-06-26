@@ -23,11 +23,20 @@ global.cIMAGES = 0;
 directory = 0;
 directory[0] = "";
 var l = initialize_directory("characters");
+var i = 0;
 
-for(var i=0;i<l;i++){
-    global.fNAME[i] = directory[i] + "\" + directory[i] + ".ini";
-    ini_open(working_directory + "characters\" + global.fNAME[i]);
-    global.cNAME[i] = ini_read_string("character","name","NAMING ERROR");
+for(var h=0;h<l;h++)
+{
+    var in = directory[h] + "\" + directory[h] + ".ini";
+    ini_open(working_directory + "characters\" + in);
+    var name = ini_read_string("character","name","NAMING ERROR");
+    if(name == "NAMING ERROR")
+    {
+        ini_close();
+        continue;
+    }
+    global.cNAME[i] = name;
+    global.fNAME[i] = in;
     global.cSOUNDS[i] = ini_read_string("character","deathsound","");
     
     var cImage = ini_read_string("character","image","sFighterImage");
@@ -64,6 +73,7 @@ for(var i=0;i<l;i++){
         }
     }
     ini_close();
+    i++;
 }
 
 global.lNAME = i;

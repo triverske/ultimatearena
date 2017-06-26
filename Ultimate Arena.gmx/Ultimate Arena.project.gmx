@@ -157,6 +157,7 @@
       <sprite>sprites\spr_snow</sprite>
     </sprites>
     <sprite>sprites\sSkull</sprite>
+    <sprite>sprites\sCamera</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_tile2</background>
@@ -200,7 +201,7 @@
       <script>scripts\ui_show_popup_credits.gml</script>
       <script>scripts\ui_popup_close.gml</script>
       <script>scripts\ui_show_pause.gml</script>
-      <script>scripts\ui_save.gml</script>
+      <script>scripts\ui_restart.gml</script>
       <script>scripts\zui_draw.gml</script>
       <script>scripts\zui_set_visible.gml</script>
     </scripts>
@@ -308,7 +309,6 @@
     <script>scripts\array_to_section.gml</script>
     <script>scripts\smooth_approach.gml</script>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\font0</font>
     <font>fonts\font3</font>

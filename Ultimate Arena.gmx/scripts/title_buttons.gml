@@ -116,14 +116,6 @@ with (objUIButton)
                 }
             }
         }
-        else if (bID == 6) //Load Game
-        {
-            if(!directory_exists("saves"))
-                directory_create("saves");
-            var file = get_open_filename_ext("ini file|*.ini","",working_directory+"saves","Load Game");
-            if(file != "")
-                load_game(file);
-        }
         else if (bID == 7) // Edit Events
         {
             var c = instance_create(0,0,oRoomTransition);

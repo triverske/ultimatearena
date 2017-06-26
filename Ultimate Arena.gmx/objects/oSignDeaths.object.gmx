@@ -89,11 +89,11 @@ s1l = 0; s2l = 0;
 s1l = string_length(global.DEATH_STRING)*12;
 s2l = string_length(global.KILL_STRING)*12;
 
-if (s1c &gt; s1p-1 || start)
+if(s1c &gt; s1p-1 || start)
 {
     var c = instance_create(WS,HS-40,oTextScroll);
     c.text = global.DEATH_STRING;
-    c.color = make_color_rgb(0,228,228);
+    c.color = make_color_rgb(40,80,255);//make_color_rgb(0,228,228);
     c.length = s1l;
     c.sp = 1;
     s1c = 0;
