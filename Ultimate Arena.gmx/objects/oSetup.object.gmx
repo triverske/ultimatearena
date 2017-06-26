@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.VERSION = "2.0";
+            <string>global.VERSION = "2.2";
 
 global.ENDLESS = 0;
 global.SAVE_SPEED = 12;
@@ -49,6 +49,7 @@ global.update_count = 0;
 global.kill_count = 0;
 global.TIME_DAYS = 0;
 global.gs = 2;
+global.uploadImage = -1;
 
 new_item = -1;
 
@@ -139,10 +140,13 @@ if(directory_exists(working_directory + "characters"))
         var f = file_find_next();
     }
     file_find_close();
+    
+    global.cIMAGES = 0;
     initialize_characters();
 }
 else
 {
+    global.cIMAGES = 0;
     directory_create("characters");
     add_default_characters();
     initialize_characters();
@@ -313,6 +317,8 @@ if(keyboard_check(vk_tab))
 }
 if(keyboard_check_pressed(vk_numpad0) &amp;&amp; keyboard_check_pressed(vk_numpad1))
 {
+    if(global.uploadImage != -1)
+        sprite_delete(global.uploadImage);
     global.uploadImage = sprite_add(get_open_filename("image file",".png"),0,0,0,0,0);
 }
  
@@ -552,7 +558,7 @@ if(event_id == new_item)
             
             if(global.uploadImage == -1)
             {
-                tempSprite = sprite_duplicate(sUpdateFile);
+                var tempSprite = sprite_duplicate(sUpdateFile);
                 sprite_save(tempSprite,0,working_directory + "texts\" + ename+ "\" + ename + ".png");
                 sprite_delete(tempSprite);
             }

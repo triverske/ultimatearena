@@ -128,33 +128,6 @@ with (objUIButton)
             if (global.SAVE_SPEED != 0 && global.SAVE_SPEED > 1)
                 global.SAVE_SPEED--;
         }
-        else if(bID == 11) //random 100
-        {
-            with (objUIListBox)
-            {
-                var t = 0;
-                if(length < 250)
-                {
-                    ui_show_popup("You need at least 250 fighters#to use this option.");
-                }
-                else
-                {
-                
-                    for (i = 0;i < length; i++)
-                        selected[i] = 1;
-                        
-                    while(t < 250)
-                    {
-                        var w = irandom(length-1);
-                        if(selected[w] == 1)
-                        {
-                            t++
-                            selected[w] = 0;
-                        }
-                    }
-                }
-            }      
-        }
         else if (bID == 12)
         {
             if (type == 2)
@@ -194,6 +167,66 @@ with (objUIButton)
             }
             else
                 ui_show_popup("No Maps Found");
+        }
+        else if(bID == 14){ //random 50
+            with (objUIListBox){
+                var t = 0;
+                if(length < 50)
+                    ui_show_popup("You need at least 50 fighters#to use this option.");
+                else{
+                    for (i = 0;i < length; i++)
+                        selected[i] = 1;
+                        
+                    while(t < 50){
+                        var w = irandom(length-1);
+                        if(selected[w] == 1)
+                        {
+                            t++
+                            selected[w] = 0;
+                        }
+                    }
+                }
+            }      
+        }
+        else if(bID == 15){ //random 100
+            with (objUIListBox){
+                var t = 0;
+                if(length < 100)
+                    ui_show_popup("You need at least 100 fighters#to use this option.");
+                else{
+                    for (i = 0;i < length; i++)
+                        selected[i] = 1;
+                        
+                    while(t < 100){
+                        var w = irandom(length-1);
+                        if(selected[w] == 1)
+                        {
+                            t++
+                            selected[w] = 0;
+                        }
+                    }
+                }
+            }      
+        }
+        else if(bID == 16){ //random 250
+            with (objUIListBox){
+                var t = 0;
+                if(length < 250)
+                    ui_show_popup("You need at least 250 fighters#to use this option.");
+                else{
+                    for (i = 0;i < length; i++)
+                        selected[i] = 1;
+                        
+                    while(t < 250){
+                        var w = irandom(length-1);
+                        if(selected[w] == 1)
+                        {
+                            t++
+                            selected[w] = 0;
+                        }
+                    }
+                }
+            }      
         }
     }
 }
@@ -252,16 +285,7 @@ with (objUIListBox)
     {
         if(sID != -1)
         {
-            if (selected[sID] == 0)
-            {
-                selected[sID] = 1;
-                global.IDselected = sID;
-            }
-            else
-            {
-                selected[sID] = 0;
-                global.IDselected = sID;
-            }
+            global.IDselected = sID;
         }
     }
 }

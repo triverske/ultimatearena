@@ -13,7 +13,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         
     with(zui_create(5, 29, oUIImage))
     {
-        image = global.newImage;
+        image = sFighterImage;
         callback = charedit_ui;
         scale = 1.5;
         bID = 0;
@@ -41,7 +41,11 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
     {
         caption = "F"
     }
-    with(zui_create(280, 75, objUICheckbox))
+    with(zui_create(353, 75, objUILabel))
+    {
+        caption = "Other"
+    }
+    with(zui_create(282, 75, objUICheckbox))
     {
         type = 1;
         callback = charedit_ui;
@@ -56,6 +60,13 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         cID = 1;
         bID = 0;
     }
+    with(zui_create(385, 75, objUICheckbox))
+    {
+        type = 1;
+        callback = charedit_ui;
+        cID = 2;
+        bID = 0;
+    }
     
     /*
     with (zui_create(200, 105, objUIButton)) 
@@ -65,8 +76,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         caption = "Add Death Sound";
         callback = charedit_ui;
         bID = 6;
-    } */
-    
+    } */    
     for(var i=0;i<7;i++)
     {
         with (zui_create(5 + 28*i, 223, oUIImageButton)) 
@@ -301,6 +311,7 @@ with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, objUIWin
         draw_callback = tag_select_draw_ui;
         other.listID = id;
         listID = 1;
+        type = 1;
         initialize_listbox(global.TAGS);
         for(i=length-1;i>=0; i--)
         {
@@ -361,6 +372,10 @@ with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, objUIWin
         callback = charedit_ui;
         draw_callback = tag_select_draw_ui;
         listID = 2;
+        type = 1;
+        initialize_listbox(oCharedit.currentList);
+        for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
+            selected[i] = !oCharedit.toggleList[i];
             
         with(zui_create(0,0,objUIListBoxScroll)){}
     }

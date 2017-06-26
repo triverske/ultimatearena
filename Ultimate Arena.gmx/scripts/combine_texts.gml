@@ -63,41 +63,50 @@ if(file_exists("text.ini"))
     file_delete("text.ini");
     
 ini_open("settings.ini");
-var t = ini_read_string("defaulttext","toggle","ERROR");
-
-if(t != "ERROR"){
-    ini_close();
-    var a = 0;
-    var k = "";
-    ini_open("DefaultText.ini");
-    for(var i=0; i<55; i++){
-        a = ini_read_real(section[i],"total",0);
-        for(var j=0; j<a; j++){
-            if(string_char_at(t,1) == "1"){
-                k = ini_read_string(section[i],"s"+string(j),"ERROR");
-                ini_close();
-                ini_open("text.ini");
-                ini_write_string(section[i],"s"+string(j),k);
-                ini_close();
-                ini_open("DefaultText.ini");
-            }
-            t = string_delete(t,1,1);
+if(ini_read_real("defaulttext","togglefile",1)){
+    var t = ini_read_string("defaulttext","toggle","ERROR");
+    
+    if(t != "ERROR"){
+        ini_close();
+        var a = 0;
+        ini_open("DefaultText.ini");
+        for(var i=0; i<55; i++){//stores text in a array
+            a[i,0] = ini_read_real(section[i],"total",0);
+            //a[i,1] = ini_read_string(section[i],"toggle","ERROR");
+            for(var j=1;j<a[i,0]+1;j++)
+                a[i,j] = ini_read_string(section[i],"s"+string(j),"ERROR");
         }
+        ini_close();
+        ini_open("text.ini");
+        for(i=0; i<55; i++){//adds a array to text.ini
+            var tot = 0;
+            for(j=1; j<a[i,0]+1; j++){
+                if(string_char_at(t,1) == "1"){
+                    tot++;
+                    ini_write_string(section[i],"s"+string(tot),a[i,j]);
+                }
+                t = string_delete(t,1,1);
+            }
+            ini_write_real(section[i],"total",tot);
+        }
+        ini_close();
+    }
+    else{
+        t="";
+        repeat(194)
+            t+="1";
+        ini_write_string("defaulttext","toggle",t);
+        ini_close();
+        file_copy("DefaultText.ini","text.ini");
     }
 }
-else{
-    t="";
-    repeat(194)
-        t+="1";
-    ini_write_string("defaulttext","toggle",t);
+else
     ini_close();
-    file_copy("DefaultText.ini","text.ini");
-}
 
 if(l > 0){
     for(var i=0;i<l;i++){//loops through all files
         if(global.TEXTTOGGLE[i+1]){
-            t = 0;
+            var t = 0;
             ini_open("texts\" + directory[i] + "\" + directory[i] + ".ini");
             for(var j=0; j<55; j++){//stores text in t array
                 t[j,0] = 0;
