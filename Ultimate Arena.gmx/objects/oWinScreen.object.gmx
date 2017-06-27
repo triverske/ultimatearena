@@ -146,6 +146,8 @@ part_system_automatic_draw(Sname,0);
 
 for(var i = 0;i &lt; 400;i++)
     part_system_update(Sname);
+    
+winSurf = surface_create(1280,720);
 </string>
           </argument>
         </arguments>
@@ -201,33 +203,17 @@ else if(global.ENDLESS == 1)
 {
     room_restart();
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_set_alpha(.6);
+
+if(!surface_exists(winSurf))
+    winSurf = surface_create(1280,720);
+
+surface_set_target(winSurf)
+draw_clear_alpha(c_black,.7);
+draw_set_alpha(.95);
 draw_set_color(c_black);
 draw_set_font(font3);
-draw_rectangle(0,0,room_width,room_height,0);
-draw_rectangle(100,100,room_width-100,room_height-100,false);
+
+draw_rectangle(100,100,1180,620,false);
 draw_set_color(c_white);
 draw_set_alpha(1);
 draw_set_valign(fa_top);
@@ -269,6 +255,39 @@ draw_set_halign(fa_left);
 
 
 part_system_drawit(Sname);
+surface_reset_target();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(window_get_fullscreen())
+{
+    texture_set_interpolation(1);
+    draw_surface_stretched(winSurf,0,0,SW,SH);
+    texture_set_interpolation(0);
+}
+else
+{
+    draw_surface(winSurf,0,0);
+}
 </string>
           </argument>
         </arguments>

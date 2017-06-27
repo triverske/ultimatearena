@@ -42,15 +42,15 @@ for(var h=0;h<l;h++)
     var cImage = ini_read_string("character","image","sFighterImage");
     
     if(cImage != "sFighterImage")
-        global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[i] + "\" + directory[i] + ".png",1,0,0,0,0);
+        global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);
     else
         global.cIMAGES[i] = sFighterImage; 
         
     if(global.cIMAGES[i] == -1){
         var tempSprite = sprite_duplicate(sFighterImage);
-        sprite_save(tempSprite,0,working_directory + "characters\" + directory[i] + "\" + directory[i] + ".png");
+        sprite_save(tempSprite,0,working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png");
         sprite_delete(tempSprite);
-        global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[i] + "\" + directory[i] + ".png",1,0,0,0,0);
+        global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);
     }
     
     var tags = ini_read_string("character","tags","");

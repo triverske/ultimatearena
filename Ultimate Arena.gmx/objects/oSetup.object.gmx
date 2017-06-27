@@ -321,6 +321,8 @@ if(keyboard_check_pressed(vk_numpad0) &amp;&amp; keyboard_check_pressed(vk_numpa
         sprite_delete(global.uploadImage);
     global.uploadImage = sprite_add(get_open_filename("image file",".png"),0,0,0,0,0);
 }
+
+global.gs = max(1,display_get_height() div 1080);
  
 /*if(keyboard_check_pressed(vk_space))
 {

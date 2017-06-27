@@ -6,7 +6,7 @@ with (objUIButton)
     {
         if (bID == 0) // Quick Game
         {
-            if (global.lNAME < 2)
+            if(global.lNAME < 4)
             {
                 ui_show_popup("You don't have enough fighters#for a quick match.");
             }
@@ -20,9 +20,16 @@ with (objUIButton)
         }
         else if (bID == 1) // Edit Characters
         {
-            var c = instance_create(0,0,oRoomTransition);
-            c.gotoroom = rm_charedit;
-            global.GAMETYPE = 0;
+            if(window_get_fullscreen())
+            {
+                ui_show_popup("The editors are not available#in fullscreen mode.");
+            }
+            else
+            {
+                var c = instance_create(0,0,oRoomTransition);
+                c.gotoroom = rm_charedit;
+                global.GAMETYPE = 0;
+            }
         }
         else if (bID == 2)//Fullscreen
         {
@@ -118,9 +125,16 @@ with (objUIButton)
         }
         else if (bID == 7) // Edit Events
         {
-            var c = instance_create(0,0,oRoomTransition);
-            c.gotoroom = rm_eventedit;
-            global.GAMETYPE = 0;
+            if(window_get_fullscreen())
+            {
+                ui_show_popup("The editors are not available#in fullscreen mode.");
+            }
+            else
+            {
+                var c = instance_create(0,0,oRoomTransition);
+                c.gotoroom = rm_eventedit;
+                global.GAMETYPE = 0;
+            }
         }
         else if (bID == 9)//Credits
         {
@@ -157,7 +171,7 @@ with (objUIButton)
         }
         else if (bID == 12) // Endless Arena
         {
-            if (global.lNAME < 2)
+            if (global.lNAME < 4)
             {
                 ui_show_popup("You don't have enough fighters#for endless arena.");
             }
@@ -179,15 +193,31 @@ with (objUIButton)
             url_open("https://www.twitter.com/triverske/");
             global.TWITTER = 1;
         }
-        else if(bID == 15){//Map Editor
-            var c = instance_create(0,0,oRoomTransition);
-            c.gotoroom = rm_mapedit;
-            global.GAMETYPE = 0;
+        else if(bID == 15)//Map Editor
+        {
+            if(window_get_fullscreen())
+            {
+                ui_show_popup("The editors are not available#in fullscreen mode.");
+            }
+            else
+            {
+                var c = instance_create(0,0,oRoomTransition);
+                c.gotoroom = rm_mapedit;
+                global.GAMETYPE = 0;
+            }
         }
-        else if(bID == 16){//Update Editor
-            var c = instance_create(0,0,oRoomTransition);
-            c.gotoroom = rm_textedit;
-            global.GAMETYPE = 0;
+        else if(bID == 16)//Update Editor
+        {
+            if(window_get_fullscreen())
+            {
+                ui_show_popup("The editors are not available#in fullscreen mode.");
+            }
+            else
+            {
+                var c = instance_create(0,0,oRoomTransition);
+                c.gotoroom = rm_textedit;
+                global.GAMETYPE = 0;
+            }
         }
     }
 }

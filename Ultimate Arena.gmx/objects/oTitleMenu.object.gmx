@@ -37,7 +37,7 @@ if(audio_is_playing(snd_outdoor_ambient))
 with (zui_main()) 
 {
     //ui_show_popup("More features on the way,#thank you for playing!");
-    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2 + 220, objUIButton)) 
+    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2 + 226, objUIButton)) 
     {
         zui_set_size(260, 48);
         caption = "Quick Match";

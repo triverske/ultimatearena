@@ -1,8 +1,8 @@
 ///draw_hover_stats(fighter)
 
 var c = argument0;
-var mxPos = device_mouse_raw_x(0);
-var myPos = device_mouse_raw_y(0);
+var mxPos = global.__zui_mx//device_mouse_raw_x(0);
+var myPos = global.__zui_my//device_mouse_raw_y(0);
 
 if(instance_exists(c))
 {

@@ -84,7 +84,10 @@ if(instance_exists(global.mapwindow))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(instance_exists(global.mapwindow))
+            <string>var WS = SW//global.WSCALE;
+var HS = SH//global.HSCALE;
+
+if(instance_exists(global.mapwindow))
 {
     if(global.mapwindow.__hover == 1)
     {
