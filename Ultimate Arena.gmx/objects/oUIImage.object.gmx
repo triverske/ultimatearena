@@ -60,6 +60,9 @@ callback = -1;
             <kind>1</kind>
             <string>draw_set_color(color);
 
+if(!sprite_exists(image))
+    exit;
+    
 if (type == 0)
 {
     draw_sprite_ext(image,0,0,0,scale,scale,0,color,alpha);

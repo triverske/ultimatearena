@@ -219,6 +219,10 @@ with (objUIButton)
                 global.GAMETYPE = 0;
             }
         }
+        else if (bID == 17)//Ultimate Arena Showdown
+        {
+            url_open("http://store.steampowered.com/app/757160/");
+        }
     }
 }
 

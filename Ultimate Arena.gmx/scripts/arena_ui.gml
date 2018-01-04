@@ -18,6 +18,8 @@ with (objUIButton)
         {
             if (global.GAME_SPEED == 0)
             {
+                if(global.SAVE_SPEED < 1)
+                    global.SAVE_SPEED = 12;
                 global.GAME_SPEED = global.SAVE_SPEED;
             }
         }
