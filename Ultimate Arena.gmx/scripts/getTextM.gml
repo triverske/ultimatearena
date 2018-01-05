@@ -2,10 +2,31 @@
 var state = argument[0];
 
 ini_open("text.ini");
-var total = ini_read_real(state,"total",1);
-var randvar = ceil(random(total));
-var c = ini_read_string(state,"s"+string(randvar),"ERROR");
+var total1 = ini_read_real(state,"total",1);
 ini_close();
+ini_open("Characters/" + global.FILES[argument[1]])
+var total2 = ini_read_real(state,"total",0);
+ini_close();
+
+var randvar = 0;
+if(total2 > 0)
+    randvar = irandom(1);
+
+if(randvar)
+{
+    randvar = irandom(total2-1)+1;
+    ini_open("Characters/" + global.FILES[argument[1]]);
+    var c = ini_read_string(state,"s"+string(randvar),"ERROR " + global.FILES[argument[1]]);
+    ini_close();
+}
+else
+{
+    randvar = irandom(total1-1)+1;
+    ini_open("text.ini");
+    var c = ini_read_string(state,"s"+string(randvar),"ERROR");
+    ini_close();
+}
+
 
 var i = 1;
 while(i < argument_count && argument[i] != 0){
