@@ -80,3 +80,9 @@ global.lNAME = i;
 global.fighters = i;
 global.FIGHTER_COUNT = i;
 
+for(i = 0;i < global.FIGHTER_COUNT;i++)
+{
+    global.menuTeams[i] = "";//choose("","RED","ORANGE","YELLOW","GREEN","BLUE","PURPLE");
+}
+
+

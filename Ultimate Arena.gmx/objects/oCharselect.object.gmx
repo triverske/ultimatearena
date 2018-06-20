@@ -52,7 +52,7 @@ with (zui_main())
         with(zui_create(0,24,objUIListBox))
         {
             zui_set_anchor(0,0);
-            zui_set_size(260,display_get_gui_height()-64);
+            zui_set_size(260,display_get_gui_height()-100);
             callback = fighter_select_buttons;
             initialize_listbox(global.cNAME);
             global.select_list = id;
@@ -84,6 +84,26 @@ with (zui_main())
             caption = "Clear";
             callback = selection_ui;
             bID = 1;
+            listID = other.listID;
+        }
+        
+        with (zui_create(5, __height - 70, objUIButton)) 
+        {
+            zui_set_anchor(0,0);
+            zui_set_size(150, 30);
+            caption = "Change Teams";
+            callback = selection_ui;
+            bID = 2;
+            listID = other.listID;
+        }
+        
+        with (zui_create(159, __height - 70, objUIButton)) 
+        {
+            zui_set_anchor(0,0);
+            zui_set_size(96, 30);
+            caption = "Clear Teams";
+            callback = selection_ui;
+            bID = 3;
             listID = other.listID;
         }
     }
@@ -395,6 +415,7 @@ if (startgame == 1)
             global.GENDER[charcount] = ini_read_real("character","gender",0);
             global.SOUNDS[charcount] = ini_read_string("character","deathsound","");
             global.FILES[charcount] = file;
+            global.TEAM[charcount] = global.menuTeams[i];
             
             var r = ini_read_real("character","colorr",255);
             var g = ini_read_real("character","colorg",255);

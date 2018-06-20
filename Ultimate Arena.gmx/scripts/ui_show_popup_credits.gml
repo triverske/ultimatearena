@@ -19,7 +19,7 @@ with (objZUIMain) {
    Developed by House Bonneau & Triverske#
    Programmers: Troy Bonneau, Matt Mozingo##
    Github Contributors#SquirrelJay, zeaga, Proncs,#YellowAfterLife
-   Copyright 2016";
+   Copyright 2016-2018";
   }
   
   with (zui_create(zui_get_width() * 0.5, zui_get_height() - 24, objUIButton)) {

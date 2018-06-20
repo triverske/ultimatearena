@@ -147,6 +147,7 @@ if(room != rm_splashscreen)
     draw_set_alpha(1)
     draw_background_tiled(image,bg_x,bg_y);
     draw_set_color(make_color_hsv(hue,255,255));
+    //draw_set_color(c_black);
     draw_set_alpha(.1)
     draw_rectangle(0,0,SW,SH,0);
     draw_set_alpha(1)

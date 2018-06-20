@@ -76,17 +76,53 @@ with (oFighter)
             for(var i=0; i<other.totalGroups; i++)
             {
                 if(other.groups[i,0] == group)
+                {
                     c=i;
+                    
+                    
+                }
             }   
             if(c==-1)
             {
                 other.groups[other.totalGroups,0] = group;
                 other.groups[other.totalGroups,1] = make_color_hsv((other.totalGroups*14)%255,255,(other.totalGroups%2+1)*127);
+                
                 c=other.totalGroups;
                 other.totalGroups++;
             }
             if(group == id)
+            {
+                for(var e = 0;e < 6;e++)
+                {
+                    if(other.regGroup[e] == id)
+                    {
+                        switch(e)
+                        {
+                            case 0:
+                                other.groups[c,1] = c_red;
+                                break;
+                            case 1:
+                                other.groups[c,1] = c_orange;
+                                break;
+                            case 2:
+                                other.groups[c,1] = c_yellow;
+                                break;
+                            case 3:
+                                other.groups[c,1] = c_green;
+                                break;
+                            case 4:
+                                other.groups[c,1] = c_blue;
+                                break;
+                            case 5:
+                                other.groups[c,1] = c_purple;
+                                break;
+                        }
+                    }
+                }
+            
+            
                 draw_rectangle_colour(x-6,y-13,x+6,y+2,c_white,c_white,c_white,c_white,0);
+            }
             draw_rectangle_colour(x-5,y-12,x+5,y+1,other.groups[c,1],other.groups[c,1],other.groups[c,1],other.groups[c,1],0);
         }
     }

@@ -4,7 +4,7 @@ with (objUIButton)
 {
     if (argument0 == id)
     {
-        if(bID == 0)
+        if(bID == 0) //toggle selection
         {
             with(listID)
             {
@@ -34,6 +34,49 @@ with (objUIButton)
                 }
             }
         
+        }
+        if(bID == 2) //change team
+        {
+            with(listID)
+            {
+                for (i = 0;i < length; i++)
+                {
+                    if(!selected[i])
+                    {
+                        switch(global.menuTeams[i])
+                        {
+                            case "":
+                                global.menuTeams[i] = "RED";
+                                break;
+                            case "RED":
+                                global.menuTeams[i] = "ORANGE";
+                                break;
+                            case "ORANGE":
+                                global.menuTeams[i] = "YELLOW";
+                                break;
+                            case "YELLOW":
+                                global.menuTeams[i] = "GREEN";
+                                break;
+                            case "GREEN":
+                                global.menuTeams[i] = "BLUE";
+                                break;
+                            case "BLUE":
+                                global.menuTeams[i] = "PURPLE";
+                                break;
+                            case "PURPLE":
+                                global.menuTeams[i] = "";
+                                break;
+                        }
+                    }
+                }
+            }     
+        }
+        if(bID == 3) //clear teams
+        {
+            with(listID)
+                for (i = 0;i < length; i++)
+                    if(!selected[i])
+                        global.menuTeams[i] = "";   
         }
     
     }

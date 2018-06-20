@@ -96,6 +96,8 @@ for(var i = 0;i &lt; global.rope; i++)
 for(var i = 0;i &lt; global.stone; i++)
     instance_create(global.stoneloc[i,0],global.stoneloc[i,1],oStone);
     
+for(var i = 0;i &lt; 6;i++)
+    regGroup[i] = -1;
 for(var i = 1;i &lt; global.fighters+1; i++)
 { 
     global.deathCause[i] = "Death by ???";
@@ -109,6 +111,7 @@ for(var i = 1;i &lt; global.fighters+1; i++)
     c.ENDURANCE = global.STATS[i,2];
     c.SKILL = global.STATS[i,3];
     c.LUCK = global.STATS[i,4];
+    team_set(i,c);
 }    
 global.NAMES[global.fighters+1] = "";
 groups[0,0] = -1;

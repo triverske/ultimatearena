@@ -308,6 +308,8 @@
     <script>scripts\array_from_section.gml</script>
     <script>scripts\array_to_section.gml</script>
     <script>scripts\smooth_approach.gml</script>
+    <script>scripts\get_color.gml</script>
+    <script>scripts\team_set.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
