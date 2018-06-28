@@ -72,12 +72,12 @@ with (objUIButton)
                 {
                 with (zui_create(zui_get_width() * 0.5, zui_get_height() * 0.5, objUIWindow, -1)) 
                     {
-                        zui_set_size(240, 100);
+                        zui_set_size(240, 200);
                         zui_create(0,0,oUIExitButton,-5);
                         callback = title_buttons;
                         wID = "Settings";
             
-                        with (zui_create(5, __height - 35, objUIButton)) 
+                        with (zui_create(5, __height - 135, objUIButton)) 
                         {
                             zui_set_anchor(0,0);
                             zui_set_size(230, 30);
@@ -104,7 +104,7 @@ with (objUIButton)
                             bID = 10;
                         }
                         */
-                        with (zui_create(5, __height - 70, objUIButton)) 
+                        with (zui_create(5, __height - 170, objUIButton)) 
                         {
                             zui_set_anchor(0,0);
                             zui_set_size(230, 30);
@@ -112,6 +112,15 @@ with (objUIButton)
                             callback = title_buttons;
                             bID = 2;
                         }    
+                        
+                        with(zui_create(120,__height - 30, objUILabel))
+                        {
+                            zui_set_anchor(.5,.5);
+                            color = c_white;
+                            caption = "NOTE: Hold TAB to move window#while in windowed mode.";
+                            valign = fa_middle;
+                            halign = fa_center;
+                        }
 
 
                         with (zui_create(0, 0, objUIWindowCaption)) 
