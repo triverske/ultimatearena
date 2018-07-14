@@ -205,7 +205,7 @@ if(event_timer == 0 &amp;&amp; !instance_exists(oArenaEvent))
     s.alarm[0] = global.GAME_SPEED;
     global.event_count++;
     
-    ini_open(working_directory+"events\" + global.EVENT[event]);
+    ini_open(global.EVENT[event]);
     s.description = ini_read_string("event","description","ERROR");
     s.name = ini_read_string("event","name","ERROR");
     s.death_percentage = ini_read_real("event","death_percentage",0);

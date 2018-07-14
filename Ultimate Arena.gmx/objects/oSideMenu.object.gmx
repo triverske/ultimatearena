@@ -100,7 +100,9 @@ for(i = 1;i &lt; global.fighters+1;i++)
 {
     if (global.killArray[i] &gt; 0)
     {
-        global.KILL_STRING = global.KILL_STRING + string_upper(global.NAMES[i]) + ": "+ string(global.killArray[i]) + "  ";
+        //global.KILL_STRING = global.KILL_STRING + string_upper(global.NAMES[i]) + ": "+ string(global.killArray[i]) + "  ";
+        global.KILL_STRING = global.KILL_STRING + global.NAMES[i] + ": "+ string(global.killArray[i]) + "  ";
+        
         if (killleaderkills &lt; global.killArray[i])
         {
             killleader = i;
@@ -120,14 +122,17 @@ for(i = 1;i &lt; global.fighters+1;i++)
         sanityleaders = sanityArray[i]
     }
 }
+global.KILL_STRING = string_upper(global.KILL_STRING);
 
 for(i = 1;i &lt; global.fighters;i++)
 {
     if (global.DEATH_ARRAY[i] &gt; 0)
     {
-        global.DEATH_STRING = global.DEATH_STRING + string_upper(global.NAMES[i])+"  ";
+        //global.DEATH_STRING = global.DEATH_STRING + string_upper(global.NAMES[i])+"  ";
+        global.DEATH_STRING = global.DEATH_STRING + string(global.NAMES[i])+"  ";
     }
 }
+global.DEATH_STRING = string_upper(global.DEATH_STRING);
 </string>
           </argument>
         </arguments>

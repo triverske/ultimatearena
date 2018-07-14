@@ -168,7 +168,7 @@ with(zui_main())
             draw_callback = tag_select_draw_ui;
             type = 1;
             listID = 0;
-            initialize_listbox(global.TEXT);
+            initialize_listbox(global.TEXTNAME);
             sID = 0;
             for(var i=length-1;i&gt;=0; i--)
             {

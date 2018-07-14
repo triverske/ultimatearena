@@ -410,7 +410,7 @@ if (startgame == 1)
         {   
             charcount++;
             file = global.fNAME[i]
-            ini_open(working_directory + "characters\" + file);
+            ini_open(file);
             global.NAMES[charcount] = ini_read_string("character","name","NAMING ERROR");
             global.GENDER[charcount] = ini_read_real("character","gender",0);
             global.SOUNDS[charcount] = ini_read_string("character","deathsound","");

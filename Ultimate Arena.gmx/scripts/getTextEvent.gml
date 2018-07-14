@@ -3,7 +3,7 @@ event = argument0;
 ID = argument1;
 
 
-ini_open(working_directory+"events\" + global.EVENT[event]);
+ini_open(global.EVENT[event]);
 total = ini_read_real("text","total",1);
 
 randvar = ceil(random(total));

@@ -9,13 +9,13 @@ with(objUIListBox){
                 if(other.sID == 0)
                     array_from_update_file("DefaultText.ini");
                 else
-                    array_from_update_file(working_directory+"texts\"+global.TEXT[other.sID]+"\"+global.TEXT[other.sID]+".ini");
+                    array_from_update_file(global.TEXT[other.sID]);
                 array_from_section();
             }
             
             with(objUIWindowCaption){
                 if(__parent != other.__parent)
-                    caption = global.TEXT[other.sID];
+                    caption = global.TEXTNAME[other.sID];
             }
             
             with(objUIListBox){
@@ -48,7 +48,7 @@ with(objUIButton){
             ini_write_real("defaulttext","togglefile",global.TEXTTOGGLE[0]);
             ini_close();
             for(var i=1; i<global.TEXT_COUNT; i++){
-                ini_open(working_directory+"texts\"+global.TEXT[i]+"\"+global.TEXT[i]+".ini");
+                ini_open(global.TEXT[i]);
                 ini_write_real("toggle","toggle",global.TEXTTOGGLE[i]);
                 ini_close();
             }
@@ -57,7 +57,7 @@ with(objUIButton){
         }
         else if(bID == 1){ //Delete Update File
             if(global.IDselected > 0){
-                directory_destroy(working_directory+"texts\"+global.TEXT[global.IDselected]);
+                directory_destroy(global.TEXT[global.IDselected]);
                 initialize_texts();
                 keyboard_string = "";
                 room_restart();
@@ -228,7 +228,7 @@ with(objUIButton){
                     ini_close();
                 }
                 else{
-                    ini_open(working_directory+"texts\"+global.TEXT[global.IDselected]+"\"+global.TEXT[global.IDselected]+".ini");
+                    ini_open(global.TEXT[global.IDselected]);
                     for(var i=0; i<55; i++){
                         if(textList[i,0] != ""){
                             ini_write_real(section[i],"total",string_length(textList[i,0]));
@@ -241,8 +241,8 @@ with(objUIButton){
                     ini_write_real("text","version",global.charVersion + 1);
                     ini_write_real("text","creator",steam_get_user_account_id());
                     ini_close();
-                    global.charname = global.TEXT[global.IDselected]; 
-                    var ename = global.TEXT[global.IDselected];
+                    global.charname = global.TEXTNAME[global.IDselected]; 
+                    var ename = global.TEXTNAME[global.IDselected];
                 }
                 with(objUIListBox){
                     if(listID == 1)
@@ -304,7 +304,8 @@ with(objUIButton){
                     if(content == "")
                         exit;
                     var nam = content;
-                    global.TEXT[global.TEXT_COUNT] = nam;
+                    global.TEXTNAME[global.TEXT_COUNT] = nam;
+                    global.TEXT[global.TEXT_COUNT] = working_directory+"texts\"+nam+"\"+nam+".ini";
                     global.TEXTTOGGLE[global.TEXT_COUNT] = 1;
                     global.TEXT_COUNT++; 
                     //directory_create(working_directory+"texts\"+nam+"\");

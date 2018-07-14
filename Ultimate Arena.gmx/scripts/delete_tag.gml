@@ -2,7 +2,7 @@
 
 var tID = argument0;
 for(var i=0; i<array_length_2d(global.TAG_LIST,tID); i++){
-    ini_open(working_directory+"characters\"+global.fNAME[global.TAG_LIST[tID,i]]);
+    ini_open(global.fNAME[global.TAG_LIST[tID,i]]);
     var prevtag = ini_read_string("character","tags","");
     var newtag = string_replace(prevtag,global.TAGS[tID]+",","");
     newtag = string_replace(newtag,global.TAGS[tID],"");

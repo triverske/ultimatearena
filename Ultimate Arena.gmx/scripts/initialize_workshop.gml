@@ -1,10 +1,12 @@
 global.cNAME = 0;
 
+/*
 steam_list = ds_list_create();
 steam_ugc_get_subscribed_items(steam_list);
 
 
 //I'm so sorry it had to be this way....
+
 var s = ds_list_size(steam_list);
 for(i=0;i<s;i++)
 {

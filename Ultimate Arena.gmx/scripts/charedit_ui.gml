@@ -14,7 +14,7 @@ with(objUIListBox)
                 global.IDselected = sID;
                 oCharedit.tempTags = 0;
                 
-                ini_open(working_directory + "characters\" + global.fNAME[sID])
+                ini_open(global.fNAME[sID])
                 global.editStats[0] = min(10,ini_read_real("character","strength",5));
                 global.editStats[1] = min(10,ini_read_real("character","agility",5));
                 global.editStats[2] = min(10,ini_read_real("character","endurance",5));
@@ -79,7 +79,7 @@ with(objUIListBox)
                     }
                 }
                 with(oCharedit){
-                    array_from_update_file(working_directory + "characters\" + global.fNAME[other.sID]);
+                    array_from_update_file(global.fNAME[other.sID]);
                     array_from_section();
                 }
                 var ts = 0;
@@ -340,13 +340,9 @@ with(objUIButton)
                 room_restart();
             }
         }
-        else if(bID == 6) //Add sound
+        else if(bID == 6) //Add sound (depreciated?)
         {
-            file = get_open_filename("Sound File|*.ogg", "");
-            if(file != "")
-            {
-                file_copy_win(file,working_directory + "characters\test.ogg");
-            }
+            //file = get_open_filename("Sound File|*.ogg", "");
         }
         else if(bID == 7) //Increase Stat
         {
@@ -456,7 +452,7 @@ with(objUIButton)
                 }
                 global.TAG_LIST[global.TAG_COUNT,0] = global.IDselected;
                 global.TAG_COUNT++;
-                ini_open(working_directory+"characters\"+global.fNAME[global.IDselected]);
+                ini_open(global.fNAME[global.IDselected]);
                 var prevtag = ini_read_string("character","tags","");
                 if(prevtag!= "")
                     ini_write_string("character","tags",prevtag+","+global.TAGS[global.TAG_COUNT-1]);

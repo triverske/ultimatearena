@@ -271,7 +271,7 @@ with(objUIListBox){
         global.TAGS[global.TAG_COUNT]=ds_map_find_value(async_load, "result");
         global.TAG_LIST[global.TAG_COUNT,0] = global.IDselected;
         global.TAG_COUNT++;
-        ini_open(working_directory+"characters\"+global.fNAME[global.IDselected]);
+        ini_open(global.fNAME[global.IDselected]);
         var prevtag = ini_read_string("character","tags","");
         if(prevtag!= "")
             ini_write_string("character","tags",prevtag+","+global.TAGS[global.TAG_COUNT-1]);

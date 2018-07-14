@@ -14,7 +14,7 @@ if (argument0 == id )
     global.stone = 0;
     
     //Fill global.grid
-    ini_open(working_directory+"maps\"+global.MAPS[sID]+'\'+global.MAPS[sID]+'.ini');
+    ini_open(global.MAPS[sID]);
     for(var i=0; i<256; i++){
         var str = ini_read_string("Map","Colors"+string(i),"");
         for(var j=0; j<256; j++){
@@ -31,7 +31,7 @@ if (argument0 == id )
     var surf = surface_create(512, 512);
     surface_set_target(surf);
     
-    var spr = sprite_add(working_directory+"maps\"+global.MAPS[sID]+'\'+global.MAPS[sID]+".png",1,0,0,0,0);
+    var spr = sprite_add(global.mapPICS[sID],1,0,0,0,0);
     draw_sprite_ext(spr,0,0,0,2,2,0,c_white,1);
     
     var blue = make_color_rgb(48,102,201);
@@ -75,9 +75,13 @@ if (argument0 == id )
     }
     
     var spr2 = 0;
-    if(file_exists(working_directory+"maps\"+global.MAPS[sID]+'\'+global.MAPS[sID]+"overlay.png")){
-        spr2 = sprite_add(working_directory+"maps\"+global.MAPS[sID]+'\'+global.MAPS[sID]+"overlay.png",1,0,0,0,0);
-        draw_sprite_ext(spr2,0,0,0,2,2,0,c_white,1);
+    if(global.mapOVERLAY[sID] != noone)
+    {
+        if(file_exists(global.mapOVERLAY[sID]))
+        {
+            spr2 = sprite_add(global.mapOVERLAY[sID],1,0,0,0,0);
+            draw_sprite_ext(spr2,0,0,0,2,2,0,c_white,1);
+        }
     }
     
     // create the minimap background 

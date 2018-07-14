@@ -158,7 +158,7 @@ with (objUIButton)
                             zui_set_anchor(0,0);
                             zui_set_size(160,200);
                             callback = map_ui;
-                            initialize_listbox(global.MAPS,0,global.MAP_COUNT-1);
+                            initialize_listbox(global.mapNAME,0,global.MAP_COUNT-1);
                             with(zui_create(0,0,objUIListBoxScroll)){} 
                         }
                         zui_create(0,0,oUIExitButton,-1);
@@ -252,7 +252,7 @@ with (objUIWindow)
         }
         else
         {
-            ini_open(working_directory + "characters\" + global.fNAME[global.IDselected]);
+            ini_open(global.fNAME[global.IDselected]);
             if (ini_read_real("character","gender",0))
                 var gen = "Female";
             else

@@ -8,7 +8,10 @@ if(teaminfo != "")
     draw_set_alpha(.24);
     draw_rectangle(0, ypos[i], __width - 15, ypos[i]+16, 0);
     draw_set_alpha(1);
-    draw_set_color(c_white);
+    if(global.cTYPE[i] == 0)
+        draw_set_color(c_white);
+    else
+        draw_set_color(c_aqua);
     draw_text(22,(ypos[i] + 7),list[i] + " - " + teaminfo + " TEAM");
     
     if(global.IDselected == i)
@@ -23,7 +26,13 @@ if(teaminfo != "")
 }
 else
 {
+    if(global.cTYPE[i] == 0)
+        draw_set_color(c_white);
+    else
+        draw_set_color(c_aqua);
     draw_text(22,(ypos[i] + 7),list[i]);
+    draw_set_color(c_white);
+    
     if(global.IDselected == i)
     {
         draw_set_alpha(.7);

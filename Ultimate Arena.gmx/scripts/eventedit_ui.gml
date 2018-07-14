@@ -10,7 +10,7 @@ with(objUIListBox)
         else
         {
             global.IDselected = argument0.sID;
-            ini_open(working_directory + "events\" + global.EVENT[sID])
+            ini_open(global.EVENT[sID])
             var ename = ini_read_string("event","name","");
             var edesc = ini_read_string("event","description","");
             var eperc = ini_read_real("event","death_percentage",0);

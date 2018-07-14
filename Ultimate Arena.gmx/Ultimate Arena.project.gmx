@@ -90,9 +90,7 @@
       <filename>settings.ini</filename>
     </datafile>
   </datafiles>
-  <NewExtensions>
-    <extension index="0">extensions\WinDev</extension>
-  </NewExtensions>
+  <NewExtensions/>
   <sounds name="sound">
     <sound>sound\snd_notification</sound>
     <sound>sound\snd_blip</sound>
