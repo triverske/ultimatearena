@@ -102,6 +102,7 @@ for(h=0;h<s;h++)
     
             var in = steam_map [? "folder"] + "\" + f;
             var name = ini_read_string("character","name","NAMING ERROR");
+            show_debug_message(name);
             if(name == "NAMING ERROR")
             {
                 ini_close();
@@ -121,7 +122,8 @@ for(h=0;h<s;h++)
                 global.cIMAGES[i] = sFighterImage; 
             
             var tags = ini_read_string("character","tags","");
-            if (tags != ""){
+            if (tags != "")
+            {
                 var tagcount = string_parse_number(tags,",",true);
                 for(r = 0; r < tagcount; r++){
                     var curtag = string_extract(tags,",",r);
@@ -139,11 +141,10 @@ for(h=0;h<s;h++)
                     }    
                 }
             }
+            i++;
         }
-
         ini_close();
         f = file_find_next();
-        i++;
     }
     file_find_close();
     ds_map_destroy(steam_map);

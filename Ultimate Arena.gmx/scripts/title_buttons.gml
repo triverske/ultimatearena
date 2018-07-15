@@ -232,6 +232,10 @@ with (objUIButton)
         {
             url_open("http://store.steampowered.com/app/757160/");
         }
+        else if (bID == 18)//Discord
+        {
+            url_open("http://discord.gg/Q8xTZFp");
+        }
     }
 }
 

@@ -100,7 +100,7 @@ for (var i = 0; i < width; i += 1) {
 // create the minimap background 
 if(background_exists(global.bck_minimap))
     background_delete(global.bck_minimap);
-background_assign(global.bck_minimap,background_create_from_surface(surf, 0, 0, 512, 512, 0, 0));
+global.bck_minimap = background_create_from_surface(surf, 0, 0, 512, 512, 0, 0);
 
 // create trees
 while(global.trees < totaltrees)

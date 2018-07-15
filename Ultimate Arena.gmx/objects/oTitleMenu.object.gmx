@@ -98,27 +98,45 @@ with (zui_main())
          bID = 3;
     }
     
-    with (zui_create(display_get_gui_width()/2 + 350, display_get_gui_height() / 2  + 330, objUIButton)) 
+    with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  + 300, oUIImageButton)) 
     {
-         zui_set_size(190, 24);
-         caption = "Github";
+         //github
+         zui_set_size(80, 80);
          callback = title_buttons;
-         type = 1;
+         image = spr_menuIcons;
+         imgAnchor = 1;
+         type = 0;
          bID = 11;
     }
-    with (zui_create(display_get_gui_width()/2 + 350, display_get_gui_height() / 2  + 300, objUIButton)) 
+    with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  + 210, oUIImageButton)) 
     {
-         zui_set_size(190, 24);
+         zui_set_size(80, 80);
          caption = "Facebook";
          callback = title_buttons;
+         image = spr_menuIcons;
+         imgAnchor = 1;
+         type = 1;
          bID = 13;
     }
-    with (zui_create(display_get_gui_width()/2 + 350, display_get_gui_height() / 2  + 270, objUIButton)) 
+    with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  + 120, oUIImageButton)) 
     {
-         zui_set_size(190, 24);
+         zui_set_size(80, 80);
          caption = "Twitter";
          callback = title_buttons;
+         image = spr_menuIcons;
+         imgAnchor = 1;
+         type = 2;
          bID = 14;
+    }
+    with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  + 30, oUIImageButton)) 
+    {
+         zui_set_size(80, 80);
+         caption = "Discord";
+         callback = title_buttons;
+         image = spr_menuIcons;
+         imgAnchor = 1;
+         type = 3;
+         bID = 18;
     }
     with (zui_create(display_get_gui_width()/2 + 350, display_get_gui_height() / 2  + 240, objUIButton)) 
     {

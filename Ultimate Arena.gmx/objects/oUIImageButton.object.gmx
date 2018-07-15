@@ -32,6 +32,7 @@ colortype = 0;
 drawGui = 0;
 color = c_white;
 alpha = 1;
+imgAnchor = 0;
 </string>
           </argument>
         </arguments>
@@ -139,8 +140,10 @@ alpha = 1;
         draw_set_alpha(.3)
     } 
     
-    
-    draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,1);
+    if(imgAnchor == 0)
+        draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,1);
+    else if(imgAnchor == 1)
+        draw_sprite(image,type,zui_get_width()/2,zui_get_height()/2);
     
     
     /*
@@ -207,9 +210,10 @@ alpha = 1;
         alpha = .3;
     } 
     
-    
-    draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,alpha);
-    
+    if(imgAnchor == 0)
+        draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,alpha);
+    else if(imgAnchor == 1)
+        draw_sprite(image,type,zui_get_width()/2,zui_get_height()/2);
     
     /*
     draw_set_color(c_black);

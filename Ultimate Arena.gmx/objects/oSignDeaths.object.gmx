@@ -35,6 +35,8 @@ s2c = 0;
 s1p = 0;
 s2p = 0;
 start = true;
+
+alarm[0] = 2;
 </string>
           </argument>
         </arguments>
@@ -57,8 +59,8 @@ start = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>startpos += 1;//move the sign over by 1 letter
-alarm[0] = scroll_spd;
+            <string>for(var i = 0;i &lt; 3000;i++)
+    event_perform(ev_step,0);
 </string>
           </argument>
         </arguments>
@@ -122,9 +124,6 @@ else
 
 with(oTextScroll)
     event_user(1);
-
-
-
 </string>
           </argument>
         </arguments>
@@ -154,10 +153,7 @@ draw_set_font(font_board);draw_set_valign(fa_top);
 draw_set_halign(fa_left);
 draw_rectangle_colour(0,HS-41,WS,HS-21,c_dkgray,c_dkgray,c_0,c_0,0);
 draw_line_colour(0,HS-40,WS,HS-40,c_1,c_1);
-
-
 draw_rectangle_colour(0,HS-20,WS,HS-1,c_dkgray,c_dkgray,c_0,c_0,0);
-
 
 with(oTextScroll)
     event_user(0);

@@ -156,6 +156,7 @@
     </sprites>
     <sprite>sprites\sSkull</sprite>
     <sprite>sprites\sCamera</sprite>
+    <sprite>sprites\spr_menuIcons</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_tile2</background>
