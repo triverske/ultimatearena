@@ -163,18 +163,7 @@ if(pressed)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-
-//ui_draw_sprite_panel(sExitButton, 0, 0, 0, 0,22,14);
-
-/*
-draw_set_font(font0);
-draw_set_halign(1);
-draw_set_valign(1);
-draw_set_color(merge_colour(draw_get_colour(), 0, 0.1)); */
-draw_sprite_ext(sExitButton,type,x,y,1,1,0,c_white,1);
-
-//draw_text(__width * 0.5, __height * 0.5, caption);
+            <string>draw_sprite_ext(spr_closeButton,type,x,y,1,1,0,c_white,1);
 </string>
           </argument>
         </arguments>

@@ -48,9 +48,9 @@ with(objUIListBox){
                 draw_sprite(map,0,0,0);
                 surface_reset_target();
                 sprite_delete(map);
-                if(overlayImage != sBlankMap)
+                if(overlayImage != spr_blankMap)
                     sprite_delete(overlayImage);
-                overlayImage = sBlankMap;
+                overlayImage = spr_blankMap;
                 overlayOn = false;
                 if(file_exists(working_directory+"maps\"+mname+"\"+mname+"overlay.png")){
                     overlayImage = sprite_add(working_directory+"maps\"+mname+"\"+mname+"overlay.png",1,0,0,0,0);
@@ -125,7 +125,7 @@ with(objUIButton){
                 directory_destroy(working_directory+"maps\"+global.MAPS[global.IDselected]);
                 keyboard_string = "";
                 with(oMapedit){
-                    if(overlayImage != sBlankMap)
+                    if(overlayImage != spr_blankMap)
                         sprite_delete(overlayImage);
                     surface_free(mapeditSurf);
                     ds_grid_destroy(mapGrid);
@@ -151,7 +151,7 @@ with(objUIButton){
         else if(bID == 9){//Create New Map
             with(oMapedit){
                 keyboard_string = "";
-                if(overlayImage != sBlankMap)
+                if(overlayImage != spr_blankMap)
                     sprite_delete(overlayImage);
                 surface_free(mapeditSurf);
                 ds_grid_destroy(mapGrid);
@@ -174,7 +174,7 @@ with(objUIButton){
                 ini_open(working_directory+"maps\"+name+'\'+name+'.ini');
                 surface_save(mapeditSurf,working_directory+"maps\"+name+'\'+name+'.png');
                 ini_write_string("Map","name",name);
-                if(overlayImage != sBlankMap){
+                if(overlayImage != spr_blankMap){
                     sprite_save(overlayImage,0,working_directory+"maps\"+name+'\'+name+'overlay.png');
                     sprite_delete(overlayImage);
                 }
@@ -246,9 +246,9 @@ with(objUIButton){
         }
         else if(bID == 11){//Import Image Overlay
             with(oMapedit){
-                if(overlayImage != sBlankMap){
+                if(overlayImage != spr_blankMap){
                     sprite_delete(overlayImage);
-                    overlayImage = sBlankMap;
+                    overlayImage = spr_blankMap;
                     overlayOn = false;
                     with(objUIButton){
                         if(bID == 12)
@@ -259,7 +259,7 @@ with(objUIButton){
                 else{
                     var file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
                     if(file != ""){
-                        if(overlayImage != sBlankMap)
+                        if(overlayImage != spr_blankMap)
                             sprite_delete(overlayImage);
                         overlayImage = sprite_add(file,0,0,0,0,0);
                         var surf = surface_create(256,256);
@@ -280,7 +280,7 @@ with(objUIButton){
             }
         }
         else if(bID == 12){//Toggle Overlay
-            if(oMapedit.overlayImage != sBlankMap){
+            if(oMapedit.overlayImage != spr_blankMap){
                 oMapedit.overlayOn = !oMapedit.overlayOn;
                 if(oMapedit.overlayOn)
                     caption = "Overlay: On";

@@ -67,7 +67,7 @@ defaultC[65] = "Putin";
 defaultC[66] = "Taylor Swift";
 defaultC[67] = "Matt Mozingo";
 
-v = sprite_duplicate(sDefaultCharacters);
+v = sprite_duplicate(spr_defaultFighterImages);
 
 for(i = 0;i < array_length_1d(defaultC);i++)
 {

@@ -154,7 +154,7 @@ with(objUIButton)
                 draw_sprite_stretched(newsp,0,0,0,128,128);
                 surface_reset_target();
                 
-                if(oCharedit.newImage != sFighterImage)
+                if(oCharedit.newImage != spr_defaultFighterImage)
                     sprite_delete(oCharedit.newImage);
                 oCharedit.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
                 
@@ -162,9 +162,9 @@ with(objUIButton)
                 surface_free(surf);
             }
             else{
-                if(oCharedit.newImage != sFighterImage)
+                if(oCharedit.newImage != spr_defaultFighterImage)
                     sprite_delete(oCharedit.newImage);
-                oCharedit.newImage = sFighterImage;
+                oCharedit.newImage = spr_defaultFighterImage;
             }
             
             oUIImage.image = oCharedit.newImage;
@@ -260,18 +260,19 @@ with(objUIButton)
                     if(lID > 0 && lID < 6)
                         caption = "5";
                     
-                if(oCharedit.newImage != sFighterImage){
+                if(oCharedit.newImage != spr_defaultFighterImage)
+                {
                     sprite_save(oCharedit.newImage,0,working_directory + "characters\" + name + "\" + name + ".png");
                     sprite_delete(oCharedit.newImage);
-                    oCharedit.newImage = sFighterImage;
+                    oCharedit.newImage = spr_defaultFighterImage;
                 }
                 else
                 {
-                    if(oUIImage.image != sFighterImage)
+                    if(oUIImage.image != spr_defaultFighterImage)
                         sprite_save(oUIImage.image,0,working_directory + "characters\" + name + "\" + name + ".png");
                     else{
                         //Gamemaker doesn't let you save images from the resource tree.
-                        var tempSprite = sprite_duplicate(sFighterImage);
+                        var tempSprite = sprite_duplicate(spr_defaultFighterImage);
                         sprite_save(tempSprite,0,working_directory + "characters\" + name + "\" + name + ".png");
                         sprite_delete(tempSprite);
                     }
@@ -323,9 +324,9 @@ with(objUIButton)
         }
         else if(bID == 4)//New Character
         {
-            if(oCharedit.newImage != sFighterImage)
+            if(oCharedit.newImage != spr_defaultFighterImage)
                 sprite_delete(oCharedit.newImage);
-            oCharedit.newImage = sFighterImage;
+            oCharedit.newImage = spr_defaultFighterImage;
             keyboard_string = "";
             room_restart();
         }

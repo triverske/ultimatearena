@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>global.IDselected = -1;
 global.creator = -1;
-overlayImage = sBlankMap;
+overlayImage = spr_blankMap;
 overlayOn = false;
 cursorType = 0;
 cursorSize = 0;
@@ -206,10 +206,13 @@ if(mouse_y &gt; round(window_get_height()*.5-233) &amp;&amp; mouse_y &lt; round(
           <argument>
             <kind>1</kind>
             <string>keyboard_string = "";
-if(overlayImage != sBlankMap)
+
+if(overlayImage != spr_blankMap)
     sprite_delete(overlayImage);
+    
 if(surface_exists(mapeditSurf))
     surface_free(mapeditSurf);
+    
 if(ds_exists(mapGrid,ds_type_grid))
     ds_grid_destroy(mapGrid);
 </string>
@@ -235,15 +238,20 @@ if(ds_exists(mapGrid,ds_type_grid))
           <argument>
             <kind>1</kind>
             <string>
-if(overlayOn){
+if(overlayOn)
+{
     draw_sprite_ext(overlayImage,0,round(window_get_width()*.5-256),round(window_get_height()*.5-232),2,2,0,c_white,1);
 }
-if(treeArray != 0){
-    for(var i=0; i&lt;array_height_2d(treeArray); i++){
+
+if(treeArray != 0)
+{
+    for(var i=0; i&lt;array_height_2d(treeArray); i++)
+    {
         var l = 0;
         var t = 0;
         var w = 7;
-        if(treeArray[i,0] &lt;= 2){
+        if(treeArray[i,0] &lt;= 2)
+        {
             l = 3-treeArray[i,0];
             w = 7-l;
         }
@@ -251,7 +259,7 @@ if(treeArray != 0){
             w = 7-(treeArray[i,0]-508);
         if(treeArray[i,1] &lt;= 10)
             t = 12-treeArray[i,1];
-        draw_sprite_part_ext(sTree,0,l,t,w,14-t,round(window_get_width()*.5-259)+treeArray[i,0]+l,round(window_get_height()*.5-244)+treeArray[i,1]+t,1,1,c_white,1);
+        draw_sprite_part_ext(spr_tree,0,l,t,w,14-t,round(window_get_width()*.5-259)+treeArray[i,0]+l,round(window_get_height()*.5-244)+treeArray[i,1]+t,1,1,c_white,1);
     }
 }
 </string>

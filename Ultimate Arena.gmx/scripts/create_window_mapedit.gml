@@ -178,7 +178,7 @@ with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)-1
         with(zui_create(5+8,5+19,oUIImage)){
             zui_set_anchor(0,0);
             zui_set_size(20,20);
-            image = sTree;
+            image = spr_tree;
             scale = 2;
         }
         with(zui_create(35, 15, objUILabel)){

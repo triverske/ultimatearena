@@ -118,7 +118,7 @@ alpha2-=.025;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sTriverskeLogo,0,display_get_gui_width()/2,display_get_gui_height()/2,1,1,0,c_white,alpha2);
+            <string>draw_sprite_ext(spr_triverskeLogo,0,display_get_gui_width()/2,display_get_gui_height()/2,1,1,0,c_white,alpha2);
 </string>
           </argument>
         </arguments>

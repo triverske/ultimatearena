@@ -165,7 +165,7 @@ with(zui_main())
                 type = i;
                 bID = i + 4;
                 callback = arena_ui;
-                image = sGameButtons;
+                image = spr_gameButtons;
                 zui_set_size(42,42);
             }
         } 

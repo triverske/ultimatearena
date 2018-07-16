@@ -7,7 +7,7 @@ global.fNAME = 0;
 
 if(is_array(global.cIMAGES)){
     for(var i=0; i<array_length_1d(global.cIMAGES); i++){
-        if(global.cIMAGES[i] != sFighterImage)
+        if(global.cIMAGES[i] != spr_defaultFighterImage)
             sprite_delete(global.cIMAGES[i]);
     }
 }
@@ -15,7 +15,7 @@ global.cIMAGES = 0;
 
 if(is_array(global.cIMAGES)){
     for(var i=0; i<array_length_1d(global.cIMAGES); i++){
-        if(global.cIMAGES[i] != sFighterImage)
+        if(global.cIMAGES[i] != spr_defaultFighterImage)
             sprite_delete(global.cIMAGES[i]);
     }
 }
@@ -42,15 +42,15 @@ for(var h=0;h<l;h++)
     global.fNAME[i] = in;
     global.cSOUNDS[i] = ini_read_string("character","deathsound","");
     
-    var cImage = ini_read_string("character","image","sFighterImage");
+    var cImage = ini_read_string("character","image","spr_defaultFighterImage");
     
-    if(cImage != "sFighterImage")
+    if(cImage != "spr_defaultFighterImage")
         global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);
     else
-        global.cIMAGES[i] = sFighterImage; 
+        global.cIMAGES[i] = spr_defaultFighterImage; 
         
     if(global.cIMAGES[i] == -1){
-        var tempSprite = sprite_duplicate(sFighterImage);
+        var tempSprite = sprite_duplicate(spr_defaultFighterImage);
         sprite_save(tempSprite,0,working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png");
         sprite_delete(tempSprite);
         global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);
@@ -114,12 +114,12 @@ for(h=0;h<s;h++)
             global.fNAME[i] = in;
             global.cSOUNDS[i] = ini_read_string("character","deathsound","");
             
-            var cImage = ini_read_string("character","image","sFighterImage");
+            var cImage = ini_read_string("character","image","spr_defaultFighterImage");
             
-            if(cImage != "sFighterImage")
+            if(cImage != "spr_defaultFighterImage")
                 global.cIMAGES[i] = sprite_add(loc + name + ".png",1,0,0,0,0);
             else
-                global.cIMAGES[i] = sFighterImage; 
+                global.cIMAGES[i] = spr_defaultFighterImage; 
             
             var tags = ini_read_string("character","tags","");
             if (tags != "")

@@ -94,7 +94,7 @@ if (argument0 == id )
             break;
         global.treeloc[global.trees,0] = real(string_copy(ini_read_string("Trees",string(i),"000000"),1,3));
         global.treeloc[global.trees,1] = real(string_copy(ini_read_string("Trees",string(i),"000000"),4,3));
-        draw_sprite(sTree,0,global.treeloc[global.trees,0],global.treeloc[global.trees,1]);
+        draw_sprite(spr_tree,0,global.treeloc[global.trees,0],global.treeloc[global.trees,1]);
         global.trees++;
     }
     

@@ -80,7 +80,7 @@ if(directory_exists(working_directory + "characters"))
         if(file_exists(working_directory + "characters\" + dir + ".png"))
             var spr = sprite_add(working_directory + "characters\" + dir + ".png",0,0,0,0,0);
         else
-            var spr = sprite_duplicate(sFighterImage);
+            var spr = sprite_duplicate(spr_defaultFighterImage);
         
         directory_create(working_directory + "characters\" + dir);
         
@@ -120,7 +120,7 @@ if(directory_exists(working_directory + "characters"))
         if(file_exists(working_directory + "characters\" + dir + ".png"))
             var spr = sprite_add(working_directory + "characters\" + dir + ".png",0,0,0,0,0);
         else
-            var spr = sprite_duplicate(sFighterImage);
+            var spr = sprite_duplicate(spr_defaultFighterImage);
         
         directory_create(working_directory + "characters\" + dir);
         
@@ -560,7 +560,7 @@ if(event_id == new_item)
             
             if(global.uploadImage == -1)
             {
-                var tempSprite = sprite_duplicate(sUpdateFile);
+                var tempSprite = sprite_duplicate(spr_workshopUpdatesItem);
                 sprite_save(tempSprite,0,working_directory + "texts\" + ename+ "\" + ename + ".png");
                 sprite_delete(tempSprite);
             }

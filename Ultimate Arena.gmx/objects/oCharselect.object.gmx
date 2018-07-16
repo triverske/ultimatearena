@@ -406,39 +406,34 @@ if (startgame == 1)
     {
         for(i =0;i &lt; length;i++)
         {
-        if(selected[i] == 0)
-        {   
-            charcount++;
-            file = global.fNAME[i]
-            ini_open(file);
-            global.NAMES[charcount] = ini_read_string("character","name","NAMING ERROR");
-            global.GENDER[charcount] = ini_read_real("character","gender",0);
-            global.SOUNDS[charcount] = ini_read_string("character","deathsound","");
-            global.FILES[charcount] = file;
-            global.TEAM[charcount] = global.menuTeams[i];
-            
-            var r = ini_read_real("character","colorr",255);
-            var g = ini_read_real("character","colorg",255);
-            var b = ini_read_real("character","colorb",255);
-            global.COLORS[charcount] = make_color_rgb(r,g,b);
-            
-            global.STATS[charcount,0] = max(min(10,ini_read_real("character","strength",5)),1);
-            global.STATS[charcount,1] = max(min(10,ini_read_real("character","agility",5)),1);
-            global.STATS[charcount,2] = max(min(10,ini_read_real("character","endurance",5)),1);
-            global.STATS[charcount,3] = max(min(10,ini_read_real("character","skill",5)),1);
-            global.STATS[charcount,4] = max(min(10,ini_read_real("character","luck",5)),1);
-            
-            global.IMAGES[charcount] = global.cIMAGES[i];
-            /*cImage = ini_read_string("character","image","sFighterImage");
-            if (cImage != "sFighterImage")
-                global.IMAGES[charcount] = sprite_add(working_directory + "characters\" + cImage,1,0,0,0,0);
-            else
-                global.IMAGES[charcount] = sFighterImage;*/
-            ini_close();
-        }
+            if(selected[i] == 0)
+            {   
+                charcount++;
+                file = global.fNAME[i]
+                ini_open(file);
+                global.NAMES[charcount] = ini_read_string("character","name","NAMING ERROR");
+                global.GENDER[charcount] = ini_read_real("character","gender",0);
+                global.SOUNDS[charcount] = ini_read_string("character","deathsound","");
+                global.FILES[charcount] = file;
+                global.TEAM[charcount] = global.menuTeams[i];
+                
+                var r = ini_read_real("character","colorr",255);
+                var g = ini_read_real("character","colorg",255);
+                var b = ini_read_real("character","colorb",255);
+                global.COLORS[charcount] = make_color_rgb(r,g,b);
+                
+                global.STATS[charcount,0] = max(min(10,ini_read_real("character","strength",5)),1);
+                global.STATS[charcount,1] = max(min(10,ini_read_real("character","agility",5)),1);
+                global.STATS[charcount,2] = max(min(10,ini_read_real("character","endurance",5)),1);
+                global.STATS[charcount,3] = max(min(10,ini_read_real("character","skill",5)),1);
+                global.STATS[charcount,4] = max(min(10,ini_read_real("character","luck",5)),1);
+                global.IMAGES[charcount] = global.cIMAGES[i];
+                
+                ini_close();
+            }
         }
     }
-    global.IMAGES[0] = sFighterImage;
+    global.IMAGES[0] = spr_defaultFighterImage;
     global.fighters = charcount;
     if (charcount &lt; 4)
         ui_show_popup("You need at least 4 characters#to begin the match.");

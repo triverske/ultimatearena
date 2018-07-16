@@ -44,10 +44,10 @@ for(var i=1; i<f+1; i++)
     else errorcheck = 1;
     
     if(ini_key_exists("Map",string(i)+"IMAGES"))
-        global.IMAGES[i] = ini_read_real("Map",string(i)+"IMAGES",sFighterImage);
+        global.IMAGES[i] = ini_read_real("Map",string(i)+"IMAGES",spr_defaultFighterImage);
     else errorcheck = 1;
 }
-global.IMAGES[0] = sFighterImage;
+global.IMAGES[0] = spr_defaultFighterImage;
 global.fighters = f;
 ini_close();
 

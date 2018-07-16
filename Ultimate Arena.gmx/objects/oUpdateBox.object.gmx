@@ -110,7 +110,7 @@ if(mouse_check_button_pressed(mb_left))
             {
                 draw_sprite_stretched(image1,1,5,5,64,64);
                 if(dead &gt; 0)
-                    draw_sprite_stretched(sDeadX,1,5,5,64,64);
+                    draw_sprite_stretched(spr_deadX,1,5,5,64,64);
             }
             else if(fighters == 4)
             {
@@ -122,7 +122,7 @@ if(mouse_check_button_pressed(mb_left))
                 if (image4 != global.IMAGES[0])
                     draw_sprite_stretched(image4,1,5,37,32,32);
                 if (dead &gt; 0)
-                    draw_sprite_stretched(sDeadX,1,37,37,32,32);
+                    draw_sprite_stretched(spr_deadX,1,37,37,32,32);
             }
             texture_set_interpolation(0);
             

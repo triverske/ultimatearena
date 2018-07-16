@@ -266,7 +266,7 @@ with(objUIButton){
                     {
                         if(global.uploadImage == -1)
                         {
-                            var tempSprite = sprite_duplicate(sUpdateFile);
+                            var tempSprite = sprite_duplicate(spr_workshopUpdatesItem);
                             sprite_save(tempSprite,0,working_directory + "texts\" + ename+ "\" + ename + ".png");
                             sprite_delete(tempSprite);
                         }

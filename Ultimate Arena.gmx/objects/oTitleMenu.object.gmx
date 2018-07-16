@@ -210,10 +210,7 @@ with (zui_main())
 draw_set_halign(fa_left);
 draw_set_color(c_white);
 
-draw_sprite(sUltimateArenaLogo,0,display_get_gui_width()/2,display_get_gui_height()/3);
-//draw_text(5,5,date_datetime_string(GM_build_date));
-//draw_text(5,17,"v" + GM_version + " " + global.CODENAME);
-
+draw_sprite(spr_ultimateArenaLogo,0,display_get_gui_width()/2,display_get_gui_height()/3);
 </string>
           </argument>
         </arguments>

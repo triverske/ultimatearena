@@ -111,7 +111,7 @@ while(global.trees < totaltrees)
     {
         global.treeloc[global.trees,0] = rand1;
         global.treeloc[global.trees,1] = rand2;
-        draw_sprite(sTree,0,rand1,rand2);
+        draw_sprite(spr_tree,0,rand1,rand2);
         global.trees++;
     }
 }

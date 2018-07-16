@@ -13,7 +13,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         
     with(zui_create(5, 29, oUIImage))
     {
-        image = sFighterImage;
+        image = spr_defaultFighterImage;
         callback = charedit_ui;
         scale = 1.5;
         bID = 0;

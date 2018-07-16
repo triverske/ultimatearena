@@ -45,7 +45,6 @@ sanityleaders = 0;
 
 update[3] = 0;
 
-instance_create(0,0,oButtonBar);
 alarm[0] = global.GAME_SPEED;
 sidemenu = surface_create(100,500);
 for(i = 0;i &lt; global.fighters+1;i++)

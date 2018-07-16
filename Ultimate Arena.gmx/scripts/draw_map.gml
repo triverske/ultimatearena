@@ -19,7 +19,7 @@ with(oMine)
     draw_self();
     
 with(oItems)
-    draw_sprite(sItems,0,floor(x),floor(y))
+    draw_sprite(spr_itemBag,0,floor(x),floor(y))
 
 with(oWood)
     draw_self();
@@ -129,9 +129,9 @@ with (oFighter)
     
     if(fighterID == other.sanityleader)
     {
-        draw_sprite_ext(sFighterA,0,x+irandom_range(-2,2),y+irandom_range(-4,2),1,1,0,c_fuchsia,1);
-        draw_sprite_ext(sFighterA,0,x+irandom_range(-2,2),y+irandom_range(-4,2),1,1,0,c_fuchsia,1);
-        draw_sprite_ext(sFighterA,0,x+irandom_range(-2,2),y+irandom_range(-4,2),1,1,0,c_fuchsia,1);
+        draw_sprite_ext(spr_fighterLowAlpha,0,x+irandom_range(-2,2),y+irandom_range(-4,2),1,1,0,c_fuchsia,1);
+        draw_sprite_ext(spr_fighterLowAlpha,0,x+irandom_range(-2,2),y+irandom_range(-4,2),1,1,0,c_fuchsia,1);
+        draw_sprite_ext(spr_fighterLowAlpha,0,x+irandom_range(-2,2),y+irandom_range(-4,2),1,1,0,c_fuchsia,1);
     }
     if(fighterID == other.killleader)
     {
@@ -139,7 +139,7 @@ with (oFighter)
         other.skully = smooth_approach(other.skully,y-12,.1);
     }
     
-    draw_sprite_ext(sFighterS,INSANE,x,y,1,1,0,color,1);
+    draw_sprite_ext(spr_fighter,INSANE,x,y,1,1,0,color,1);
 }
 
 with (oExplosion)

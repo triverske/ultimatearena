@@ -241,7 +241,7 @@ with (objUIWindow)
         draw_set_valign(fa_top);
         if (global.IDselected == -1)
         {
-            draw_sprite_stretched(sFighterImage,0,5,29,64,64);
+            draw_sprite_stretched(spr_defaultFighterImage,0,5,29,64,64);
             draw_text(73,29,"NO FIGHTER SELECTED");
             draw_text(73,44,"Gender:");
             draw_text(73,59,"STR: ");

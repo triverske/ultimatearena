@@ -112,50 +112,48 @@
       <sprite>sprites\spr_scrollBox</sprite>
       <sprite>sprites\spr_gameSpeedButtons</sprite>
       <sprite>sprites\spr_sandboxButtons</sprite>
-      <sprite>sprites\sUltimateArenaLogo</sprite>
-      <sprite>sprites\sGameButtons</sprite>
+      <sprite>sprites\spr_ultimateArenaLogo</sprite>
+      <sprite>sprites\spr_gameButtons</sprite>
       <sprite>sprites\spr_chareditFighters</sprite>
-      <sprite>sprites\sDeadX</sprite>
-      <sprite>sprites\sExitButton</sprite>
-      <sprite>sprites\sFighterImage</sprite>
+      <sprite>sprites\spr_deadX</sprite>
+      <sprite>sprites\spr_closeButton</sprite>
+      <sprite>sprites\spr_defaultFighterImage</sprite>
       <sprite>sprites\spr_hoverStats</sprite>
       <sprite>sprites\spr_nameBar</sprite>
       <sprite>sprites\spr_breakingUpdate</sprite>
       <sprite>sprites\spr_updateBox</sprite>
-      <sprite>sprites\sTriverskeLogo</sprite>
+      <sprite>sprites\spr_menuIcons</sprite>
+      <sprite>sprites\spr_cameraButton</sprite>
+      <sprite>sprites\spr_triverskeLogo</sprite>
     </sprites>
     <sprites name="In Game">
-      <sprite>sprites\sFighterS</sprite>
-      <sprite>sprites\sFighterA</sprite>
-      <sprite>sprites\sMine</sprite>
-      <sprite>sprites\sFighter</sprite>
-      <sprite>sprites\sStone</sprite>
-      <sprite>sprites\sTree</sprite>
-      <sprite>sprites\sWSpear</sprite>
-      <sprite>sprites\sSSpear</sprite>
-      <sprite>sprites\sWBow</sprite>
-      <sprite>sprites\sSBow</sprite>
-      <sprite>sprites\sExplosion</sprite>
-      <sprite>sprites\sRope</sprite>
-      <sprite>sprites\sWood</sprite>
-      <sprite>sprites\sTrap</sprite>
+      <sprite>sprites\spr_fighter</sprite>
+      <sprite>sprites\spr_fighterLowAlpha</sprite>
+      <sprite>sprites\spr_landmine</sprite>
+      <sprite>sprites\spr_stone</sprite>
+      <sprite>sprites\spr_tree</sprite>
+      <sprite>sprites\spr_woodSpear</sprite>
+      <sprite>sprites\spr_steelSpear</sprite>
+      <sprite>sprites\spr_woodBow</sprite>
+      <sprite>sprites\spr_steelBow</sprite>
+      <sprite>sprites\spr_explosion</sprite>
+      <sprite>sprites\spr_rope</sprite>
+      <sprite>sprites\spr_wood</sprite>
+      <sprite>sprites\spr_trap</sprite>
       <sprite>sprites\spr_deadLocation</sprite>
       <sprite>sprites\spr_sleep</sprite>
       <sprite>sprites\spr_alert</sprite>
-      <sprite>sprites\sItems</sprite>
+      <sprite>sprites\spr_skull</sprite>
+      <sprite>sprites\spr_itemBag</sprite>
     </sprites>
     <sprites name="Other">
-      <sprite>sprites\sArenaEvent</sprite>
-      <sprite>sprites\sDefaultCharacters</sprite>
-      <sprite>sprites\sMap</sprite>
-      <sprite>sprites\sBlankMap</sprite>
-      <sprite>sprites\sDefaultMaps</sprite>
-      <sprite>sprites\sUpdateFile</sprite>
+      <sprite>sprites\spr_arenaEvent</sprite>
+      <sprite>sprites\spr_defaultFighterImages</sprite>
+      <sprite>sprites\spr_blankMap</sprite>
+      <sprite>sprites\spr_defaultMaps</sprite>
+      <sprite>sprites\spr_workshopUpdatesItem</sprite>
       <sprite>sprites\spr_snow</sprite>
     </sprites>
-    <sprite>sprites\spr_skull</sprite>
-    <sprite>sprites\sCamera</sprite>
-    <sprite>sprites\spr_menuIcons</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_tile2</background>

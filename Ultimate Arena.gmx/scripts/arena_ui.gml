@@ -149,7 +149,7 @@ with (objUIButton)
             if (!instance_exists(oPlaceItem))
             {
                 var e = instance_create(0,0,oPlaceItem);
-                e.image = sItems;
+                e.image = spr_itemBag;
             }
         }
         if (bID == 82)
@@ -157,7 +157,7 @@ with (objUIButton)
             if (!instance_exists(oPlaceItem))
             {
                 var e = instance_create(0,0,oPlaceItem);
-                e.image = sMine;
+                e.image = spr_landmine;
             }
         }
         if (bID == 83)

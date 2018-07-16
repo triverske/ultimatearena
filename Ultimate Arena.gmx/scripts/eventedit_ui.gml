@@ -141,7 +141,7 @@ with(objUIButton)
                 
                 ini_close();
                 
-                var tempSprite = sprite_duplicate(sArenaEvent);
+                var tempSprite = sprite_duplicate(spr_arenaEvent);
                 sprite_save(tempSprite,0,working_directory + "events\" + ename+ "\" + ename + ".png");
                 sprite_delete(tempSprite);
                 

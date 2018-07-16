@@ -1,4 +1,4 @@
-if !surface_exists(updates)
+if(!surface_exists(updates))
 {
     updates = surface_create(390,74*25);
 }
@@ -11,14 +11,14 @@ surface_set_target(updates);
 with(oUpdateBox)
 {
     draw_sprite(spr_updateBox,boxColor,0,y);
-    draw_sprite(sCamera,0,314,60+y);
+    draw_sprite(spr_cameraButton,0,314,60+y);
     
     texture_set_interpolation(1);
     if(fighters == 1)
     {
         draw_sprite_stretched(image1,1,x+5,y+5,64,64);
         if(dead > 0)
-            draw_sprite_stretched(sDeadX,1,x+5,y+5,64,64);
+            draw_sprite_stretched(spr_deadX,1,x+5,y+5,64,64);
     }
     else if(fighters == 4)
     {
@@ -30,7 +30,7 @@ with(oUpdateBox)
         if (image4 != global.IMAGES[0])
             draw_sprite_stretched(image4,1,x+5,y+37,32,32);
         if (dead > 0)
-            draw_sprite_stretched(sDeadX,1,x+37,y+37,32,32);
+            draw_sprite_stretched(spr_deadX,1,x+37,y+37,32,32);
     }
     texture_set_interpolation(0);
     

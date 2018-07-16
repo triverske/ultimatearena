@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sprite_index = sFighterS;
+            <string>sprite_index = spr_fighter;
 x = floor(random((global.mapSize)-20)+10);
 y = floor(random((global.mapSize)-20)+10);
 

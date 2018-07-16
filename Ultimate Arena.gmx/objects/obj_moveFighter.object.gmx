@@ -116,7 +116,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sFighterS,0,global.__zui_mx,global.__zui_my);
+            <string>draw_sprite(spr_fighter,0,global.__zui_mx,global.__zui_my);
 </string>
           </argument>
         </arguments>

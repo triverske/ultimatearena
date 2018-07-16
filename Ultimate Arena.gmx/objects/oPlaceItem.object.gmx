@@ -84,11 +84,11 @@ radius = 0;
     
     if(!event)
     {
-        if(image == sMine)
+        if(image == spr_landmine)
         {
             instance_create(xPos,yPos,oMine);
         }
-        else if(image == sItems)
+        else if(image == spr_items)
         {
             var e = instance_create(xPos,yPos,oItems);
             for(var i=19; i&gt;-1; i--)
