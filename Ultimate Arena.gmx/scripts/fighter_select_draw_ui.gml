@@ -1,4 +1,4 @@
-ui_draw_sprite_panel(sListBoxItem, 0, 16, 0, ypos[i], __width - 15, 16);
+ui_draw_sprite_panel(spr_listBoxItem, 0, 16, 0, ypos[i], __width - 15, 16);
 
 
 var teaminfo = global.menuTeams[i];
@@ -43,6 +43,5 @@ else
         draw_set_colour(c_white);
     }
 }
-
 
 draw_rectangle_colour(3,ypos[i]+1,15,ypos[i]+12,c_green,c_green,c_green,c_green,selected[i]);

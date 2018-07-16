@@ -205,11 +205,9 @@ for(i=0;i&lt;=length;i++)
 {
     ypos[i] = (i*16) - offset;
 }
-//ui_draw_sprite_panel(sListBox, type, 8, -6, -6, __width +12, __height + 12);
-//ui_draw_sprite_panel(sListBox, type, 8, __width - 6, -6, 18, __height + 12);
 
 draw_set_color($ffffff);
-ui_draw_sprite_panel(sprWindowPanel, 0, 16, -15, -15, __width + 30, __height + 30);
+ui_draw_sprite_panel(spr_windowPanel, 0, 16, -15, -15, __width + 30, __height + 30);
 draw_set_valign(fa_middle);
 draw_set_halign(fa_left);
 for(i = 0;i &lt; length;i++)
@@ -218,10 +216,12 @@ for(i = 0;i &lt; length;i++)
     if(ypos[i] &lt; __height - 15 &amp;&amp; ypos[i] &gt; -1)
     {
         if (draw_callback &gt;= 0)
+        {
             script_execute(draw_callback,id)
+        }
         else
         {
-            ui_draw_sprite_panel(sListBoxItem, 0, 16, 0, ypos[i], __width - 15, 16);
+            ui_draw_sprite_panel(spr_listBoxItem, 0, 16, 0, ypos[i], __width - 15, 16);
             draw_text(4,(ypos[i] + 7),list[i]);
             if(sID == i)
             {
@@ -235,19 +235,6 @@ for(i = 0;i &lt; length;i++)
         }
     }
 }
-
-
-
-
-//if (callback &gt;= 0)
-    //script_execute(callback,id)
-
-/*
-draw_set_font(font0);
-draw_set_halign(1);
-draw_set_valign(1);
-draw_set_color(merge_colour(draw_get_colour(), 0, 0.1));
-draw_text(__width * 0.5, __height * 0.5, caption); */
 </string>
           </argument>
         </arguments>

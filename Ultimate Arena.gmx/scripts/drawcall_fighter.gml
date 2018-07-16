@@ -1,5 +1,5 @@
 
-ui_draw_sprite_panel(sListBoxItem, 0, 16, 0, ypos[i], __width - 15, 16);
+ui_draw_sprite_panel(spr_listBoxItem, 0, 16, 0, ypos[i], __width - 15, 16);
 draw_set_valign(fa_middle);
 draw_set_halign(fa_left);
 draw_text(4,ypos[i]+7,list[i]);

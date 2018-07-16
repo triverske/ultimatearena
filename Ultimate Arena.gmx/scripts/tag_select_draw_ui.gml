@@ -1,6 +1,7 @@
-ui_draw_sprite_panel(sListBoxItem, 0, 16, 0, ypos[i], __width - 15, 16);
+ui_draw_sprite_panel(spr_listBoxItem, 0, 16, 0, ypos[i], __width - 15, 16);
 draw_set_valign(fa_middle);
 draw_set_halign(fa_left);
+
 if(sID == i)
 {
     draw_set_alpha(.7);
@@ -15,10 +16,13 @@ if(sID == i)
     }
     else
         draw_text(22,(ypos[sID] + 7),list[sID]);
+    
     draw_set_colour(c_white);
 }
-else{
-    if(string_width(list[i]) > __width-32){
+else
+{
+    if(string_width(list[i]) > __width-32)
+    {
         var s = list[i];
         while(string_width(s) > __width-32-string_width("..."))
             s = string_delete(s,string_length(s),1);

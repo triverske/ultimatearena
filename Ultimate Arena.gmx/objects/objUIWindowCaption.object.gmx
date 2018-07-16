@@ -135,7 +135,7 @@ type = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprWindowCaption, type, 0, 0, __width / 32, 1, 0, $ffffff, 1);
+            <string>draw_sprite_ext(spr_windowCaption, type, 0, 0, __width / 32, 1, 0, $ffffff, 1);
 
 draw_set_font(font0);
 draw_set_halign(1);

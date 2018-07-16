@@ -193,12 +193,6 @@ with (objUIWindow)
             draw_surface_part(global.surf_updates,0,0,390,HS*(512/720) - 75,0,24);
             
         }
-        if(wID == "Sponsor Menu")
-        {
-    
-            draw_surface_ext(oSponsorMenu.sponsormenu,0,24,1,1,0,c_white,1);
-            
-        }
         if(wID == "Sandbox")
         {
             draw_set_valign(fa_top);

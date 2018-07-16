@@ -101,18 +101,17 @@
   </sounds>
   <sprites name="sprites">
     <sprites name="UI">
-      <sprite>sprites\sprSlider</sprite>
-      <sprite>sprites\sprButton</sprite>
-      <sprite>sprites\sprCheckBox</sprite>
-      <sprite>sprites\sListBox</sprite>
-      <sprite>sprites\sprWindowCaption</sprite>
-      <sprite>sprites\sListBoxItem</sprite>
-      <sprite>sprites\sprWindowPanel</sprite>
-      <sprite>sprites\sStatusCheck</sprite>
-      <sprite>sprites\sMenuBox</sprite>
-      <sprite>sprites\sSlider</sprite>
-      <sprite>sprites\sSideMenu</sprite>
-      <sprite>sprites\sSandboxButton</sprite>
+      <sprite>sprites\spr_slider</sprite>
+      <sprite>sprites\spr_button</sprite>
+      <sprite>sprites\spr_checkBox</sprite>
+      <sprite>sprites\spr_listBox</sprite>
+      <sprite>sprites\spr_listBoxItem</sprite>
+      <sprite>sprites\spr_windowCaption</sprite>
+      <sprite>sprites\spr_windowPanel</sprite>
+      <sprite>sprites\spr_fighterStats</sprite>
+      <sprite>sprites\spr_scrollBox</sprite>
+      <sprite>sprites\spr_gameSpeedButtons</sprite>
+      <sprite>sprites\spr_sandboxButtons</sprite>
       <sprite>sprites\sUltimateArenaLogo</sprite>
       <sprite>sprites\sGameButtons</sprite>
       <sprite>sprites\spr_chareditFighters</sprite>
@@ -327,12 +326,6 @@
       <object>objects\oEventedit</object>
       <object>objects\oMapedit</object>
       <object>objects\oTextedit</object>
-      <object>objects\oTwitchCharselect</object>
-      <object>objects\oTwitchCharbox</object>
-      <object>objects\oTwitchCharbox2</object>
-      <object>objects\oTwitchName</object>
-      <object>objects\oTwitchWinroom</object>
-      <object>objects\oTwitchController</object>
       <object>objects\oRoomTransition</object>
     </objects>
     <objects name="Arena">
@@ -345,12 +338,10 @@
       <object>objects\oSideMenu</object>
       <object>objects\obj_hoverStats</object>
       <object>objects\oArenaEvent</object>
-      <object>objects\oSponsorMenu</object>
       <object>objects\oSignDeaths</object>
       <object>objects\oGraphicsController</object>
       <object>objects\oFighter</object>
       <object>objects\oUpdateBox</object>
-      <object>objects\oButtonBar</object>
       <object>objects\oExplosion</object>
       <object>objects\oPlaceItem</object>
       <object>objects\obj_moveFighter</object>
@@ -393,8 +384,6 @@
     <room>rooms\rm_mapedit</room>
     <room>rooms\rm_textedit</room>
     <room>rooms\rm_charselect</room>
-    <room>rooms\rm_twitchCharselect</room>
-    <room>rooms\rm_twitchWinroom</room>
     <room>rooms\rm_game</room>
   </rooms>
   <constants number="2">

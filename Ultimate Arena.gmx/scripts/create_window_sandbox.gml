@@ -13,21 +13,21 @@ with(zui_create(445,348,objUIWindow,-1))
         with(zui_create(70,151,oUIImageButton,-1))
         {
             zui_set_size(90,90);
-            image = sSandboxButton;
+            image = spr_sandboxButtons;
             callback = arena_ui;
             bID = 81;
         }
         with(zui_create(70,289,oUIImageButton,-1))
         {
             zui_set_size(90,90);
-            image = sSandboxButton;
+            image = spr_sandboxButtons;
             callback = arena_ui;
             bID = 82;
         }
         with(zui_create(70,429,oUIImageButton,-1))
         {
             zui_set_size(90,90);
-            image = sSandboxButton;
+            image = spr_sandboxButtons;
             callback = arena_ui;
             bID = 83;
         }

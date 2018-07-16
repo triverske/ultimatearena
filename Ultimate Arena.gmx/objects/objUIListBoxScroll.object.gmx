@@ -172,25 +172,15 @@ with(zui_get_parent())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (zui_get_hover()) {
- if (pressed)
-  draw_set_color($cccccc);
- else
-  draw_set_color($aaaaaa); 
-} else {
- draw_set_color($ffffff);
-}
-draw_set_color($ffffff);
+            <string>draw_set_color($ffffff);
 offset = 0;
-ui_draw_sprite_panel(sListBox, type, 8, 0, zui_get_parent().__height-1+offset, 16, zui_get_parent().__height+2);
-draw_sprite(sSlider,0,1,zui_get_parent().__height+sliderPos);
-
+ui_draw_sprite_panel(spr_listBox, type, 8, 0, zui_get_parent().__height-1+offset, 16, zui_get_parent().__height+2);
+draw_sprite(spr_scrollBox,0,1,zui_get_parent().__height+sliderPos);
 
 draw_set_font(font0);
 draw_set_halign(1);
 draw_set_valign(1);
 draw_set_color(merge_colour(draw_get_colour(), 0, 0.1));
-//draw_text(__width * 0.5, __height * 0.5, caption);
 </string>
           </argument>
         </arguments>

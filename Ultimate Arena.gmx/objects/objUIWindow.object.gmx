@@ -50,7 +50,7 @@ wID = "";
           <argument>
             <kind>1</kind>
             <string>draw_set_color($ffffff);
-ui_draw_sprite_panel(sprWindowPanel, 0, 16, -15, -15, __width + 30, __height + 30);
+ui_draw_sprite_panel(spr_windowPanel, 0, 16, -15, -15, __width + 30, __height + 30);
 
 if (callback &gt;= 0)
     script_execute(callback,id)

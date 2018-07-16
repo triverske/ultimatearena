@@ -114,7 +114,7 @@ type = 0;
  draw_set_color($ffffff);
 }
 
-ui_draw_sprite_panel(sprButton, type, 8, -6, -6, __width + 12, __height + 12);
+ui_draw_sprite_panel(spr_button, type, 8, -6, -6, __width + 12, __height + 12);
 
 draw_set_font(font0);
 draw_set_halign(1);

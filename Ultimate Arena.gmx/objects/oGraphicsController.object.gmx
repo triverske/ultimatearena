@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-101</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -47,7 +47,6 @@ global.logi = 0;
 skullx = 0;
 skully = 0;
 
-instance_create(0,0,oSponsorMenu);
 instance_create(0,0,obj_hoverStats);
 draw_set_valign(fa_top);
 
@@ -155,7 +154,7 @@ with(zui_main())
                 type = i;
                 bID = i;
                 callback = arena_ui;
-                image = sSideMenu;
+                image = spr_gameSpeedButtons;
                 zui_set_size(18,18);
             }
         } 
@@ -269,6 +268,47 @@ if (keyboard_check_pressed(vk_add))
     if (global.GAME_SPEED != 0 &amp;&amp; global.GAME_SPEED &gt; 1)
         global.GAME_SPEED--;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+draw_set_halign(fa_center);
+draw_set_valign(fa_top);
+draw_set_color(c_white);
+draw_set_font(font0);
+
+if(global.GAMETYPE == 1)
+    draw_text(50,5,"GAME \#" + string(global.currentgame));
+else
+    draw_text(50,5,"ARENA MODE");
+draw_text(50,20,"DAY " + string(global.TIME_DAYS));
+draw_text(50,35,global.TIME_STRING);
+
+
+if (global.GAME_SPEED == 0)
+    draw_text(150,10,"PAUSED");
+else
+    draw_text(150,10,string(floor(60/global.GAME_SPEED*10)) + "X SPEED");
+
 </string>
           </argument>
         </arguments>

@@ -113,24 +113,26 @@ bID = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (zui_get_hover()) {
- if (pressed)
-  draw_set_color($aaaaaa);
- else
-  draw_set_color($cccccc); 
-} else {
- draw_set_color($ffffff);
+            <string>if(zui_get_hover()) 
+{
+    if(pressed)
+        draw_set_color($aaaaaa);
+    else
+        draw_set_color($cccccc); 
+} 
+else 
+{
+    draw_set_color($ffffff);
 }
 
-draw_sprite_ext(sprCheckBox, 0, -1, -1, 1, 1, 0, draw_get_color(), 1);
+draw_sprite_ext(spr_checkBox, 0, -1, -1, 1, 1, 0, draw_get_color(), 1);
 
 if(type == 0 &amp;&amp; value)
- draw_sprite_ext(sprCheckBox, 1, -1, -1, 1, 1, 0, draw_get_color(), 1);
-if(type == 1 &amp;&amp; value) //radio
-{
- draw_sprite_ext(sprCheckBox, 2, -1, -1, 1, 1, 0, draw_get_color(), 1);
-}
-if (callback &gt;= 0)
+    draw_sprite_ext(spr_checkBox, 1, -1, -1, 1, 1, 0, draw_get_color(), 1);
+else if(type == 1 &amp;&amp; value) //radio
+    draw_sprite_ext(spr_checkBox, 2, -1, -1, 1, 1, 0, draw_get_color(), 1);
+
+if(callback &gt;= 0)
     script_execute(callback, id);
 </string>
           </argument>
