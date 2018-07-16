@@ -145,7 +145,7 @@ with (oFighter)
 with (oExplosion)
     draw_self();
 
-draw_sprite(sSkull,0,skullx,skully);
+draw_sprite(spr_skull,0,skullx,skully);
 
 with(obj_popup)
     draw_self();

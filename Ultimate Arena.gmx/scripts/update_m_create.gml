@@ -1,4 +1,4 @@
-///createUpdateM(text,ID1,ID2,ID3,ID4,Dead)
+///update_m_create(text,ID1,ID2,ID3,ID4,Dead)
 if(argument0 == "ERROR" || argument0 == "")
     exit;
 

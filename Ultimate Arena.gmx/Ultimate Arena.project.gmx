@@ -154,7 +154,7 @@
       <sprite>sprites\sUpdateFile</sprite>
       <sprite>sprites\spr_snow</sprite>
     </sprites>
-    <sprite>sprites\sSkull</sprite>
+    <sprite>sprites\spr_skull</sprite>
     <sprite>sprites\sCamera</sprite>
     <sprite>sprites\spr_menuIcons</sprite>
   </sprites>
@@ -208,8 +208,8 @@
     <script>scripts\field_init.gml</script>
     <script>scripts\field_draw.gml</script>
     <script>scripts\dif.gml</script>
-    <script>scripts\createUpdate.gml</script>
-    <script>scripts\createUpdateM.gml</script>
+    <script>scripts\update_create.gml</script>
+    <script>scripts\update_m_create.gml</script>
     <script>scripts\draw_updates.gml</script>
     <script>scripts\draw_map.gml</script>
     <script>scripts\draw_text_wrap.gml</script>

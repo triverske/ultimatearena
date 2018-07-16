@@ -1,4 +1,4 @@
-///createUpdate(text,ID1,Dead)
+///update_create(text,ID1,Dead)
 if(argument0 == "ERROR" || argument0 == "ERROR"+global.FILES[argument1] || argument0 == "")
     exit;
 global.update_count++;

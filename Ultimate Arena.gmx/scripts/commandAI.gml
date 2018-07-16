@@ -19,7 +19,7 @@ switch(com)
     }
     QUICK = .5 + AGILITY/10;
     CONTINUE = 100;
-    createUpdate(getText("wander",fighterID),fighterID,0);
+    update_create(getText("wander",fighterID),fighterID,0);
     break;
     
     case "SLEEP":
@@ -29,7 +29,7 @@ switch(com)
         CONTINUE = 500;
     else
         CONTINUE = 20;
-    createUpdate(getText("sleep",fighterID),fighterID,0);
+    update_create(getText("sleep",fighterID),fighterID,0);
     break;
     
     case "WATER SEARCH":
@@ -38,7 +38,7 @@ switch(com)
     CONTINUE = 170;
     DELAY = 30;
     DIR = point_direction(x,y,waterloc[0],waterloc[1]);
-    createUpdate(getText("search_water",fighterID),fighterID,0);
+    update_create(getText("search_water",fighterID),fighterID,0);
     break;
     
     case "FOOD SEARCH":
@@ -47,7 +47,7 @@ switch(com)
     CONTINUE = 85;
     DELAY = 30;
     DIR = point_direction(x,y,foodloc[0],foodloc[1]);
-    createUpdate(getText("search_food",fighterID),fighterID,0);
+    update_create(getText("search_food",fighterID),fighterID,0);
     break;
     
     case "GET FOOD":
@@ -60,7 +60,7 @@ switch(com)
         treeid.foodcount--;
         XP+=2;
     }
-    createUpdate(getText("get_food",fighterID),fighterID,0);
+    update_create(getText("get_food",fighterID),fighterID,0);
     break;
     
     case "GET WOOD":
@@ -71,7 +71,7 @@ switch(com)
     INV[9]++;
     with(woodid)
         instance_destroy()
-    createUpdate(getText("get_water",fighterID),fighterID,0);
+    update_create(getText("get_water",fighterID),fighterID,0);
     break;
     
     case "GET ROPE":
@@ -82,7 +82,7 @@ switch(com)
     INV[10]++;
     with(ropeid)
         instance_destroy()
-    createUpdate(getText("get_rope",fighterID),fighterID,0);
+    update_create(getText("get_rope",fighterID),fighterID,0);
     break;
     
     case "GET STONE":
@@ -93,7 +93,7 @@ switch(com)
     INV[11]++;
     with(stoneid)
         instance_destroy()
-    createUpdate(getText("get_stone",fighterID),fighterID,0);
+    update_create(getText("get_stone",fighterID),fighterID,0);
     break;
 /*    
     case "GET WSPEAR":
@@ -156,7 +156,7 @@ switch(com)
         SANITY++;
     bathetime = time;
     DELAY = 60;
-    createUpdate(getText("bathe",fighterID),fighterID,0);
+    update_create(getText("bathe",fighterID),fighterID,0);
     break;
     
     case "MAKE SPEAR":
@@ -170,7 +170,7 @@ switch(com)
     XP+=6;
     DELAY = 360;
     CONTINUE = 0;
-    createUpdate(getText("make_wspear",fighterID),fighterID,0);
+    update_create(getText("make_wspear",fighterID),fighterID,0);
     break;
     
     case "MAKE BOW":
@@ -184,7 +184,7 @@ switch(com)
     XP+=8;
     DELAY = 720;
     CONTINUE = 0;
-    createUpdate(getText("make_wbow",fighterID),fighterID,0);
+    update_create(getText("make_wbow",fighterID),fighterID,0);
     break;
     
     case "MAKE MEDKIT":
@@ -195,7 +195,7 @@ switch(com)
     INV[10]--;
     INV[8]++;
     XP+=3;
-    createUpdate(getText("make_medkit",fighterID),fighterID,0);
+    update_create(getText("make_medkit",fighterID),fighterID,0);
     DELAY = 180;
     break;
     
@@ -208,7 +208,7 @@ switch(com)
     INV[11]--;
     INV[1]++;
     XP+=3;
-    createUpdate(getText("make_trap",fighterID),fighterID,0);
+    update_create(getText("make_trap",fighterID),fighterID,0);
     DELAY = 180;
     break;
     
@@ -219,7 +219,7 @@ switch(com)
     INV[2]--;
     HUNGER = 100;
     CONTINUE = 0;
-    createUpdate(getText("eat",fighterID),fighterID,0);
+    update_create(getText("eat",fighterID),fighterID,0);
     break;
     
     case "DRINK":
@@ -228,7 +228,7 @@ switch(com)
     DELAY = 3;
     THIRST = 100;
     CONTINUE = 0;
-    createUpdate(getText("drink",fighterID),fighterID,0);
+    update_create(getText("drink",fighterID),fighterID,0);
     break;
     
     case "DRINK SUPPLY":
@@ -238,7 +238,7 @@ switch(com)
     THIRST = 100;
     CONTINUE = 0;
     INV[3]--;
-    createUpdate(getText("drink",fighterID),fighterID,0);
+    update_create(getText("drink",fighterID),fighterID,0);
     break;
     
     case "USE MEDKIT":
@@ -248,7 +248,7 @@ switch(com)
     INV[8]--;
     HP += 50;
     DELAY = 90;
-    createUpdate(getText("use_medkit",fighterID),fighterID,0);
+    update_create(getText("use_medkit",fighterID),fighterID,0);
     break;
     
     case "THINK":
@@ -256,7 +256,7 @@ switch(com)
     QUICK = 0;
     DELAY = 10;
     CONTINUE = 3;
-    createUpdate(getText("think",fighterID),fighterID,0);
+    update_create(getText("think",fighterID),fighterID,0);
     break;
     
     case "THINK RARE":
@@ -264,7 +264,7 @@ switch(com)
     QUICK = 0;
     DELAY = 10;
     CONTINUE = 3;
-    createUpdate(getText("think_rare",fighterID),fighterID,0);
+    update_create(getText("think_rare",fighterID),fighterID,0);
     break;
     
     case "HUNT":
@@ -273,7 +273,7 @@ switch(com)
     CONTINUE = 150;
     DIR = point_direction(x,y-5,otherFighter.x,otherFighter.y-5);
     caption = "Hunting " + otherFighter.NAME;
-    createUpdateM(getTextM("hunt",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
+    update_m_create(getTextM("hunt",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
     break;
     
     case "CHASE":
@@ -281,7 +281,7 @@ switch(com)
     CONTINUE = 70;
     DIR = point_direction(x,y-5,otherFighter.x,otherFighter.y-5)
     caption = "Chasing " + otherFighter.NAME;
-    createUpdateM(getTextM("chase",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
+    update_m_create(getTextM("chase",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
     break;
     
     case "RUN":
@@ -289,14 +289,14 @@ switch(com)
     QUICK = .7 + AGILITY/10;
     CONTINUE = 80;
     DIR = point_direction(otherFighter.x,otherFighter.y-5,x,y-5);
-    createUpdate(getText("run",fighterID),fighterID,0);
+    update_create(getText("run",fighterID),fighterID,0);
     break;
     
     case "GROUP UP":
     if(group == -1)
         group = id;
     otherFighter.group = group;
-    createUpdateM(getTextM("group_up",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,0);
+    update_m_create(getTextM("group_up",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,0);
     break;
     
     case "END GROUP":
@@ -306,7 +306,7 @@ switch(com)
         for(var i=0; i<global.fighters+1; i++)
             opinion[i] = -5;
     }
-    createUpdate(getText("end_group",fighterID),fighterID,0);
+    update_create(getText("end_group",fighterID),fighterID,0);
     break;
     
     case "ATTACK UNARMED":
@@ -327,9 +327,9 @@ switch(com)
     {
         global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         if(SANITY < 0)
-            createUpdateM(getTextM("kill_unarmed_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+            update_m_create(getTextM("kill_unarmed_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         else
-            createUpdateM(getTextM("kill_unarmed",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+            update_m_create(getTextM("kill_unarmed",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=5;
         c = irandom(20);
@@ -342,7 +342,7 @@ switch(com)
         }
     }
     else
-        createUpdateM(getTextM("attack_unarmed",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
+        update_m_create(getTextM("attack_unarmed",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
     break;
     
     case "ATTACK WSPEAR":
@@ -373,9 +373,9 @@ switch(com)
     {
         global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         if(SANITY < 0)
-            createUpdateM(getTextM("kill_wspear_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+            update_m_create(getTextM("kill_wspear_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         else
-            createUpdateM(getTextM("kill_wspear",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+            update_m_create(getTextM("kill_wspear",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=7;
         c = (floor(random(15)));
@@ -389,12 +389,12 @@ switch(com)
     }
     else if(irandom(1000) < 11-LUCK){
         global.deathCause[fighterID] = "Killed by accident";
-        createUpdateM(getTextM("kill_wspear_fail",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+        update_m_create(getTextM("kill_wspear_fail",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         drop_items();
         instance_destroy();
     }
     else
-        createUpdateM(getTextM("attack_wspear",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
+        update_m_create(getTextM("attack_wspear",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
     break;
     
     case "ATTACK SSPEAR":
@@ -425,9 +425,9 @@ switch(com)
     {
         global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         if(SANITY < 0)
-            createUpdateM(getTextM("kill_sspear_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+            update_m_create(getTextM("kill_sspear_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         else
-            createUpdateM(getTextM("kill_sspear",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+            update_m_create(getTextM("kill_sspear",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=8;
         c = (floor(random(15)));
@@ -441,12 +441,12 @@ switch(com)
     }
     else if(irandom(1000) < 11-LUCK){
         global.deathCause[fighterID] = "Killed by accident";
-        createUpdateM(getTextM("kill_sspear_fail",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+        update_m_create(getTextM("kill_sspear_fail",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         drop_items();
         instance_destroy();
     }
     else
-        createUpdateM(getTextM("attack_sspear",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
+        update_m_create(getTextM("attack_sspear",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
     break;
         
     case "ATTACK WBOW":
@@ -477,9 +477,9 @@ switch(com)
     {
         global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         if(SANITY < 0)
-            createUpdateM(getTextM("kill_wbow_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+            update_m_create(getTextM("kill_wbow_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         else
-            createUpdateM(getTextM("kill_wbow",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+            update_m_create(getTextM("kill_wbow",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=9;
         c = (floor(random(10)));
@@ -493,12 +493,12 @@ switch(com)
     }
     else if(irandom(1000) < 11-LUCK){
         global.deathCause[fighterID] = "Killed by accident";
-        createUpdateM(getTextM("kill_wbow_fail",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+        update_m_create(getTextM("kill_wbow_fail",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         drop_items();
         instance_destroy();
     }
     else
-        createUpdateM(getTextM("attack_wbow",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
+        update_m_create(getTextM("attack_wbow",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
     break;
     
     case "ATTACK SBOW":
@@ -529,9 +529,9 @@ switch(com)
     {
         global.deathCause[otherFighter.fighterID] = "Killed by " + global.NAMES[fighterID];
         if(SANITY < 0)
-            createUpdateM(getTextM("kill_sbow_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+            update_m_create(getTextM("kill_sbow_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         else
-            createUpdateM(getTextM("kill_sbow",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+            update_m_create(getTextM("kill_sbow",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=10;
         c = (floor(random(10)));
@@ -545,12 +545,12 @@ switch(com)
     }
     else if(irandom(1000) < 11-LUCK){
         global.deathCause[fighterID] = "Killed by accident";
-        createUpdateM(getTextM("kill_sbow_fail",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+        update_m_create(getTextM("kill_sbow_fail",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         drop_items();
         instance_destroy();
     }
     else
-        createUpdateM(getTextM("attack_sbow",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
+        update_m_create(getTextM("attack_sbow",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
     break;
     
     case "ATTACK DROWN":
@@ -562,9 +562,9 @@ switch(com)
     QUICK = 0;
     CONTINUE = 0;
     if(SANITY < 0)
-        createUpdateM(getTextM("kill_drown_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+        update_m_create(getTextM("kill_drown_insane",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
     else
-        createUpdateM(getTextM("kill_drown",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
+        update_m_create(getTextM("kill_drown",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
     kills++;
     XP+=12;
     SANITY -= (floor(random(10)));
@@ -586,14 +586,14 @@ switch(com)
         var w = instance_create(x,y,oMine);
         w.owner = fighterID;
         INV[0]--;
-        createUpdate(getText("place_mine",fighterID),fighterID,0);
+        update_create(getText("place_mine",fighterID),fighterID,0);
     }
     else
     {
         global.deathCause[fighterID] = "Killed by own land mine";
         HP = 0;
         instance_create(x,y,oExplosion);
-        createUpdate(getText("die_mine_p",fighterID),fighterID,1);
+        update_create(getText("die_mine_p",fighterID),fighterID,1);
         instance_destroy();
     }
     break;
@@ -605,7 +605,7 @@ switch(com)
     var w = instance_create(x,y,oTrap);
     w.owner = fighterID;
     INV[1]--;
-    createUpdate(getText("set_trap",fighterID),fighterID,0);
+    update_create(getText("set_trap",fighterID),fighterID,0);
     break;
     
     default:
@@ -613,7 +613,7 @@ switch(com)
     
     case "SUICIDE":
     global.deathCause[fighterID] = "Death by suicide";
-    createUpdate(getText("suicide",fighterID),fighterID,1);
+    update_create(getText("suicide",fighterID),fighterID,1);
     drop_items();    
     instance_destroy();
     break;
