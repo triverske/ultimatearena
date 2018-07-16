@@ -146,7 +146,7 @@ global.logi++;
                     instance_destroy();
                 }
                 global.event_kills++;    
-                update_create(getTextEvent(event,q),q,1)
+                update_create(update_get_event_text(event,q),q,1)
             }
         }
     }

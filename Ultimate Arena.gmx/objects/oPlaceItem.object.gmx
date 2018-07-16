@@ -88,7 +88,7 @@ radius = 0;
         {
             instance_create(xPos,yPos,oMine);
         }
-        else if(image == spr_items)
+        else if(image == spr_itemBag)
         {
             var e = instance_create(xPos,yPos,oItems);
             for(var i=19; i&gt;-1; i--)

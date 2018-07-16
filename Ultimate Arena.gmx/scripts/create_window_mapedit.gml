@@ -17,7 +17,7 @@ with(zui_create(round(window_get_width()*.5), round(window_get_height()/2), objU
         zui_set_size(width,18);
     }
     with(zui_create(5, 54, oUIImage)){
-        image = oMapedit.mapeditSurf;
+        image = obj_mapEditor.mapeditSurf;
         type = 2;
         scale = 2;
         iID = 0;

@@ -9,12 +9,12 @@ with (objUIButton)
     {
         if (bID == 0) //return to title
         {
-            var c = instance_create(0,0,oRoomTransition);
+            var c = instance_create(0,0,obj_roomTransition);
             c.gotoroom = rm_title;
         }
         else if (bID == 1) //regen map
         {
-            oCharselect.regen = 1;
+            obj_fighterSelect.regen = 1;
         }
         else if (bID == 2) //tag
         {
@@ -52,7 +52,7 @@ with (objUIButton)
         }
         else if (bID == 3)
         {
-            oCharselect.startgame = 1;
+            obj_fighterSelect.startgame = 1;
         }
         else if (bID == 4)
         {
@@ -272,7 +272,7 @@ with (objUIWindow)
     if(wID == "Map Window")
     {
         if(!surface_exists(global.mapsurf))
-            oCharselect.regen = 1;
+            obj_fighterSelect.regen = 1;
         else
             draw_surface_stretched(global.mapsurf,0,24,HS*(512/720),HS*(512/720));
     }

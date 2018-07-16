@@ -1,4 +1,4 @@
-///getCommand()
+///ai_get_command()
 
 //returns the randomized command.
 var totalprob = 0; var randvar = 0; totalc = 0;

@@ -1,5 +1,5 @@
 ///generate_map_from_sprite(id)
-//only for use in oMapedit
+//only for use in obj_mapEditor
 //sets mapGrid
 //returns map sprite
 

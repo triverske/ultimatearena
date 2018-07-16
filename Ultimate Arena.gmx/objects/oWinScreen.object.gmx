@@ -38,59 +38,6 @@ for(var i = 1;i &lt; global.fighters+1;i++)
     }
 }
 
-
-if (global.GAMETYPE == 1)
-{
-global.currentgame++;
-
-ini_open("settings.ini");
-ini_write_real("twitch","gamenumber",global.currentgame);
-ini_close();
-//First = 10, 2-5,3-4,4-3,5-2,6,1
-ini_open("twitch.ini");
-
-for(var i = 6;i &gt; 0;i--)
-{
-    for(var c = oTwitchController.winnerVotes[global.fighter_place[i]-1,0];c &gt; 0;c--)
-    {
-        var player = oTwitchController.winnerVotes[global.fighter_place[i]-1,c];
-        var points = ini_read_real(player,"points",0);
-        
-        switch(i)
-        {
-            case 1:
-            points+=10;
-            break;
-            case 2:
-            points+=5;
-            break;
-            case 3:
-            points+=4;
-            break;
-            case 4:
-            points+=3;
-            break;
-            case 5:
-            points+=2;
-            break
-            case 6:
-            points+=1;
-            break;
-            default:
-            break;
-            
-        }
-        ini_write_real(player,"points",points);
-    
-    }
-
-
-}
-
-ini_close();
-var c = instance_create(0,0,oRoomTransition);
-c.gotoroom = rm_twitchWinroom;
-}
 global.SAVE_SPEED = global.GAME_SPEED;
 global.GAME_SPEED = 0;
 global.scrollspeed1 = 0;

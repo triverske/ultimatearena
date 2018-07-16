@@ -201,7 +201,6 @@
       <script>scripts\zui_draw.gml</script>
       <script>scripts\zui_set_visible.gml</script>
     </scripts>
-    <script>scripts\test_callback_slider.gml</script>
     <script>scripts\field_init.gml</script>
     <script>scripts\field_draw.gml</script>
     <script>scripts\dif.gml</script>
@@ -211,14 +210,13 @@
     <script>scripts\draw_map.gml</script>
     <script>scripts\draw_text_wrap.gml</script>
     <script>scripts\draw_statbars.gml</script>
-    <script>scripts\commandAI.gml</script>
-    <script>scripts\getCommand.gml</script>
-    <script>scripts\sendCommand.gml</script>
-    <script>scripts\instance_nth_nearest.gml</script>
+    <script>scripts\ai_command.gml</script>
+    <script>scripts\ai_get_command.gml</script>
+    <script>scripts\ai_submit_command.gml</script>
     <script>scripts\drop_items.gml</script>
-    <script>scripts\getText.gml</script>
-    <script>scripts\getTextEvent.gml</script>
-    <script>scripts\getTextM.gml</script>
+    <script>scripts\update_get_text.gml</script>
+    <script>scripts\update_get_event_text.gml</script>
+    <script>scripts\update_get_multichar_text.gml</script>
     <scripts name="DiamondSquare">
       <script>scripts\scr_sample.gml</script>
       <script>scripts\scr_set_sample.gml</script>
@@ -283,20 +281,6 @@
     <script>scripts\save_game.gml</script>
     <script>scripts\load_game.gml</script>
     <script>scripts\load_game_finish.gml</script>
-    <scripts name="twitch">
-      <script>scripts\getPoints.gml</script>
-      <script>scripts\trace.gml</script>
-      <script>scripts\createTwitchName.gml</script>
-      <script>scripts\getTwitchID.gml</script>
-      <script>scripts\sendVote.gml</script>
-      <script>scripts\irc_create_socket.gml</script>
-      <script>scripts\irc_handle_http.gml</script>
-      <script>scripts\irc_send_message.gml</script>
-      <script>scripts\irc_send_packet.gml</script>
-      <script>scripts\irc_handle_networking.gml</script>
-      <script>scripts\irc_refresh_followers.gml</script>
-      <script>scripts\irc_get_viewers.gml</script>
-    </scripts>
     <script>scripts\save_map.gml</script>
     <script>scripts\load_map.gml</script>
     <script>scripts\draw_circle_center.gml</script>
@@ -315,16 +299,16 @@
   </fonts>
   <objects name="objects">
     <objects name="Menus &amp; Setup">
-      <object>objects\oSetup</object>
-      <object>objects\oSplashscreen</object>
+      <object>objects\obj_setup</object>
+      <object>objects\obj_splashScreen</object>
       <object>objects\obj_backgroundAnimation</object>
-      <object>objects\oTitleMenu</object>
-      <object>objects\oCharselect</object>
-      <object>objects\oCharedit</object>
-      <object>objects\oEventedit</object>
-      <object>objects\oMapedit</object>
-      <object>objects\oTextedit</object>
-      <object>objects\oRoomTransition</object>
+      <object>objects\obj_titleMenu</object>
+      <object>objects\obj_fighterSelect</object>
+      <object>objects\obj_fighterEditor</object>
+      <object>objects\obj_eventEditor</object>
+      <object>objects\obj_mapEditor</object>
+      <object>objects\obj_textEditor</object>
+      <object>objects\obj_roomTransition</object>
     </objects>
     <objects name="Arena">
       <object>objects\oTree</object>

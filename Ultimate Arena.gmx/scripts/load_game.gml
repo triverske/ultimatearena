@@ -58,7 +58,7 @@ if(errorcheck)
 }
     
 global.saveFile = argument0;
-var c = instance_create(0,0,oRoomTransition);
+var c = instance_create(0,0,obj_roomTransition);
 c.gotoroom = rm_game;
 global.loadingGame = 1;
 

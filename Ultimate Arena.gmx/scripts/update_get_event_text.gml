@@ -1,4 +1,4 @@
-///getTextEvent(state,ID1);
+///update_get_event_text(state,ID1);
 event = argument0;
 ID = argument1;
 

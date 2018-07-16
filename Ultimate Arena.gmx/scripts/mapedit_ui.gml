@@ -13,12 +13,12 @@ with(objUIListBox){
             for(var i=0; i<256; i++)
                 mcolors[i] = ini_read_string("Map","Colors"+string(i),"");
             
-            oMapedit.treeArray = 0;
+            obj_mapEditor.treeArray = 0;
             for(var i=0; i<30; i++){
                 if(ini_read_string("Trees",string(i),"ERROR") == "ERROR")
                     break;
-                oMapedit.treeArray[i,0] = real(string_copy(ini_read_string("Trees",string(i),"000000"),1,3));
-                oMapedit.treeArray[i,1] = real(string_copy(ini_read_string("Trees",string(i),"000000"),4,3));
+                obj_mapEditor.treeArray[i,0] = real(string_copy(ini_read_string("Trees",string(i),"000000"),1,3));
+                obj_mapEditor.treeArray[i,1] = real(string_copy(ini_read_string("Trees",string(i),"000000"),4,3));
             }
             
             global.creator = ini_read_real("map","creator",-1);
@@ -33,9 +33,9 @@ with(objUIListBox){
             }
             with(objUILabel){
                 if(lID == 1)
-                    caption = string(array_height_2d(oMapedit.treeArray))+"/30 Trees";
+                    caption = string(array_height_2d(obj_mapEditor.treeArray))+"/30 Trees";
             }
-            with(oMapedit){
+            with(obj_mapEditor){
                 var c = "";
                 for(var i=0; i<256; i++){
                 for(var j=0; j<256; j++){
@@ -117,14 +117,14 @@ with(objUIListBox){
 with(objUIButton){
     if(argument0 == id){
         if(bID == 0){//Go Back
-            var c = instance_create(0,0,oRoomTransition);
+            var c = instance_create(0,0,obj_roomTransition);
             c.gotoroom = rm_title;
         }
         else if(bID == 1){ //Delete Event
             if(global.IDselected != -1){
                 directory_destroy(working_directory+"maps\"+global.MAPS[global.IDselected]);
                 keyboard_string = "";
-                with(oMapedit){
+                with(obj_mapEditor){
                     if(overlayImage != spr_blankMap)
                         sprite_delete(overlayImage);
                     surface_free(mapeditSurf);
@@ -135,21 +135,21 @@ with(objUIButton){
             }
         }
         else if(bID == 2) //Water
-            oMapedit.cursorType = 0;
+            obj_mapEditor.cursorType = 0;
         else if(bID == 3) //Sand
-            oMapedit.cursorType = 1;
+            obj_mapEditor.cursorType = 1;
         else if(bID == 4) //Grass
-            oMapedit.cursorType = 2;
+            obj_mapEditor.cursorType = 2;
         else if(bID == 5) //Mountain 1
-            oMapedit.cursorType = 3;
+            obj_mapEditor.cursorType = 3;
         else if(bID == 6) //Mountain 2
-            oMapedit.cursorType = 4;
+            obj_mapEditor.cursorType = 4;
         else if(bID == 7) //Mountain 3
-            oMapedit.cursorType = 5;
+            obj_mapEditor.cursorType = 5;
         else if(bID == 8) //Trees
-            oMapedit.cursorType = 6;
+            obj_mapEditor.cursorType = 6;
         else if(bID == 9){//Create New Map
-            with(oMapedit){
+            with(obj_mapEditor){
                 keyboard_string = "";
                 if(overlayImage != spr_blankMap)
                     sprite_delete(overlayImage);
@@ -168,7 +168,7 @@ with(objUIButton){
                 else
                     global.charname = content;
             }
-            with(oMapedit){
+            with(obj_mapEditor){
                 var name = global.charname;
                 
                 ini_open(working_directory+"maps\"+name+'\'+name+'.ini');
@@ -206,7 +206,7 @@ with(objUIButton){
             {
                 if(global.workshopID == -1)
                 {
-                    with(oSetup)
+                    with(obj_setup)
                     {
                         var app_id = steam_get_app_id(); 
                         new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
@@ -245,7 +245,7 @@ with(objUIButton){
             room_restart();
         }
         else if(bID == 11){//Import Image Overlay
-            with(oMapedit){
+            with(obj_mapEditor){
                 if(overlayImage != spr_blankMap){
                     sprite_delete(overlayImage);
                     overlayImage = spr_blankMap;
@@ -280,31 +280,31 @@ with(objUIButton){
             }
         }
         else if(bID == 12){//Toggle Overlay
-            if(oMapedit.overlayImage != spr_blankMap){
-                oMapedit.overlayOn = !oMapedit.overlayOn;
-                if(oMapedit.overlayOn)
+            if(obj_mapEditor.overlayImage != spr_blankMap){
+                obj_mapEditor.overlayOn = !obj_mapEditor.overlayOn;
+                if(obj_mapEditor.overlayOn)
                     caption = "Overlay: On";
                 else
                     caption = "Overlay: Off";
             }
         }
         else if(bID == 13){//Clear Trees
-            oMapedit.treeArray = 0;
+            obj_mapEditor.treeArray = 0;
             with(objUILabel){
                 if(lID == 1)
                     caption = "0/30 Trees";
             }
         }
         else if(bID == 14)//Brush 1
-            oMapedit.cursorSize = 0;
+            obj_mapEditor.cursorSize = 0;
         else if(bID == 15)//Brush 2
-            oMapedit.cursorSize = 1;
+            obj_mapEditor.cursorSize = 1;
         else if(bID == 16)//Brush 3
-            oMapedit.cursorSize = 2;
+            obj_mapEditor.cursorSize = 2;
         else if(bID == 17)//Brush 4
-            oMapedit.cursorSize = 3;
+            obj_mapEditor.cursorSize = 3;
         else if(bID == 18){//Generate Map From Overlay
-            with(oMapedit){
+            with(obj_mapEditor){
                 surface_set_target(mapeditSurf);
                 draw_clear(green);
                 surface_reset_target();

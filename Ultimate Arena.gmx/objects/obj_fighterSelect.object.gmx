@@ -442,7 +442,7 @@ if (startgame == 1)
     else
     {
         combine_texts();
-        var c = instance_create(0,0,oRoomTransition);
+        var c = instance_create(0,0,obj_roomTransition);
         c.gotoroom = rm_game;
     }
     

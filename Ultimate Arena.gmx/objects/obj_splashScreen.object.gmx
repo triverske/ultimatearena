@@ -92,7 +92,7 @@ else if (order == 5)
 alpha2-=.025;
     if(alpha2 == 0)
     {
-        var c = instance_create(0,0,oRoomTransition);
+        var c = instance_create(0,0,obj_roomTransition);
         c.gotoroom = rm_title;
     }
 }

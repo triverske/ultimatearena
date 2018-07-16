@@ -373,9 +373,9 @@ with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, objUIWin
         draw_callback = tag_select_draw_ui;
         listID = 2;
         type = 1;
-        initialize_listbox(oCharedit.currentList);
-        for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
-            selected[i] = !oCharedit.toggleList[i];
+        initialize_listbox(obj_fighterEditor.currentList);
+        for(var i=array_length_1d(obj_fighterEditor.currentList)-1; i>-1; i--)
+            selected[i] = !obj_fighterEditor.toggleList[i];
             
         with(zui_create(0,0,objUIListBoxScroll)){}
     }
@@ -389,7 +389,7 @@ with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, objUIWin
     }
     with(zui_create(400, 35, objUILabel))
     {
-        caption = oCharedit.sectionName[13];
+        caption = obj_fighterEditor.sectionName[13];
         halign = fa_center;
         valign = fa_top;
         lID = 7;

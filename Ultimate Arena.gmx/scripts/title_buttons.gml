@@ -12,7 +12,7 @@ with (objUIButton)
             }
             else
             {  
-                var c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,obj_roomTransition);
                 c.gotoroom = rm_charselect;
                 global.GAMETYPE = 0;
                 global.ENDLESS = 0;
@@ -26,7 +26,7 @@ with (objUIButton)
             }
             else
             {
-                var c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,obj_roomTransition);
                 c.gotoroom = rm_charedit;
                 global.GAMETYPE = 0;
             }
@@ -52,16 +52,7 @@ with (objUIButton)
         }
         else if (bID == 4)//Twitch
         {
-            if(global.fighters > 60)
-            {
-                var c = instance_create(0,0,oRoomTransition);
-                c.gotoroom = rm_twitchCharselect;
-                global.GAMETYPE = 1;
-            }
-            else
-            {
-                ui_show_popup("You need at least 60 fighters#to do a Twitch match.");
-            }
+
         }
         else if (bID == 5)//Settings
         {
@@ -140,7 +131,7 @@ with (objUIButton)
             }
             else
             {
-                var c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,obj_roomTransition);
                 c.gotoroom = rm_eventedit;
                 global.GAMETYPE = 0;
             }
@@ -186,7 +177,7 @@ with (objUIButton)
             }
             else
             {  
-                var c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,obj_roomTransition);
                 c.gotoroom = rm_charselect;
                 global.GAMETYPE = 0;
                 global.ENDLESS = 1;
@@ -210,7 +201,7 @@ with (objUIButton)
             }
             else
             {
-                var c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,obj_roomTransition);
                 c.gotoroom = rm_mapedit;
                 global.GAMETYPE = 0;
             }
@@ -223,7 +214,7 @@ with (objUIButton)
             }
             else
             {
-                var c = instance_create(0,0,oRoomTransition);
+                var c = instance_create(0,0,obj_roomTransition);
                 c.gotoroom = rm_textedit;
                 global.GAMETYPE = 0;
             }

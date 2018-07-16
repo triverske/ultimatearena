@@ -5,7 +5,7 @@ with(objUIListBox){
             global.IDselected = sID;
             global.TEXTTOGGLE[sID] = !selected[sID];
             
-            with(oTextedit){
+            with(obj_textEditor){
                 if(other.sID == 0)
                     array_from_update_file("DefaultText.ini");
                 else
@@ -20,11 +20,11 @@ with(objUIListBox){
             
             with(objUIListBox){
                 if(listID == 1){
-                    initialize_listbox(oTextedit.currentList);
+                    initialize_listbox(obj_textEditor.currentList);
                     sID = -1;
                     selected = 0;
-                    for(var i=array_length_1d(oTextedit.currentList)-1; i>-1; i--)
-                        selected[i] = !oTextedit.toggleList[i];
+                    for(var i=array_length_1d(obj_textEditor.currentList)-1; i>-1; i--)
+                        selected[i] = !obj_textEditor.toggleList[i];
                 }
             }
             
@@ -33,8 +33,8 @@ with(objUIListBox){
                 content = "";
         }
         else if(listID == 1){
-            if(oTextedit.currentList[sID] != "")
-                oTextedit.toggleList[sID] = !selected[sID];
+            if(obj_textEditor.currentList[sID] != "")
+                obj_textEditor.toggleList[sID] = !selected[sID];
             else
                 selected[sID] = 1;
                 
@@ -52,7 +52,7 @@ with(objUIButton){
                 ini_write_real("toggle","toggle",global.TEXTTOGGLE[i]);
                 ini_close();
             }
-            c = instance_create(0,0,oRoomTransition);
+            c = instance_create(0,0,obj_roomTransition);
             c.gotoroom = rm_title;
         }
         else if(bID == 1){ //Delete Update File
@@ -64,7 +64,7 @@ with(objUIButton){
             }
         }
         else if(bID == 2){ //Cycle Commands Left
-            with(oTextedit){
+            with(obj_textEditor){
                 array_to_section();
                 
                 command--;
@@ -104,7 +104,7 @@ with(objUIButton){
                 content = "";
         }
         else if(bID == 3){ //Cycle Commands Right
-            with(oTextedit){
+            with(obj_textEditor){
                 array_to_section();
                 
                 command++;
@@ -148,24 +148,24 @@ with(objUIButton){
                 with(objUIField){
                     if(fID == 0){
                         if(content != ""){
-                            if(oTextedit.currentList[0] == ""){
-                                oTextedit.currentList[0] = content;
-                                oTextedit.toggleList[0] = 1;
+                            if(obj_textEditor.currentList[0] == ""){
+                                obj_textEditor.currentList[0] = content;
+                                obj_textEditor.toggleList[0] = 1;
                             
                             }
                             else{
-                                oTextedit.currentList[array_length_1d(oTextedit.currentList)] = content;
-                                oTextedit.toggleList[array_length_1d(oTextedit.toggleList)] = 1;
+                                obj_textEditor.currentList[array_length_1d(obj_textEditor.currentList)] = content;
+                                obj_textEditor.toggleList[array_length_1d(obj_textEditor.toggleList)] = 1;
                             }
                             content = "";
                             
                             with(objUIListBox){
                                 if(listID == 1){
-                                    initialize_listbox(oTextedit.currentList);
-                                    sID = array_length_1d(oTextedit.currentList)-1;
+                                    initialize_listbox(obj_textEditor.currentList);
+                                    sID = array_length_1d(obj_textEditor.currentList)-1;
                                     selected = 0;
-                                    for(var i=array_length_1d(oTextedit.currentList)-1; i>-1; i--)
-                                        selected[i] = !oTextedit.toggleList[i];
+                                    for(var i=array_length_1d(obj_textEditor.currentList)-1; i>-1; i--)
+                                        selected[i] = !obj_textEditor.toggleList[i];
                                 }
                             }
                         }
@@ -178,7 +178,7 @@ with(objUIButton){
                 with(objUIListBox){
                     if(listID == 1){
                         if(sID != -1){
-                            with(oTextedit){
+                            with(obj_textEditor){
                                 var copy1 = currentList;
                                 var copy2 = toggleList;
                                 currentList = 0;
@@ -200,11 +200,11 @@ with(objUIButton){
                                     toggleList[0] = 0;
                                 }
                             }
-                            initialize_listbox(oTextedit.currentList);
+                            initialize_listbox(obj_textEditor.currentList);
                             sID = -1;
                             selected = 0;
-                            for(var i=array_length_1d(oTextedit.currentList)-1; i>-1; i--)
-                                selected[i] = !oTextedit.toggleList[i];
+                            for(var i=array_length_1d(obj_textEditor.currentList)-1; i>-1; i--)
+                                selected[i] = !obj_textEditor.toggleList[i];
                         }
                     }
                 }
@@ -215,7 +215,7 @@ with(objUIButton){
             ui_show_popup_textedit("Please name new update file");
         }
         else if(bID == 7){ //Save Update File
-            with(oTextedit){
+            with(obj_textEditor){
                 array_to_section();
                 if(global.IDselected == 0){
                     ini_open("settings.ini");
@@ -253,7 +253,7 @@ with(objUIButton){
                 {
                     if(global.workshopID == -1)
                     {
-                        with(oSetup)
+                        with(obj_setup)
                         {
                             var app_id = steam_get_app_id(); 
                             new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
@@ -323,7 +323,7 @@ with(objUIButton){
                 zui_destroy();
             }
             
-            with(oTextedit){
+            with(obj_textEditor){
                 array_from_update_file(working_directory+"texts\"+nam+"\"+nam+".ini");
                 array_from_section();
                 

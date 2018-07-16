@@ -16,9 +16,9 @@ with(zui_create((window_get_width()-260)*.5+260, window_get_height()/2, objUIWin
         other.listID = id;
         listID = 1;
         type = 1;
-        initialize_listbox(oTextedit.currentList);
-        for(var i=array_length_1d(oTextedit.currentList)-1; i>-1; i--)
-            selected[i] = !oTextedit.toggleList[i];
+        initialize_listbox(obj_textEditor.currentList);
+        for(var i=array_length_1d(obj_textEditor.currentList)-1; i>-1; i--)
+            selected[i] = !obj_textEditor.toggleList[i];
             
         with(zui_create(0,0,objUIListBoxScroll)){}
     }
@@ -32,7 +32,7 @@ with(zui_create((window_get_width()-260)*.5+260, window_get_height()/2, objUIWin
     }
     with(zui_create(400, 35, objUILabel))
     {
-        caption = oTextedit.sectionName[0];
+        caption = obj_textEditor.sectionName[0];
         halign = fa_center;
         valign = fa_top;
         lID = 1;

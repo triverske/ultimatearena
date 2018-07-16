@@ -170,7 +170,7 @@ if(mouse_y &gt; round(window_get_height()*.5-233) &amp;&amp; mouse_y &lt; round(
                 }
                 with(objUILabel){
                     if(lID == 1)
-                        caption = string(array_height_2d(oMapedit.treeArray))+"/30 Trees";
+                        caption = string(array_height_2d(obj_mapEditor.treeArray))+"/30 Trees";
                 }
             }
             break;

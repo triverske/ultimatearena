@@ -12,7 +12,7 @@ with(objUIListBox)
             else
             {
                 global.IDselected = sID;
-                oCharedit.tempTags = 0;
+                obj_fighterEditor.tempTags = 0;
                 
                 ini_open(global.fNAME[sID])
                 global.editStats[0] = min(10,ini_read_real("character","strength",5));
@@ -78,7 +78,7 @@ with(objUIListBox)
                         }
                     }
                 }
-                with(oCharedit){
+                with(obj_fighterEditor){
                     array_from_update_file(global.fNAME[other.sID]);
                     array_from_section();
                 }
@@ -97,9 +97,9 @@ with(objUIListBox)
                         }
                     }
                     else if(listID == 2){
-                        initialize_listbox(oCharedit.currentList);
-                        for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
-                            selected[i] = !oCharedit.toggleList[i];
+                        initialize_listbox(obj_fighterEditor.currentList);
+                        for(var i=array_length_1d(obj_fighterEditor.currentList)-1; i>-1; i--)
+                            selected[i] = !obj_fighterEditor.toggleList[i];
                     }
                 }
                 with(objUILabel){
@@ -125,8 +125,8 @@ with(objUIListBox)
             }
         }
         else if(listID == 2){
-            if(oCharedit.currentList[sID] != "")
-                oCharedit.toggleList[sID] = !selected[sID];
+            if(obj_fighterEditor.currentList[sID] != "")
+                obj_fighterEditor.toggleList[sID] = !selected[sID];
             else
                 selected[sID] = 1;
         }
@@ -139,7 +139,7 @@ with(objUIButton)
         if(bID == 0) //Go Back
         {
             initialize_characters();
-            c = instance_create(0,0,oRoomTransition);
+            c = instance_create(0,0,obj_roomTransition);
             c.gotoroom = rm_title;
         }
         else if(bID == 1) // Change Image
@@ -154,20 +154,20 @@ with(objUIButton)
                 draw_sprite_stretched(newsp,0,0,0,128,128);
                 surface_reset_target();
                 
-                if(oCharedit.newImage != spr_defaultFighterImage)
-                    sprite_delete(oCharedit.newImage);
-                oCharedit.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
+                if(obj_fighterEditor.newImage != spr_defaultFighterImage)
+                    sprite_delete(obj_fighterEditor.newImage);
+                obj_fighterEditor.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
                 
                 sprite_delete(newsp);
                 surface_free(surf);
             }
             else{
-                if(oCharedit.newImage != spr_defaultFighterImage)
-                    sprite_delete(oCharedit.newImage);
-                oCharedit.newImage = spr_defaultFighterImage;
+                if(obj_fighterEditor.newImage != spr_defaultFighterImage)
+                    sprite_delete(obj_fighterEditor.newImage);
+                obj_fighterEditor.newImage = spr_defaultFighterImage;
             }
             
-            oUIImage.image = oCharedit.newImage;
+            oUIImage.image = obj_fighterEditor.newImage;
         }
         else if(bID == 2) //Save Character
         {
@@ -213,7 +213,7 @@ with(objUIButton)
                     global.creator = steam_get_user_account_id();
                 }
                 
-                with(oCharedit){
+                with(obj_fighterEditor){
                     array_to_section();
                     for(var i=0; i<55; i++){
                         if(textList[i,0] != ""){
@@ -238,12 +238,12 @@ with(objUIButton)
                             }
                             selected[i]=1;
                         }
-                        for(var i=0; i<array_length_1d(oCharedit.tempTags); i++){
+                        for(var i=0; i<array_length_1d(obj_fighterEditor.tempTags); i++){
                             if(selected[i+global.TAG_COUNT] == 0){
                                 if(tagstring == "")
-                                    tagstring += oCharedit.tempTags[i];
+                                    tagstring += obj_fighterEditor.tempTags[i];
                                 else
-                                    tagstring += ','+oCharedit.tempTags[i];
+                                    tagstring += ','+obj_fighterEditor.tempTags[i];
                             }
                         }
                     }
@@ -260,11 +260,11 @@ with(objUIButton)
                     if(lID > 0 && lID < 6)
                         caption = "5";
                     
-                if(oCharedit.newImage != spr_defaultFighterImage)
+                if(obj_fighterEditor.newImage != spr_defaultFighterImage)
                 {
-                    sprite_save(oCharedit.newImage,0,working_directory + "characters\" + name + "\" + name + ".png");
-                    sprite_delete(oCharedit.newImage);
-                    oCharedit.newImage = spr_defaultFighterImage;
+                    sprite_save(obj_fighterEditor.newImage,0,working_directory + "characters\" + name + "\" + name + ".png");
+                    sprite_delete(obj_fighterEditor.newImage);
+                    obj_fighterEditor.newImage = spr_defaultFighterImage;
                 }
                 else
                 {
@@ -282,7 +282,7 @@ with(objUIButton)
                 {
                     if(global.workshopID == -1)
                     {
-                        with(oSetup)
+                        with(obj_setup)
                         {
                             var app_id = steam_get_app_id(); 
                             new_item = steam_ugc_create_item(app_id, ugc_filetype_community);
@@ -324,9 +324,9 @@ with(objUIButton)
         }
         else if(bID == 4)//New Character
         {
-            if(oCharedit.newImage != spr_defaultFighterImage)
-                sprite_delete(oCharedit.newImage);
-            oCharedit.newImage = spr_defaultFighterImage;
+            if(obj_fighterEditor.newImage != spr_defaultFighterImage)
+                sprite_delete(obj_fighterEditor.newImage);
+            obj_fighterEditor.newImage = spr_defaultFighterImage;
             keyboard_string = "";
             room_restart();
         }
@@ -413,14 +413,14 @@ with(objUIButton)
                             exit;
                         }
                         else{
-                            oCharedit.tempTags[array_length_1d(oCharedit.tempTags)] = content;
+                            obj_fighterEditor.tempTags[array_length_1d(obj_fighterEditor.tempTags)] = content;
                             content = "";
                         }
                     }
                 }
                 with(objUIListBox){
                     if(listID == 1){
-                        list[array_length_1d(list)] = oCharedit.tempTags[array_length_1d(oCharedit.tempTags)-1];
+                        list[array_length_1d(list)] = obj_fighterEditor.tempTags[array_length_1d(obj_fighterEditor.tempTags)-1];
                         selected[array_length_1d(list)-1]=0;
                         sID = length;
                         length++;
@@ -486,7 +486,7 @@ with(objUIButton)
             }
         }
         else if(bID == 13){ //Cycle commands left
-            with(oCharedit){
+            with(obj_fighterEditor){
                 array_to_section();
                 
                 command--;
@@ -528,7 +528,7 @@ with(objUIButton)
             }
         }
         else if(bID == 14){ //Cycle commands right
-            with(oCharedit){
+            with(obj_fighterEditor){
                 array_to_section();
                 
                 command++;
@@ -574,24 +574,24 @@ with(objUIButton)
             with(objUIField){
                 if(fID == 3){
                     if(content != ""){
-                        if(oCharedit.currentList[0] == ""){
-                            oCharedit.currentList[0] = content;
-                            oCharedit.toggleList[0] = 1;
+                        if(obj_fighterEditor.currentList[0] == ""){
+                            obj_fighterEditor.currentList[0] = content;
+                            obj_fighterEditor.toggleList[0] = 1;
                         
                         }
                         else{
-                            oCharedit.currentList[array_length_1d(oCharedit.currentList)] = content;
-                            oCharedit.toggleList[array_length_1d(oCharedit.toggleList)] = 1;
+                            obj_fighterEditor.currentList[array_length_1d(obj_fighterEditor.currentList)] = content;
+                            obj_fighterEditor.toggleList[array_length_1d(obj_fighterEditor.toggleList)] = 1;
                         }
                         content = "";
                         
                         with(objUIListBox){
                             if(listID == 2){
-                                initialize_listbox(oCharedit.currentList);
-                                sID = array_length_1d(oCharedit.currentList)-1;
+                                initialize_listbox(obj_fighterEditor.currentList);
+                                sID = array_length_1d(obj_fighterEditor.currentList)-1;
                                 selected = 0;
-                                for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
-                                    selected[i] = !oCharedit.toggleList[i];
+                                for(var i=array_length_1d(obj_fighterEditor.currentList)-1; i>-1; i--)
+                                    selected[i] = !obj_fighterEditor.toggleList[i];
                             }
                         }
                     }
@@ -602,7 +602,7 @@ with(objUIButton)
             with(objUIListBox){
                 if(listID == 2){
                     if(sID != -1){
-                        with(oCharedit){
+                        with(obj_fighterEditor){
                             var copy1 = currentList;
                             var copy2 = toggleList;
                             currentList = 0;
@@ -624,11 +624,11 @@ with(objUIButton)
                                 toggleList[0] = 0;
                             }
                         }
-                        initialize_listbox(oCharedit.currentList);
+                        initialize_listbox(obj_fighterEditor.currentList);
                         sID = -1;
                         selected = 0;
-                        for(var i=array_length_1d(oCharedit.currentList)-1; i>-1; i--)
-                            selected[i] = !oCharedit.toggleList[i];
+                        for(var i=array_length_1d(obj_fighterEditor.currentList)-1; i>-1; i--)
+                            selected[i] = !obj_fighterEditor.toggleList[i];
                     }
                 }
             }
@@ -641,7 +641,7 @@ with(oUIImage)
     if(argument0 == id)
     {
         if(global.IDselected >= 0)
-            image = oCharedit.newImage;
+            image = obj_fighterEditor.newImage;
     }
 }*/
 

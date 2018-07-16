@@ -91,7 +91,7 @@ with(objUIButton)
     {
         if(bID == 0)//Go Back
         {
-            c = instance_create(0,0,oRoomTransition);
+            c = instance_create(0,0,obj_roomTransition);
             c.gotoroom = rm_title;
         }
         if(bID == 1)//Delete Event
@@ -149,7 +149,7 @@ with(objUIButton)
                 {
                     if(global.workshopID == -1)
                     {
-                        with(oSetup)
+                        with(obj_setup)
                         {
                             var app_id = steam_get_app_id(); 
                             new_item = steam_ugc_create_item(app_id, ugc_filetype_community);

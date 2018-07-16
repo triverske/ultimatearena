@@ -1,10 +1,10 @@
-///getTextM(state,ID1,ID2,...);
+///update_get_multichar_text(state,ID1,ID2,...);
 var state = argument[0];
 
 ini_open("text.ini");
 var total1 = ini_read_real(state,"total",1);
 ini_close();
-ini_open("Characters/" + global.FILES[argument[1]])
+ini_open(global.FILES[argument[1]])
 var total2 = ini_read_real(state,"total",0);
 ini_close();
 
@@ -15,7 +15,7 @@ if(total2 > 0)
 if(randvar)
 {
     randvar = irandom(total2-1)+1;
-    ini_open("Characters/" + global.FILES[argument[1]]);
+    ini_open(global.FILES[argument[1]]);
     var c = ini_read_string(state,"s"+string(randvar),"ERROR " + global.FILES[argument[1]]);
     ini_close();
 }
