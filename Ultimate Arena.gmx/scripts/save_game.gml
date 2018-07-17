@@ -45,8 +45,8 @@ ini_write_real("Map","fighters",global.fighters);
 ini_write_real("Map","fighters_remaining",global.fighters_remaining);
 for(var i=1; i<global.fighters+1; i++)
 {
-    ini_write_real("Map",string(i)+"sanityArray",oSideMenu.sanityArray[i]);
-    ini_write_real("Map",string(i)+"xpArray",oSideMenu.xpArray[i]);
+    ini_write_real("Map",string(i)+"sanityArray",obj_sideMenu.sanityArray[i]);
+    ini_write_real("Map",string(i)+"xpArray",obj_sideMenu.xpArray[i]);
 }
 for(var i=1; i<global.fighters+1; i++)
     ini_write_real("Map",string(i)+"GENDER",global.GENDER[i]);
@@ -80,7 +80,7 @@ ini_write_real("Map","wood",global.wood);
 
 //TREES
 i = 0;
-with(oTree)
+with(obj_tree)
 {
     ini_write_real("Trees",string(i)+"x",x);
     ini_write_real("Trees",string(i)+"y",y);
@@ -90,7 +90,7 @@ with(oTree)
 
 //WOOD
 i=0;
-with(oWood)
+with(obj_wood)
 {
     ini_write_real("Wood",string(i)+"x",x);
     ini_write_real("Wood",string(i)+"y",y);
@@ -99,7 +99,7 @@ with(oWood)
 
 //ROPE
 i=0;
-with(oRope)
+with(obj_rope)
 {
     ini_write_real("Rope",string(i)+"x",x);
     ini_write_real("Rope",string(i)+"y",y);
@@ -108,7 +108,7 @@ with(oRope)
 
 //STONE
 i=0;
-with(oStone)
+with(obj_stone)
 {
     ini_write_real("Stone",string(i)+"x",x);
     ini_write_real("Stone",string(i)+"y",y);
@@ -117,7 +117,7 @@ with(oStone)
 
 //MINES
 i=0;
-with(oMine)
+with(obj_landmine)
 {
     ini_write_real("Mines",string(i)+"x",x);
     ini_write_real("Mines",string(i)+"y",y);
@@ -128,7 +128,7 @@ with(oMine)
 ini_write_real("Mines","Total",i);
 //Items
 i=0;
-with(oItems)
+with(obj_itemBag)
 {
     ini_write_real("Items",string(i)+"x",x);
     ini_write_real("Items",string(i)+"y",y);
@@ -144,67 +144,67 @@ with(oItems)
 ini_write_real("Items","Total",i);
 //WSpears
 i=0;
-with(oWSpear)
+with(obj_woodSpear)
 {
     ini_write_real("WSpear",string(i)+"x",x);
     ini_write_real("WSpear",string(i)+"y",y);
     ini_write_real("WSpear",string(i)+"HP",HP);
     ini_write_real("WSpear",string(i)+"dropped",dropped);
-    if(owner.object_index == oFighter)
+    if(owner.object_index == obj_fighter)
         ini_write_string("WSpear",string(i)+"owner","F"+string(owner.fighterID));
-    if(owner.object_index == oItems)
+    if(owner.object_index == obj_itemBag)
         ini_write_string("WSpear",string(i)+"owner","I"+string(owner));
     i++;
 }
 ini_write_real("WSpear","Total",i);
 //SSpears
 i=0;
-with(oSSpear)
+with(obj_steelSpear)
 {
     ini_write_real("SSpear",string(i)+"x",x);
     ini_write_real("SSpear",string(i)+"y",y);
     ini_write_real("SSpear",string(i)+"HP",HP);
     ini_write_real("SSpear",string(i)+"dropped",dropped);
-    if(owner.object_index == oFighter)
+    if(owner.object_index == obj_fighter)
         ini_write_string("SSpear",string(i)+"owner","F"+string(owner.fighterID));
-    if(owner.object_index == oItems)
+    if(owner.object_index == obj_itemBag)
         ini_write_string("SSpear",string(i)+"owner","I"+string(owner));
     i++;
 }
 ini_write_real("SSpear","Total",i);
 //WBows
 i=0;
-with(oWBow)
+with(obj_woodBow)
 {
     ini_write_real("WBow",string(i)+"x",x);
     ini_write_real("WBow",string(i)+"y",y);
     ini_write_real("WBow",string(i)+"HP",HP);
     ini_write_real("WBow",string(i)+"dropped",dropped);
-    if(owner.object_index == oFighter)
+    if(owner.object_index == obj_fighter)
         ini_write_string("WBow",string(i)+"owner","F"+string(owner.fighterID));
-    if(owner.object_index == oItems)
+    if(owner.object_index == obj_itemBag)
         ini_write_string("WBow",string(i)+"owner","I"+string(owner));
     i++;
 }
 ini_write_real("WBow","Total",i);
 //SBows
 i=0;
-with(oSBow)
+with(obj_steelBow)
 {
     ini_write_real("SBow",string(i)+"x",x);
     ini_write_real("SBow",string(i)+"y",y);
     ini_write_real("SBow",string(i)+"HP",HP);
     ini_write_real("SBow",string(i)+"dropped",dropped);
-    if(owner.object_index == oFighter)
+    if(owner.object_index == obj_fighter)
         ini_write_string("SBow",string(i)+"owner","F"+string(owner.fighterID));
-    if(owner.object_index == oItems)
+    if(owner.object_index == obj_itemBag)
         ini_write_string("SBow",string(i)+"owner","I"+string(owner));
     i++;
 }
 ini_write_real("SBow","Total",i);
 //FIGHTERS
 i=0;
-with(oFighter)
+with(obj_fighter)
 {
     ini_write_real("Fighters",string(i)+"fighterID",fighterID);
     ini_write_real("Fighters",string(i)+"x",x);

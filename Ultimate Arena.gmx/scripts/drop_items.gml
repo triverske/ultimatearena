@@ -1,4 +1,4 @@
-with(instance_create(x,y,oItems))
+with(instance_create(x,y,obj_itemBag))
 {
     var check = 0;
     for(i=0;i<20;i++)

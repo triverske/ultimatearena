@@ -311,50 +311,50 @@
       <object>objects\obj_roomTransition</object>
     </objects>
     <objects name="Arena">
-      <object>objects\oTree</object>
-      <object>objects\oItems</object>
-      <object>objects\oWinScreen</object>
-      <object>objects\oTextScroll</object>
-      <object>objects\oMine</object>
-      <object>objects\oStatusCheck</object>
-      <object>objects\oSideMenu</object>
+      <object>objects\obj_tree</object>
+      <object>objects\obj_itemBag</object>
+      <object>objects\obj_winScreen</object>
+      <object>objects\obj_scrollingText</object>
+      <object>objects\obj_landmine</object>
+      <object>objects\obj_fighterStats</object>
+      <object>objects\obj_sideMenu</object>
       <object>objects\obj_hoverStats</object>
-      <object>objects\oArenaEvent</object>
-      <object>objects\oSignDeaths</object>
-      <object>objects\oGraphicsController</object>
-      <object>objects\oFighter</object>
-      <object>objects\oUpdateBox</object>
-      <object>objects\oExplosion</object>
-      <object>objects\oPlaceItem</object>
+      <object>objects\obj_arenaEvent</object>
+      <object>objects\obj_deathSign</object>
+      <object>objects\obj_arenaController</object>
+      <object>objects\obj_fighter</object>
+      <object>objects\obj_updateBox</object>
+      <object>objects\obj_explosion</object>
+      <object>objects\obj_placeItem</object>
       <object>objects\obj_moveFighter</object>
-      <object>objects\oWood</object>
-      <object>objects\oRope</object>
-      <object>objects\oStone</object>
-      <object>objects\oWSpear</object>
-      <object>objects\oSSpear</object>
-      <object>objects\oWBow</object>
-      <object>objects\oSBow</object>
+      <object>objects\obj_wood</object>
+      <object>objects\obj_rope</object>
+      <object>objects\obj_stone</object>
+      <object>objects\obj_woodSpear</object>
+      <object>objects\obj_steelSpear</object>
+      <object>objects\obj_woodBow</object>
+      <object>objects\obj_steelBow</object>
       <object>objects\obj_popup</object>
       <object>objects\obj_deadLocation</object>
-      <object>objects\oTrap</object>
+      <object>objects\obj_trap</object>
     </objects>
     <objects name="ZUI">
-      <object>objects\objZUIMain</object>
-      <object>objects\objZUIDummy</object>
-      <object>objects\objUIWindow</object>
-      <object>objects\objUIButton</object>
-      <object>objects\objUIListBoxScroll</object>
-      <object>objects\objUIListBox</object>
-      <object>objects\oUIImageButton</object>
-      <object>objects\objUISlider</object>
-      <object>objects\oUIExitButton</object>
-      <object>objects\objUILabel</object>
-      <object>objects\oUIImage</object>
-      <object>objects\objUICheckbox</object>
-      <object>objects\objUIBlack</object>
-      <object>objects\objUIField</object>
-      <object>objects\objUIMultiField</object>
-      <object>objects\objUIWindowCaption</object>
+      <object>objects\obj_uiMain</object>
+      <object>objects\obj_uiDummy</object>
+      <object>objects\obj_uiWindow</object>
+      <object>objects\obj_uiWindowCaption</object>
+      <object>objects\obj_uiButton</object>
+      <object>objects\obj_uiImageButton</object>
+      <object>objects\obj_uiExitButton</object>
+      <object>objects\obj_uiListboxScroll</object>
+      <object>objects\obj_uiListbox</object>
+      <object>objects\obj_uiSlider</object>
+      <object>objects\obj_uiLabel</object>
+      <object>objects\obj_uiImage</object>
+      <object>objects\obj_uiCheckbox</object>
+      <object>objects\obj_uiBlack</object>
+      <object>objects\obj_uiField</object>
+      <object>objects\obj_uiMultiField</object>
     </objects>
   </objects>
   <rooms name="rooms">

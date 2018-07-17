@@ -5,7 +5,7 @@
 var WS = global.WSCALE;
 var HS = global.HSCALE;
 
-with (objUIButton)
+with (obj_uiButton)
 {
     if (argument0 == id)
     {
@@ -38,7 +38,7 @@ with (objUIButton)
         }
         if (bID == 4)
         {
-            with(objUIWindow)
+            with(obj_uiWindow)
             {
                 if(wID == "Map")
                     zui_destroy();
@@ -50,30 +50,30 @@ with (objUIButton)
         }
         if (bID == 5)
         {
-            with(objUIWindow)
+            with(obj_uiWindow)
             {
                 if(wID == "Stats")
                     zui_destroy();
             }
             with (zui_main()) 
             {
-                with(zui_create(445,348,objUIWindow,-1)) 
+                with(zui_create(445,348,obj_uiWindow,-1)) 
                 {
                     wID = "Stats";
                     callback = arena_ui;
                     zui_set_size(140,524);
-                    with(zui_create(0,0,objUIWindowCaption))
+                    with(zui_create(0,0,obj_uiWindowCaption))
                     {
                         caption = "Stats";
                         draggable = 1;
                     }
-                    zui_create(0,0,oUIExitButton,-1);
+                    zui_create(0,0,obj_uiExitButton,-1);
                 }
             }
         }
         if (bID == 6)
         {
-            with(objUIWindow)
+            with(obj_uiWindow)
             {
                 if(wID == "Sponsor Menu" || wID == "Sandbox")
                     zui_destroy();
@@ -85,7 +85,7 @@ with (objUIButton)
         }
         if (bID == 7)
         {
-            with(objUIWindow)
+            with(obj_uiWindow)
             {
                 if(wID == "Fighter List")
                     zui_destroy();
@@ -99,7 +99,7 @@ with (objUIButton)
         }
         if (bID == 8)
         {
-            with(objUIWindow)
+            with(obj_uiWindow)
             {
                 if(wID == "Updates")
                     zui_destroy();
@@ -111,7 +111,7 @@ with (objUIButton)
         }
         if (bID == 9)
         {
-            with(oGraphicsController)
+            with(obj_arenaController)
                 showGroups = !showGroups;
         }
         if (bID == 79)
@@ -146,46 +146,46 @@ with (objUIButton)
         }
         if (bID == 81)
         {
-            if (!instance_exists(oPlaceItem))
+            if (!instance_exists(obj_placeItem))
             {
-                var e = instance_create(0,0,oPlaceItem);
+                var e = instance_create(0,0,obj_placeItem);
                 e.image = spr_itemBag;
             }
         }
         if (bID == 82)
         {
-            if (!instance_exists(oPlaceItem))
+            if (!instance_exists(obj_placeItem))
             {
-                var e = instance_create(0,0,oPlaceItem);
+                var e = instance_create(0,0,obj_placeItem);
                 e.image = spr_landmine;
             }
         }
         if (bID == 83)
         {
-            if (!instance_exists(oArenaEvent))
+            if (!instance_exists(obj_arenaEvent))
                 if(global.arena_events)
-                    with(instance_create(0,0,oPlaceItem))
+                    with(instance_create(0,0,obj_placeItem))
                         event = 1;
         }
         
         
     }
 }
-with (objUIWindow)
+with (obj_uiWindow)
 {
     if (argument0 == id)
     {
         if(wID == "Map")
         {
     
-            draw_surface_stretched(oGraphicsController.map,0,24,HS*(512/720),HS*(512/720));
+            draw_surface_stretched(obj_arenaController.map,0,24,HS*(512/720),HS*(512/720));
             
         }
     
         if(wID == "Stats")
         {
     
-            draw_surface_ext(oSideMenu.sidemenu,20,24,1,1,0,c_white,1);
+            draw_surface_ext(obj_sideMenu.sidemenu,20,24,1,1,0,c_white,1);
             
         }
         if(wID == "Updates")

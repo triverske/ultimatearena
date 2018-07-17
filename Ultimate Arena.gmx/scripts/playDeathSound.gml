@@ -1,4 +1,4 @@
-with(oGraphicsController)
+with(obj_arenaController)
 {
     if(global.custom_sounds)
     {

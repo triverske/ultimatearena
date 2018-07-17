@@ -1,14 +1,14 @@
-with(zui_create(round(window_get_width()*.5), round(window_get_height()/2), objUIWindow)){
+with(zui_create(round(window_get_width()*.5), round(window_get_height()/2), obj_uiWindow)){
     zui_set_size(522, 572);
     wID = "Editor Window";
     
-    with(zui_create(0, 0, objUIWindowCaption))
+    with(zui_create(0, 0, obj_uiWindowCaption))
         caption = "Map Editor";
-    with(zui_create(15, 39, objUILabel)){
+    with(zui_create(15, 39, obj_uiLabel)){
         caption = "Name: ";
         halign = fa_left;
     }
-    with(zui_create(65, 30, objUIField)){
+    with(zui_create(65, 30, obj_uiField)){
         callback = mapedit_ui;
         fID = 0;
         maxLength = string_width("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
@@ -16,220 +16,220 @@ with(zui_create(round(window_get_width()*.5), round(window_get_height()/2), objU
         zui_set_anchor(0,0);
         zui_set_size(width,18);
     }
-    with(zui_create(5, 54, oUIImage)){
+    with(zui_create(5, 54, obj_uiImage)){
         image = obj_mapEditor.mapeditSurf;
         type = 2;
         scale = 2;
         iID = 0;
     }
 }
-with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)-118 , objUIWindow)){
+with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)-118 , obj_uiWindow)){
     zui_set_size(200,336);
     wID = "Materials Window";
-    with(zui_create(0, 0, objUIWindowCaption))
+    with(zui_create(0, 0, obj_uiWindowCaption))
         caption = "Materials";      
         
-    with(zui_create(5, 44, objUILabel)){
+    with(zui_create(5, 44, obj_uiLabel)){
         caption = "Brush: ";
         halign = fa_left;
     }
-    with(zui_create(60, 29, objUIButton)) {                                           
+    with(zui_create(60, 29, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(30, 30);
         caption = "1";
         callback = mapedit_ui;
         bID = 14;
     }
-    with(zui_create(95, 29, objUIButton)) {                                           
+    with(zui_create(95, 29, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(30, 30);
         caption = "2";
         callback = mapedit_ui;
         bID = 15;
     }
-    with(zui_create(130, 29, objUIButton)) {                                           
+    with(zui_create(130, 29, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(30, 30);
         caption = "3";
         callback = mapedit_ui;
         bID = 16;
     }
-    with(zui_create(165, 29, objUIButton)) {                                           
+    with(zui_create(165, 29, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(30, 30);
         caption = "4";
         callback = mapedit_ui;
         bID = 17;
     }
-    with(zui_create(5, 64, objUIButton)) {                                           
+    with(zui_create(5, 64, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "";
         callback = mapedit_ui;
         bID = 2;
-        with(zui_create(5,5,oUIImage)){
+        with(zui_create(5,5,obj_uiImage)){
             zui_set_anchor(0,0);
             height = 19;
             width = 20;
             type = 3;
             color = make_color_rgb( 48, 102,201);
         }
-        with(zui_create(35, 15, objUILabel)){
+        with(zui_create(35, 15, obj_uiLabel)){
             caption = "Water";
             halign = fa_left;
         }
     }
-    with (zui_create(5, 99, objUIButton)) {                                           
+    with (zui_create(5, 99, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "";
         callback = mapedit_ui;
         bID = 3;
-        with(zui_create(5,5,oUIImage)){
+        with(zui_create(5,5,obj_uiImage)){
             zui_set_anchor(0,0);
             height = 19;
             width = 20;
             type = 3;
             color = make_color_rgb(222, 196,104);
         }
-        with(zui_create(35, 15, objUILabel)){
+        with(zui_create(35, 15, obj_uiLabel)){
             caption = "Sand";
             halign = fa_left;
         }
     }
-    with (zui_create(5, 134, objUIButton)) {                                           
+    with (zui_create(5, 134, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "";
         callback = mapedit_ui;
         bID = 4;
-        with(zui_create(5,5,oUIImage)){
+        with(zui_create(5,5,obj_uiImage)){
             zui_set_anchor(0,0);
             height = 19;
             width = 20;
             type = 3;
             color = make_color_rgb( 69, 157, 69);
         }
-        with(zui_create(35, 15, objUILabel)){
+        with(zui_create(35, 15, obj_uiLabel)){
             caption = "Grass";
             halign = fa_left;
         }
     }
-    with(zui_create(5, 169, objUIButton)) {                                           
+    with(zui_create(5, 169, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "";
         callback = mapedit_ui;
         bID = 5;
-        with(zui_create(5,5,oUIImage)){
+        with(zui_create(5,5,obj_uiImage)){
             zui_set_anchor(0,0);
             height = 19;
             width = 20;
             type = 3;
             color = make_color_rgb(164, 141, 60);
         }
-        with(zui_create(35, 15, objUILabel)){
+        with(zui_create(35, 15, obj_uiLabel)){
             caption = "Mountain 1";
             halign = fa_left;
         }
     }
-    with (zui_create(5, 204, objUIButton)) {                                           
+    with (zui_create(5, 204, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "";
         callback = mapedit_ui;
         bID = 6;
-        with(zui_create(5,5,oUIImage)){
+        with(zui_create(5,5,obj_uiImage)){
             zui_set_anchor(0,0);
             height = 19;
             width = 20;
             type = 3;
             color = make_color_rgb(130, 112, 48);
         }
-        with(zui_create(35, 15, objUILabel)){
+        with(zui_create(35, 15, obj_uiLabel)){
             caption = "Mountain 2";
             halign = fa_left;
         }
     }
-    with (zui_create(5, 239, objUIButton)) {                                           
+    with (zui_create(5, 239, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "";
         callback = mapedit_ui;
         bID = 7;
-        with(zui_create(5,5,oUIImage)){
+        with(zui_create(5,5,obj_uiImage)){
             zui_set_anchor(0,0);
             height = 19;
             width = 20;
             type = 3;
             color = make_color_rgb( 94,  80, 34);
         }
-        with(zui_create(35, 15, objUILabel)){
+        with(zui_create(35, 15, obj_uiLabel)){
             caption = "Mountain 3";
             halign = fa_left;
         }
     }
-    with (zui_create(5, 274, objUIButton)) {                                           
+    with (zui_create(5, 274, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "";
         callback = mapedit_ui;
         bID = 8;
-        with(zui_create(5+8,5+19,oUIImage)){
+        with(zui_create(5+8,5+19,obj_uiImage)){
             zui_set_anchor(0,0);
             zui_set_size(20,20);
             image = spr_tree;
             scale = 2;
         }
-        with(zui_create(35, 15, objUILabel)){
+        with(zui_create(35, 15, obj_uiLabel)){
             caption = "Trees";
             halign = fa_left;
         }
     }
-    with(zui_create(50,320,objUILabel)){
+    with(zui_create(50,320,obj_uiLabel)){
         caption = "0/30 Trees";
         lID = 1;
     }
-    with (zui_create(150, 320, objUIButton)) {               
+    with (zui_create(150, 320, obj_uiButton)) {               
         zui_set_size(90, 26);
         caption = "Clear";
         callback = mapedit_ui;
         bID = 13;
     }
 }
-with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)+185, objUIWindow)){
+with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)+185, obj_uiWindow)){
     zui_set_size(200,200);
     wID = "File Window";
     
-    with(zui_create(5, 5, objUIButton)) {                                           
+    with(zui_create(5, 5, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "Create New Map";
         callback = mapedit_ui;
         bID = 9;
     }
-    with(zui_create(5, 40, objUIButton)) {                                           
+    with(zui_create(5, 40, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "Save Map";
         callback = mapedit_ui;
         bID = 10;
     }
-    with(zui_create(5, 75, objUIButton)) {                                           
+    with(zui_create(5, 75, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "Import Overlay Image";
         callback = mapedit_ui;
         bID = 11;
     }
-    with(zui_create(5, 110, objUIButton)) {                                           
+    with(zui_create(5, 110, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "Generate Map From Overlay";
         callback = mapedit_ui;
         bID = 18;
     }
-    with(zui_create(5, 145, objUIButton)) {                                           
+    with(zui_create(5, 145, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
         caption = "Overlay: Off";
@@ -237,7 +237,7 @@ with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)+1
         bID = 12;
     }
     
-    with(zui_create(15, __height - 14, objUICheckbox))
+    with(zui_create(15, __height - 14, obj_uiCheckbox))
     {
         type = 0;
         callback = mapedit_ui;
@@ -245,7 +245,7 @@ with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)+1
         value = 0;
         bID = 1;
     }
-    with(zui_create(40, __height - 14, objUILabel))
+    with(zui_create(40, __height - 14, obj_uiLabel))
     {
         caption = "Add to Steam Workshop";
         halign = fa_left;

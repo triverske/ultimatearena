@@ -40,7 +40,7 @@ if(instance_exists(global.mapwindow))
         
         yPos -= 24;
         
-        var c = instance_nearest(xPos,yPos,oFighter);
+        var c = instance_nearest(xPos,yPos,obj_fighter);
         var open = 0;
         var d = c.fighterID
         if(dif(c.x,xPos) &lt; 10)
@@ -48,9 +48,9 @@ if(instance_exists(global.mapwindow))
                 open = 1;
     
     
-        if (d &gt; 0 &amp;&amp; global.DEATH_ARRAY[d] == 0 &amp;&amp; instance_number(objUIWindow) &lt; 100 &amp;&amp; open == 1)
+        if (d &gt; 0 &amp;&amp; global.DEATH_ARRAY[d] == 0 &amp;&amp; instance_number(obj_uiWindow) &lt; 100 &amp;&amp; open == 1)
         {
-            with (objUIWindowCaption) 
+            with (obj_uiWindowCaption) 
             {
                 if(caption == global.NAMES[d] + " - Fighter \#" + string(d))
                     exit;
@@ -99,7 +99,7 @@ if(instance_exists(global.mapwindow))
         
         yPos -= 18;
         
-        c = instance_nearest(xPos,yPos,oFighter)
+        c = instance_nearest(xPos,yPos,obj_fighter)
         if(instance_exists(c))
         {
             var dis = 10 * (global.HSCALE/1280)

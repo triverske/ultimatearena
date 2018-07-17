@@ -1,5 +1,5 @@
 ///mapedit_ui(id)
-with(objUIListBox){
+with(obj_uiListbox){
     if(argument0 == id){
         if(global.IDselected == sID){
             global.IDselected = -1;
@@ -27,11 +27,11 @@ with(objUIListBox){
             
             ini_close();
             keyboard_string = "";
-            with(objUIField){
+            with(obj_uiField){
                 if(fID == 0)
                     content = mname;
             }
-            with(objUILabel){
+            with(obj_uiLabel){
                 if(lID == 1)
                     caption = string(array_height_2d(obj_mapEditor.treeArray))+"/30 Trees";
             }
@@ -62,12 +62,12 @@ with(objUIListBox){
                     overlayImage = sprite_create_from_surface(surf,0,0,256,256,0,0,0,0);
                     surface_free(surf);
                     overlayOn = true;
-                    with(objUIButton){
+                    with(obj_uiButton){
                         if(bID == 11)
                             caption = "Remove Overlay Image";
                     }
                 }
-                with(objUIButton){
+                with(obj_uiButton){
                     if(bID == 12){
                         if(other.overlayOn)
                             caption = "Overlay: On";
@@ -79,7 +79,7 @@ with(objUIListBox){
                 cursorSize = 0;
             }
             
-            with(objUICheckbox)
+            with(obj_uiCheckbox)
             {
                 if(bID == 1)
                 {
@@ -90,7 +90,7 @@ with(objUIListBox){
                         
                     if(global.creator != steam_get_user_account_id() && global.creator != -1)
                     {
-                        with(objUILabel)
+                        with(obj_uiLabel)
                         {
                             if(caption == "Add to Steam Workshop")
                                 __visible = 0;
@@ -100,7 +100,7 @@ with(objUIListBox){
                     }
                     else
                     {
-                        with(objUILabel)
+                        with(obj_uiLabel)
                         {
                             if(caption == "Add to Steam Workshop")
                                 __visible = 1;
@@ -114,7 +114,7 @@ with(objUIListBox){
         }
     }
 }
-with(objUIButton){
+with(obj_uiButton){
     if(argument0 == id){
         if(bID == 0){//Go Back
             var c = instance_create(0,0,obj_roomTransition);
@@ -160,7 +160,7 @@ with(objUIButton){
             }
         }
         else if(bID == 10){//Save Map
-            with(objUIField){
+            with(obj_uiField){
                 if(content == ""){
                     ui_show_popup("Please enter a name.");
                     exit;
@@ -250,7 +250,7 @@ with(objUIButton){
                     sprite_delete(overlayImage);
                     overlayImage = spr_blankMap;
                     overlayOn = false;
-                    with(objUIButton){
+                    with(obj_uiButton){
                         if(bID == 12)
                             caption = "Overlay: Off";
                     }
@@ -270,7 +270,7 @@ with(objUIButton){
                         overlayImage = sprite_create_from_surface(surf,0,0,256,256,0,0,0,0);
                         surface_free(surf);
                         overlayOn = true;
-                        with(objUIButton){
+                        with(obj_uiButton){
                             if(bID == 12)
                                 caption = "Overlay: On";
                         }
@@ -290,7 +290,7 @@ with(objUIButton){
         }
         else if(bID == 13){//Clear Trees
             obj_mapEditor.treeArray = 0;
-            with(objUILabel){
+            with(obj_uiLabel){
                 if(lID == 1)
                     caption = "0/30 Trees";
             }
@@ -311,12 +311,12 @@ with(objUIButton){
                 treeArray = 0;
                 ds_grid_clear(mapGrid,0);
                 overlayOn = false;
-                with(objUIButton){
+                with(obj_uiButton){
                     if(bID == 12)
                         caption = "Overlay: Off";
                 }
                 generate_map_from_sprite(overlayImage);
-                with(objUILabel){
+                with(obj_uiLabel){
                     if(lID == 1)
                         caption = "30/30 Trees";
                 }
@@ -325,7 +325,7 @@ with(objUIButton){
     }
 }
 
-with(objUICheckbox)
+with(obj_uiCheckbox)
 {
     if(bID == 1)
         global.workshop = value;

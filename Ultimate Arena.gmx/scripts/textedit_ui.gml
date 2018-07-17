@@ -1,5 +1,5 @@
 ///textedit_ui(id)
-with(objUIListBox){
+with(obj_uiListbox){
     if(argument0 == id){
         if(listID == 0){
             global.IDselected = sID;
@@ -13,12 +13,12 @@ with(objUIListBox){
                 array_from_section();
             }
             
-            with(objUIWindowCaption){
+            with(obj_uiWindowCaption){
                 if(__parent != other.__parent)
                     caption = global.TEXTNAME[other.sID];
             }
             
-            with(objUIListBox){
+            with(obj_uiListbox){
                 if(listID == 1){
                     initialize_listbox(obj_textEditor.currentList);
                     sID = -1;
@@ -29,7 +29,7 @@ with(objUIListBox){
             }
             
             keyboard_string = "";
-            with(objUIField)
+            with(obj_uiField)
                 content = "";
         }
         else if(listID == 1){
@@ -41,7 +41,7 @@ with(objUIListBox){
         }
     }
 }
-with(objUIButton){
+with(obj_uiButton){
     if(argument0 == id){
         if(bID == 0){ //Go Back
             ini_open("settings.ini");
@@ -73,7 +73,7 @@ with(objUIButton){
                     
                 array_from_section();
                 
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 1){
                         initialize_listbox(other.currentList);
                         sID = -1;
@@ -83,7 +83,7 @@ with(objUIButton){
                     }
                 }
                 
-                with(objUILabel){
+                with(obj_uiLabel){
                     if(lID == 1)
                         caption = other.sectionName[other.command];
                     else if(lID == 2){
@@ -100,7 +100,7 @@ with(objUIButton){
             }
             
             keyboard_string = "";
-            with(objUIField)
+            with(obj_uiField)
                 content = "";
         }
         else if(bID == 3){ //Cycle Commands Right
@@ -113,7 +113,7 @@ with(objUIButton){
                     
                 array_from_section();
                 
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 1){
                         initialize_listbox(other.currentList);
                         sID = -1;
@@ -123,7 +123,7 @@ with(objUIButton){
                     }
                 }
                 
-                with(objUILabel){
+                with(obj_uiLabel){
                     if(lID == 1)
                         caption = other.sectionName[other.command];
                     else if(lID == 2){
@@ -140,12 +140,12 @@ with(objUIButton){
             }
             
             keyboard_string = "";
-            with(objUIField)
+            with(obj_uiField)
                 content = "";
         }
         else if(bID == 4){ //Add update
             if(global.IDselected > 0){
-                with(objUIField){
+                with(obj_uiField){
                     if(fID == 0){
                         if(content != ""){
                             if(obj_textEditor.currentList[0] == ""){
@@ -159,7 +159,7 @@ with(objUIButton){
                             }
                             content = "";
                             
-                            with(objUIListBox){
+                            with(obj_uiListbox){
                                 if(listID == 1){
                                     initialize_listbox(obj_textEditor.currentList);
                                     sID = array_length_1d(obj_textEditor.currentList)-1;
@@ -175,7 +175,7 @@ with(objUIButton){
         }
         else if(bID == 5){ //Delete Update
             if(global.IDselected > 0){
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 1){
                         if(sID != -1){
                             with(obj_textEditor){
@@ -244,7 +244,7 @@ with(objUIButton){
                     global.charname = global.TEXTNAME[global.IDselected]; 
                     var ename = global.TEXTNAME[global.IDselected];
                 }
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 1)
                         sID = -1;
                 }
@@ -299,7 +299,7 @@ with(objUIButton){
             }
         }
         else if(bID == 8){ //New Update File Popup
-            with(objUIField){
+            with(obj_uiField){
                 if(fID == 1){
                     if(content == "")
                         exit;
@@ -327,7 +327,7 @@ with(objUIButton){
                 array_from_update_file(working_directory+"texts\"+nam+"\"+nam+".ini");
                 array_from_section();
                 
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 0){
                         initialize_listbox(global.TEXT);
                         sID = global.TEXT_COUNT-1;
@@ -348,7 +348,7 @@ with(objUIButton){
                     }
                 }
                 
-                with(objUIWindowCaption){
+                with(obj_uiWindowCaption){
                     if(__parent.wID == "Editor Window")
                         caption = nam;
                 }
@@ -357,7 +357,7 @@ with(objUIButton){
     }
 }
 
-with(objUICheckbox)
+with(obj_uiCheckbox)
 {
     if(bID == 1)
         global.workshop = value;

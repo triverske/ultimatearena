@@ -12,41 +12,41 @@ draw_background(global.bck_minimap,0,0);
 with(obj_deadLocation)
     draw_self();
 
-with(oTree)
+with(obj_tree)
     draw_self();
 
-with(oMine)
+with(obj_landmine)
     draw_self();
     
-with(oItems)
+with(obj_itemBag)
     draw_sprite(spr_itemBag,0,floor(x),floor(y))
 
-with(oWood)
+with(obj_wood)
     draw_self();
 
-with(oRope)
+with(obj_rope)
     draw_self();
 
-with(oStone)
+with(obj_stone)
     draw_self();
 
-with(oWSpear)
+with(obj_woodSpear)
     if(dropped)
         draw_self();
 
-with(oSSpear)
+with(obj_steelSpear)
     if(dropped)
         draw_self();
 
-with(oWBow)
+with(obj_woodBow)
     if(dropped)
         draw_self();
 
-with(oSBow)
+with(obj_steelBow)
     if(dropped)
         draw_self();
 
-with(oArenaEvent)
+with(obj_arenaEvent)
 {
     draw_set_color(c_red);
     draw_set_alpha(1);
@@ -60,7 +60,7 @@ with(oArenaEvent)
 
 
 draw_set_color(c_red);
-with (oFighter)
+with (obj_fighter)
 {
     if(STATE == "SLEEP")
     {
@@ -142,7 +142,7 @@ with (oFighter)
     draw_sprite_ext(spr_fighter,INSANE,x,y,1,1,0,color,1);
 }
 
-with (oExplosion)
+with (obj_explosion)
     draw_self();
 
 draw_sprite(spr_skull,0,skullx,skully);
@@ -165,13 +165,13 @@ draw_surface(map,75,75);
 surface_reset_target();
 surface_set_target(map);
 
-if(instance_exists(oArenaEvent))
+if(instance_exists(obj_arenaEvent))
 {
     draw_set_alpha(.6)
     draw_rectangle_colour(0,512-24,512,512,c_red,c_red,c_maroon,c_maroon,0);
     draw_set_alpha(1);
     draw_set_halign(fa_middle);
-    draw_text_colour(256,512-21,"Arena Event! " + oArenaEvent.description,c_white,c_white,c_silver,c_silver,1);
+    draw_text_colour(256,512-21,"Arena Event! " + obj_arenaEvent.description,c_white,c_white,c_silver,c_silver,1);
 }
 
 surface_reset_target();

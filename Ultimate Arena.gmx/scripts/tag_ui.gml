@@ -1,22 +1,22 @@
 ///tag_ui(id)
 
-with (objUIListBox)
+with (obj_uiListbox)
 {
 if (argument0 == id )
 {
 with (zui_main()) 
 {
-with(zui_create(445,348,objUIWindow,-1)) 
+with(zui_create(445,348,obj_uiWindow,-1)) 
 {
     zui_set_size(260,420);
     callback = tag_ui;
     tagname = global.TAGS[argument0.sID];
-    with (zui_create(0, 0, objUIWindowCaption)) 
+    with (zui_create(0, 0, obj_uiWindowCaption)) 
     {
         caption = "Tag: " + other.tagname;
         draggable = 1;
     }
-    with(zui_create(0,24,objUIListBox))
+    with(zui_create(0,24,obj_uiListbox))
     {
         draw_callback = tag_draw_ui;
         callback = selection_ui;
@@ -35,10 +35,10 @@ with(zui_create(445,348,objUIWindow,-1))
             selected[i] = global.select_list.selected[list[i]];
         }
         other.listID = id;
-        with(zui_create(0,0,objUIListBoxScroll)){} 
+        with(zui_create(0,0,obj_uiListboxScroll)){} 
     }
-    zui_create(0,0,oUIExitButton,-1);
-    with (zui_create(5, __height - 35, objUIButton)) 
+    zui_create(0,0,obj_uiExitButton,-1);
+    with (zui_create(5, __height - 35, obj_uiButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(150, 30);
@@ -47,7 +47,7 @@ with(zui_create(445,348,objUIWindow,-1))
         bID = 0;
         listID = other.listID;
     }
-    with (zui_create(160, __height - 35, objUIButton)) 
+    with (zui_create(160, __height - 35, obj_uiButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(95, 30);

@@ -1,4 +1,4 @@
-with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow))
+with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, obj_uiWindow))
 {
     global.charVersion = 1;
     global.workshopID = -1;
@@ -6,24 +6,24 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
     zui_set_size(500, 330);
     wID = "Editor Window";
     
-    with(zui_create(0, 0, objUIWindowCaption))
+    with(zui_create(0, 0, obj_uiWindowCaption))
     {
         caption = "Character Editor";
     }
         
-    with(zui_create(5, 29, oUIImage))
+    with(zui_create(5, 29, obj_uiImage))
     {
         image = spr_defaultFighterImage;
         callback = charedit_ui;
         scale = 1.5;
         bID = 0;
     }
-    with(zui_create(200, 45, objUILabel))
+    with(zui_create(200, 45, obj_uiLabel))
     {
         caption = "Name: ";
         halign = fa_left;
     }
-    with(zui_create(250, 36, objUIField))
+    with(zui_create(250, 36, obj_uiField))
     {
         callback = charedit_ui;
         fID = 0;
@@ -32,20 +32,20 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         zui_set_size(width,18);
         maxLength = string_width("Vermin Supreme");
     }
-    with(zui_create(200, 75, objUILabel))
+    with(zui_create(200, 75, obj_uiLabel))
     {
         caption = "Gender:  M"
         halign = fa_left;
     }
-    with(zui_create(305, 75, objUILabel))
+    with(zui_create(305, 75, obj_uiLabel))
     {
         caption = "F"
     }
-    with(zui_create(353, 75, objUILabel))
+    with(zui_create(353, 75, obj_uiLabel))
     {
         caption = "Other"
     }
-    with(zui_create(282, 75, objUICheckbox))
+    with(zui_create(282, 75, obj_uiCheckbox))
     {
         type = 1;
         callback = charedit_ui;
@@ -53,14 +53,14 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         value = 1;
         bID = 0
     }
-    with(zui_create(325, 75, objUICheckbox))
+    with(zui_create(325, 75, obj_uiCheckbox))
     {
         type = 1;
         callback = charedit_ui;
         cID = 1;
         bID = 0;
     }
-    with(zui_create(385, 75, objUICheckbox))
+    with(zui_create(385, 75, obj_uiCheckbox))
     {
         type = 1;
         callback = charedit_ui;
@@ -69,7 +69,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
     }
     
     /*
-    with (zui_create(200, 105, objUIButton)) 
+    with (zui_create(200, 105, obj_uiButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(130, 30);
@@ -79,7 +79,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
     } */    
     for(var i=0;i<7;i++)
     {
-        with (zui_create(5 + 28*i, 223, oUIImageButton)) 
+        with (zui_create(5 + 28*i, 223, obj_uiImageButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(26, 26);
@@ -90,7 +90,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         }
     }
     
-    with(zui_create(240, __height - 55, objUICheckbox))
+    with(zui_create(240, __height - 55, obj_uiCheckbox))
     {
         type = 0;
         callback = charedit_ui;
@@ -98,13 +98,13 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         value = 0;
         bID = 1;
     }
-    with(zui_create(270, __height - 55, objUILabel))
+    with(zui_create(270, __height - 55, obj_uiLabel))
     {
         caption = "Add to Steam Workshop";
         halign = fa_left;
     }
     
-    with (zui_create(5, 261, objUIButton)) 
+    with (zui_create(5, 261, obj_uiButton)) 
     {                                           
         zui_set_anchor(0,0);
         zui_set_size(192, 30);
@@ -112,7 +112,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         callback = charedit_ui;
         bID = 1;
     }
-    with (zui_create(202, __height - 5, objUIButton)) 
+    with (zui_create(202, __height - 5, obj_uiButton)) 
     {
         zui_set_anchor(0,1);
         zui_set_size(293, 30);
@@ -120,7 +120,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         callback = charedit_ui;
         bID = 2;
     }
-    with (zui_create(5, __height - 5, objUIButton)) 
+    with (zui_create(5, __height - 5, obj_uiButton)) 
     {
         zui_set_anchor(0,1);
         zui_set_size(192, 30);
@@ -131,64 +131,64 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
     
     
     
-    with(zui_create(300, 125, objUILabel))
+    with(zui_create(300, 125, obj_uiLabel))
     {
         caption = "Strength";
         halign = fa_middle;
     }
-    with(zui_create(400, 125, objUILabel))
+    with(zui_create(400, 125, obj_uiLabel))
     {
         caption = "Agility";
         halign = fa_middle;
     }
-    with(zui_create(250, 175, objUILabel))
+    with(zui_create(250, 175, obj_uiLabel))
     {
         caption = "Endurance";
         halign = fa_middle;
     }
-    with(zui_create(350, 175, objUILabel))
+    with(zui_create(350, 175, obj_uiLabel))
     {
         caption = "Skill";
         halign = fa_middle;
     }
-    with(zui_create(450, 175, objUILabel))
+    with(zui_create(450, 175, obj_uiLabel))
     {
         caption = "Luck";
         halign = fa_middle;
     }
     
-    with(zui_create(300, 150, objUILabel))
+    with(zui_create(300, 150, obj_uiLabel))
     {
         caption = "5";
         halign = fa_middle;
         lID = 1;
     }
-    with(zui_create(400, 150, objUILabel))
+    with(zui_create(400, 150, obj_uiLabel))
     {
         caption = "5";
         halign = fa_middle;
         lID = 2;
     }
-    with(zui_create(250, 200, objUILabel))
+    with(zui_create(250, 200, obj_uiLabel))
     {
         caption = "5";
         halign = fa_middle;
         lID = 3;
     }
-    with(zui_create(350, 200, objUILabel))
+    with(zui_create(350, 200, obj_uiLabel))
     {
         caption = "5";
         halign = fa_middle;
         lID = 4;
     }
-    with(zui_create(450, 200, objUILabel))
+    with(zui_create(450, 200, obj_uiLabel))
     {
         caption = "5";
         halign = fa_middle;
         lID = 5;
     }
     
-    with (zui_create(320, 150, objUIButton)) 
+    with (zui_create(320, 150, obj_uiButton)) 
     {
         zui_set_anchor(.5,.5);
         zui_set_size(20, 20);
@@ -197,7 +197,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         bID = 7;
         stat = 0;
     }
-    with (zui_create(420, 150, objUIButton)) 
+    with (zui_create(420, 150, obj_uiButton)) 
     {
         zui_set_anchor(.5,.5);
         zui_set_size(20, 20);
@@ -206,7 +206,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         bID = 7;
         stat = 1;
     }
-    with (zui_create(270, 200, objUIButton)) 
+    with (zui_create(270, 200, obj_uiButton)) 
     {
         zui_set_anchor(.5,.5);
         zui_set_size(20, 20);
@@ -215,7 +215,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         bID = 7;
         stat = 2;
     }
-    with (zui_create(370, 200, objUIButton)) 
+    with (zui_create(370, 200, obj_uiButton)) 
     {
         zui_set_anchor(.5,.5);
         zui_set_size(20, 20);
@@ -224,7 +224,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         bID = 7;
         stat = 3;
     }
-    with (zui_create(470, 200, objUIButton)) 
+    with (zui_create(470, 200, obj_uiButton)) 
     {
         zui_set_anchor(.5,.5);
         zui_set_size(20, 20);
@@ -234,7 +234,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         stat = 4;
     }
     
-    with (zui_create(280, 150, objUIButton)) 
+    with (zui_create(280, 150, obj_uiButton)) 
     {
         zui_set_anchor(.5,.5);
         zui_set_size(20, 20);
@@ -243,7 +243,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         bID = 8;
         stat = 0;
     }
-    with (zui_create(380, 150, objUIButton)) 
+    with (zui_create(380, 150, obj_uiButton)) 
     {
         zui_set_anchor(.5,.5);
         zui_set_size(20, 20);
@@ -252,7 +252,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         bID = 8;
         stat = 1;
     }
-    with (zui_create(230, 200, objUIButton)) 
+    with (zui_create(230, 200, obj_uiButton)) 
     {
         zui_set_anchor(.5,.5);
         zui_set_size(20, 20);
@@ -261,7 +261,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         bID = 8;
         stat = 2;
     }
-    with (zui_create(330, 200, objUIButton)) 
+    with (zui_create(330, 200, obj_uiButton)) 
     {
         zui_set_anchor(.5,.5);
         zui_set_size(20, 20);
@@ -270,7 +270,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         bID = 8;
         stat = 3;
     }
-    with (zui_create(430, 200, objUIButton)) 
+    with (zui_create(430, 200, obj_uiButton)) 
     {
         zui_set_anchor(.5,.5);
         zui_set_size(20, 20);
@@ -279,12 +279,12 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
         bID = 8;
         stat = 4;
     }
-    /*with(zui_create(200, 236, objUILabel))
+    /*with(zui_create(200, 236, obj_uiLabel))
     {
         caption = "Catchphrase: ";
         halign = fa_left;
     }
-    with(zui_create(290, 227, objUIField))
+    with(zui_create(290, 227, obj_uiField))
     {
         callback = charedit_ui;
         fID = 1;
@@ -295,15 +295,15 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, objUIWindow)
     }*/
     
 }
-with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, objUIWindow))
+with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, obj_uiWindow))
 {
     zui_set_size(200, 330);
     wID = "Character Tags";
-    with(zui_create(0,0,objUIWindowCaption))
+    with(zui_create(0,0,obj_uiWindowCaption))
     {
         caption = "Character Tags";
     }
-    with(zui_create(0,64,objUIListBox))
+    with(zui_create(0,64,obj_uiListbox))
     {
         zui_set_anchor(0,0);
         zui_set_size(200,330-104);
@@ -317,9 +317,9 @@ with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, objUIWin
         {
             selected[i] = 1;
         }
-        with(zui_create(0,0,objUIListBoxScroll)){}
+        with(zui_create(0,0,obj_uiListboxScroll)){}
     }
-    with (zui_create(5, 34, objUIField)) 
+    with (zui_create(5, 34, obj_uiField)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(100, 30);
@@ -328,7 +328,7 @@ with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, objUIWin
         width = 100;
         maxLength = 150;
     }
-    with (zui_create(__width - 89, 29, objUIButton)) 
+    with (zui_create(__width - 89, 29, obj_uiButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(84, 30);
@@ -337,7 +337,7 @@ with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, objUIWin
         bID = 12;
         listID = other.listID;
     }
-    with (zui_create(5, __height - 35, objUIButton)) 
+    with (zui_create(5, __height - 35, obj_uiButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(100, 30);
@@ -347,7 +347,7 @@ with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, objUIWin
         type = 2;
         listID = other.listID;
     }
-    with (zui_create(__width-45, __height - 30, objUILabel)) 
+    with (zui_create(__width-45, __height - 30, obj_uiLabel)) 
     {
         lID = 6;
         caption = "0/"+string(global.TAG_COUNT)+" Tags";
@@ -356,16 +356,16 @@ with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, objUIWin
     }
 }
 
-with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, objUIWindow))
+with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, obj_uiWindow))
 {
     zui_set_size(800, 240);
     wID = "Update Editor";
     callback = charedit_ui;
-    with(zui_create(0, 0, objUIWindowCaption))
+    with(zui_create(0, 0, obj_uiWindowCaption))
     {
         caption = "Update Text Editor";
     }
-    with(zui_create(10,75,objUIListBox))
+    with(zui_create(10,75,obj_uiListbox))
     {
         zui_set_anchor(0,0);
         zui_set_size(780,115);
@@ -377,9 +377,9 @@ with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, objUIWin
         for(var i=array_length_1d(obj_fighterEditor.currentList)-1; i>-1; i--)
             selected[i] = !obj_fighterEditor.toggleList[i];
             
-        with(zui_create(0,0,objUIListBoxScroll)){}
+        with(zui_create(0,0,obj_uiListboxScroll)){}
     }
-    with (zui_create(10, 35, objUIButton)) 
+    with (zui_create(10, 35, obj_uiButton)) 
     {                                           
         zui_set_anchor(0,0);
         zui_set_size(30, 30);
@@ -387,21 +387,21 @@ with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, objUIWin
         callback = charedit_ui;
         bID = 13;
     }
-    with(zui_create(400, 35, objUILabel))
+    with(zui_create(400, 35, obj_uiLabel))
     {
         caption = obj_fighterEditor.sectionName[13];
         halign = fa_center;
         valign = fa_top;
         lID = 7;
     }
-    with(zui_create(400, 50, objUILabel))
+    with(zui_create(400, 50, obj_uiLabel))
     {
         caption = "(One fighter)";
         halign = fa_center;
         valign = fa_top;
         lID = 8;
     }
-    with (zui_create(760, 35, objUIButton)) 
+    with (zui_create(760, 35, obj_uiButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(30, 30);
@@ -409,7 +409,7 @@ with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, objUIWin
         callback = charedit_ui;
         bID = 14;
     }
-    with(zui_create(10, 206, objUIField))
+    with(zui_create(10, 206, obj_uiField))
     {
         zui_set_anchor(0,0);
         width = 610;
@@ -418,7 +418,7 @@ with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, objUIWin
         maxLength = string_width("Vermin Supreme attempts to climb one of the arena barriers, but loses his footing and falls to a painful end.");
         fID = 3;
     }
-    with(zui_create(630,200, objUIButton)) 
+    with(zui_create(630,200, obj_uiButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(30,30);
@@ -426,7 +426,7 @@ with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, objUIWin
         callback = charedit_ui;
         bID = 15;
     }
-    with(zui_create(690,200, objUIButton)) 
+    with(zui_create(690,200, obj_uiButton)) 
     {
         zui_set_anchor(0,0);
         zui_set_size(100,30);

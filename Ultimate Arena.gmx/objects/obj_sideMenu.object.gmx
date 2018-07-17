@@ -90,7 +90,7 @@ xpleader = 0;
 xpleaderxp = 0;
 sanityleader = 0;
 sanityleaders = 101;
-with(oFighter)
+with(obj_fighter)
 {
     global.killArray[fighterID] = kills;
     other.xpArray[fighterID] = XP;
@@ -184,7 +184,7 @@ if(xpleaderprev != xpleader)
 if(sanityleaderprev != sanityleader)
     update[2] = 120;
     
-with(oGraphicsController)
+with(obj_arenaController)
 {
     sanityleader = other.sanityleader;
     xpleader = other.xpleader;

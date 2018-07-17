@@ -3,7 +3,7 @@
 var WS = global.WSCALE;
 var HS = global.HSCALE;
 
-with (objUIButton)
+with (obj_uiButton)
 {
     if (argument0 == id)
     {
@@ -22,26 +22,26 @@ with (objUIButton)
             {
             with (zui_main()) 
             {
-                with(zui_create(WS/2,HS/2,objUIWindow,-1))
+                with(zui_create(WS/2,HS/2,obj_uiWindow,-1))
                 {
                     wID = "Search By Tag";
                     //callback = fighter_select_buttons;
                     zui_set_size(160,224);
-                    with(zui_create(0,0,objUIWindowCaption))
+                    with(zui_create(0,0,obj_uiWindowCaption))
                     {
                         caption = "Search By Tag";
                         draggable = 1;
                     }
-                    with(zui_create(0,24,objUIListBox))
+                    with(zui_create(0,24,obj_uiListbox))
                     {
                         zui_set_anchor(0,0);
                         zui_set_size(160,200);
                         callback = tag_ui;
                         initialize_listbox(global.TAGS);
                 
-                        with(zui_create(0,0,objUIListBoxScroll)){} 
+                        with(zui_create(0,0,obj_uiListboxScroll)){} 
                     }
-                    zui_create(0,0,oUIExitButton,-1);
+                    zui_create(0,0,obj_uiExitButton,-1);
                 }
             }
             }
@@ -146,22 +146,22 @@ with (objUIButton)
         else if(bID == 13){//Select Map
             if(global.MAP_COUNT > 0){
                 with(zui_main()){
-                    with(zui_create(WS/2,HS/2,objUIWindow,-1)){
+                    with(zui_create(WS/2,HS/2,obj_uiWindow,-1)){
                         wID = "Select Map";
                         //callback = fighter_select_buttons;
                         zui_set_size(160,224);
-                        with(zui_create(0,0,objUIWindowCaption)){
+                        with(zui_create(0,0,obj_uiWindowCaption)){
                             caption = "Select Map";
                             draggable = 1;
                         }
-                        with(zui_create(0,24,objUIListBox)){
+                        with(zui_create(0,24,obj_uiListbox)){
                             zui_set_anchor(0,0);
                             zui_set_size(160,200);
                             callback = map_ui;
                             initialize_listbox(global.mapNAME,0,global.MAP_COUNT-1);
-                            with(zui_create(0,0,objUIListBoxScroll)){} 
+                            with(zui_create(0,0,obj_uiListboxScroll)){} 
                         }
-                        zui_create(0,0,oUIExitButton,-1);
+                        zui_create(0,0,obj_uiExitButton,-1);
                     }
                 }
             }
@@ -169,7 +169,7 @@ with (objUIButton)
                 ui_show_popup("No Maps Found");
         }
         else if(bID == 14){ //random 50
-            with (objUIListBox){
+            with (obj_uiListbox){
                 var t = 0;
                 if(length < 50)
                     ui_show_popup("You need at least 50 fighters#to use this option.");
@@ -189,7 +189,7 @@ with (objUIButton)
             }      
         }
         else if(bID == 15){ //random 100
-            with (objUIListBox){
+            with (obj_uiListbox){
                 var t = 0;
                 if(length < 100)
                     ui_show_popup("You need at least 100 fighters#to use this option.");
@@ -209,7 +209,7 @@ with (objUIButton)
             }      
         }
         else if(bID == 16){ //random 250
-            with (objUIListBox){
+            with (obj_uiListbox){
                 var t = 0;
                 if(length < 250)
                     ui_show_popup("You need at least 250 fighters#to use this option.");
@@ -230,7 +230,7 @@ with (objUIButton)
         }
     }
 }
-with (objUIWindow)
+with (obj_uiWindow)
 {
     if (argument0 == id)
     {
@@ -279,7 +279,7 @@ with (objUIWindow)
     }
 }
 
-with (objUIListBox)
+with (obj_uiListbox)
 {
     if (argument0 == id )
     {
@@ -290,7 +290,7 @@ with (objUIListBox)
     }
 }
 
-with (objUILabel)
+with (obj_uiLabel)
 {
     if (argument0 == id)
     {

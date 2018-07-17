@@ -1,5 +1,5 @@
 ///charedit_ui(id)
-with(objUIListBox)
+with(obj_uiListbox)
 {
     if(argument0 == id)
     {
@@ -27,9 +27,9 @@ with(objUIListBox)
                 global.workshopID = ini_read_real("character","workshopID",-1);
                 ini_close();
                 
-                oUIImage.image = global.cIMAGES[sID]
+                obj_uiImage.image = global.cIMAGES[sID]
                     
-                with(objUIField)
+                with(obj_uiField)
                 {
                     if(fID == 0)
                         content = global.cNAME[other.sID];
@@ -39,7 +39,7 @@ with(objUIListBox)
                         content = "";
                 }
                 
-                with(objUICheckbox)
+                with(obj_uiCheckbox)
                 {
                     if(bID == 0)
                     {
@@ -57,7 +57,7 @@ with(objUIListBox)
                             
                         if(global.creator != steam_get_user_account_id() && global.creator != -1)
                         {
-                            with(objUILabel)
+                            with(obj_uiLabel)
                             {
                                 if(caption == "Add to Steam Workshop")
                                     __visible = 0;
@@ -67,7 +67,7 @@ with(objUIListBox)
                         }
                         else
                         {
-                            with(objUILabel)
+                            with(obj_uiLabel)
                             {
                                 if(caption == "Add to Steam Workshop")
                                     __visible = 1;
@@ -83,7 +83,7 @@ with(objUIListBox)
                     array_from_section();
                 }
                 var ts = 0;
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 1){
                         for(var i=0; i<global.TAG_COUNT; i++){
                             selected[i] = 1;
@@ -102,7 +102,7 @@ with(objUIListBox)
                             selected[i] = !obj_fighterEditor.toggleList[i];
                     }
                 }
-                with(objUILabel){
+                with(obj_uiLabel){
                     if(lID > 0 && lID < 6)
                         caption = string(global.editStats[lID - 1]);
                     else if(lID == 6)
@@ -118,7 +118,7 @@ with(objUIListBox)
                     if(selected[i] == 0)
                         ts++;
                 }
-                with(objUILabel){
+                with(obj_uiLabel){
                     if(lID == 6)
                         caption = string(ts)+'/'+string(other.length)+' Tags';
                 }
@@ -132,7 +132,7 @@ with(objUIListBox)
         }
     }
 }
-with(objUIButton)
+with(obj_uiButton)
 {
     if(argument0 == id)
     {
@@ -167,11 +167,11 @@ with(objUIButton)
                 obj_fighterEditor.newImage = spr_defaultFighterImage;
             }
             
-            oUIImage.image = obj_fighterEditor.newImage;
+            obj_uiImage.image = obj_fighterEditor.newImage;
         }
         else if(bID == 2) //Save Character
         {
-            with(objUIField)
+            with(obj_uiField)
                 if(fID == 0)
                     var name = content;
             
@@ -193,7 +193,7 @@ with(objUIButton)
                 global.workshopID = ini_read_real("character","workshopID",-1);
                 
                 newGender = 0;
-                with(objUICheckbox)
+                with(obj_uiCheckbox)
                 {
                     if(bID == 0)
                         if(value == 1)
@@ -227,7 +227,7 @@ with(objUIButton)
                 }
                 
                 var tagstring = "";
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 1){
                         for(var i=0; i<global.TAG_COUNT; i++){
                             if(selected[i] == 0){
@@ -256,7 +256,7 @@ with(objUIButton)
                 for(i=0;i<5;i++)
                     global.editStats[i] = 5;
                     
-                with(objUILabel)
+                with(obj_uiLabel)
                     if(lID > 0 && lID < 6)
                         caption = "5";
                     
@@ -268,8 +268,8 @@ with(objUIButton)
                 }
                 else
                 {
-                    if(oUIImage.image != spr_defaultFighterImage)
-                        sprite_save(oUIImage.image,0,working_directory + "characters\" + name + "\" + name + ".png");
+                    if(obj_uiImage.image != spr_defaultFighterImage)
+                        sprite_save(obj_uiImage.image,0,working_directory + "characters\" + name + "\" + name + ".png");
                     else{
                         //Gamemaker doesn't let you save images from the resource tree.
                         var tempSprite = sprite_duplicate(spr_defaultFighterImage);
@@ -352,7 +352,7 @@ with(objUIButton)
             if(global.editStats[stat] > 10)
                 global.editStats[stat] = 10;
                 
-            with(objUILabel)
+            with(obj_uiLabel)
                 if(lID == other.stat + 1)
                     caption = string(global.editStats[other.stat]);
         }
@@ -363,14 +363,14 @@ with(objUIButton)
             if(global.editStats[stat] < 1)
                 global.editStats[stat] = 1;
                 
-            with(objUILabel)
+            with(obj_uiLabel)
                 if(lID == other.stat + 1)
                     caption = string(global.editStats[other.stat]);
         }
         else if(bID == 9) //Fighter Color
         {
             global.editColor = type;
-            with(oUIImageButton)
+            with(obj_uiImageButton)
             {
                 if(global.editColor != type)
                     color = c_gray;
@@ -384,7 +384,7 @@ with(objUIButton)
         }
         else if(bID == 11) //Delete Tag
         {
-            with(objUIListBox)
+            with(obj_uiListbox)
             {
                 if(listID == 1)
                 {
@@ -406,7 +406,7 @@ with(objUIButton)
         else if(bID == 12) //Add Tag
         {
             if(global.IDselected==-1){
-                with(objUIField){
+                with(obj_uiField){
                     if(fID == 2){
                         if(content == ""){
                             ui_show_popup("Please enter a tag name.");
@@ -418,7 +418,7 @@ with(objUIButton)
                         }
                     }
                 }
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 1){
                         list[array_length_1d(list)] = obj_fighterEditor.tempTags[array_length_1d(obj_fighterEditor.tempTags)-1];
                         selected[array_length_1d(list)-1]=0;
@@ -431,7 +431,7 @@ with(objUIButton)
                             if(selected[i] == 0)
                                 ts++;
                         }
-                        with(objUILabel){
+                        with(obj_uiLabel){
                             if(lID == 6)
                                 caption = string(ts)+'/'+string(other.length)+' Tags';
                         }
@@ -439,7 +439,7 @@ with(objUIButton)
                 }
             }
             else{
-                with(objUIField){
+                with(obj_uiField){
                     if(fID == 2){
                         if(content == ""){
                             ui_show_popup("Please enter a tag name.");
@@ -460,7 +460,7 @@ with(objUIButton)
                 else
                     ini_write_string("character","tags",global.TAGS[global.TAG_COUNT-1]);
                 ini_close();
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 1){
                         initialize_listbox(global.TAGS);
                         selected=0;
@@ -475,7 +475,7 @@ with(objUIButton)
                                 }
                             }
                         }
-                        with(objUILabel){
+                        with(obj_uiLabel){
                             if(lID == 6)
                                 caption = string(ts)+'/'+string(global.TAG_COUNT)+' Tags';
                         }
@@ -495,7 +495,7 @@ with(objUIButton)
                     
                 array_from_section();
                 
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 2){
                         initialize_listbox(other.currentList);
                         sID = -1;
@@ -505,7 +505,7 @@ with(objUIButton)
                     }
                 }
                 
-                with(objUILabel){
+                with(obj_uiLabel){
                     if(lID == 7)
                         caption = other.sectionName[other.command];
                     else if(lID == 8){
@@ -522,7 +522,7 @@ with(objUIButton)
             }
             
             keyboard_string = "";
-            with(objUIField){
+            with(obj_uiField){
                 if(fID == 3)
                     content = "";
             }
@@ -537,7 +537,7 @@ with(objUIButton)
                     
                 array_from_section();
                 
-                with(objUIListBox){
+                with(obj_uiListbox){
                     if(listID == 2){
                         initialize_listbox(other.currentList);
                         sID = -1;
@@ -547,7 +547,7 @@ with(objUIButton)
                     }
                 }
                 
-                with(objUILabel){
+                with(obj_uiLabel){
                     if(lID == 7)
                         caption = other.sectionName[other.command];
                     else if(lID == 8){
@@ -564,14 +564,14 @@ with(objUIButton)
             }
             
             keyboard_string = "";
-            with(objUIField){
+            with(obj_uiField){
                 if(fID == 3)
                     content = "";
             }
         
         }
         else if(bID == 15){ //Add update
-            with(objUIField){
+            with(obj_uiField){
                 if(fID == 3){
                     if(content != ""){
                         if(obj_fighterEditor.currentList[0] == ""){
@@ -585,7 +585,7 @@ with(objUIButton)
                         }
                         content = "";
                         
-                        with(objUIListBox){
+                        with(obj_uiListbox){
                             if(listID == 2){
                                 initialize_listbox(obj_fighterEditor.currentList);
                                 sID = array_length_1d(obj_fighterEditor.currentList)-1;
@@ -599,7 +599,7 @@ with(objUIButton)
             }
         }
         else if(bID == 16){ //Delete update
-            with(objUIListBox){
+            with(obj_uiListbox){
                 if(listID == 2){
                     if(sID != -1){
                         with(obj_fighterEditor){
@@ -636,7 +636,7 @@ with(objUIButton)
     }
 }
 /*
-with(oUIImage)
+with(obj_uiImage)
 {
     if(argument0 == id)
     {
@@ -645,7 +645,7 @@ with(oUIImage)
     }
 }*/
 
-with(objUICheckbox)
+with(obj_uiCheckbox)
 {
     if(bID == 1)
         global.workshop = value;

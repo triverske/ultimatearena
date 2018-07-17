@@ -7,12 +7,12 @@ global.update_count++;
 if (argument5 > 0 && global.deadUpdates)
 {
     global.kill_count++;
-    with (oUpdateBox)
+    with (obj_updateBox)
     {
         currentPos++;
     }
     
-    i = instance_create(0,0,oUpdateBox);
+    i = instance_create(0,0,obj_updateBox);
     i.boxColor = global.boxColor
     i.text = argument0;
     i.image1 = global.IMAGES[argument1];
@@ -32,11 +32,11 @@ if (argument5 > 0 && global.deadUpdates)
 }
 else if (argument5 < 1 && global.otherUpdates)
 {
-    with (oUpdateBox)
+    with (obj_updateBox)
     {
         currentPos++;
     }
-    i = instance_create(0,0,oUpdateBox);
+    i = instance_create(0,0,obj_updateBox);
     i.boxColor = global.boxColor
     i.text = argument0;
     i.image1 = global.IMAGES[argument1];

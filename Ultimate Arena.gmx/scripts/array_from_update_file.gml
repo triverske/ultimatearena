@@ -29,11 +29,11 @@ if(argument0 == "DefaultText.ini"){
     global.charVersion = 0;
     global.workshopID = -1;
     global.creator = ini_read_real("text","creator",-1);
-    with(objUICheckbox)
+    with(obj_uiCheckbox)
             if(bID == 1)
                 __visible = 0;
                 
-    with(objUILabel)
+    with(obj_uiLabel)
         if(caption == "Add to Steam Workshop")
             __visible = 0;
     ini_close();
@@ -45,11 +45,11 @@ else if(argument0 == ""){
     global.charVersion = 1;
     global.workshopID = -1;
     global.creator = -1;
-    with(objUICheckbox)
+    with(obj_uiCheckbox)
         if(bID == 1)
             __visible = 1;
             
-    with(objUILabel)
+    with(obj_uiLabel)
         if(caption == "Add to Steam Workshop")
             __visible = 1;
 }
@@ -79,21 +79,21 @@ else{
     global.creator = ini_read_real("text","creator",-1);
     if(global.creator != -1 && global.creator != steam_get_user_account_id())
     {
-        with(objUICheckbox)
+        with(obj_uiCheckbox)
             if(bID == 1)
                 __visible = 0;
                 
-        with(objUILabel)
+        with(obj_uiLabel)
             if(caption == "Add to Steam Workshop")
                 __visible = 0;
     }
     else
     {
-        with(objUICheckbox)
+        with(obj_uiCheckbox)
             if(bID == 1)
                 __visible = 1;
                 
-        with(objUILabel)
+        with(obj_uiLabel)
             if(caption == "Add to Steam Workshop")
                 __visible = 1;
     }

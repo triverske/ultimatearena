@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1000</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,14 +25,71 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event = 0;
-radius = 0;
+            <string>q = 1;
+audio_play_sound(snd_event_notification,0,0);
+
+x = random(512);
+y = random(512);
+
+radius0 = global.eventRadius;
+radius1 = 0;
+
+alarm[2] = 1;
+
+time = global.TIME_STRING;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="57">
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>obj_arenaController.event_timer = floor(random(20000)); 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.log[global.logi] = time + " Arena Event! " + description;
+global.logi++;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -55,7 +112,7 @@ radius = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="56">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -72,86 +129,42 @@ radius = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(global.mapwindow.__hover == 1)
+            <string>if(q &lt; global.fighters)
 {
-    var xPos = (global.__zui_mx-global.mapwindow.__x);
-    var yPos = (global.__zui_my-global.mapwindow.__y);
-    
-    xPos *= (512/(global.HSCALE*(512/720)));
-    yPos *= (512/(global.HSCALE*(512/720)));
-    
-    yPos -= 24;
-    
-    if(!event)
+    if(global.DEATH_ARRAY[q] == 0)
     {
-        if(image == spr_landmine)
-        {
-            instance_create(xPos,yPos,oMine);
-        }
-        else if(image == spr_itemBag)
-        {
-            var e = instance_create(xPos,yPos,oItems);
-            for(var i=19; i&gt;-1; i--)
-                e.INV[i] = 0;
-            e.INV[2] = 2;
-            e.INV[3] = 2;
-            if(irandom(1))
+        per = random(100);
+        if (per &lt; death_percentage)
+        {   
+            var c = global.IDLIST[q];
+            if(distance_to_object(c) &lt; radius0)
             {
-                e.INV[4] = 1;
-                e.wspearid = instance_create(-100,-100,oWSpear);
+                with(c)
+                {
+                    global.deathCause[fighterID] = "Death by arena event";
+                    drop_items();
+                    instance_destroy();
+                }
+                global.event_kills++;    
+                update_create(update_get_event_text(event,q),q,1)
             }
-            else
-                e.wspearid = 0;
-            if(irandom(1))
-            {
-                e.INV[5] = 1;
-                e.sspearid = instance_create(-100,-100,oSSpear);
-            }
-            else
-                e.sspearid = 0;
-            if(irandom(1))
-            {
-                e.INV[6] = 1;
-                e.wbowid = instance_create(-100,-100,oWBow);
-            }
-            else
-                e.wbowid = 0;
-            if(irandom(1))
-            {
-                e.INV[7] = 1;
-                e.sbowid = instance_create(-100,-100,oSBow);
-            }
-            else
-                e.sbowid = 0;
         }
     }
-    else
-    {
-        with(instance_create(0,0,oArenaEvent))
-        {
-            x = xPos;
-            y = yPos;
-            event = floor(random(global.EVENT_COUNT));
-            alarm[0] = global.GAME_SPEED;
-            global.event_count++;
-            
-            ini_open(global.EVENT[event]);
-            description = ini_read_string("event","description","ERROR");
-            name = ini_read_string("event","name","ERROR");
-            death_percentage = ini_read_real("event","death_percentage",0);
-            ini_close();
-        }
-    }
-    audio_play_sound(snd_blip,0,0);
-    instance_destroy();
+}
+else if (alarm[1] == -1)
+{
+    alarm[1] = 60*15;
 }
 
+
+q++;
+alarm[0] = global.GAME_SPEED * 3;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -168,24 +181,14 @@ radius = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(event)
+            <string>if (alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
 {
-    radius += 3;
-    if(radius &gt; global.eventRadius)
-        radius = 0;
-    draw_set_color(c_red);
-    draw_set_alpha(1);
-    draw_circle(global.__zui_mx,global.__zui_my,global.eventRadius,1);
-    draw_set_alpha(.1);
-    draw_circle(global.__zui_mx,global.__zui_my,global.eventRadius,0);
-    draw_set_alpha(.5);
-    draw_circle(global.__zui_mx,global.__zui_my,radius,1);
-    draw_set_alpha(1);
+    alarm[0] = global.GAME_SPEED * 3;
 }
-else
-{
-    draw_sprite(image,0,global.__zui_mx,global.__zui_my);
-}
+
+radius1 += 3;
+if(radius1 &gt; radius0)
+    radius1 = 0;
 </string>
           </argument>
         </arguments>

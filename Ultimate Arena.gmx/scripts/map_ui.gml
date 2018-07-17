@@ -1,6 +1,6 @@
 ///map_ui(id)
 
-with (objUIListBox)
+with (obj_uiListbox)
 {
 if (argument0 == id )
 {

@@ -8,7 +8,7 @@ draw_set_halign(fa_left);
 draw_set_color(c_white); 
 draw_set_font(font0);
 surface_set_target(updates);
-with(oUpdateBox)
+with(obj_updateBox)
 {
     draw_sprite(spr_updateBox,boxColor,0,y);
     draw_sprite(spr_cameraButton,0,314,60+y);

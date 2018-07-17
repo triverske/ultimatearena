@@ -152,15 +152,15 @@ array_from_section();
 
 with(zui_main())
 {
-    with(zui_create(0, 0, objUIWindow))
+    with(zui_create(0, 0, obj_uiWindow))
     {
         zui_set_anchor(0,0);
         zui_set_size(260, window_get_height());
         wID = "Update List";
-        with(zui_create(0, 0, objUIWindowCaption))
+        with(zui_create(0, 0, obj_uiWindowCaption))
             caption = "Update Files (Toggle active)";
             
-        with(zui_create(0, 24, objUIListBox))
+        with(zui_create(0, 24, obj_uiListbox))
         {
             zui_set_anchor(0,0);
             zui_set_size(260, window_get_height()-64);
@@ -177,9 +177,9 @@ with(zui_main())
                 else
                     selected[i] = 1;
             }
-            with(zui_create(0, 0, objUIListBoxScroll)){}
+            with(zui_create(0, 0, obj_uiListboxScroll)){}
         }
-        with(zui_create(5, __height - 35, objUIButton))
+        with(zui_create(5, __height - 35, obj_uiButton))
         {
             zui_set_anchor(0,0);
             zui_set_size(140, 30);
@@ -189,7 +189,7 @@ with(zui_main())
             bID = 1;
         }
         
-        with(zui_create(__width - 109, __height - 35, objUIButton)) 
+        with(zui_create(__width - 109, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(104, 30);
@@ -224,21 +224,21 @@ with(zui_main())
           <argument>
             <kind>1</kind>
             <string>if(global.IDselected == 0){
-    with(objUIButton){
+    with(obj_uiButton){
         if(bID == 1 || bID == 4 || bID == 5)
             zui_set_visible(0);
     }
-    with(objUIField){
+    with(obj_uiField){
         if(fID == 0)
             zui_set_visible(0);
     }
 }
 else{
-    with(objUIButton){
+    with(obj_uiButton){
         if(bID == 1 || bID == 4 || bID == 5)
             zui_set_visible(1);
     }
-    with(objUIField){
+    with(obj_uiField){
         if(fID == 0)
             zui_set_visible(1);
     }

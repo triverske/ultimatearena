@@ -1,6 +1,6 @@
 ///title_buttons(id)
 
-with (objUIButton)
+with (obj_uiButton)
 {
     if (argument0 == id)
     {
@@ -59,16 +59,16 @@ with (objUIButton)
             with (zui_main()) 
             {
                 
-                if (!instance_exists(objUIWindow))
+                if (!instance_exists(obj_uiWindow))
                 {
-                with (zui_create(zui_get_width() * 0.5, zui_get_height() * 0.5, objUIWindow, -1)) 
+                with (zui_create(zui_get_width() * 0.5, zui_get_height() * 0.5, obj_uiWindow, -1)) 
                     {
                         zui_set_size(240, 200);
-                        zui_create(0,0,oUIExitButton,-5);
+                        zui_create(0,0,obj_uiExitButton,-5);
                         callback = title_buttons;
                         wID = "Settings";
             
-                        with (zui_create(5, __height - 135, objUIButton)) 
+                        with (zui_create(5, __height - 135, obj_uiButton)) 
                         {
                             zui_set_anchor(0,0);
                             zui_set_size(230, 30);
@@ -77,7 +77,7 @@ with (objUIButton)
                             bID = 9;
                         }
                         /* No one used VSYNC anyway
-                        with (zui_create(5, __height - 70, objUIButton)) 
+                        with (zui_create(5, __height - 70, obj_uiButton)) 
                         {
                             zui_set_anchor(0,0);
                             zui_set_size(230, 30);
@@ -95,7 +95,7 @@ with (objUIButton)
                             bID = 10;
                         }
                         */
-                        with (zui_create(5, __height - 170, objUIButton)) 
+                        with (zui_create(5, __height - 170, obj_uiButton)) 
                         {
                             zui_set_anchor(0,0);
                             zui_set_size(230, 30);
@@ -104,7 +104,7 @@ with (objUIButton)
                             bID = 2;
                         }    
                         
-                        with(zui_create(120,__height - 30, objUILabel))
+                        with(zui_create(120,__height - 30, obj_uiLabel))
                         {
                             zui_set_anchor(.5,.5);
                             color = c_white;
@@ -114,7 +114,7 @@ with (objUIButton)
                         }
 
 
-                        with (zui_create(0, 0, objUIWindowCaption)) 
+                        with (zui_create(0, 0, obj_uiWindowCaption)) 
                         {
                             caption = "Settings";
                             draggable = 1;

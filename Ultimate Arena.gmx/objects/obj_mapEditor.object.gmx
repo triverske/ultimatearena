@@ -49,24 +49,24 @@ surface_reset_target();
 
 with(zui_main())
 {
-    with(zui_create(0, 0, objUIWindow))
+    with(zui_create(0, 0, obj_uiWindow))
     {
         zui_set_anchor(0, 0);
         zui_set_size(260, window_get_height());
         zui_set_position(0, 0);
         wID = "Map List";
-        with(zui_create(0, 0, objUIWindowCaption))
+        with(zui_create(0, 0, obj_uiWindowCaption))
             caption = "Maps (Click to edit)";
             
-        with(zui_create(0, 24, objUIListBox))
+        with(zui_create(0, 24, obj_uiListbox))
         {
             zui_set_anchor(0, 0);
             zui_set_size(window_get_width()/5, window_get_height()-64);
             callback = mapedit_ui;
             initialize_listbox(global.MAPS,0,global.MAP_COUNT-1);
-            with(zui_create(0, 0, objUIListBoxScroll)){}
+            with(zui_create(0, 0, obj_uiListboxScroll)){}
         }
-        with (zui_create(5, __height - 35, objUIButton)) 
+        with (zui_create(5, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(120, 30);
@@ -76,7 +76,7 @@ with(zui_main())
             type = 2;
         }
         
-        with (zui_create(__width - 129, __height - 35, objUIButton)) 
+        with (zui_create(__width - 129, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(124, 30);
@@ -168,7 +168,7 @@ if(mouse_y &gt; round(window_get_height()*.5-233) &amp;&amp; mouse_y &lt; round(
                     treeArray[array_height_2d(treeArray),0] = tx;
                     treeArray[array_height_2d(treeArray)-1,1] = ty;
                 }
-                with(objUILabel){
+                with(obj_uiLabel){
                     if(lID == 1)
                         caption = string(array_height_2d(obj_mapEditor.treeArray))+"/30 Trees";
                 }

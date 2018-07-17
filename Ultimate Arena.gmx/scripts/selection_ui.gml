@@ -1,6 +1,6 @@
 ///selection_ui(id)
 
-with (objUIButton)
+with (obj_uiButton)
 {
     if (argument0 == id)
     {
@@ -81,7 +81,7 @@ with (objUIButton)
     
     }
 }
-with (objUIListBox)
+with (obj_uiListbox)
 {
     if (argument0 == id)
     {

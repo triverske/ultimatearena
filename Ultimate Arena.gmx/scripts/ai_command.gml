@@ -164,7 +164,7 @@ if (com != STATE)
         QUICK = 0;
         INV[9]--;
         INV[11]--;
-        wspearid = instance_create(-100,-100,oWSpear);
+        wspearid = instance_create(-100,-100,obj_woodSpear);
         wspearid.owner = id;
         INV[4]++;
         XP+=6;
@@ -178,7 +178,7 @@ if (com != STATE)
         QUICK = 0;
         INV[9]--;
         INV[10]--;
-        wbowid = instance_create(-100,-100,oWBow);
+        wbowid = instance_create(-100,-100,obj_woodBow);
         wbowid.owner = id;
         INV[6]++;
         XP+=8;
@@ -300,7 +300,7 @@ if (com != STATE)
         break;
         
         case "END GROUP":
-        with(oFighter)
+        with(obj_fighter)
         {
             group = -1;
             for(var i=0; i<global.fighters+1; i++)
@@ -310,7 +310,7 @@ if (com != STATE)
         break;
         
         case "ATTACK UNARMED":
-        with(oFighter)
+        with(obj_fighter)
         {
             if(id != other.id && group == other.otherFighter.group)
                 opinion[other.fighterID]--;
@@ -346,7 +346,7 @@ if (com != STATE)
         break;
         
         case "ATTACK WSPEAR":
-        with(oFighter)
+        with(obj_fighter)
         {
             if(id != other.id && group == other.otherFighter.group)
                 opinion[other.fighterID]--;
@@ -398,7 +398,7 @@ if (com != STATE)
         break;
         
         case "ATTACK SSPEAR":
-        with(oFighter)
+        with(obj_fighter)
         {
             if(id != other.id && group == other.otherFighter.group)
                 opinion[other.fighterID]--;
@@ -450,7 +450,7 @@ if (com != STATE)
         break;
             
         case "ATTACK WBOW":
-        with(oFighter)
+        with(obj_fighter)
         {
             if(id != other.id && group == other.otherFighter.group)
                 opinion[other.fighterID]--;
@@ -502,7 +502,7 @@ if (com != STATE)
         break;
         
         case "ATTACK SBOW":
-        with(oFighter)
+        with(obj_fighter)
         {
             if(id != other.id && group == other.otherFighter.group)
                 opinion[other.fighterID]--;
@@ -554,7 +554,7 @@ if (com != STATE)
         break;
         
         case "ATTACK DROWN":
-        with(oFighter)
+        with(obj_fighter)
         {
             if(id != other.id && group == other.otherFighter.group)
                 opinion[other.fighterID]-=2;
@@ -583,7 +583,7 @@ if (com != STATE)
         var c = irandom(10)
         if(c+SKILL>=5)
         {
-            var w = instance_create(x,y,oMine);
+            var w = instance_create(x,y,obj_landmine);
             w.owner = fighterID;
             INV[0]--;
             update_create(update_get_text("place_mine",fighterID),fighterID,0);
@@ -592,7 +592,7 @@ if (com != STATE)
         {
             global.deathCause[fighterID] = "Killed by own land mine";
             HP = 0;
-            instance_create(x,y,oExplosion);
+            instance_create(x,y,obj_explosion);
             update_create(update_get_text("die_mine_p",fighterID),fighterID,1);
             instance_destroy();
         }
@@ -602,7 +602,7 @@ if (com != STATE)
         caption = "Placing Trap";
         QUICK = 0;
         CONTINUE = 0;
-        var w = instance_create(x,y,oTrap);
+        var w = instance_create(x,y,obj_trap);
         w.owner = fighterID;
         INV[1]--;
         update_create(update_get_text("set_trap",fighterID),fighterID,0);

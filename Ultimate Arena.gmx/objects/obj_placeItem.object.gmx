@@ -3,9 +3,9 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1000</depth>
   <persistent>0</persistent>
-  <parentName>objUIButton</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,14 +25,31 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>pressed = 0;
-callback = -1;
-type = 0;
-colortype = 0;
-drawGui = 0;
-color = c_white;
-alpha = 1;
-imgAnchor = 0;
+            <string>event = 0;
+radius = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="57">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -55,39 +72,80 @@ imgAnchor = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (pressed) {
- pressed = 0;
- if (zui_get_hover()) {
- audio_play_sound(snd_blip,0,0);
-  if (callback &gt;= 0)
-   script_execute(callback, id);
- }
+            <string>if(global.mapwindow.__hover == 1)
+{
+    var xPos = (global.__zui_mx-global.mapwindow.__x);
+    var yPos = (global.__zui_my-global.mapwindow.__y);
+    
+    xPos *= (512/(global.HSCALE*(512/720)));
+    yPos *= (512/(global.HSCALE*(512/720)));
+    
+    yPos -= 24;
+    
+    if(!event)
+    {
+        if(image == spr_landmine)
+        {
+            instance_create(xPos,yPos,obj_landmine);
+        }
+        else if(image == spr_itemBag)
+        {
+            var e = instance_create(xPos,yPos,obj_itemBag);
+            for(var i=19; i&gt;-1; i--)
+                e.INV[i] = 0;
+            e.INV[2] = 2;
+            e.INV[3] = 2;
+            if(irandom(1))
+            {
+                e.INV[4] = 1;
+                e.wspearid = instance_create(-100,-100,obj_woodSpear);
+            }
+            else
+                e.wspearid = 0;
+            if(irandom(1))
+            {
+                e.INV[5] = 1;
+                e.sspearid = instance_create(-100,-100,obj_steelSpear);
+            }
+            else
+                e.sspearid = 0;
+            if(irandom(1))
+            {
+                e.INV[6] = 1;
+                e.wbowid = instance_create(-100,-100,obj_woodBow);
+            }
+            else
+                e.wbowid = 0;
+            if(irandom(1))
+            {
+                e.INV[7] = 1;
+                e.sbowid = instance_create(-100,-100,obj_steelBow);
+            }
+            else
+                e.sbowid = 0;
+        }
+    }
+    else
+    {
+        with(instance_create(0,0,obj_arenaEvent))
+        {
+            x = xPos;
+            y = yPos;
+            event = floor(random(global.EVENT_COUNT));
+            alarm[0] = global.GAME_SPEED;
+            global.event_count++;
+            
+            ini_open(global.EVENT[event]);
+            description = ini_read_string("event","description","ERROR");
+            name = ini_read_string("event","name","ERROR");
+            death_percentage = ini_read_real("event","death_percentage",0);
+            ini_close();
+        }
+    }
+    audio_play_sound(snd_blip,0,0);
+    instance_destroy();
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="53">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (zui_get_hover()) {
- pressed = 1;
-}
+
 </string>
           </argument>
         </arguments>
@@ -110,101 +168,24 @@ imgAnchor = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(drawGui == 1)
+            <string>if(event)
 {
-    if(zui_get_hover()) 
-    {
-        if(pressed)
-            darken = 2;
-        else
-            darken = 1;
-    } 
-    else 
-    {
-        darken = 0;
-    }
-    
-    ui_draw_sprite_panel(spr_button, 0, 8, -6, -6, __width + 12, __height + 12);
-    
-    if(darken == 1)
-    {
-        draw_set_alpha(.60)
-    }
-    else if(darken == 2)
-    {
-        draw_set_alpha(.3)
-    } 
-    
-    if(imgAnchor == 0)
-        draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,1);
-    else if(imgAnchor == 1)
-        draw_sprite(image,type,zui_get_width()/2,zui_get_height()/2);
-        
-    draw_set_alpha(1);  
+    radius += 3;
+    if(radius &gt; global.eventRadius)
+        radius = 0;
+    draw_set_color(c_red);
+    draw_set_alpha(1);
+    draw_circle(global.__zui_mx,global.__zui_my,global.eventRadius,1);
+    draw_set_alpha(.1);
+    draw_circle(global.__zui_mx,global.__zui_my,global.eventRadius,0);
+    draw_set_alpha(.5);
+    draw_circle(global.__zui_mx,global.__zui_my,radius,1);
+    draw_set_alpha(1);
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(drawGui == 0)
+else
 {
-    if (zui_get_hover())
-    {
-        if(pressed)
-        {
-            darken = 2;
-            draw_set_color($aaaaaa);
-        }
-        else
-        {
-            darken = 1;
-            draw_set_color($cccccc); 
-        }
-    } 
-    else 
-    {
-        darken = 0;
-        draw_set_color($ffffff);
-    }
-    
-    ui_draw_sprite_panel(spr_button, 0, 8, -6, -6, __width + 12, __height + 12);
-    
-    if(darken == 1)
-    {
-        draw_set_alpha(.6)
-        alpha = .6;
-    }
-    else if(darken == 2)
-    {
-        draw_set_alpha(.3)
-        alpha = .3;
-    } 
-    
-    if(imgAnchor == 0)
-        draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,alpha);
-    else if(imgAnchor == 1)
-        draw_sprite(image,type,zui_get_width()/2,zui_get_height()/2);
-    
-    draw_set_alpha(1); 
-}   alpha = 1;
+    draw_sprite(image,0,global.__zui_mx,global.__zui_my);
+}
 </string>
           </argument>
         </arguments>

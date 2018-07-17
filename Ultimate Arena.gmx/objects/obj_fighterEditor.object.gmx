@@ -186,25 +186,25 @@ array_from_section();
     
 with(zui_main())
 {
-    with(zui_create(0, 0, objUIWindow))
+    with(zui_create(0, 0, obj_uiWindow))
     {
         zui_set_anchor(0, 0);
         zui_set_size(260, window_get_height());
         zui_set_position(0, 0);
         wID = "Character List";
-        with(zui_create(0, 0, objUIWindowCaption))
+        with(zui_create(0, 0, obj_uiWindowCaption))
             caption = "Characters (Click to edit)";
             
-        with(zui_create(0, 24, objUIListBox))
+        with(zui_create(0, 24, obj_uiListbox))
         {
             zui_set_anchor(0, 0);
             zui_set_size(260, window_get_height()-64);
             callback = charedit_ui;
             listID = 0;
             initialize_listbox(global.cNAME);
-            with(zui_create(0, 0, objUIListBoxScroll)){}
+            with(zui_create(0, 0, obj_uiListboxScroll)){}
         }
-        with (zui_create(5, __height - 35, objUIButton)) 
+        with (zui_create(5, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(120, 30);
@@ -214,7 +214,7 @@ with(zui_main())
             type = 2;
         }
         
-        with (zui_create(__width - 129, __height - 35, objUIButton)) 
+        with (zui_create(__width - 129, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(124, 30);
@@ -228,7 +228,7 @@ with(zui_main())
     
 }
 
-with(oUIImageButton)
+with(obj_uiImageButton)
 {
     if(global.editColor != type)
         color = c_gray;
@@ -236,7 +236,7 @@ with(oUIImageButton)
         color = c_white;
 }
 /*
-with(objUIListBox){
+with(obj_uiListbox){
     if(listID == 0){
         sID = 0;
         script_execute(callback, id);
@@ -279,7 +279,7 @@ with(objUIListBox){
             ini_write_string("character","tags",global.TAGS[global.TAG_COUNT-1]);
         ini_close();
         initialize_characters();
-        with(objUIListBox){
+        with(obj_uiListbox){
             if(listID == 1){
                 initialize_listbox(global.TAGS);
                 selected=0;
@@ -294,7 +294,7 @@ with(objUIListBox){
                 }
             }
         }
-        /*with(objUIWindow)
+        /*with(obj_uiWindow)
             if(wID = "Phrase Editor")
                 text = keyboard_string+": '" + ds_map_find_value(async_load, "result") + "'";*/
     }

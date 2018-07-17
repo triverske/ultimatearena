@@ -87,7 +87,7 @@ if (y &gt; global.HSCALE)
 var px = 314;
 var py = y + 60;
 
-with(objUIWindow)
+with(obj_uiWindow)
     if(wID == "Updates")
     {
         px += __x - (__width / 2);

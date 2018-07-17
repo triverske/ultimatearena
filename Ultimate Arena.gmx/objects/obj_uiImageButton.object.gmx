@@ -3,9 +3,9 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>100</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_uiButton</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,24 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.DEATH_STRING = " ";
-global.KILL_STRING = " ";
-global.scrollspeed1 = 6/3;
-global.scrollspeed2 = 5/3;
-scroll_spd = 0;
-s1c = 0;
-s2c = 0;
-s1p = 0;
-s2p = 0;
-start = true;
-
-alarm[0] = 2;
+            <string>pressed = 0;
+callback = -1;
+type = 0;
+colortype = 0;
+drawGui = 0;
+color = c_white;
+alpha = 1;
+imgAnchor = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="0">
+    <event eventtype="6" enumb="56">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -59,14 +55,20 @@ alarm[0] = 2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(var i = 0;i &lt; 3000;i++)
-    event_perform(ev_step,0);
+            <string>if (pressed) {
+ pressed = 0;
+ if (zui_get_hover()) {
+ audio_play_sound(snd_blip,0,0);
+  if (callback &gt;= 0)
+   script_execute(callback, id);
+ }
+}
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -83,47 +85,9 @@ alarm[0] = 2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var WS = global.WSCALE;
-var HS = global.HSCALE;
-
-
-s1l = 0; s2l = 0;
-s1l = string_length(global.DEATH_STRING)*12;
-s2l = string_length(global.KILL_STRING)*12;
-
-if(s1c &gt; s1p-1 || start)
-{
-    var c = instance_create(WS,HS-40,oTextScroll);
-    c.text = global.DEATH_STRING;
-    c.color = make_color_rgb(40,80,255);//make_color_rgb(0,228,228);
-    c.length = s1l;
-    c.sp = 1;
-    s1c = 0;
-    s1p = s1l;
+            <string>if (zui_get_hover()) {
+ pressed = 1;
 }
-else
-{
-    s1c+=global.scrollspeed1;
-}
-
-if (s2c &gt; s2p-1 || start)
-{
-    var c = instance_create(WS,HS-19,oTextScroll);
-    c.text = global.KILL_STRING;
-    c.color = c_red;
-    c.length = s2l;
-    c.sp = 2;
-    s2c = 0;
-    start = false;
-    s2p = s2l;
-}
-else
-{
-    s2c+=global.scrollspeed2;
-}
-
-with(oTextScroll)
-    event_user(1);
 </string>
           </argument>
         </arguments>
@@ -146,24 +110,101 @@ with(oTextScroll)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var WS = global.WSCALE;
-var HS = global.HSCALE;
-
-draw_set_font(font_board);draw_set_valign(fa_top);
-draw_set_halign(fa_left);
-draw_rectangle_colour(0,HS-41,WS,HS-21,c_dkgray,c_dkgray,c_0,c_0,0);
-draw_line_colour(0,HS-40,WS,HS-40,c_1,c_1);
-draw_rectangle_colour(0,HS-20,WS,HS-1,c_dkgray,c_dkgray,c_0,c_0,0);
-
-with(oTextScroll)
-    event_user(0);
-    
-draw_set_alpha(.8);
-for(i=0;i&lt;21;i++)
+            <string>if(drawGui == 1)
 {
-    draw_line_colour(0,HS-2*i,WS,HS-2*i,c_0,c_0);
+    if(zui_get_hover()) 
+    {
+        if(pressed)
+            darken = 2;
+        else
+            darken = 1;
+    } 
+    else 
+    {
+        darken = 0;
+    }
+    
+    ui_draw_sprite_panel(spr_button, 0, 8, -6, -6, __width + 12, __height + 12);
+    
+    if(darken == 1)
+    {
+        draw_set_alpha(.60)
+    }
+    else if(darken == 2)
+    {
+        draw_set_alpha(.3)
+    } 
+    
+    if(imgAnchor == 0)
+        draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,1);
+    else if(imgAnchor == 1)
+        draw_sprite(image,type,zui_get_width()/2,zui_get_height()/2);
+        
+    draw_set_alpha(1);  
 }
-draw_set_alpha(1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(drawGui == 0)
+{
+    if (zui_get_hover())
+    {
+        if(pressed)
+        {
+            darken = 2;
+            draw_set_color($aaaaaa);
+        }
+        else
+        {
+            darken = 1;
+            draw_set_color($cccccc); 
+        }
+    } 
+    else 
+    {
+        darken = 0;
+        draw_set_color($ffffff);
+    }
+    
+    ui_draw_sprite_panel(spr_button, 0, 8, -6, -6, __width + 12, __height + 12);
+    
+    if(darken == 1)
+    {
+        draw_set_alpha(.6)
+        alpha = .6;
+    }
+    else if(darken == 2)
+    {
+        draw_set_alpha(.3)
+        alpha = .3;
+    } 
+    
+    if(imgAnchor == 0)
+        draw_sprite_stretched_ext(image,type,1,1,zui_get_width()-2,zui_get_height()-2,color,alpha);
+    else if(imgAnchor == 1)
+        draw_sprite(image,type,zui_get_width()/2,zui_get_height()/2);
+    
+    draw_set_alpha(1); 
+}   alpha = 1;
 </string>
           </argument>
         </arguments>

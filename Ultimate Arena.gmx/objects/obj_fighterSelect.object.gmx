@@ -38,18 +38,18 @@ var HS = global.HSCALE;
 global.custom_sounds = 0;
 with (zui_main()) 
 {
-    with (zui_create(0, 0, objUIWindow, -1))
+    with (zui_create(0, 0, obj_uiWindow, -1))
     {
         zui_set_anchor(0,0);
         zui_set_size(260,display_get_gui_height());
         zui_set_position(0,0);
         wID = "Select Characters";
-        with(zui_create(0,0,objUIWindowCaption))
+        with(zui_create(0,0,obj_uiWindowCaption))
         {
             caption = "Select Characters";
         }
 
-        with(zui_create(0,24,objUIListBox))
+        with(zui_create(0,24,obj_uiListbox))
         {
             zui_set_anchor(0,0);
             zui_set_size(260,display_get_gui_height()-100);
@@ -64,10 +64,10 @@ with (zui_main())
             }
             
             other.listID = id;
-            with(zui_create(0,0,objUIListBoxScroll)){}
+            with(zui_create(0,0,obj_uiListboxScroll)){}
         }
         
-        with (zui_create(5, __height - 35, objUIButton)) 
+        with (zui_create(5, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(150, 30);
@@ -77,7 +77,7 @@ with (zui_main())
             listID = other.listID;
         }
         
-        with (zui_create(159, __height - 35, objUIButton)) 
+        with (zui_create(159, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(96, 30);
@@ -87,7 +87,7 @@ with (zui_main())
             listID = other.listID;
         }
         
-        with (zui_create(5, __height - 70, objUIButton)) 
+        with (zui_create(5, __height - 70, obj_uiButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(150, 30);
@@ -97,7 +97,7 @@ with (zui_main())
             listID = other.listID;
         }
         
-        with (zui_create(159, __height - 70, objUIButton)) 
+        with (zui_create(159, __height - 70, obj_uiButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(96, 30);
@@ -110,7 +110,7 @@ with (zui_main())
     
     create_window_mapeditor();
     
-    with (zui_create(540, 10, objUIWindow, -1))
+    with (zui_create(540, 10, obj_uiWindow, -1))
     {
         wID = "Selected Character";
         callback  = fighter_select_buttons;
@@ -118,7 +118,7 @@ with (zui_main())
         zui_set_position(WS * .4,HS * .5 - 208);
         //zui_set_position(WS * .4,floor(HS * .2));
         
-        with (zui_create(5, __height - 70, objUIButton)) 
+        with (zui_create(5, __height - 70, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -127,7 +127,7 @@ with (zui_main())
             bID = 2;
         }
         
-        with (zui_create(5, __height - 35, objUIButton)) 
+        with (zui_create(5, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(150, 30);
@@ -135,7 +135,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 14;
         }
-        with (zui_create(160, __height - 35, objUIButton)) 
+        with (zui_create(160, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(40, 30);
@@ -143,7 +143,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 15;
         }
-        with (zui_create(205, __height - 35, objUIButton)) 
+        with (zui_create(205, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(40, 30);
@@ -151,7 +151,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 16;
         }
-        with (zui_create(0, 0, objUIWindowCaption)) 
+        with (zui_create(0, 0, obj_uiWindowCaption)) 
         {
             caption = "Character Selection";
             draggable = 0;
@@ -159,26 +159,26 @@ with (zui_main())
         }
     }
     
-    with (zui_create(540, 10, objUIWindow, -1))
+    with (zui_create(540, 10, obj_uiWindow, -1))
     {
         wID = "Arena Settings";
         callback  = fighter_select_buttons;
         zui_set_size(250,226);
         zui_set_position(WS * .4,HS * .5 + 237);
-        with (zui_create(0, 0, objUIWindowCaption)) 
+        with (zui_create(0, 0, obj_uiWindowCaption)) 
         {
             caption = "Map Settings";
             draggable = 0;
             type = 1;
         }
-        with (zui_create(125, 37, objUILabel)) 
+        with (zui_create(125, 37, obj_uiLabel)) 
         {
             caption = "Seed: " +  string(random_get_seed());
             callback = fighter_select_buttons;
             lID = "seed";
         }
         
-        with (zui_create(5, __height - 35, objUIButton)) 
+        with (zui_create(5, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -187,7 +187,7 @@ with (zui_main())
             bID = 0;
         }
         
-        with (zui_create(5, __height - 70, objUIButton)) 
+        with (zui_create(5, __height - 70, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -195,7 +195,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 13;
         }
-        with (zui_create(5, __height - 105, objUIButton)) 
+        with (zui_create(5, __height - 105, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -203,7 +203,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 1;
         }
-        with (zui_create(5, __height - 140, objUIButton)) 
+        with (zui_create(5, __height - 140, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -211,7 +211,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 8;
         }
-        with (zui_create(5, __height - 175, objUIButton)) 
+        with (zui_create(5, __height - 175, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -221,13 +221,13 @@ with (zui_main())
         }
     }
     
-    with (zui_create(540, 10, objUIWindow, -1))
+    with (zui_create(540, 10, obj_uiWindow, -1))
     {
         wID = "Arena Settings";
         callback  = fighter_select_buttons;
         zui_set_size(250,230);
         zui_set_position(WS * .4,HS * .5 );
-        with (zui_create(0, 0, objUIWindowCaption)) 
+        with (zui_create(0, 0, obj_uiWindowCaption)) 
         {
             caption = "Match Settings";
             draggable = 0;
@@ -235,18 +235,18 @@ with (zui_main())
 
         }
                         
-        with (zui_create(__width/2, 40, objUILabel)) 
+        with (zui_create(__width/2, 40, obj_uiLabel)) 
         {
             fcount = global.fighters;
             callback = fighter_select_buttons;
             lID = "fightercount";
         }
-        with (zui_create(__width/2, 70, objUILabel)) 
+        with (zui_create(__width/2, 70, obj_uiLabel)) 
         {
             callback = fighter_select_buttons;
             lID = "gamespeed";
         }
-        with (zui_create(__width/2 + 70, 70, objUIButton)) 
+        with (zui_create(__width/2 + 70, 70, obj_uiButton)) 
         {
             zui_set_anchor(.5,.5);
             zui_set_size(20, 20);
@@ -254,7 +254,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 10;
         }
-        with (zui_create(__width/2 - 70, 70, objUIButton)) 
+        with (zui_create(__width/2 - 70, 70, obj_uiButton)) 
         {
             zui_set_anchor(.5,.5);
             zui_set_size(20, 20);
@@ -263,7 +263,7 @@ with (zui_main())
             bID = 9;
         }
         
-        with (zui_create(5, __height - 35, objUIButton)) 
+        with (zui_create(5, __height - 35, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -274,7 +274,7 @@ with (zui_main())
             bID = 4;
         }
         
-        with (zui_create(5, __height - 70, objUIButton)) 
+        with (zui_create(5, __height - 70, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -285,7 +285,7 @@ with (zui_main())
             bID = 5;
         }
         
-        /*with (zui_create(5, __height - 105, objUIButton)) 
+        /*with (zui_create(5, __height - 105, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -295,7 +295,7 @@ with (zui_main())
             callback = fighter_select_buttons;
             bID = 6;
         }*/
-        with (zui_create(5, __height - 105, objUIButton)) 
+        with (zui_create(5, __height - 105, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -306,7 +306,7 @@ with (zui_main())
             bID = 12;
         }
         
-        with (zui_create(5, __height - 140, objUIButton)) 
+        with (zui_create(5, __height - 140, obj_uiButton)) 
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
@@ -362,7 +362,7 @@ if (regen == 1)
     
     scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
     regen = 0;
-    with(objUIWindow)
+    with(obj_uiWindow)
     {
         if (wID == "Map Window")
         {
@@ -386,7 +386,7 @@ if (regen == 2)
     //scr_load_map("MapTest2.png");
     scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
     regen = 0;
-    with(objUIWindow)
+    with(obj_uiWindow)
     {
         if (wID == "Map Window")
         {

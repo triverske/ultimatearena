@@ -1,5 +1,5 @@
 ///eventedit_ui(id)
-with(objUIListBox)
+with(obj_uiListbox)
 {
     if(argument0 == id)
     {
@@ -27,7 +27,7 @@ with(objUIListBox)
             
             ini_close();
             
-            with(objUIField)
+            with(obj_uiField)
             {
                 if(fID == 0)
                     content = ename;
@@ -36,7 +36,7 @@ with(objUIListBox)
                 if(fID == 2)
                     content = string(eperc);
             }
-            with(objUIMultiField)
+            with(obj_uiMultiField)
             {
                 if(mID == 0)
                 {
@@ -46,11 +46,11 @@ with(objUIListBox)
                         content[i] = etxt[i+1];
                 }
             }
-            with(objUILabel)
+            with(obj_uiLabel)
                 if(lID == 1)
-                    caption = string(objUIMultiField.activeField+1)+"/"+string(objUIMultiField.fields);
+                    caption = string(obj_uiMultiField.activeField+1)+"/"+string(obj_uiMultiField.fields);
                 
-            with(objUICheckbox)
+            with(obj_uiCheckbox)
             {
                 if(bID == 1)
                 {
@@ -61,7 +61,7 @@ with(objUIListBox)
                         
                     if(global.creator != steam_get_user_account_id() && global.creator != -1)
                     {
-                        with(objUILabel)
+                        with(obj_uiLabel)
                         {
                             if(caption == "Add to Steam Workshop")
                                 __visible = 0;
@@ -71,7 +71,7 @@ with(objUIListBox)
                     }
                     else
                     {
-                        with(objUILabel)
+                        with(obj_uiLabel)
                         {
                             if(caption == "Add to Steam Workshop")
                                 __visible = 1;
@@ -85,7 +85,7 @@ with(objUIListBox)
         }
     }
 }
-with(objUIButton)
+with(obj_uiButton)
 {
     if(argument0 == id)
     {
@@ -106,7 +106,7 @@ with(objUIButton)
         }
         if(bID == 2) //Save Event
         {
-            with(objUIField)
+            with(obj_uiField)
             {
                 if(fID == 0)
                     var ename = content;
@@ -125,13 +125,13 @@ with(objUIButton)
                 ini_write_string("event","description",edesc);
                 ini_write_real("event","death_percentage",real(eperc));
                 
-                ini_write_real("text","total",objUIMultiField.fields);
+                ini_write_real("text","total",obj_uiMultiField.fields);
                 if(ini_section_exists("text"))
                     ini_section_delete("text");
-                for(var i=1; i<=objUIMultiField.fields; i++){
-                    ini_write_string("text","s"+string(i),objUIMultiField.content[i-1]);
+                for(var i=1; i<=obj_uiMultiField.fields; i++){
+                    ini_write_string("text","s"+string(i),obj_uiMultiField.content[i-1]);
                 }
-                ini_write_real("text","total",objUIMultiField.fields);
+                ini_write_real("text","total",obj_uiMultiField.fields);
                 
                 if(global.creator == -1)
                 {
@@ -196,22 +196,22 @@ with(objUIButton)
         }
         if(bID == 4) //Add Update
         {
-            with(objUIMultiField){
+            with(obj_uiMultiField){
                 if(mID == 0){
                     fields++;
                     activeField = fields-1;
                     content[activeField]="";
                 }
             }
-            with(objUILabel){
+            with(obj_uiLabel){
                 if(lID == 1){
-                    caption = string(objUIMultiField.activeField+1)+"/"+string(objUIMultiField.fields);
+                    caption = string(obj_uiMultiField.activeField+1)+"/"+string(obj_uiMultiField.fields);
                 }
             }
         }
         if(bID == 5) //Delete Update
         {
-            with(objUIMultiField){
+            with(obj_uiMultiField){
                 if(mID == 0){
                     if(fields <= 1){
                         content[0] = "";
@@ -227,46 +227,46 @@ with(objUIButton)
                     }
                 }
             }
-            with(objUILabel){
+            with(obj_uiLabel){
                 if(lID == 1){
-                    caption = string(objUIMultiField.activeField+1)+"/"+string(objUIMultiField.fields);
+                    caption = string(obj_uiMultiField.activeField+1)+"/"+string(obj_uiMultiField.fields);
                 }
             }
         }
         if(bID == 6) //Last Update
         {
-            with(objUIMultiField){
+            with(obj_uiMultiField){
                 if(mID == 0){
                     activeField--;
                     if(activeField<0)
                         activeField = fields-1;
                 }
             }
-            with(objUILabel){
+            with(obj_uiLabel){
                 if(lID == 1){
-                    caption = string(objUIMultiField.activeField+1)+"/"+string(objUIMultiField.fields);
+                    caption = string(obj_uiMultiField.activeField+1)+"/"+string(obj_uiMultiField.fields);
                 }
             }
         }
         if(bID == 7) //Next Update
         {
-            with(objUIMultiField){
+            with(obj_uiMultiField){
                 if(mID == 0){
                     activeField++;
                     if(activeField>fields-1)
                         activeField = 0;
                 }
             }
-            with(objUILabel){
+            with(obj_uiLabel){
                 if(lID == 1){
-                    caption = string(objUIMultiField.activeField+1)+"/"+string(objUIMultiField.fields);
+                    caption = string(obj_uiMultiField.activeField+1)+"/"+string(obj_uiMultiField.fields);
                 }
             }
         }
     }
 }
 
-with(objUICheckbox)
+with(obj_uiCheckbox)
 {
     if(bID == 1)
         global.workshop = value;

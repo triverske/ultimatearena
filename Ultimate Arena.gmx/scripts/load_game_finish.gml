@@ -11,26 +11,26 @@ for(var i=0; i<global.fighters+2; i++)
     
 for(var i=0; i<ini_read_real("Map","trees",0); i++)
 {
-    var c = instance_create(ini_read_real("Trees",string(i)+"x",0),ini_read_real("Trees",string(i)+"y",0),oTree);
+    var c = instance_create(ini_read_real("Trees",string(i)+"x",0),ini_read_real("Trees",string(i)+"y",0),obj_tree);
     c.foodcount = ini_read_real("Trees",string(i)+"food",0);
 }
 
 for(var i=0; i<ini_read_real("Map","wood",0); i++)
 {
     if(ini_key_exists("Wood",string(i)+"x"))
-        instance_create(ini_read_real("Wood",string(i)+"x",0),ini_read_real("Wood",string(i)+"y",0),oWood);
+        instance_create(ini_read_real("Wood",string(i)+"x",0),ini_read_real("Wood",string(i)+"y",0),obj_wood);
 }
     
 for(var i=0; i<ini_read_real("Map","rope",0); i++)
 {
     if(ini_key_exists("Rope",string(i)+"x"))
-        instance_create(ini_read_real("Rope",string(i)+"x",0),ini_read_real("Rope",string(i)+"y",0),oRope);
+        instance_create(ini_read_real("Rope",string(i)+"x",0),ini_read_real("Rope",string(i)+"y",0),obj_rope);
 }
     
 for(var i=0; i<ini_read_real("Map","stone",0); i++)
 {
     if(ini_key_exists("Stone",string(i)+"x"))
-        instance_create(ini_read_real("Stone",string(i)+"x",0),ini_read_real("Stone",string(i)+"y",0),oStone);
+        instance_create(ini_read_real("Stone",string(i)+"x",0),ini_read_real("Stone",string(i)+"y",0),obj_stone);
 }
     
 for(var i=1; i<global.fighters+1; i++)
@@ -38,7 +38,7 @@ for(var i=1; i<global.fighters+1; i++)
     
 for(var i=0; i<global.fighters_remaining; i++)
 { 
-    var c = instance_create(ini_read_real("Fighters",string(i)+"x",0),ini_read_real("Fighters",string(i)+"y",0),oFighter);
+    var c = instance_create(ini_read_real("Fighters",string(i)+"x",0),ini_read_real("Fighters",string(i)+"y",0),obj_fighter);
     c.fighterID = ini_read_real("Fighters",string(i)+"fighterID",0);
     global.IDLIST[c.fighterID] = c;
     c.color = global.COLORS[c.fighterID];
@@ -77,7 +77,7 @@ for(var i=0; i<global.fighters_remaining; i++)
 }
 for(var i=0; i<ini_read_real("Items","Total",0); i++)
 {
-    var c = instance_create(ini_read_real("Items",string(i)+"x",0),ini_read_real("Items",string(i)+"y",0),oItems);
+    var c = instance_create(ini_read_real("Items",string(i)+"x",0),ini_read_real("Items",string(i)+"y",0),obj_itemBag);
     c.loadID = ini_read_real("Items",string(i)+"id",-1);
     c.wspearid = ini_read_real("Items",string(i)+"wspearid",0);
     c.sspearid = ini_read_real("Items",string(i)+"sspearid",0);
@@ -88,7 +88,7 @@ for(var i=0; i<ini_read_real("Items","Total",0); i++)
 }
 for(var i=0; i<ini_read_real("WSpear","Total",0); i++)
 {
-    var c = instance_create(ini_read_real("WSpear",string(i)+"x",0),ini_read_real("WSpear",string(i)+"y",0),oWSpear);
+    var c = instance_create(ini_read_real("WSpear",string(i)+"x",0),ini_read_real("WSpear",string(i)+"y",0),obj_woodSpear);
     c.HP = ini_read_real("WSpear",string(i)+"HP",0);
     c.dropped = ini_read_real("WSpear",string(i)+"dropped",0);
     var own = ini_read_string("WSpear",string(i)+"owner",-2);
@@ -96,7 +96,7 @@ for(var i=0; i<ini_read_real("WSpear","Total",0); i++)
         c.owner = global.IDLIST[real(string_digits(own))];
     else if(string_letters(own) == "I")
     {
-        with(oItems)
+        with(obj_itemBag)
         {
             if(loadID == real(string_digits(own)))
                 c.owner = id;
@@ -106,7 +106,7 @@ for(var i=0; i<ini_read_real("WSpear","Total",0); i++)
 }
 for(var i=0; i<ini_read_real("SSpear","Total",0); i++)
 {
-    var c = instance_create(ini_read_real("SSpear",string(i)+"x",0),ini_read_real("SSpear",string(i)+"y",0),oSSpear);
+    var c = instance_create(ini_read_real("SSpear",string(i)+"x",0),ini_read_real("SSpear",string(i)+"y",0),obj_steelSpear);
     c.HP = ini_read_real("SSpear",string(i)+"HP",0);
     c.dropped = ini_read_real("SSpear",string(i)+"dropped",0);
     var own = ini_read_string("SSpear",string(i)+"owner",-2);
@@ -114,7 +114,7 @@ for(var i=0; i<ini_read_real("SSpear","Total",0); i++)
         c.owner = global.IDLIST[real(string_digits(own))];
     else if(string_letters(own) == "I")
     {
-        with(oItems)
+        with(obj_itemBag)
         {
             if(loadID == real(string_digits(own)))
                 c.owner = id;
@@ -124,7 +124,7 @@ for(var i=0; i<ini_read_real("SSpear","Total",0); i++)
 }
 for(var i=0; i<ini_read_real("WBow","Total",0); i++)
 {
-    var c = instance_create(ini_read_real("WBow",string(i)+"x",0),ini_read_real("WBow",string(i)+"y",0),oWBow);
+    var c = instance_create(ini_read_real("WBow",string(i)+"x",0),ini_read_real("WBow",string(i)+"y",0),obj_woodBow);
     c.HP = ini_read_real("WBow",string(i)+"HP",0);
     c.dropped = ini_read_real("WBow",string(i)+"dropped",0);
     var own = ini_read_string("WBow",string(i)+"owner",-2);
@@ -132,7 +132,7 @@ for(var i=0; i<ini_read_real("WBow","Total",0); i++)
         c.owner = global.IDLIST[real(string_digits(own))];
     else if(string_letters(own) == "I")
     {
-        with(oItems)
+        with(obj_itemBag)
         {
             if(loadID == real(string_digits(own)))
                 c.owner = id;
@@ -142,7 +142,7 @@ for(var i=0; i<ini_read_real("WBow","Total",0); i++)
 }
 for(var i=0; i<ini_read_real("SBow","Total",0); i++)
 {
-    var c = instance_create(ini_read_real("SBow",string(i)+"x",0),ini_read_real("SBow",string(i)+"y",0),oSBow);
+    var c = instance_create(ini_read_real("SBow",string(i)+"x",0),ini_read_real("SBow",string(i)+"y",0),obj_steelBow);
     c.HP = ini_read_real("SBow",string(i)+"HP",0);
     c.dropped = ini_read_real("SBow",string(i)+"dropped",0);
     var own = ini_read_string("SBow",string(i)+"owner",-2);
@@ -150,7 +150,7 @@ for(var i=0; i<ini_read_real("SBow","Total",0); i++)
         c.owner = global.IDLIST[real(string_digits(own))];
     else if(string_letters(own) == "I")
     {
-        with(oItems)
+        with(obj_itemBag)
         {
             if(loadID == real(string_digits(own)))
                 c.owner = id;
@@ -168,7 +168,7 @@ if(global.landmines)
 {
     for(var i=0; i<ini_read_real("Mines","Total",0); i++)
     {
-        var c=instance_create(ini_read_real("Mines",string(i)+"x",0),ini_read_real("Mines",string(i)+"y",0),oMine);
+        var c=instance_create(ini_read_real("Mines",string(i)+"x",0),ini_read_real("Mines",string(i)+"y",0),obj_landmine);
         c.owner = ini_read_real("Mines",string(i)+"owner",-1);
         c.triggered = ini_read_real("Mines",string(i)+"triggered",0)
     }
@@ -197,8 +197,8 @@ global.KILL_STRING = ini_read_string("Map","KILL_STRING","");
 for(var i=1; i<global.fighters+1; i++)
 {
     global.killArray[i] = ini_read_real("Map",string(i)+"killArray",0);
-    oSideMenu.xpArray[i] = ini_read_real("Map",string(i)+"xpArray",0);
-    oSideMenu.sanityArray[i] = ini_read_real("Map",string(i)+"sanityArray",100);
+    obj_sideMenu.xpArray[i] = ini_read_real("Map",string(i)+"xpArray",0);
+    obj_sideMenu.sanityArray[i] = ini_read_real("Map",string(i)+"sanityArray",100);
 }
 global.event_count = ini_read_real("Map","event_count",0);
 global.event_kills = ini_read_real("Map","event_kills",0);

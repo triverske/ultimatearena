@@ -54,8 +54,8 @@ draw_set_valign(fa_top);
 global.GAME_SPEED = global.SAVE_SPEED;
 global.fighters_remaining = global.fighters;
 tile_size = 32;
-instance_create(0,0,oSignDeaths);
-instance_create(0,0,oSideMenu);
+instance_create(0,0,obj_deathSign);
+instance_create(0,0,obj_sideMenu);
 map = surface_create(512,512);
 realmap = surface_create(662,662);
 updates = surface_create(390,74*50);
@@ -82,25 +82,25 @@ for(var i = 0;i&lt;global.fighters+2;i++)
 
 for(var i = 0;i &lt; global.trees; i++)
 {
-    var c = instance_create(global.treeloc[i,0],global.treeloc[i,1],oTree);
+    var c = instance_create(global.treeloc[i,0],global.treeloc[i,1],obj_tree);
     c.foodcount = ceil(random(3));
 }
 
 for(var i = 0;i &lt; global.wood; i++)
-    instance_create(global.woodloc[i,0],global.woodloc[i,1],oWood);
+    instance_create(global.woodloc[i,0],global.woodloc[i,1],obj_wood);
     
 for(var i = 0;i &lt; global.rope; i++)
-    instance_create(global.ropeloc[i,0],global.ropeloc[i,1],oRope);
+    instance_create(global.ropeloc[i,0],global.ropeloc[i,1],obj_rope);
     
 for(var i = 0;i &lt; global.stone; i++)
-    instance_create(global.stoneloc[i,0],global.stoneloc[i,1],oStone);
+    instance_create(global.stoneloc[i,0],global.stoneloc[i,1],obj_stone);
     
 for(var i = 0;i &lt; 6;i++)
     regGroup[i] = -1;
 for(var i = 1;i &lt; global.fighters+1; i++)
 { 
     global.deathCause[i] = "Death by ???";
-    var c = instance_create(0,0,oFighter);
+    var c = instance_create(0,0,obj_fighter);
     c.fighterID = i;
     global.IDLIST[i] = c;
     c.color = global.COLORS[i];
@@ -120,7 +120,7 @@ showGroups = 0;
 if(global.landmines)
 {
     for(var i = 0;i &lt; 12; i++) 
-        instance_create(floor(random(472))+20,floor(random(472))+20,oMine);
+        instance_create(floor(random(472))+20,floor(random(472))+20,obj_landmine);
 }
 }
 with(zui_main())
@@ -128,20 +128,20 @@ with(zui_main())
     create_window_map();
     create_window_updates();
     
-    with(zui_create(75,global.HSCALE/2,objUIWindow,-1))
+    with(zui_create(75,global.HSCALE/2,obj_uiWindow,-1))
     {
         wID = "Stats";
         callback = arena_ui;
         zui_set_size(140,524);
-        with(zui_create(0,0,objUIWindowCaption))
+        with(zui_create(0,0,obj_uiWindowCaption))
         {
             caption = "Stats";
             draggable = 1;
         }
-        zui_create(0,0,oUIExitButton,-1);
+        zui_create(0,0,obj_uiExitButton,-1);
     }
     
-    with(zui_create(0,0,objUIWindow,-100))
+    with(zui_create(0,0,obj_uiWindow,-100))
     {
         wID = "Test";
         callback = arena_ui;
@@ -149,7 +149,7 @@ with(zui_main())
         zui_set_anchor(0,0);
         for(var i=0;i&lt;4;i++)
         {
-            with (zui_create(120+20*i,35,oUIImageButton))
+            with (zui_create(120+20*i,35,obj_uiImageButton))
             {
                 type = i;
                 bID = i;
@@ -160,7 +160,7 @@ with(zui_main())
         } 
         for(var i=0;i&lt;6;i++)
         {
-            with (zui_create(240+44*i,28,oUIImageButton))
+            with (zui_create(240+44*i,28,obj_uiImageButton))
             {
                 type = i;
                 bID = i + 4;
@@ -196,10 +196,10 @@ alarm[0] = global.GAME_SPEED;
             <kind>1</kind>
             <string>event_timer--;
 
-if(event_timer == 0 &amp;&amp; !instance_exists(oArenaEvent))
+if(event_timer == 0 &amp;&amp; !instance_exists(obj_arenaEvent))
 {
     var event = floor(random(global.EVENT_COUNT));
-    s = instance_create(0,0,oArenaEvent);
+    s = instance_create(0,0,obj_arenaEvent);
     s.event = event;
     s.alarm[0] = global.GAME_SPEED;
     global.event_count++;

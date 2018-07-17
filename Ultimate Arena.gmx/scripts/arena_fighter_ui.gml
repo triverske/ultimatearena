@@ -1,6 +1,6 @@
 ///arena_fighter_ui(id)
 
-with (objUIButton)
+with (obj_uiButton)
 {
     if (argument0 == id && fID > 0)
     {
@@ -45,7 +45,7 @@ with (objUIButton)
 }
 with (id)
 {
-    if(object_index == objUILabel)
+    if(object_index == obj_uiLabel)
     {
         if(instance_exists(fighter) && fighter > 0)
         {

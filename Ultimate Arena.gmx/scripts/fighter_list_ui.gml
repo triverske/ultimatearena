@@ -6,9 +6,9 @@ var WS = global.WSCALE;
 var HS = global.HSCALE;
 
 var d = sID+1;
-if (instance_number(objUIWindow) < 100)
+if (instance_number(obj_uiWindow) < 100)
 {
-    with (objUIWindowCaption) 
+    with (obj_uiWindowCaption) 
     {
         if(caption == global.NAMES[d] + " - Fighter \#" + string(d))
             exit;
