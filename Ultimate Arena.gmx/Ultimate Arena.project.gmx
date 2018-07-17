@@ -195,6 +195,7 @@
       <script>scripts\ui_show_popup.gml</script>
       <script>scripts\ui_show_popup_textedit.gml</script>
       <script>scripts\ui_show_popup_credits.gml</script>
+      <script>scripts\ui_show_popup_editors.gml</script>
       <script>scripts\ui_popup_close.gml</script>
       <script>scripts\ui_show_pause.gml</script>
       <script>scripts\ui_restart.gml</script>

@@ -50,9 +50,9 @@ with (obj_uiButton)
         {
             game_end();
         }
-        else if (bID == 4)//Twitch
+        else if (bID == 4)//Editors
         {
-
+            ui_show_popup_editors();
         }
         else if (bID == 5)//Settings
         {
