@@ -227,6 +227,16 @@ with (obj_uiButton)
         {
             url_open("http://discord.gg/Q8xTZFp");
         }
+        else if (bID == 19)//Twitch
+        {
+            url_open("http://twitch.tv/triverske");
+        }
+        else if(bID == 20)//Steam Workshop
+        {
+            var c = instance_create(0,0,obj_roomTransition);
+            c.gotoroom = rm_workshop;
+            global.GAMETYPE = 0;  
+        }
     }
 }
 

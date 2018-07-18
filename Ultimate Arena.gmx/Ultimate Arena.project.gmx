@@ -112,7 +112,6 @@
       <sprite>sprites\spr_scrollBox</sprite>
       <sprite>sprites\spr_gameSpeedButtons</sprite>
       <sprite>sprites\spr_sandboxButtons</sprite>
-      <sprite>sprites\spr_ultimateArenaLogo</sprite>
       <sprite>sprites\spr_gameButtons</sprite>
       <sprite>sprites\spr_chareditFighters</sprite>
       <sprite>sprites\spr_deadX</sprite>
@@ -124,6 +123,7 @@
       <sprite>sprites\spr_updateBox</sprite>
       <sprite>sprites\spr_menuIcons</sprite>
       <sprite>sprites\spr_cameraButton</sprite>
+      <sprite>sprites\spr_ultimateArenaLogo</sprite>
       <sprite>sprites\spr_triverskeLogo</sprite>
     </sprites>
     <sprites name="In Game">
@@ -246,6 +246,7 @@
       <script>scripts\eventedit_ui.gml</script>
       <script>scripts\mapedit_ui.gml</script>
       <script>scripts\textedit_ui.gml</script>
+      <script>scripts\workshop_ui.gml</script>
       <scripts name="windows">
         <script>scripts\create_window_map.gml</script>
         <script>scripts\create_window_updates.gml</script>
@@ -257,6 +258,7 @@
         <script>scripts\create_window_fighter.gml</script>
         <script>scripts\create_window_sandbox.gml</script>
         <script>scripts\create_window_mapeditor.gml</script>
+        <script>scripts\create_window_workshop.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>
@@ -291,6 +293,7 @@
     <script>scripts\smooth_approach.gml</script>
     <script>scripts\get_color.gml</script>
     <script>scripts\team_set.gml</script>
+    <script>scripts\date_timestamp.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -310,6 +313,7 @@
       <object>objects\obj_mapEditor</object>
       <object>objects\obj_textEditor</object>
       <object>objects\obj_roomTransition</object>
+      <object>objects\obj_workshop</object>
     </objects>
     <objects name="Arena">
       <object>objects\obj_tree</object>
@@ -356,6 +360,7 @@
       <object>objects\obj_uiBlack</object>
       <object>objects\obj_uiField</object>
       <object>objects\obj_uiMultiField</object>
+      <object>objects\obj_uiWorkshopItem</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -366,6 +371,7 @@
     <room>rooms\rm_eventedit</room>
     <room>rooms\rm_mapedit</room>
     <room>rooms\rm_textedit</room>
+    <room>rooms\rm_workshop</room>
     <room>rooms\rm_charselect</room>
     <room>rooms\rm_game</room>
   </rooms>

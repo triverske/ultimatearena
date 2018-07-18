@@ -28,6 +28,8 @@
             <string>draw_set_font(font0);
 draw_set_color(c_white);
 
+hue = 0;
+
 if(audio_is_playing(snd_outdoor_ambient))
 {
     audio_stop_sound(snd_outdoor_ambient);
@@ -81,7 +83,7 @@ with (zui_main())
          zui_set_size(190, 24);
          caption = "Steam Workshop";
          callback = title_buttons;
-         bID = 4;
+         bID = 20;
     }
     with (zui_create(display_get_gui_width()/2 - 100, display_get_gui_height() / 2  + 330, obj_uiButton)) 
     {
@@ -132,6 +134,16 @@ with (zui_main())
          imgAnchor = 1;
          type = 3;
          bID = 18;
+    }
+    with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  - 60, obj_uiImageButton)) 
+    {
+         zui_set_size(80, 80);
+         caption = "Twitch";
+         callback = title_buttons;
+         image = spr_menuIcons;
+         imgAnchor = 1;
+         type = 4;
+         bID = 19;
     }
     
 }
@@ -199,7 +211,22 @@ with (zui_main())
 draw_set_halign(fa_left);
 draw_set_color(c_white);
 
-draw_sprite(spr_ultimateArenaLogo,0,display_get_gui_width()/2,display_get_gui_height()/3);
+with(obj_backgroundAnimation)
+{
+    other.hue = hue;
+}
+
+var c = make_color_hsv(hue,255,200);
+var c2 = make_color_hsv(hue-30,255,200);
+var c3 = make_color_hsv(hue,150,40);
+var c4 = make_color_hsv(hue-30,150,40);
+
+
+var sw = sprite_get_width(spr_ultimateArenaLogo);
+var sh = sprite_get_height(spr_ultimateArenaLogo);
+
+draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,display_get_gui_width()/2 - sw/2-10,(display_get_gui_height()/5)*2 - sh/2+10,1,1,0,c3,c3,c4,c4,1);
+draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,display_get_gui_width()/2 - sw/2,(display_get_gui_height()/5)*2 - sh/2,1,1,0,c,c,c2,c2,1);
 </string>
           </argument>
         </arguments>
