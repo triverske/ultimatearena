@@ -294,6 +294,7 @@
     <script>scripts\get_color.gml</script>
     <script>scripts\team_set.gml</script>
     <script>scripts\date_timestamp.gml</script>
+    <script>scripts\workshop_add_created_item.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>

@@ -5,6 +5,12 @@ var l = initialize_directory("maps");
 for(var i=0;i<l;i++)
 {
     global.MAPS[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + ".ini";
+    
+    ini_open(global.MAPS[i]);
+    if(ini_read_real("Map","creator",-1) == steam_get_user_account_id() && ini_read_real("Map","workshopID",-1) != -1)
+        workshop_add_created_item(ini_read_real("Map","workshopID",-1));
+    ini_close();
+    
     global.mapNAME[i] = directory[i];
     global.mapTYPE[i] = 0;
     global.mapPICS[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + ".png";

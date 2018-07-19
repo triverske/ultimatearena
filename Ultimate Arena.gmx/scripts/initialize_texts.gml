@@ -13,10 +13,15 @@ ini_open("settings.ini");
 global.TEXTTOGGLE[0] = ini_read_real("defaulttext","togglefile",1);
 ini_close();
 
-for(var i=1; i<=l; i++){
+for(var i=1; i<=l; i++)
+{
     global.TEXTNAME[i] = directory[i-1];
     global.TEXT[i] = working_directory+"texts\"+global.TEXTNAME[i]+"\"+global.TEXTNAME[i]+".ini"
     ini_open(global.TEXT[i]);
+    
+    if(ini_read_real("text","creator",-1) == steam_get_user_account_id() && ini_read_real("text","workshopID",-1) != -1)
+        workshop_add_created_item(ini_read_real("text","workshopID",-1));
+        
     global.TEXTTOGGLE[i] = ini_read_real("toggle","toggle",1);
     ini_close();
     global.tTYPE[i] = 0;

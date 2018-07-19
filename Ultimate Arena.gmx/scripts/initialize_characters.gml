@@ -37,6 +37,9 @@ for(var h=0;h<l;h++)
         continue;
     }
     
+    if(ini_read_real("character","creator",-1) == steam_get_user_account_id() && ini_read_real("character","workshopID",-1) != -1)
+        workshop_add_created_item(ini_read_real("character","workshopID",-1));
+    
     global.cNAME[i] = name;
     global.cTYPE[i] = 0;
     global.fNAME[i] = in;

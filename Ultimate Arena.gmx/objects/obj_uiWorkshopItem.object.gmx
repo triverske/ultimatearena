@@ -8,6 +8,66 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+
+if(__y &lt; 24 || __y &gt; 720)
+{
+    __visible = 0;
+}
+else
+{
+    __visible = 1;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(zui_get_hover()) 
+{
+    audio_play_sound(snd_blip,0,0);
+    steam_activate_overlay_browser("https://steamcommunity.com/sharedfiles/filedetails/?id=" + workshopID);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,8 +85,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(make_color_rgb(15,15,15));
-//draw_rectangle(x,y,x+500,y+200,0);
+            <string>
+if(__hover)
+{
+    draw_set_color(make_color_rgb(30,30,30));
+    draw_rectangle(x,y,x+299,y+119,0);
+}
 draw_set_color(c_white);
 
 draw_set_halign(fa_left);

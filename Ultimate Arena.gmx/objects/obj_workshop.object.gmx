@@ -25,19 +25,58 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ini_open("workshop.ini");
-
-createdItems = ini_read_real("info","total",0);
+            <string>
+createdItems = global.createdWorkshopItemsCount
 itemCount = 0;
+cursorIndex = 0;
 
 for(var i = 0;i &lt; createdItems;i++)
 {
-    steamDetails[i] = steam_ugc_request_item_details(string(round(ini_read_real("created","c"+string(i),0))), 60);
+    steamDetails[i] = steam_ugc_request_item_details(string(round(global.createdWorkshopItems[i])), 60);
 }
 
-ini_close();
-
 workshopWindow = create_window_workshop(createdItems);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(mouse_wheel_up())
+{
+    if(cursorIndex &gt; 0)
+    {
+        cursorIndex--;
+        with(obj_uiWorkshopItem)
+            __y+=120;
+    }
+}
+if(mouse_wheel_down())
+{
+    
+    if(cursorIndex &lt; itemCount - 4)
+    {
+        cursorIndex++;
+        with(obj_uiWorkshopItem)
+            __y-=120;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -66,23 +105,28 @@ var result = async_load[? "result"];
 nMap = ds_map_create();
 for(var i = 0;i &lt; createdItems;i++)
 {
-    if (map_id == steamDetails[i]) &amp;&amp; (result == ugc_result_success)
+    if(map_id == steamDetails[i]) &amp;&amp; (result == ugc_result_success)
     {
-        nMap = ds_map_copy(nMap,async_load);
-        
         with(workshopWindow)
         {
             with(zui_create(0,other.itemCount*120+24,obj_uiWorkshopItem))
             {
+                zui_set_size(300,120);
+                zui_set_anchor(0,0);
                 name = async_load[? "title"];
                 description = async_load[? "description"];
                 tags = async_load[? "tags"];
                 votes = async_load[? "votes_up"];
+                workshopID = string(global.createdWorkshopItems[i]);
                 dateCreated = date_date_string(date_timestamp(async_load[? "time_created"]));
                 dateUpdated = date_date_string(date_timestamp(async_load[? "time_updated"]));
             }
         }
         itemCount++;
+        
+        with(obj_uiWindowCaption)
+            if(type == 99)
+                caption = "Your Workshop Items (" + string(other.itemCount) + ")";
     }
 }
 </string>

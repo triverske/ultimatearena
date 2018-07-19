@@ -9,6 +9,11 @@ var l = initialize_directory("events");
 for(var i=0;i<l;i++)
 {
     global.EVENT[i] = working_directory+"events\" + directory[i] + "\" + directory[i] + ".ini";
+    ini_open(global.EVENT[i])
+    if(ini_read_real("event","creator",-1) == steam_get_user_account_id() && ini_read_real("event","workshopID",-1) != -1)
+        workshop_add_created_item(ini_read_real("event","workshopID",-1));
+    ini_close();
+    
     global.eNAME[i] = directory[i];
     global.eTYPE[i] = 0;
 }

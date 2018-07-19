@@ -50,13 +50,15 @@ type = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (pressed) {
- pressed = 0;
- if (zui_get_hover()) {
- audio_play_sound(snd_blip,0,0);
-  if (callback &gt;= 0)
-   script_execute(callback, id);
- }
+            <string>if(pressed) 
+{
+    pressed = 0;
+    if(zui_get_hover()) 
+    {
+        audio_play_sound(snd_blip,0,0);
+        if(callback &gt;= 0)
+            script_execute(callback, id);
+    }
 }
 </string>
           </argument>

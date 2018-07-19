@@ -51,6 +51,9 @@ global.TIME_DAYS = 0;
 global.gs = 2;
 global.uploadImage = -1;
 
+global.createdWorkshopItems = -1;
+global.createdWorkshopItemsCount = 0;
+
 new_item = -1;
 
 initialize_workshop();

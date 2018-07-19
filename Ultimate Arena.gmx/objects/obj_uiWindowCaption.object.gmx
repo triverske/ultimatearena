@@ -53,9 +53,10 @@ type = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (pressed) {
- with (__parent)
-  zui_set_position(device_mouse_x_to_gui(0) + other.offsetx, device_mouse_y_to_gui(0) + other.offsety);
+            <string>if(pressed) 
+{
+    with(__parent)
+        zui_set_position(device_mouse_x_to_gui(0) + other.offsetx, device_mouse_y_to_gui(0) + other.offsety);
 }
 </string>
           </argument>
