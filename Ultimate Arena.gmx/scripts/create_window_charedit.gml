@@ -90,6 +90,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, obj_uiWindow
         }
     }
     
+    /*
     with(zui_create(240, __height - 55, obj_uiCheckbox))
     {
         type = 0;
@@ -102,7 +103,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, obj_uiWindow
     {
         caption = "Add to Steam Workshop";
         halign = fa_left;
-    }
+    }*/
     
     with (zui_create(5, 261, obj_uiButton)) 
     {                                           

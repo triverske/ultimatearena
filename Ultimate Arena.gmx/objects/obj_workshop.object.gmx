@@ -26,16 +26,78 @@
           <argument>
             <kind>1</kind>
             <string>
-createdItems = global.createdWorkshopItemsCount
+confirmedItems[9999] = 0;
 itemCount = 0;
 cursorIndex = 0;
 
+alarm[0] = 5;
+
+global.IDselected = -1;
+workshopWindow = create_window_workshop(global.createdWorkshopItemsCount);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.createdWorkshopItemsCount = 0;
+
+initialize_characters();
+
+ini_open("workshop.ini");
+var co = ini_read_real("info","total",0);
+for(var i = 0;i &lt; co;i++)
+    workshop_add_created_item(ini_read_string("created","c"+string(i),-1));
+ini_close();
+
+room_restart();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+createdItems = global.createdWorkshopItemsCount;
 for(var i = 0;i &lt; createdItems;i++)
 {
-    steamDetails[i] = steam_ugc_request_item_details(string(round(global.createdWorkshopItems[i])), 60);
+    if(confirmedItems[i] == 0)
+        steamDetails[i] = steam_ugc_request_item_details(string(round(global.createdWorkshopItems[i])), 60);
 }
-
-workshopWindow = create_window_workshop(createdItems);
+    
+alarm[0] = 120;
 </string>
           </argument>
         </arguments>
@@ -77,6 +139,19 @@ if(mouse_wheel_down())
             __y-=120;
     }
 }
+
+if(global.IDselected == -1)
+{
+    with(obj_uiButton)
+        if(bID == 3)
+            zui_set_enabled(0);
+}
+else
+{
+    with(obj_uiButton)
+        if(bID == 3)
+            zui_set_enabled(1); 
+}
 </string>
           </argument>
         </arguments>
@@ -107,14 +182,23 @@ for(var i = 0;i &lt; createdItems;i++)
 {
     if(map_id == steamDetails[i]) &amp;&amp; (result == ugc_result_success)
     {
+        if(async_load[? "tags"] != "Character")
+            continue;
         with(workshopWindow)
         {
+            with(obj_uiWorkshopItem)
+            {
+                if(workshopID == string(global.createdWorkshopItems[i]))
+                    continue;
+            }
+        
             with(zui_create(0,other.itemCount*120+24,obj_uiWorkshopItem))
             {
                 zui_set_size(300,120);
                 zui_set_anchor(0,0);
                 name = async_load[? "title"];
                 description = async_load[? "description"];
+                visibility = async_load[? "visibility"];
                 tags = async_load[? "tags"];
                 votes = async_load[? "votes_up"];
                 workshopID = string(global.createdWorkshopItems[i]);
@@ -122,6 +206,7 @@ for(var i = 0;i &lt; createdItems;i++)
                 dateUpdated = date_date_string(date_timestamp(async_load[? "time_updated"]));
             }
         }
+        confirmedItems[i] = 1;
         itemCount++;
         
         with(obj_uiWindowCaption)

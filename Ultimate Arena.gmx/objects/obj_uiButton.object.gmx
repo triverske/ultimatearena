@@ -82,9 +82,8 @@ type = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (zui_get_hover()) {
- pressed = 1;
-}
+            <string>if (zui_get_hover())
+    pressed = 1;
 </string>
           </argument>
         </arguments>
@@ -107,22 +106,28 @@ type = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (zui_get_hover()) {
- if (pressed)
-  draw_set_color($aaaaaa);
- else
-  draw_set_color($cccccc); 
-} else {
- draw_set_color($ffffff);
+            <string>if(__enabled)
+{
+    if(zui_get_hover()) 
+    {
+        if(pressed)
+            draw_set_color($aaaaaa);
+        else
+            draw_set_color($cccccc); 
+    } 
+    else 
+    {
+        draw_set_color($ffffff);
+    }
+    
+    ui_draw_sprite_panel(spr_button, type, 8, -6, -6, __width + 12, __height + 12);
+    
+    draw_set_font(font0);
+    draw_set_halign(1);
+    draw_set_valign(1);
+    draw_set_color(merge_colour(draw_get_colour(), 0, 0.1));
+    draw_text(floor(__width * 0.5),floor(__height * 0.5), caption);
 }
-
-ui_draw_sprite_panel(spr_button, type, 8, -6, -6, __width + 12, __height + 12);
-
-draw_set_font(font0);
-draw_set_halign(1);
-draw_set_valign(1);
-draw_set_color(merge_colour(draw_get_colour(), 0, 0.1));
-draw_text(__width * 0.5, __height * 0.5, caption);
 </string>
           </argument>
         </arguments>

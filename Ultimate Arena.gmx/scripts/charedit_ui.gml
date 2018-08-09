@@ -278,6 +278,7 @@ with(obj_uiButton)
                     }
                 }
                 
+                /*
                 if(global.workshop && !global.copyProtection)
                 {
                     if(global.workshopID == -1)
@@ -309,9 +310,9 @@ with(obj_uiButton)
                         steam_ugc_set_item_preview(updateHandle, working_directory + "characters\" + workshopName + "\" + workshopName + ".png");
                         steam_ugc_set_item_content(updateHandle, working_directory + "characters\" + workshopName + "\");
                         
-                        requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+                        requestId = steam_ugc_submit_item_update(updateHandle, "Version " + date_datetime_string(date_current_datetime()) );
                     }
-                }
+                } */
                 
                 initialize_characters();
                 room_restart();

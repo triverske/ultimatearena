@@ -54,17 +54,22 @@ bID = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (pressed) {
- pressed = 0;
- if (zui_get_hover()) {
- audio_play_sound(snd_blip,0,0);
-  if(type == 1){
-   obj_uiCheckbox.value = 0;
-   value = 1;
-  }
-  else
-   value = !value;
- }
+            <string>if(pressed) 
+{
+    pressed = 0;
+    if(zui_get_hover()) 
+    {
+        audio_play_sound(snd_blip,0,0);
+        if(type == 1)
+        {
+            with(obj_uiCheckbox)
+                if(bID == other.bID)
+                    value = 0;
+            value = 1;
+        }
+        else
+            value = !value;
+    }
 }
 </string>
           </argument>

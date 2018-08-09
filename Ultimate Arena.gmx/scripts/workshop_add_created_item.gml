@@ -2,6 +2,9 @@
 
 var workshopID = argument0;
 
+if(workshopID == -1)
+    exit;
+    
 if(global.createdWorkshopItemsCount > 0)
 {
     for(var q = 0;q < global.createdWorkshopItemsCount;q++)

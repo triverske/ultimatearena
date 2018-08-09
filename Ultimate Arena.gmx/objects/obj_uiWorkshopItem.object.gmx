@@ -8,6 +8,29 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>strCut = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -36,6 +59,18 @@ else
     __visible = 1;
 }
 
+if(strCut)
+{
+    var c = 0;
+    while(string_width(name) &gt; 260)
+    {
+        name = string_delete(name,string_length(name),1);
+        c = 1;
+    }
+    if(c)
+        name += "..."
+    strCut = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -61,7 +96,21 @@ else
             <string>if(zui_get_hover()) 
 {
     audio_play_sound(snd_blip,0,0);
-    steam_activate_overlay_browser("https://steamcommunity.com/sharedfiles/filedetails/?id=" + workshopID);
+    //steam_activate_overlay_browser("https://steamcommunity.com/sharedfiles/filedetails/?id=" + workshopID);
+    
+    var i0 = name;
+    var i1 = description;
+    var i2 = visibility;
+    var i3 = workshopID;
+    global.workshopID = i3;
+    
+    with(obj_setup)
+        workshopDesc = i1;
+    
+    with(obj_uiWindow)
+        if(wID == "Bless")
+            zui_destroy();
+    create_window_workshop1(i0,i1,i2,i3);
 }
 </string>
           </argument>

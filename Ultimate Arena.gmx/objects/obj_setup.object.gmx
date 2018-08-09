@@ -281,9 +281,40 @@ if(v &lt; real(global.VERSION))
 }
 ini_close();
 
+ini_open("workshop.ini");
+var co = ini_read_real("info","total",0);
+for(var i = 0;i &lt; co;i++)
+    workshop_add_created_item(ini_read_string("created","c"+string(i),-1));
+ini_close();
+
+
 room_goto_next();
 
 application_surface_draw_enable(0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>initialize_characters();
+room_restart();
 </string>
           </argument>
         </arguments>
@@ -471,29 +502,43 @@ if(event_id == new_item)
     if(type == "ugc_create_item")
     {
         //I'm just going to pray that this continues working.
-        if(room == rm_charedit)
+        if(room == rm_workshop)
         {
             global.workshopID = async_load[? "published_file_id"];
-            workshopName = global.charname;
-            ini_open(working_directory + "characters\" + workshopName + "\" + workshopName + ".ini");
-            ini_write_real("character","workshopID",global.workshopID);
-            ini_close();
             
             var app_id = steam_get_app_id();
             updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
             
-            steam_ugc_set_item_title(updateHandle, workshopName );
-            steam_ugc_set_item_description( updateHandle, "Adds " + workshopName + " character to Ultimate Arena");
-            steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+            steam_ugc_set_item_title(updateHandle, "Empty Workshop Fighter" );
+            steam_ugc_set_item_description( updateHandle, "Use the Steam Workshop tool to upload a fighter");
+            steam_ugc_set_item_visibility(updateHandle, ugc_visibility_private);
             
             var tagArray;
             tagArray[0] = "Character";
             
             steam_ugc_set_item_tags(updateHandle, tagArray);
-            steam_ugc_set_item_preview(updateHandle, working_directory + "characters\" + workshopName + "\" + workshopName + ".png");
-            steam_ugc_set_item_content(updateHandle, working_directory + "characters\" + workshopName + "\");
+            requestId = steam_ugc_submit_item_update(updateHandle, "Initial Character File");
             
-            requestId = steam_ugc_submit_item_update(updateHandle, "Version " + string(global.charVersion));
+            workshop_add_created_item(global.workshopID);
+            ini_open("workshop.ini");
+            var co = ini_read_real("info","total",0);
+            ini_write_string("created","c"+string(co),string(global.workshopID));
+            ini_write_real("info","total",co+1);
+            ini_close();
+            
+            with (obj_uiMain) 
+            {
+                var _black = zui_create(0, 0, obj_uiBlack, -1000);
+                with (zui_create(__width * 0.5, __height * 0.5, obj_uiWindow, -1001)) 
+                {
+                    zui_set_size(256, 112);   
+                    black = _black;
+                    with (zui_create(zui_get_width() * 0.5, zui_get_height() * 0.5 - 8, obj_uiLabel))
+                        caption = "Recieving Info From Steam##This usually takes about 30 seconds...";
+                }
+            }
+            
+            alarm[0] = 1800;
         }
         else if(room == rm_eventedit)
         {
@@ -588,6 +633,68 @@ if(event_id == new_item)
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Character Upload
+
+workshopName = global.charname;
+
+vis = 2;
+with(obj_uiCheckbox)
+{
+    if(bID == 1)
+        if(value == 1)
+        {
+            vis = cID;
+            show_debug_message("VIS: " + string(vis));   
+        }
+    
+}
+
+
+var app_id = steam_get_app_id();
+updateHandle = steam_ugc_start_item_update(app_id, global.workshopID);
+
+ini_open(working_directory + "characters\" + workshopName + "\" + workshopName + ".ini");
+ini_write_string("debug","time",date_datetime_string(date_current_datetime()));
+ini_close();
+
+steam_ugc_set_item_title(updateHandle, workshopName );
+
+if(workshopDesc == "Use the Steam Workshop tool to upload a fighter")
+    steam_ugc_set_item_description(updateHandle,"Adds fighter " + workshopName + " to your Ultimate Arena collection");
+
+//if(vis == 0)
+    steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
+//if(vis == 1)
+    //steam_ugc_set_item_visibility(updateHandle, ugc_visibility_friends_only);
+//if(vis == 2)
+    //steam_ugc_set_item_visibility(updateHandle, ugc_visibility_private);
+    
+steam_ugc_set_item_preview(updateHandle, working_directory + "characters\" + workshopName + "\" + workshopName + ".png");
+steam_ugc_set_item_content(updateHandle, working_directory + "characters\" + workshopName + "\");
+
+requestId = steam_ugc_submit_item_update(updateHandle, "Version " + date_datetime_string(date_current_datetime()));
 </string>
           </argument>
         </arguments>
