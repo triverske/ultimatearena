@@ -151,7 +151,18 @@ with(obj_uiButton)
                 var newsp = sprite_add(file,0,0,0,0,0);
                 var surf = surface_create(128,128);
                 surface_set_target(surf);
-                draw_sprite_stretched(newsp,0,0,0,128,128);
+                
+                var spw = sprite_get_width(newsp);
+                var sph = sprite_get_height(newsp);
+                
+                if(spw == 128 && sph == 128)
+                    draw_sprite_stretched(newsp,0,0,0,128,128);
+                else
+                {
+                    texture_set_interpolation(1);
+                    draw_sprite_stretched(newsp,0,0,0,128,128);
+                    texture_set_interpolation(0);
+                }
                 surface_reset_target();
                 
                 if(obj_fighterEditor.newImage != spr_defaultFighterImage)

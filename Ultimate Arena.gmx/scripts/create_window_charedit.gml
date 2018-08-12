@@ -17,6 +17,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, obj_uiWindow
         callback = charedit_ui;
         scale = 1.5;
         bID = 0;
+        type = 4;
     }
     with(zui_create(200, 45, obj_uiLabel))
     {

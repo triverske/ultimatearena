@@ -85,6 +85,12 @@ else if (type == 3)
 {
     draw_rectangle_colour(0,0,width,height,color,color,color,color,0);
 }
+else if(type == 4)
+{
+    texture_set_interpolation(1);
+    draw_sprite_ext(image,0,0,0,scale,scale,0,color,alpha);
+    texture_set_interpolation(0);
+}
 
 if(callback &gt;= 0)
     script_execute(callback, id);

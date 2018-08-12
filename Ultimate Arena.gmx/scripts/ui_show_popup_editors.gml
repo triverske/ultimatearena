@@ -38,7 +38,7 @@ with(obj_uiMain)
         {
             zui_set_size(250, 28);
             caption = "Text Editor";
-            bID = 14;
+            bID = 16;
             callback = title_buttons;
         }
         
