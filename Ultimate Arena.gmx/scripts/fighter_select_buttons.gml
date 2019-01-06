@@ -20,30 +20,30 @@ with (obj_uiButton)
         {
             if(global.TAG_COUNT > 0)
             {
-            with (zui_main()) 
-            {
-                with(zui_create(WS/2,HS/2,obj_uiWindow,-1))
+                with (zui_main()) 
                 {
-                    wID = "Search By Tag";
-                    //callback = fighter_select_buttons;
-                    zui_set_size(160,224);
-                    with(zui_create(0,0,obj_uiWindowCaption))
+                    with(zui_create(WS/2,HS/2,obj_uiWindow,-1))
                     {
-                        caption = "Search By Tag";
-                        draggable = 1;
+                        wID = "Search By Tag";
+                        //callback = fighter_select_buttons;
+                        zui_set_size(160,224);
+                        with(zui_create(0,0,obj_uiWindowCaption))
+                        {
+                            caption = "Search By Tag";
+                            draggable = 1;
+                        }
+                        with(zui_create(0,24,obj_uiListbox))
+                        {
+                            zui_set_anchor(0,0);
+                            zui_set_size(160,200);
+                            callback = tag_ui;
+                            initialize_listbox(global.TAGS);
+                    
+                            with(zui_create(0,0,obj_uiListboxScroll)){} 
+                        }
+                        zui_create(0,0,obj_uiExitButton,-1);
                     }
-                    with(zui_create(0,24,obj_uiListbox))
-                    {
-                        zui_set_anchor(0,0);
-                        zui_set_size(160,200);
-                        callback = tag_ui;
-                        initialize_listbox(global.TAGS);
-                
-                        with(zui_create(0,0,obj_uiListboxScroll)){} 
-                    }
-                    zui_create(0,0,obj_uiExitButton,-1);
                 }
-            }
             }
             else
             {
@@ -228,6 +228,53 @@ with (obj_uiButton)
                 }
             }      
         }
+        else if(bID == 17)
+        {
+            with(obj_uiMain)
+            {
+                with (zui_create(__width * 0.5, __height * 0.5, obj_uiWindow, -1001)) 
+                {
+                    zui_set_size(400, 250);
+                    with (zui_create(0, 0, obj_uiWindowCaption)) 
+                        caption = "Search for Fighter";
+              
+                    with (zui_create(zui_get_width() * 0.5, zui_get_height() * 0.5 - 8, obj_uiLabel))
+                    {
+                        caption = "Type Search Term:##";
+                        lID = 1;
+                        keyboard_string = "";
+                        obj_fighterSelect.search = "";
+                    }
+                    
+                    with(zui_create(zui_get_width() / 2 , zui_get_height() - 90, obj_uiField))
+                    {
+                        zui_set_anchor(.5,0);
+                        width = 236;
+                        zui_set_size(width,18);
+                        callback = fighter_select_buttons;
+                        maxLength = string_width("How long should I allow this to be?");
+                        fID = 1;
+                    }
+              
+                    with (zui_create(zui_get_width() * 0.5, zui_get_height() - 24, obj_uiButton)) 
+                    {
+                        zui_set_size(96, 28);
+                        caption = "Search";
+                        callback = fighter_select_buttons;
+                        bID = 18;
+                    }
+                }
+            }
+        }
+        else if(bID == 18)
+        {
+            with(obj_uiField)
+                if(fID == 1)
+                    obj_fighterSelect.search = content;
+            search_ui(obj_fighterSelect.search);
+            with(zui_get_parent())
+                zui_destroy();
+        }
     }
 }
 with (obj_uiWindow)
@@ -257,7 +304,8 @@ with (obj_uiWindow)
                 var gen = "Female";
             else
                 var gen = "Male";
-            draw_sprite_stretched(global.cIMAGES[global.IDselected],0,5,29,64,64);
+            draw_sprite_stretched(global.cIMAGES[global.IDselected],imgFrame,5,29,64,64);
+            imgFrame += global.cIMAGESP[global.IDselected]
             draw_text(73,29,global.cNAME[global.IDselected]);
             draw_text(73,44,"Gender: " + gen);
             draw_text(73,59,"STR: "+string_format(ini_read_real("character","strength",5),2,0));
@@ -305,6 +353,12 @@ with (obj_uiLabel)
         else if (lID == "gamespeed")
         {
             caption = string(floor(60/global.SAVE_SPEED*10)) + "X SPEED";
+        }
+        else if(lID == 1)
+        {
+            show_debug_message("HERE");
+            obj_fighterSelect.search = keyboard_string;
+            caption = "Type Search Term:##" + obj_fighterSelect.search;
         }
     }
 }

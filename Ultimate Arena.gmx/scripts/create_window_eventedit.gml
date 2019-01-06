@@ -52,6 +52,19 @@ with(zui_create(window_get_width()*.6, window_get_height()/2 - 60, obj_uiWindow)
         zui_set_anchor(0,0);
         zui_set_size(width,18);
     }
+    with(zui_create(47,152,obj_uiLabel))
+    {
+        caption = "-";
+    }
+    with(zui_create(54, 145, obj_uiField))
+    {
+        callback = eventedit_ui;
+        fID = 3;
+        maxLength = string_width("100");
+        width = maxLength+6;
+        zui_set_anchor(0,0);
+        zui_set_size(width,18);
+    }
     with(zui_create(15, 180, obj_uiLabel))
     {
         caption = "Updates: ";

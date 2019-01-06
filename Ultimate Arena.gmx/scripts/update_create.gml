@@ -13,6 +13,7 @@ if(argument2 > 0 && global.deadUpdates)
     i.image1 = global.IMAGES[argument1];
     i.fighters = 1;
     i.dead = argument2;
+    i.imgSpeed = global.IMAGESP[argument1];
         
     if (global.boxColor == 0)
         global.boxColor = 1;
@@ -30,6 +31,7 @@ else if(argument2 < 1 && global.otherUpdates)
     i.image1 = global.IMAGES[argument1];
     i.fighters = 1;
     i.dead = argument2;
+    i.imgSpeed = global.IMAGESP[argument1];
         
     if (global.boxColor == 0)
         global.boxColor = 1;

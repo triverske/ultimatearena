@@ -44,15 +44,27 @@ for(var h=0;h<l;h++)
     global.cTYPE[i] = 0;
     global.fNAME[i] = in;
     global.cSOUNDS[i] = ini_read_string("character","deathsound","");
+    global.cIMAGESP[i] = 0;
     
     var cImage = ini_read_string("character","image","spr_defaultFighterImage");
+    var cAnimated = ini_read_real("character","animated",0);
+    var cAnimationSpeed = ini_read_real("character","animationspeed",0);
     
-    if(cImage != "spr_defaultFighterImage")
+    if(cAnimated)
+    {
+        var temp = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);
+        var wd = round(sprite_get_width(temp) / 128);
+        global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",wd,0,0,0,0);
+        global.cIMAGESP[i] = cAnimationSpeed;
+        sprite_delete(temp);
+    }
+    else if(cImage != "spr_defaultFighterImage")
         global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);
     else
         global.cIMAGES[i] = spr_defaultFighterImage; 
         
-    if(global.cIMAGES[i] == -1){
+    if(global.cIMAGES[i] == -1)
+    {
         var tempSprite = sprite_duplicate(spr_defaultFighterImage);
         sprite_save(tempSprite,0,working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png");
         sprite_delete(tempSprite);

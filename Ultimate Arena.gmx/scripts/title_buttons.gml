@@ -237,6 +237,10 @@ with (obj_uiButton)
             c.gotoroom = rm_workshop;
             global.GAMETYPE = 0;  
         }
+        else if (bID == 21)//Pewdiepie
+        {
+            url_open("https://www.youtube.com/channel/UCEcNnpeHk9z0aSCkyGMRNMA");
+        }
     }
 }
 

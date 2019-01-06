@@ -14,6 +14,7 @@ with(obj_uiListbox)
             var ename = ini_read_string("event","name","");
             var edesc = ini_read_string("event","description","");
             var eperc = ini_read_real("event","death_percentage",0);
+            var eperc2 = ini_read_real("event","death_percentage_u",eperc);
             var etotl = ini_read_real("text","total",0);
             var etxt;
             
@@ -35,6 +36,8 @@ with(obj_uiListbox)
                     content = edesc;
                 if(fID == 2)
                     content = string(eperc);
+                if(fID == 3)
+                    content = string(eperc2);
             }
             with(obj_uiMultiField)
             {
@@ -114,6 +117,8 @@ with(obj_uiButton)
                     var edesc = content;
                 if(fID == 2)
                     var eperc = content;
+                if(fID == 3)
+                    var eperc2 = content;
             }
             
             if(ename != "")
@@ -124,6 +129,7 @@ with(obj_uiButton)
                 ini_write_string("event","name",ename);
                 ini_write_string("event","description",edesc);
                 ini_write_real("event","death_percentage",real(eperc));
+                ini_write_real("event","death_percentage_u",max(real(eperc),real(eperc2)));
                 
                 ini_write_real("text","total",obj_uiMultiField.fields);
                 if(ini_section_exists("text"))

@@ -11,7 +11,9 @@ with (obj_uiButton)
     {
         if (bID == 0)
         {
-            if(global.GAME_SPEED != 0 && global.GAME_SPEED < 20)
+            if(global.extraFrames > 0)
+                global.extraFrames--;
+            else if(global.GAME_SPEED != 0 && global.GAME_SPEED < 40)
                 global.GAME_SPEED++;
         }
         if (bID == 1)
@@ -35,6 +37,11 @@ with (obj_uiButton)
         {
             if (global.GAME_SPEED != 0 && global.GAME_SPEED > 1)
                 global.GAME_SPEED--;
+            else if(global.GAME_SPEED == 1)
+            {
+                if(global.extraFrames < 3)
+                    global.extraFrames++;
+            }
         }
         if (bID == 4)
         {
@@ -171,6 +178,7 @@ with (obj_uiButton)
         
     }
 }
+
 with (obj_uiWindow)
 {
     if (argument0 == id)

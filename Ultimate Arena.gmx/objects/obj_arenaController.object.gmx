@@ -40,6 +40,7 @@ global.DEADLOC[global.fighters,1] = 0;
 sanityleader = -1;
 xpleader = -1;
 killleader = -1;
+updateScroll = 0;
 
 global.log[0] = "";
 global.logi = 0;
@@ -52,6 +53,7 @@ draw_set_valign(fa_top);
 
 //show_debug_overlay(true);
 global.GAME_SPEED = global.SAVE_SPEED;
+global.extraFrames = 0;
 global.fighters_remaining = global.fighters;
 tile_size = 32;
 instance_create(0,0,obj_deathSign);
@@ -207,7 +209,11 @@ if(event_timer == 0 &amp;&amp; !instance_exists(obj_arenaEvent))
     ini_open(global.EVENT[event]);
     s.description = ini_read_string("event","description","ERROR");
     s.name = ini_read_string("event","name","ERROR");
-    s.death_percentage = ini_read_real("event","death_percentage",0);
+    
+    var d1 = ini_read_real("event","death_percentage",0);
+    var d2 = max(d1,ini_read_real("event","death_percentage_u",0));
+    s.death_percentage = round(random_range(d1,d2));
+    
     ini_close();
 }
 
@@ -235,15 +241,20 @@ alarm[0] = global.GAME_SPEED;
           <argument>
             <kind>1</kind>
             <string>draw_map();
+
+if(mouse_wheel_up())
+    updateScroll -= 34;
+else if(mouse_wheel_down())
+    updateScroll += 34;
+
+updateScroll = clamp(updateScroll,0,7400);
+
 draw_updates();
 
 if (alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
-{
-
     alarm[0] = global.GAME_SPEED;
 
-}
-
+//Pause on Space 
 if(keyboard_check_pressed(vk_space))
 {
     if (global.GAME_SPEED == 0)
@@ -260,13 +271,22 @@ if(keyboard_check_pressed(vk_space))
 
 if (keyboard_check_pressed(vk_subtract))
 {
-    if(global.GAME_SPEED != 0 &amp;&amp; global.GAME_SPEED &lt; 20)
+    if(global.extraFrames &gt; 0)
+        global.extraFrames--;
+    else if(global.GAME_SPEED != 0 &amp;&amp; global.GAME_SPEED &lt; 40)
         global.GAME_SPEED++;
+    audio_play_sound(snd_blip,0,0);
 }
 if (keyboard_check_pressed(vk_add))
 {
     if (global.GAME_SPEED != 0 &amp;&amp; global.GAME_SPEED &gt; 1)
         global.GAME_SPEED--;
+    else if(global.GAME_SPEED == 1)
+    {
+        if(global.extraFrames &lt; 3)
+            global.extraFrames++;
+    }
+    audio_play_sound(snd_blip,0,0);
 }
 </string>
           </argument>
@@ -307,7 +327,7 @@ draw_text(50,35,global.TIME_STRING);
 if (global.GAME_SPEED == 0)
     draw_text(150,10,"PAUSED");
 else
-    draw_text(150,10,string(floor(60/global.GAME_SPEED*10)) + "X SPEED");
+    draw_text(150,10,string(floor(60/global.GAME_SPEED*10*(global.extraFrames+1))) + "X SPEED");
 
 </string>
           </argument>

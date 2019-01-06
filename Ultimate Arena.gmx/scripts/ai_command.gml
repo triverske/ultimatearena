@@ -14,7 +14,7 @@ if (com != STATE)
         }
         else
         {
-            wanderAngle += random(1) * wanderChange - wanderChange * .5;//change the angle randomly to make it wander
+            wanderAngle += random_range(-1,1)//change the angle randomly to make it wander
             DIR = wanderAngle;
         }
         QUICK = .5 + AGILITY/10;

@@ -31,6 +31,10 @@ time = global.TIME_STRING;
 var tvar = floor(random(5));
 text = "ERROR";
 trigger = 0;
+imgFrame = 0;
+imgSpeed = 0;
+iFrm[3] = 0;
+iSpd[3] = 0;
 alarm[0] = 1;
 </string>
           </argument>
@@ -81,21 +85,30 @@ global.logi++;
             <string>if (y != currentPos * 74)
    y += (74/4);  
 
-if (y &gt; global.HSCALE)
+//Limit Updates Backlog to 100
+if (y &gt; 7400)
     instance_destroy();
     
 var px = 314;
 var py = y + 60;
+var scr = 0;
 
 with(obj_uiWindow)
+{
     if(wID == "Updates")
     {
-        px += __x - (__width / 2);
-        py += __y - (__height / 2) + 20;
-    }
+        if(zui_get_hover())
+            with(obj_arenaController)
+                scr = updateScroll;
 
-if(mouse_check_button_pressed(mb_left))
+        px += __x - (__width / 2);
+        py += __y - (__height / 2) + 20 - scr;
+    }
+}
+
+if(mouse_check_button_pressed(mb_left) &amp;&amp; py &lt; 1850)
 {
+    //Screenshot Update
     if(point_in_rectangle(mouse_x,mouse_y,px,py,px+14,py+14))
     {
         var file = get_save_filename("Screenshot|*.png", "pic.png");
@@ -103,12 +116,12 @@ if(mouse_check_button_pressed(mb_left))
         {
             var picSurf = surface_create(390,74);
             surface_set_target(picSurf);
-            draw_sprite(spr_updateBox,boxColor,0,0);
+            draw_sprite(spr_updateBox,1,0,0);
             
             texture_set_interpolation(1);
             if(fighters == 1)
             {
-                draw_sprite_stretched(image1,1,5,5,64,64);
+                draw_sprite_stretched(image1,imgFrame,5,5,64,64);
                 if(dead &gt; 0)
                     draw_sprite_stretched(spr_deadX,1,5,5,64,64);
             }
@@ -134,6 +147,10 @@ if(mouse_check_button_pressed(mb_left))
         }
     }
 }
+
+imgFrame += imgSpeed;
+for(var i = 0;i &lt;4;i++)
+    iFrm[i] += iSpd[i];
 </string>
           </argument>
         </arguments>

@@ -27,7 +27,14 @@
             <kind>1</kind>
             <string>global.IDselected = -1;
 global.copyProtection = 0;
+
+global.sliderColor = c_white;
+global.sliderColorH = 255;
+global.sliderColorS = 255;
+global.sliderColorV = 255;
 global.editColor = 0;
+
+animSpeed = 1;
 
 global.editColors[0,0] = 255;
 global.editColors[0,1] = 255;

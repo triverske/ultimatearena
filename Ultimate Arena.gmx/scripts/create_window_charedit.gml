@@ -1,9 +1,9 @@
-with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, obj_uiWindow))
+with(zui_create(window_get_width()*.5-40, window_get_height()/2 - 145, obj_uiWindow))
 {
     global.charVersion = 1;
     global.workshopID = -1;
     global.creator = -1;
-    zui_set_size(500, 330);
+    zui_set_size(600, 400);
     wID = "Editor Window";
     
     with(zui_create(0, 0, obj_uiWindowCaption))
@@ -16,8 +16,9 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, obj_uiWindow
         image = spr_defaultFighterImage;
         callback = charedit_ui;
         scale = 1.5;
-        bID = 0;
         type = 4;
+        iID = 2;
+        imgSpeed = .2;
     }
     with(zui_create(200, 45, obj_uiLabel))
     {
@@ -33,20 +34,20 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, obj_uiWindow
         zui_set_size(width,18);
         maxLength = string_width("Vermin Supreme");
     }
-    with(zui_create(200, 75, obj_uiLabel))
+    with(zui_create(200+180, 45, obj_uiLabel))
     {
         caption = "Gender:  M"
         halign = fa_left;
     }
-    with(zui_create(305, 75, obj_uiLabel))
+    with(zui_create(305+180, 45, obj_uiLabel))
     {
         caption = "F"
     }
-    with(zui_create(353, 75, obj_uiLabel))
+    with(zui_create(353+180, 45, obj_uiLabel))
     {
         caption = "Other"
     }
-    with(zui_create(282, 75, obj_uiCheckbox))
+    with(zui_create(282+182, 45, obj_uiCheckbox))
     {
         type = 1;
         callback = charedit_ui;
@@ -54,33 +55,24 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, obj_uiWindow
         value = 1;
         bID = 0
     }
-    with(zui_create(325, 75, obj_uiCheckbox))
+    with(zui_create(325+178, 45, obj_uiCheckbox))
     {
         type = 1;
         callback = charedit_ui;
         cID = 1;
         bID = 0;
     }
-    with(zui_create(385, 75, obj_uiCheckbox))
+    with(zui_create(385+180, 45, obj_uiCheckbox))
     {
         type = 1;
         callback = charedit_ui;
         cID = 2;
         bID = 0;
     }
-    
     /*
-    with (zui_create(200, 105, obj_uiButton)) 
-    {
-        zui_set_anchor(0,0);
-        zui_set_size(130, 30);
-        caption = "Add Death Sound";
-        callback = charedit_ui;
-        bID = 6;
-    } */    
     for(var i=0;i<7;i++)
     {
-        with (zui_create(5 + 28*i, 223, obj_uiImageButton)) 
+        with (zui_create(5 + 28*i, 261, obj_uiImageButton)) 
         {
             zui_set_anchor(0,0);
             zui_set_size(26, 26);
@@ -89,24 +81,82 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, obj_uiWindow
             callback = charedit_ui;
             bID = 9;
         }
-    }
-    
-    /*
-    with(zui_create(240, __height - 55, obj_uiCheckbox))
-    {
-        type = 0;
-        callback = charedit_ui;
-        cID = 0;
-        value = 0;
-        bID = 1;
-    }
-    with(zui_create(270, __height - 55, obj_uiLabel))
-    {
-        caption = "Add to Steam Workshop";
-        halign = fa_left;
     }*/
+
+    with(zui_create(5, 265, obj_uiLabel))
+    {
+        caption = "Animation Spd"
+        halign = fa_left;
+    }
+    with(zui_create(120,261,obj_uiSlider))
+    {
+        zui_set_size(168, 26);
+        zui_set_anchor(0,0);
+        callback = charedit_ui;
+        slID = 4;
+        value = .2;
+    }
     
-    with (zui_create(5, 261, obj_uiButton)) 
+    
+    with(zui_create(105, 287, obj_uiLabel))
+    {
+        caption = "HUE"
+        halign = fa_right;
+    }
+    with(zui_create(120,281,obj_uiSlider))
+    {
+        zui_set_size(168, 26);
+        zui_set_anchor(0,0);
+        callback = charedit_ui;
+        slID = 1;
+        value = 1;
+    }
+    
+    with(zui_create(105, 307, obj_uiLabel))
+    {
+        caption = "SAT"
+        halign = fa_right;
+    }
+    with(zui_create(120,301,obj_uiSlider))
+    {
+        zui_set_size(168, 26);
+        zui_set_anchor(0,0);
+        callback = charedit_ui;
+        slID = 2;
+        value = 1;
+        pos = 0;
+    }
+    
+    with(zui_create(105, 327, obj_uiLabel))
+    {
+        caption = "VAL"
+        halign = fa_right;
+    }
+    with(zui_create(120,321,obj_uiSlider))
+    {
+        zui_set_size(168, 26);
+        zui_set_anchor(0,0);
+        callback = charedit_ui;
+        slID = 3;
+        value = 1;
+    }
+    
+    with(zui_create(25,285,obj_uiImage))
+    {
+        image = spr_chareditFighters;
+        callback = charedit_ui;
+        iID = 1;
+        zui_set_size(24,24);
+        zui_set_anchor(0,0);
+    }
+    with(zui_create(37,312,obj_uiLabel))
+    {
+        valign = fa_top;
+        halign = fa_center;
+        caption = "PREVIEW";
+    }
+    
+    with (zui_create(5, 223, obj_uiButton)) 
     {                                           
         zui_set_anchor(0,0);
         zui_set_size(192, 30);
@@ -297,7 +347,7 @@ with(zui_create(window_get_width()*.5, window_get_height()/2 - 145, obj_uiWindow
     }*/
     
 }
-with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, obj_uiWindow))
+with(zui_create(window_get_width()*.5+420, window_get_height()/2 - 145, obj_uiWindow))
 {
     zui_set_size(200, 330);
     wID = "Character Tags";
@@ -358,7 +408,7 @@ with(zui_create(window_get_width()*.5+400, window_get_height()/2 - 145, obj_uiWi
     }
 }
 
-with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 190, obj_uiWindow))
+with(zui_create(window_get_width()*.5+125, window_get_height()/2 + 210, obj_uiWindow))
 {
     zui_set_size(800, 240);
     wID = "Update Editor";

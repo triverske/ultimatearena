@@ -154,6 +154,7 @@
       <sprite>sprites\spr_workshopUpdatesItem</sprite>
       <sprite>sprites\spr_snow</sprite>
     </sprites>
+    <sprite>sprites\spr_cell</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_tile2</background>
@@ -234,6 +235,7 @@
       <script>scripts\title_buttons.gml</script>
       <script>scripts\fighter_list_ui.gml</script>
       <script>scripts\tag_ui.gml</script>
+      <script>scripts\search_ui.gml</script>
       <script>scripts\map_ui.gml</script>
       <script>scripts\tag_draw_ui.gml</script>
       <script>scripts\tag_select_draw_ui.gml</script>
@@ -296,6 +298,7 @@
     <script>scripts\team_set.gml</script>
     <script>scripts\date_timestamp.gml</script>
     <script>scripts\workshop_add_created_item.gml</script>
+    <script>scripts\add_commas.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -363,6 +366,7 @@
       <object>objects\obj_uiField</object>
       <object>objects\obj_uiMultiField</object>
       <object>objects\obj_uiWorkshopItem</object>
+      <object>objects\obj_uiSliderCell</object>
     </objects>
   </objects>
   <rooms name="rooms">

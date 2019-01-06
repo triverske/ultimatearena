@@ -27,7 +27,9 @@ with(obj_uiListbox)
                 global.workshopID = ini_read_real("character","workshopID",-1);
                 ini_close();
                 
-                obj_uiImage.image = global.cIMAGES[sID]
+                with(obj_uiImage)
+                    if(iID == 2)
+                        image = global.cIMAGES[other.sID]
                     
                 with(obj_uiField)
                 {
@@ -78,17 +80,23 @@ with(obj_uiListbox)
                         }
                     }
                 }
-                with(obj_fighterEditor){
+                with(obj_fighterEditor)
+                {
                     array_from_update_file(global.fNAME[other.sID]);
                     array_from_section();
                 }
                 var ts = 0;
-                with(obj_uiListbox){
-                    if(listID == 1){
-                        for(var i=0; i<global.TAG_COUNT; i++){
+                with(obj_uiListbox)
+                {
+                    if(listID == 1)
+                    {
+                        for(var i=0; i<global.TAG_COUNT; i++)
+                        {
                             selected[i] = 1;
-                            for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++){
-                                if(global.TAG_LIST[i,j] == other.sID){
+                            for(var j=0; j<array_length_2d(global.TAG_LIST,i); j++)
+                            {
+                                if(global.TAG_LIST[i,j] == other.sID)
+                                {
                                     ts++;
                                     selected[i] = 0;
                                     break;
@@ -96,13 +104,15 @@ with(obj_uiListbox)
                             }
                         }
                     }
-                    else if(listID == 2){
+                    else if(listID == 2)
+                    {
                         initialize_listbox(obj_fighterEditor.currentList);
                         for(var i=array_length_1d(obj_fighterEditor.currentList)-1; i>-1; i--)
                             selected[i] = !obj_fighterEditor.toggleList[i];
                     }
                 }
-                with(obj_uiLabel){
+                with(obj_uiLabel)
+                {
                     if(lID > 0 && lID < 6)
                         caption = string(global.editStats[lID - 1]);
                     else if(lID == 6)
@@ -112,19 +122,20 @@ with(obj_uiListbox)
         }
         else if(listID == 1)
         {
-            if(sID != -1){
+            if(sID != -1)
+            {
                 var ts = 0;
-                for(var i=0; i<length; i++){
+                for(var i=0; i<length; i++)
                     if(selected[i] == 0)
                         ts++;
-                }
-                with(obj_uiLabel){
+                
+                with(obj_uiLabel)
                     if(lID == 6)
                         caption = string(ts)+'/'+string(other.length)+' Tags';
-                }
             }
         }
-        else if(listID == 2){
+        else if(listID == 2)
+        {
             if(obj_fighterEditor.currentList[sID] != "")
                 obj_fighterEditor.toggleList[sID] = !selected[sID];
             else
@@ -144,33 +155,56 @@ with(obj_uiButton)
         }
         else if(bID == 1) // Change Image
         {
-            //var charname = keyboard_string;
-            var file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
+            var file = get_open_filename("Image File|*.png;*.jpg;*.jpeg;*.gif", "");
             if(file != "")
             {
-                var newsp = sprite_add(file,0,0,0,0,0);
-                var surf = surface_create(128,128);
-                surface_set_target(surf);
+                var newsp2 = sprite_add(file,0,0,0,0,0);
+                var wd = round(sprite_get_width(newsp2) / 128);
+                var h = sprite_get_height(newsp2)
                 
-                var spw = sprite_get_width(newsp);
-                var sph = sprite_get_height(newsp);
-                
-                if(spw == 128 && sph == 128)
-                    draw_sprite_stretched(newsp,0,0,0,128,128);
-                else
+                if(h == 128 && wd > 1) //animated
                 {
-                    texture_set_interpolation(1);
-                    draw_sprite_stretched(newsp,0,0,0,128,128);
-                    texture_set_interpolation(0);
+                    
+                    show_debug_message(string(wd) + " Frames");
+                    
+                    var newsp = sprite_add(file,wd,0,0,0,0);
+                    
+                    if(obj_fighterEditor.newImage != spr_defaultFighterImage)
+                        sprite_delete(obj_fighterEditor.newImage);
+                        
+                    if(wd > 50)
+                        obj_fighterEditor.newImage = sprite_duplicate(obj_fighterEditor);
+                    else
+                        obj_fighterEditor.newImage = sprite_duplicate(newsp);
+
+                    sprite_delete(newsp);
+                    
+                } 
+                else //regular)
+                {
+                    var newsp = sprite_add(file,0,0,0,0,0);
+                    var surf = surface_create(128,128);
+                    surface_set_target(surf);
+                    draw_clear_alpha(0,0);
+                    
+                    var spw = sprite_get_width(newsp);
+                    var sph = sprite_get_height(newsp);
+                    
+                    if(spw == 128 && sph == 128)
+                        draw_sprite_stretched(newsp,0,0,0,128,128);
+                    else
+                    {
+                        texture_set_interpolation(1);
+                        draw_sprite_stretched(newsp,0,0,0,128,128);
+                        texture_set_interpolation(0);
+                    }
+                    surface_reset_target();
+                    
+                    if(obj_fighterEditor.newImage != spr_defaultFighterImage)
+                        sprite_delete(obj_fighterEditor.newImage);
+                    obj_fighterEditor.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
                 }
-                surface_reset_target();
-                
-                if(obj_fighterEditor.newImage != spr_defaultFighterImage)
-                    sprite_delete(obj_fighterEditor.newImage);
-                obj_fighterEditor.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
-                
-                sprite_delete(newsp);
-                surface_free(surf);
+                sprite_delete(newsp2);
             }
             else{
                 if(obj_fighterEditor.newImage != spr_defaultFighterImage)
@@ -178,7 +212,9 @@ with(obj_uiButton)
                 obj_fighterEditor.newImage = spr_defaultFighterImage;
             }
             
-            obj_uiImage.image = obj_fighterEditor.newImage;
+            with(obj_uiImage)
+                if(iID == 2)
+                    image = obj_fighterEditor.newImage;
         }
         else if(bID == 2) //Save Character
         {
@@ -194,9 +230,15 @@ with(obj_uiButton)
                 ini_write_string("character","name",name);
                 ini_write_string("character","image",name+".png");
                 
-                ini_write_real("character","colorr",global.editColors[global.editColor,0]);
-                ini_write_real("character","colorg",global.editColors[global.editColor,1]);
-                ini_write_real("character","colorb",global.editColors[global.editColor,2]);
+                if(sprite_get_number(obj_fighterEditor.newImage) > 1)
+                {
+                    ini_write_real("character","animated",1);
+                    ini_write_real("character","animationspeed",obj_fighterEditor.animSpeed);
+                }
+                
+                ini_write_real("character","colorr",color_get_red(global.sliderColor));
+                ini_write_real("character","colorg",color_get_green(global.sliderColor));
+                ini_write_real("character","colorb",color_get_blue(global.sliderColor));
                 
                 global.charVersion++;
                 ini_write_real("character","version",global.charVersion);
@@ -273,14 +315,19 @@ with(obj_uiButton)
                     
                 if(obj_fighterEditor.newImage != spr_defaultFighterImage)
                 {
-                    sprite_save(obj_fighterEditor.newImage,0,working_directory + "characters\" + name + "\" + name + ".png");
+                    sprite_save_strip(obj_fighterEditor.newImage,working_directory + "characters\" + name + "\" + name + ".png");
                     sprite_delete(obj_fighterEditor.newImage);
                     obj_fighterEditor.newImage = spr_defaultFighterImage;
                 }
                 else
                 {
-                    if(obj_uiImage.image != spr_defaultFighterImage)
-                        sprite_save(obj_uiImage.image,0,working_directory + "characters\" + name + "\" + name + ".png");
+                    var img = -1;
+                    with(obj_uiImage)
+                        if(iID == 2)
+                            img = image;
+                
+                    if(img != spr_defaultFighterImage)
+                        sprite_save(img,0,working_directory + "characters\" + name + "\" + name + ".png");
                     else{
                         //Gamemaker doesn't let you save images from the resource tree.
                         var tempSprite = sprite_duplicate(spr_defaultFighterImage);
@@ -647,16 +694,44 @@ with(obj_uiButton)
         }
     }
 }
-/*
+
 with(obj_uiImage)
 {
     if(argument0 == id)
     {
-        if(global.IDselected >= 0)
-            image = obj_fighterEditor.newImage;
+        if(iID == 1)
+            color = global.sliderColor;
+        if(iID == 2)
+            imgSpeed = obj_fighterEditor.animSpeed;
     }
-}*/
+}
 
+with(obj_uiSlider)
+{
+    if(argument0 == id)
+    {
+        if(slID == 1) //HUE
+        {
+            global.sliderColorH = round(255*argument1);
+            global.sliderColor = make_color_hsv(global.sliderColorH,global.sliderColorS,global.sliderColorV);
+        }
+        if(slID == 2) //SAT
+        {
+            global.sliderColorS = round(255*argument1);
+            global.sliderColor = make_color_hsv(global.sliderColorH,global.sliderColorS,global.sliderColorV);
+        }
+        if(slID == 3) //VAL
+        {
+            global.sliderColorV = round(255*argument1);
+            global.sliderColor = make_color_hsv(global.sliderColorH,global.sliderColorS,global.sliderColorV);
+        }
+        if(slID == 4) //Animation Speed
+        {
+            obj_fighterEditor.animSpeed = argument1;
+        }
+    
+    }
+}
 with(obj_uiCheckbox)
 {
     if(bID == 1)

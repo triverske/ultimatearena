@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>callback = -1;
 wID = "";
+time = 0;
 </string>
           </argument>
         </arguments>

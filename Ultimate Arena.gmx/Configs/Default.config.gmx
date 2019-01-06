@@ -589,7 +589,7 @@
     <option_windows_splash_background_colour>#000000</option_windows_splash_background_colour>
     <option_windows_splash_screen>Configs\Default\windows\splash.png</option_windows_splash_screen>
     <option_windows_steam_app_id>385240</option_windows_steam_app_id>
-    <option_windows_texture_page>4096</option_windows_texture_page>
+    <option_windows_texture_page>8192</option_windows_texture_page>
     <option_windows_use_splash>0</option_windows_use_splash>
     <option_windows_vertex_buffer_method>0</option_windows_vertex_buffer_method>
     <option_windows_vertex_buffer_method2>2</option_windows_vertex_buffer_method2>

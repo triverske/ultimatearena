@@ -13,8 +13,9 @@ if(p4<0)
 draw_sprite(spr_fighterStats,0,153,yPos - 10);
 
 texture_set_interpolation(1);
-draw_sprite_stretched(global.IMAGES[fighter],0,155,yPos - 8,58,58);
+draw_sprite_stretched(global.IMAGES[fighter],time,155,yPos - 8,58,58);
 texture_set_interpolation(0);
+time += global.IMAGESP[fighter];
 
 if(status == 0)
 {

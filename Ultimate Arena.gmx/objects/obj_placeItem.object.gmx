@@ -138,7 +138,9 @@ radius = 0;
             ini_open(global.EVENT[event]);
             description = ini_read_string("event","description","ERROR");
             name = ini_read_string("event","name","ERROR");
-            death_percentage = ini_read_real("event","death_percentage",0);
+            var d1 = ini_read_real("event","death_percentage",0);
+            var d2 = max(d1,ini_read_real("event","death_percentage_u",0));
+            death_percentage = round(random_range(d1,d2));
             ini_close();
         }
     }

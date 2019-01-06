@@ -21,6 +21,10 @@ if (argument5 > 0 && global.deadUpdates)
     i.image4 = global.IMAGES[argument4];
     i.dead = argument5;
     i.fighters = 4;
+    i.iSpd[0] = global.IMAGESP[argument1];
+    i.iSpd[1] = global.IMAGESP[argument2];
+    i.iSpd[2] = global.IMAGESP[argument3];
+    i.iSpd[3] = global.IMAGESP[argument4];
     
     i = instance_create(0,0,obj_popup);
     i.fighter = global.IDLIST[argument1];
@@ -45,6 +49,10 @@ else if (argument5 < 1 && global.otherUpdates)
     i.image4 = global.IMAGES[argument4];
     i.dead = argument5;
     i.fighters = 4;
+    i.iSpd[0] = global.IMAGESP[argument1];
+    i.iSpd[1] = global.IMAGESP[argument2];
+    i.iSpd[2] = global.IMAGESP[argument3];
+    i.iSpd[3] = global.IMAGESP[argument4];
         
     if (global.boxColor == 0)
         global.boxColor = 1;

@@ -93,7 +93,13 @@ with (zui_main())
          bID = 17;
     }
 
-    
+    with (zui_create(display_get_gui_width()/2 - 480, display_get_gui_height() / 2  + 300, obj_uiButton)) 
+    {
+         zui_set_size(240, 80);
+         caption = "Subscribe To TRAILBOSS";
+         callback = title_buttons;
+         bID = 21;
+    }
     
     with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  + 300, obj_uiImageButton)) 
     {
@@ -147,6 +153,16 @@ with (zui_main())
     }
     
 }
+
+lmx = 0;
+lmy = 0;
+logo_timer = 0;
+logo_x = irandom(SW-700);
+logo_y = irandom(SH-352);
+logo_xv = choose(true,false);
+logo_yv = choose(true,false);
+logo_col = make_color_hsv(random(255),255,255);
+
 </string>
           </argument>
         </arguments>
@@ -185,6 +201,15 @@ with (zui_main())
             ui_show_popup("Additional Default Characters#have been enabled.");
     }
 }
+
+if(mouse_x != lmx || mouse_y != lmy || keyboard_check_pressed(vk_anykey))
+{
+    logo_timer = 0;
+    depth = 50;
+}
+    
+lmx = mouse_x;
+lmy = mouse_y;
 </string>
           </argument>
         </arguments>
@@ -227,6 +252,54 @@ var sh = sprite_get_height(spr_ultimateArenaLogo);
 
 draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,display_get_gui_width()/2 - sw/2-10,(display_get_gui_height()/5)*2 - sh/2+10,1,1,0,c3,c3,c4,c4,1);
 draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,display_get_gui_width()/2 - sw/2,(display_get_gui_height()/5)*2 - sh/2,1,1,0,c,c,c2,c2,1);
+
+var gw = display_get_gui_width();
+var gh = display_get_gui_height();
+
+if(logo_xv)
+{
+    logo_x++;
+    if(logo_x &gt; gw-350)
+    {
+        logo_xv = false;
+        logo_col = make_color_hsv(random(255),255,255);
+    }
+}
+else
+{
+    logo_x--;
+    if(logo_x &lt; 0)
+    {
+        logo_xv = true;
+        logo_col = make_color_hsv(random(255),255,255);
+    }
+}
+
+if(logo_yv)
+{
+    logo_y++;
+    if(logo_y &gt; gh-176)
+    {
+        logo_yv = false;
+        logo_col = make_color_hsv(random(255),255,255);
+    }
+}
+else
+{
+    logo_y--;
+    if(logo_y &lt; 0)
+    {
+        logo_yv = true;
+        logo_col = make_color_hsv(random(255),255,255);
+    }
+}
+logo_timer++;
+if(logo_timer &gt; 1800)
+{
+    depth = -50;
+    draw_rectangle_color(0,0,gw,gh,c_black,c_black,c_black,c_black,0);
+    draw_sprite_ext(spr_ultimateArenaLogo,0,logo_x+350/2,logo_y+176/2,.5,.5,0,logo_col,1);
+}
 </string>
           </argument>
         </arguments>

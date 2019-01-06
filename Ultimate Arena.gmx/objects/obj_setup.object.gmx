@@ -54,6 +54,8 @@ global.uploadImage = -1;
 global.createdWorkshopItems = -1;
 global.createdWorkshopItemsCount = 0;
 
+unset = true;
+
 new_item = -1;
 
 initialize_workshop();

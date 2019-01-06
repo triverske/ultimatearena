@@ -47,6 +47,8 @@ wanderChange = 130;
 time = 0;
 bathetime = 0;
 otherFighter = 0;
+frames = 0;
+
 // Fighter Variables
 XP     = 0; // Experience
 HP     = 100; // Health        
@@ -218,9 +220,10 @@ global.DEADLOC[fighterID,1] = y;
 direction = DIR;
 commands = 0;
 DELAY--;
+frames--;
 alarm[0] = global.GAME_SPEED;
 alarm[1] = 2;
-speed = random(QUICK);
+speed = random(QUICK) * (global.extraFrames+1);
 
 ai_submit_command(STATE,CONTINUE); 
 
@@ -575,6 +578,9 @@ sbow = 0;
 //pick command
 if (DELAY &lt; 1)
     ai_command(ai_get_command());
+    
+if(frames &gt; 0)
+    event_perform(ev_alarm,0);
 </string>
           </argument>
         </arguments>
@@ -597,7 +603,9 @@ if (DELAY &lt; 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
+            <string>frames = global.extraFrames + 1;
+
+if (alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
 {
     alarm[0] = global.GAME_SPEED;
 }
