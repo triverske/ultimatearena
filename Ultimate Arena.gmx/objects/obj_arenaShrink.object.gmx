@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1000</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,15 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event = 0;
-radius = 0;
-evOverride = -1;
+            <string>radius = 200;
+ticksUntilShrink = 100;
+ticks = 0;
+minSize = 10;
+alarm[0] = global.GAME_SPEED;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="57">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -50,113 +52,22 @@ evOverride = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="56">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(global.mapwindow.__hover == 1)
+            <string>repeat(global.extraFrames + 1)
 {
-    var xPos = (global.__zui_mx-global.mapwindow.__x);
-    var yPos = (global.__zui_my-global.mapwindow.__y);
-    
-    xPos *= (512/(global.HSCALE*(512/720)));
-    yPos *= (512/(global.HSCALE*(512/720)));
-    
-    yPos -= 24;
-    
-    if(!event)
+    ticks++;
+    if(ticks == ticksUntilShrink)
     {
-        if(image == spr_landmine)
-        {
-            instance_create(xPos,yPos,obj_landmine);
-        }
-        else if(image == spr_itemBag)
-        {
-            var e = instance_create(xPos,yPos,obj_itemBag);
-            for(var i=19; i&gt;-1; i--)
-                e.INV[i] = 0;
-            e.INV[2] = 2;
-            e.INV[3] = 2;
-            if(irandom(1))
-            {
-                e.INV[4] = 1;
-                e.wspearid = instance_create(-100,-100,obj_woodSpear);
-            }
-            else
-                e.wspearid = 0;
-            if(irandom(1))
-            {
-                e.INV[5] = 1;
-                e.sspearid = instance_create(-100,-100,obj_steelSpear);
-            }
-            else
-                e.sspearid = 0;
-            if(irandom(1))
-            {
-                e.INV[6] = 1;
-                e.wbowid = instance_create(-100,-100,obj_woodBow);
-            }
-            else
-                e.wbowid = 0;
-            if(irandom(1))
-            {
-                e.INV[7] = 1;
-                e.sbowid = instance_create(-100,-100,obj_steelBow);
-            }
-            else
-                e.sbowid = 0;
-        }
+        radius--;
+        ticks = 0;
     }
-    else
-    {
-        with(instance_create(0,0,obj_arenaEvent))
-        {
-            x = xPos;
-            y = yPos;
-            event = floor(random(global.EVENT_COUNT));
-            if(other.evOverride &gt; -1)
-                event = other.evOverride;
-            alarm[0] = global.GAME_SPEED;
-            global.event_count++;
-            
-            ini_open(global.EVENT[event]);
-            description = ini_read_string("event","description","ERROR");
-            name = ini_read_string("event","name","ERROR");
-            var d1 = ini_read_real("event","death_percentage",0);
-            var d2 = max(d1,ini_read_real("event","death_percentage_u",0));
-            death_percentage = round(random_range(d1,d2));
-            ini_close();
-        }
-    }
-    audio_play_sound(snd_blip,0,0);
-    instance_destroy();
 }
-
+alarm[0] = global.GAME_SPEED;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -173,24 +84,34 @@ evOverride = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(event)
-{
-    radius += 3;
-    if(radius &gt; global.eventRadius)
-        radius = 0;
-    draw_set_color(c_red);
-    draw_set_alpha(1);
-    draw_circle(global.__zui_mx,global.__zui_my,global.eventRadius,1);
-    draw_set_alpha(.1);
-    draw_circle(global.__zui_mx,global.__zui_my,global.eventRadius,0);
-    draw_set_alpha(.5);
-    draw_circle(global.__zui_mx,global.__zui_my,radius,1);
-    draw_set_alpha(1);
-}
-else
-{
-    draw_sprite(image,0,global.__zui_mx,global.__zui_my);
-}
+            <string>if(alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
+    alarm[0] = global.GAME_SPEED;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_color(c_orange);
+draw_set_alpha(1);
+draw_circle(x,y,radius,1);
+draw_set_color(c_white);
 </string>
           </argument>
         </arguments>

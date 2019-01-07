@@ -169,13 +169,32 @@ with (obj_uiButton)
         }
         if (bID == 83)
         {
-            if (!instance_exists(obj_arenaEvent))
-                if(global.arena_events)
-                    with(instance_create(0,0,obj_placeItem))
-                        event = 1;
-        }
-        
-        
+            with (zui_main()) 
+            {
+                with(zui_create(445,348,obj_uiWindow,-1)) 
+                {
+                    zui_set_size(260,420);
+                    with (zui_create(0, 0, obj_uiWindowCaption)) 
+                    {
+                        caption = "Event List";
+                        draggable = 1;
+                    }
+                    zui_create(0,0,obj_uiExitButton,-1);
+                    with(zui_create(0,24,obj_uiListbox))
+                    {
+                        //draw_callback = tag_draw_ui;
+                        callback = evselect_ui;
+                        zui_set_anchor(0,0);
+                        zui_set_size(260,356);
+                        type = 0;
+
+                        initialize_listbox(global.eNAME,0,array_length_1d(global.eNAME)-1);
+                        other.listID = id;
+                        with(zui_create(0,0,obj_uiListboxScroll)){} 
+                    }
+                }
+            }
+        }  
     }
 }
 

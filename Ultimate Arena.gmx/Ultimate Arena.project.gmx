@@ -248,6 +248,7 @@
       <script>scripts\eventedit_ui.gml</script>
       <script>scripts\mapedit_ui.gml</script>
       <script>scripts\textedit_ui.gml</script>
+      <script>scripts\evselect_ui.gml</script>
       <script>scripts\workshop_ui.gml</script>
       <scripts name="windows">
         <script>scripts\create_window_map.gml</script>
@@ -275,6 +276,7 @@
     <script>scripts\add_default_maps.gml</script>
     <script>scripts\create_default_maps.gml</script>
     <script>scripts\initialize_directory.gml</script>
+    <script>scripts\initialize_files.gml</script>
     <script>scripts\initialize_characters.gml</script>
     <script>scripts\initialize_events.gml</script>
     <script>scripts\initialize_maps.gml</script>
@@ -347,6 +349,7 @@
       <object>objects\obj_popup</object>
       <object>objects\obj_deadLocation</object>
       <object>objects\obj_trap</object>
+      <object>objects\obj_arenaShrink</object>
     </objects>
     <objects name="ZUI">
       <object>objects\obj_uiMain</object>

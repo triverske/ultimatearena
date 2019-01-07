@@ -124,15 +124,27 @@ for(h=0;h<s;h++)
                 f = file_find_next();
                 continue;
             }
+            
             global.cNAME[i] = name;
-            global.cTYPE[i] = 1;
+            global.cTYPE[i] = 0;
             global.fNAME[i] = in;
             global.cSOUNDS[i] = ini_read_string("character","deathsound","");
+            global.cIMAGESP[i] = 0;
             
             var cImage = ini_read_string("character","image","spr_defaultFighterImage");
+            var cAnimated = ini_read_real("character","animated",0);
+            var cAnimationSpeed = ini_read_real("character","animationspeed",0);
             
-            if(cImage != "spr_defaultFighterImage")
-                global.cIMAGES[i] = sprite_add(loc + name + ".png",1,0,0,0,0);
+            if(cAnimated)
+            {
+                var temp = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);
+                var wd = round(sprite_get_width(temp) / 128);
+                global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",wd,0,0,0,0);
+                global.cIMAGESP[i] = cAnimationSpeed;
+                sprite_delete(temp);
+            }
+            else if(cImage != "spr_defaultFighterImage")
+                global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);
             else
                 global.cIMAGES[i] = spr_defaultFighterImage; 
             
@@ -170,8 +182,4 @@ global.fighters = i;
 global.FIGHTER_COUNT = i;
 
 for(i = 0;i < global.FIGHTER_COUNT;i++)
-{
     global.menuTeams[i] = "";//choose("","RED","ORANGE","YELLOW","GREEN","BLUE","PURPLE");
-}
-
-

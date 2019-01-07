@@ -49,6 +49,7 @@ skullx = 0;
 skully = 0;
 
 instance_create(0,0,obj_hoverStats);
+instance_create(256,256,obj_arenaShrink);
 draw_set_valign(fa_top);
 
 //show_debug_overlay(true);

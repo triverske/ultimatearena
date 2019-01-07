@@ -8,17 +8,29 @@ if (com != STATE)
     {   
         case "WANDER":
         caption = "Wandering";
-        if(group != -1 && distance_to_object(group) > 5)
+        var ic = true;
+            with(obj_arenaShrink)
+                if(!point_in_circle(other.x,other.y,x,y,radius-10))
+                    ic = false;
+        
+        if(group != -1 && instance_exists(group) && distance_to_object(group) > 5)
         {
-            DIR = point_direction(x,y-5,group.x,group.y-5)+random_range(-15,15);
+            if(ic == true)
+                DIR += random_range(-15,15);//point_direction(x,y-5,group.x,group.y-5)+random_range(-15,15);
+            else
+                DIR = point_direction(x,y-5,256,256)+random_range(-15,15);
         }
         else
         {
+            if(ic == false)
+                wanderAngle = point_direction(x,y-5,256,256)+random_range(-15,15);
+            else
+                wanderAngle += random_range(-10,10)
             wanderAngle += random_range(-1,1)//change the angle randomly to make it wander
             DIR = wanderAngle;
         }
         QUICK = .5 + AGILITY/10;
-        CONTINUE = 100;
+        CONTINUE = 10;
         update_create(update_get_text("wander",fighterID),fighterID,0);
         break;
         
@@ -281,6 +293,14 @@ if (com != STATE)
         CONTINUE = 70;
         DIR = point_direction(x,y-5,otherFighter.x,otherFighter.y-5)
         caption = "Chasing " + otherFighter.NAME;
+        update_m_create(update_get_multichar_text("chase",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
+        break;
+        
+        case "OBSERVE":
+        QUICK = .1 + AGILITY/10;
+        CONTINUE = 70;
+        DIR = point_direction(x,y-5,otherFighter.x,otherFighter.y-5)
+        caption = "Observing " + otherFighter.NAME;
         update_m_create(update_get_multichar_text("chase",fighterID,otherFighter.fighterID),fighterID,otherFighter.fighterID,0,0,0);
         break;
         

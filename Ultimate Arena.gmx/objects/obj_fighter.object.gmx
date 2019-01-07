@@ -227,6 +227,16 @@ speed = random(QUICK) * (global.extraFrames+1);
 
 ai_submit_command(STATE,CONTINUE); 
 
+with(obj_arenaShrink)
+    if(!point_in_circle(other.x,other.y,x,y,radius))
+        other.HP -= random(.1);
+
+if(HP &lt; 0)
+{
+    instance_destroy();
+    update_create(global.NAMES[fighterID]  + " was killed by the guardians.",fighterID,1);
+}
+
 //Determine time based stats
 if(STATE == "SLEEP")
 {
@@ -341,7 +351,7 @@ if(global.fighterGroups &amp;&amp; group == id)
     }
 }
 //Send Commands
-ai_submit_command("WANDER",5);
+ai_submit_command("WANDER",1);
 
 if(irandom(100) == 1)
     ai_submit_command("THINK",1);
@@ -411,11 +421,13 @@ if(!global.fighterGroups || (group!=c.group || (group==-1 || INSANE &amp;&amp; i
 {
     if(d &lt; SIGHT)
     {
+        ai_submit_command("OBSERVE",20);
+    
         if(INV[4] &gt; 0)
             ai_submit_command("ATTACK WSPEAR",150);
         if(INV[5] &gt; 0)
             ai_submit_command("ATTACK SSPEAR",200);
-            
+        
         if(HP &gt; 20 - (100 - SANITY) / 5)
             ai_submit_command("CHASE",50);
         else if(group!=c.group)
@@ -558,8 +570,8 @@ if(x &gt; 490 || x &lt; 10  || y &gt; 490 || y &lt; 10) //Make sure fighter does
             update_create(global.NAMES[fighterID]  + " died trying to get off Mr. Troy's Wild Ride!",fighterID,1);
         }
         
-        speed = -1;
-        DIR -= (floor(random(40)) + 160)
+        //speed = -1;
+        //DIR -= (floor(random(40)) + 160)
     }
 }
 
@@ -606,9 +618,8 @@ if(frames &gt; 0)
             <string>frames = global.extraFrames + 1;
 
 if (alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
-{
     alarm[0] = global.GAME_SPEED;
-}
+
 //check if on water
 if(alarm[0] == 1)
 {

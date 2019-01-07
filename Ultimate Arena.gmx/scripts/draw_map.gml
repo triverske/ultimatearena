@@ -7,7 +7,8 @@ if !surface_exists(map)
 surface_set_target(map);
 draw_background(global.bck_minimap,0,0);
 
-
+with(obj_arenaShrink)
+    event_perform(ev_draw,0);
 
 with(obj_deadLocation)
     draw_self();
@@ -140,6 +141,8 @@ with (obj_fighter)
     }
     
     draw_sprite_ext(spr_fighter,INSANE,x,y,1,1,0,color,1);
+    
+    draw_line(x,y,x+lengthdir_x(5,DIR),y+lengthdir_y(5,DIR));
 }
 
 with (obj_explosion)
