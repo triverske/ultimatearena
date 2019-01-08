@@ -16,21 +16,21 @@ if (com != STATE)
         if(group != -1 && instance_exists(group) && distance_to_object(group) > 5)
         {
             if(ic == true)
-                DIR += random_range(-15,15);//point_direction(x,y-5,group.x,group.y-5)+random_range(-15,15);
+                DIR += random_range(-20,20);//point_direction(x,y-5,group.x,group.y-5)+random_range(-15,15);
             else
-                DIR = point_direction(x,y-5,256,256)+random_range(-15,15);
+                DIR = point_direction(x,y-5,256,256)+random_range(-20,20);
         }
         else
         {
             if(ic == false)
-                wanderAngle = point_direction(x,y-5,256,256)+random_range(-15,15);
+                wanderAngle = point_direction(x,y-5,256,256)+random_range(-20,20);
             else
-                wanderAngle += random_range(-10,10)
+                wanderAngle += random_range(-20,20)
             wanderAngle += random_range(-1,1)//change the angle randomly to make it wander
             DIR = wanderAngle;
         }
         QUICK = .5 + AGILITY/10;
-        CONTINUE = 10;
+        CONTINUE = 8;
         update_create(update_get_text("wander",fighterID),fighterID,0);
         break;
         
@@ -43,6 +43,14 @@ if (com != STATE)
             CONTINUE = 20;
         update_create(update_get_text("sleep",fighterID),fighterID,0);
         break;
+        
+        case "WAITING":
+        caption = "Waiting";
+        QUICK = 0;
+        CONTINUE = 1;
+        update_create(update_get_text("waiting",fighterID),fighterID,0);
+        break;
+        
         
         case "WATER SEARCH":
         caption = "Searching for Water";

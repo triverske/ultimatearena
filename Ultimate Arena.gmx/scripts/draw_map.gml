@@ -140,7 +140,27 @@ with (obj_fighter)
         other.skully = smooth_approach(other.skully,y-12,.1);
     }
     
-    draw_sprite_ext(spr_fighter,INSANE,x,y,1,1,0,color,1);
+    if(global.SPRITES[fighterID,0] != spr_fighter)
+    {
+        var di = round(DIR / 90)*90;
+        if(di == 0 || di == 360)
+        {
+            if(global.SPRITES[fighterID,3] == global.SPRITES[fighterID,2])
+                draw_sprite_ext(global.SPRITES[fighterID,3] ,0,x,y,-1,1,0,c_white,1);
+            else
+                draw_sprite_ext(global.SPRITES[fighterID,3] ,0,x,y,1,1,0,c_white,1);
+        }
+        else if(di == 90)
+            draw_sprite_ext(global.SPRITES[fighterID,1] ,0,x,y,1,1,0,c_white,1);
+        else if(di == 180)
+            draw_sprite_ext(global.SPRITES[fighterID,2] ,0,x,y,1,1,0,c_white,1);
+        else if(di == 270)
+            draw_sprite_ext(global.SPRITES[fighterID,0] ,0,x,y,1,1,0,c_white,1);
+        
+        
+    }
+    else
+        draw_sprite_ext(spr_fighter,INSANE,x,y,1,1,0,color,1);
     
     draw_line(x,y,x+lengthdir_x(5,DIR),y+lengthdir_y(5,DIR));
 }

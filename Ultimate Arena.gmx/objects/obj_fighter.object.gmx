@@ -352,6 +352,7 @@ if(global.fighterGroups &amp;&amp; group == id)
 }
 //Send Commands
 ai_submit_command("WANDER",1);
+ai_submit_command("WAIT",1);
 
 if(irandom(100) == 1)
     ai_submit_command("THINK",1);

@@ -301,6 +301,7 @@
     <script>scripts\date_timestamp.gml</script>
     <script>scripts\workshop_add_created_item.gml</script>
     <script>scripts\add_commas.gml</script>
+    <script>scripts\initialize_sprites.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>

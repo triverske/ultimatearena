@@ -1,5 +1,6 @@
 global.cNAME = 0;
 global.cTYPE = 0;
+global.cSPRITES = 0;
 global.TAGS = 0;
 global.TAG_LIST = 0;
 global.TAG_COUNT = 0;
@@ -45,6 +46,8 @@ for(var h=0;h<l;h++)
     global.fNAME[i] = in;
     global.cSOUNDS[i] = ini_read_string("character","deathsound","");
     global.cIMAGESP[i] = 0;
+    
+    initialize_sprites(i,working_directory + "characters\" + directory[h] + "\")
     
     var cImage = ini_read_string("character","image","spr_defaultFighterImage");
     var cAnimated = ini_read_real("character","animated",0);
@@ -131,10 +134,13 @@ for(h=0;h<s;h++)
             global.cSOUNDS[i] = ini_read_string("character","deathsound","");
             global.cIMAGESP[i] = 0;
             
+            initialize_sprites(i,steam_map [? "folder"] + "\");
+            
             var cImage = ini_read_string("character","image","spr_defaultFighterImage");
             var cAnimated = ini_read_real("character","animated",0);
             var cAnimationSpeed = ini_read_real("character","animationspeed",0);
             
+            //BUG
             if(cAnimated)
             {
                 var temp = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);

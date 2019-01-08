@@ -442,6 +442,9 @@ if (startgame == 1)
                 global.IMAGES[charcount] = global.cIMAGES[i];
                 global.IMAGESP[charcount] = global.cIMAGESP[i];
                 
+                for(var c = 0;c &lt; global.SPRITE_COUNT;c++)
+                    global.SPRITES[charcount,c] = global.cSPRITES[i,c];
+                
                 ini_close();
             }
         }

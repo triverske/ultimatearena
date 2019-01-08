@@ -304,10 +304,13 @@ if(logo_timer &gt; 1800)
 
 with(obj_setup)
 {
-    draw_set_font(font3);
-    draw_set_valign(fa_top);
-    draw_set_halign(fa_right);
-    draw_text_colour(1270,-50 + yp,"Now Playing: " + global.soundtracknames[currentTrack],c_white,c_white,c_gray,c_gray,.8);
+    if(totalMusic &gt; 0)
+    {
+        draw_set_font(font3);
+        draw_set_valign(fa_top);
+        draw_set_halign(fa_right);
+        draw_text_colour(1270,-50 + yp,"Now Playing: " + global.soundtracknames[currentTrack],c_white,c_white,c_gray,c_gray,.8);
+    }
 }
 </string>
           </argument>

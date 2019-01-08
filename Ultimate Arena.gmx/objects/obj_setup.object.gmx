@@ -325,14 +325,17 @@ for(var i=0;i&lt;totalMusic;i++)
 }
 
 totalMusic -= 1;
-randomize();
-currentTrack = irandom(totalMusic);
-music = audio_create_stream(global.soundtrack[currentTrack]);
-audio_play_sound(music,0,0);
-
-yp = 0;
-ypG = true;
-ypWait = 60;
+if(totalMusic &gt; 0)
+{
+    randomize();
+    currentTrack = irandom(totalMusic);
+    music = audio_create_stream(global.soundtrack[currentTrack]);
+    audio_play_sound(music,0,0);
+    
+    yp = 0;
+    ypG = true;
+    ypWait = 60;
+}
 </string>
           </argument>
         </arguments>
@@ -533,43 +536,46 @@ if(global.INSANE)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check_pressed(vk_space))
-    ypG = true;
+            <string>///Music
 
-if(!audio_is_playing(music))
+if(totalMusic &gt; 0)
 {
-    audio_destroy_stream(music);
-    var rnd = irandom(totalMusic)
-    while(totalMusic &gt; 1 &amp;&amp; rnd != currentTrack)
-        rnd = irandom(totalMusic);
-    currentTrack = rnd;
-    music = audio_create_stream(global.soundtrack[totalMusic]);
-    audio_play_sound(music,0,0);
-    ypG = true;
-}
 
-if(ypG)
-{
-    yp = smooth_approach(yp,60,.05);
-    if(yp &gt; 59.5)
+    if(!audio_is_playing(music))
     {
-        yp = 60;
-        ypG = false;
-        ypWait = 60;
+        audio_destroy_stream(music);
+        var rnd = irandom(totalMusic)
+        while(totalMusic &gt; 1 &amp;&amp; rnd != currentTrack)
+            rnd = irandom(totalMusic);
+        currentTrack = rnd;
+        music = audio_create_stream(global.soundtrack[totalMusic]);
+        audio_play_sound(music,0,0);
+        ypG = true;
     }
-}
-else
-{
-    if(ypWait &gt; .5)
+    
+    if(ypG)
     {
-        ypWait--;
+        yp = smooth_approach(yp,60,.05);
+        if(yp &gt; 59.5)
+        {
+            yp = 60;
+            ypG = false;
+            ypWait = 60;
+        }
     }
     else
     {
-        yp = smooth_approach(yp,0,.1);
-        if(yp &lt; .5)
+        if(ypWait &gt; .5)
         {
-            yp = 0;
+            ypWait--;
+        }
+        else
+        {
+            yp = smooth_approach(yp,0,.1);
+            if(yp &lt; .5)
+            {
+                yp = 0;
+            }
         }
     }
 }
@@ -882,10 +888,7 @@ display_set_gui_size(global.WSCALE,global.HSCALE);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-
-
-draw_surface_stretched(application_surface,0,0,SW,SH);
+            <string>draw_surface_stretched(application_surface,0,0,SW,SH);
 </string>
           </argument>
         </arguments>
