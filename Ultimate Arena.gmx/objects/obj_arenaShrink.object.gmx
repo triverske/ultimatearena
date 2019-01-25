@@ -25,11 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>radius = 200;
+            <string>radius = 300;
 ticksUntilShrink = 100;
 ticks = 0;
 minSize = 10;
 alarm[0] = global.GAME_SPEED;
+
+surf = -1;
+surf2 = surface_create(512,512);
 </string>
           </argument>
         </arguments>
@@ -52,13 +55,17 @@ alarm[0] = global.GAME_SPEED;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>repeat(global.extraFrames + 1)
+            <string>if(global.arenaShrink)
 {
-    ticks++;
-    if(ticks == ticksUntilShrink)
+    repeat(global.extraFrames + 1)
     {
-        radius--;
-        ticks = 0;
+        ticks++;
+        if(ticks &gt;= ticksUntilShrink)
+        {
+            if(radius &gt; minSize)
+                radius--;
+            ticks = 0;
+        }
     }
 }
 alarm[0] = global.GAME_SPEED;
@@ -86,6 +93,59 @@ alarm[0] = global.GAME_SPEED;
             <kind>1</kind>
             <string>if(alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
     alarm[0] = global.GAME_SPEED;
+    
+if(!surface_exists(surf)) 
+    surf = surface_create(512, 512);
+
+    
+
+if(!surface_exists(surf2))
+    surf2 = surface_create(512,512);
+    
+surface_set_target(surf);
+draw_clear_alpha(c_black,.5);
+
+draw_set_color(c_white);
+draw_circle(256, 256, radius, false);
+draw_set_color(c_black);
+surface_reset_target();    
+
+surface_set_target(surf2);
+draw_clear_alpha(c_black, 0);
+draw_set_alpha(1);
+draw_sprite(spr_caution,0,0,0);
+// cut out the mask-surface from it:
+draw_set_blend_mode(bm_subtract);
+draw_surface(surf, 0, 0);
+draw_set_blend_mode(bm_normal);
+// finish and draw the clip-surface itself:
+surface_reset_target();
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>surface_free(surf);
+surface_free(surf2);
 </string>
           </argument>
         </arguments>
@@ -111,7 +171,12 @@ alarm[0] = global.GAME_SPEED;
             <string>draw_set_color(c_orange);
 draw_set_alpha(1);
 draw_circle(x,y,radius,1);
+draw_circle(x,y,radius-.5,1);
+draw_circle(x,y,radius+.5,1);
 draw_set_color(c_white);
+draw_set_alpha(.5);
+draw_surface(surf2,0,0);
+draw_set_alpha(1);
 </string>
           </argument>
         </arguments>

@@ -69,19 +69,27 @@ with(zui_create(window_get_width()*.5-40, window_get_height()/2 - 145, obj_uiWin
         cID = 2;
         bID = 0;
     }
-    /*
-    for(var i=0;i<7;i++)
+    
+    for(var i=0;i<3;i++)
     {
-        with (zui_create(5 + 28*i, 261, obj_uiImageButton)) 
+        with (zui_create(350 + 80*i, 261, obj_uiImageButton)) 
         {
             zui_set_anchor(0,0);
-            zui_set_size(26, 26);
+            zui_set_size(64, 64);
             image = spr_chareditFighters;
             type = i;
             callback = charedit_ui;
             bID = 9;
         }
-    }*/
+        with(zui_create(350 + 32 + 80*i,330,obj_uiLabel))
+        {
+            quik[0] = "FRONT";
+            quik[1] = "BACK";
+            quik[2] = "LEFT";
+            caption = quik[i];
+            valign = fa_top;
+        }
+    }
 
     with(zui_create(5, 265, obj_uiLabel))
     {
@@ -160,7 +168,7 @@ with(zui_create(window_get_width()*.5-40, window_get_height()/2 - 145, obj_uiWin
     {                                           
         zui_set_anchor(0,0);
         zui_set_size(192, 30);
-        caption = "Change Image";
+        caption = "Change Portrait";
         callback = charedit_ui;
         bID = 1;
     }

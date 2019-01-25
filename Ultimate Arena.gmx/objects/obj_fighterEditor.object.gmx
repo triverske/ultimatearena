@@ -147,7 +147,7 @@ sectionName[21] = "KILL STEEL SPEAR (INSANE)";
 sectionName[22] = "KILL STEEL SPEAR (FAIL)";
 sectionName[23] = "KILL WOODEN BOW";
 sectionName[24] = "KILL WOODEN BOW (INSANE)";
-sectionName[25] = "KILL WOODEN BOW (INSANE)";
+sectionName[25] = "KILL WOODEN BOW (FAIL)";
 sectionName[26] = "KILL STEEL BOW";
 sectionName[27] = "KILL STEEL BOW (INSANE)";
 sectionName[28] = "KILL STEEL BOW (FAIL)";
@@ -241,13 +241,6 @@ with(obj_uiImageButton)
         color = c_gray;
     else
         color = c_white;
-}
-/*
-with(obj_uiListbox){
-    if(listID == 0){
-        sID = 0;
-        script_execute(callback, id);
-    }
 }
 </string>
           </argument>

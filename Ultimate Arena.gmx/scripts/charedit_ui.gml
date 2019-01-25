@@ -14,6 +14,24 @@ with(obj_uiListbox)
                 global.IDselected = sID;
                 obj_fighterEditor.tempTags = 0;
                 
+                with(obj_uiImageButton)
+                {
+                    if(bID == 9)
+                    {
+                        if(type == 0)
+                            if(global.cSPRITES[other.sID,0] != spr_fighter)
+                                image = global.cSPRITES[other.sID,0]
+                                
+                        if(type == 1)
+                            if(global.cSPRITES[other.sID,1] != spr_fighter)
+                                image = global.cSPRITES[other.sID,1]
+                                
+                        if(type == 2)
+                            if(global.cSPRITES[other.sID,2] != spr_fighter)
+                                image = global.cSPRITES[other.sID,2]
+                    }
+                }
+                
                 ini_open(global.fNAME[sID])
                 global.editStats[0] = min(10,ini_read_real("character","strength",5));
                 global.editStats[1] = min(10,ini_read_real("character","agility",5));
@@ -313,6 +331,23 @@ with(obj_uiButton)
                     if(lID > 0 && lID < 6)
                         caption = "5";
                     
+                with(obj_uiImageButton)
+                {
+                    if(bID == 9)
+                    {
+                        if(image != spr_chareditFighters)
+                        {
+                            if(type == 0)
+                                sprite_save(image,0,working_directory + "characters\" + name + "\default_f.png");
+                            if(type == 1)
+                                sprite_save(image,0,working_directory + "characters\" + name + "\default_b.png");
+                            if(type == 2)
+                                sprite_save(image,0,working_directory + "characters\" + name + "\default_l.png");
+                        }
+                    }
+                }
+                        
+                        
                 if(obj_fighterEditor.newImage != spr_defaultFighterImage)
                 {
                     sprite_save_strip(obj_fighterEditor.newImage,working_directory + "characters\" + name + "\" + name + ".png");
@@ -386,6 +421,15 @@ with(obj_uiButton)
             if(obj_fighterEditor.newImage != spr_defaultFighterImage)
                 sprite_delete(obj_fighterEditor.newImage);
             obj_fighterEditor.newImage = spr_defaultFighterImage;
+            
+            with(obj_uiImageButton)
+            {
+                if(bID == 9)
+                {
+                    image = spr_chareditFighters;
+                }
+            }
+            
             keyboard_string = "";
             room_restart();
         }
@@ -428,13 +472,31 @@ with(obj_uiButton)
         }
         else if(bID == 9) //Fighter Color
         {
-            global.editColor = type;
-            with(obj_uiImageButton)
+            var file = get_open_filename("Image File|*.png;*.jpg;*.jpeg;*.gif", "");
+            if(file != "")
             {
-                if(global.editColor != type)
-                    color = c_gray;
+                global.editColor = type;
+                var newsp = sprite_add(file,0,0,0,0,0);
+                var surf = surface_create(32,32);
+                surface_set_target(surf);
+                draw_clear_alpha(0,0);
+                
+                var spw = sprite_get_width(newsp);
+                var sph = sprite_get_height(newsp);
+                
+                if(spw == 32 && sph == 32)
+                    draw_sprite_stretched(newsp,0,0,0,32,32);
                 else
-                    color = c_white;
+                {
+                    texture_set_interpolation(1);
+                    draw_sprite_stretched(newsp,0,0,0,32,32);
+                    texture_set_interpolation(0);
+                }
+                surface_reset_target();
+                
+                //if(obj_fighterEditor.newImage != spr_defaultFighterImage)
+                    //sprite_delete(obj_fighterEditor.newImage);
+                image = sprite_create_from_surface(surf,0,0,32,32,0,0,16,16);
             }
         }
         else if(bID == 10) //Change catchphrase

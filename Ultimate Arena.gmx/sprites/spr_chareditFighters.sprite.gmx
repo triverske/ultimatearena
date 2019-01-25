@@ -27,5 +27,7 @@
     <frame index="4">images\spr_chareditFighters_4.png</frame>
     <frame index="5">images\spr_chareditFighters_5.png</frame>
     <frame index="6">images\spr_chareditFighters_6.png</frame>
+    <frame index="7">images\spr_chareditFighters_7.png</frame>
+    <frame index="8">images\spr_chareditFighters_8.png</frame>
   </frames>
 </sprite>

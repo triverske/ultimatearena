@@ -161,7 +161,7 @@ with(zui_main())
                 zui_set_size(18,18);
             }
         } 
-        for(var i=0;i&lt;6;i++)
+        for(var i=0;i&lt;7;i++)
         {
             with (zui_create(240+44*i,28,obj_uiImageButton))
             {
@@ -243,10 +243,19 @@ alarm[0] = global.GAME_SPEED;
             <kind>1</kind>
             <string>draw_map();
 
-if(mouse_wheel_up())
-    updateScroll -= 34;
-else if(mouse_wheel_down())
-    updateScroll += 34;
+var scr = false;
+with(obj_uiWindow)
+    if(wID == "Updates")
+        if(__hover)
+            scr = true;
+            
+if(scr)
+{
+    if(mouse_wheel_up())
+        updateScroll -= 34;
+    else if(mouse_wheel_down())
+        updateScroll += 34;
+}
 
 updateScroll = clamp(updateScroll,0,7400);
 

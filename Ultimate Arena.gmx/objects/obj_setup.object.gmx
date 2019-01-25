@@ -49,7 +49,9 @@ global.update_count = 0;
 global.kill_count = 0;
 global.TIME_DAYS = 0;
 global.gs = 2;
+global.arenaShrink = 1;
 global.uploadImage = -1;
+draw_set_circle_precision(64);
 
 global.createdWorkshopItems = -1;
 global.createdWorkshopItemsCount = 0;

@@ -124,7 +124,9 @@
       <sprite>sprites\spr_menuIcons</sprite>
       <sprite>sprites\spr_cameraButton</sprite>
       <sprite>sprites\spr_ultimateArenaLogo</sprite>
+      <sprite>sprites\spr_caution</sprite>
       <sprite>sprites\spr_triverskeLogo</sprite>
+      <sprite>sprites\spr_cell</sprite>
     </sprites>
     <sprites name="In Game">
       <sprite>sprites\spr_fighter</sprite>
@@ -154,7 +156,6 @@
       <sprite>sprites\spr_workshopUpdatesItem</sprite>
       <sprite>sprites\spr_snow</sprite>
     </sprites>
-    <sprite>sprites\spr_cell</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_tile2</background>
@@ -263,6 +264,7 @@
         <script>scripts\create_window_mapeditor.gml</script>
         <script>scripts\create_window_workshop.gml</script>
         <script>scripts\create_window_workshop1.gml</script>
+        <script>scripts\create_window_arenashrink.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>

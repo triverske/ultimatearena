@@ -35,6 +35,7 @@ hue = 0;
 image = choose(back_tile,back_tile2,back_tile3);
 
 // SNOW
+/*
 Sname = part_system_create();
 
 particle1 = part_type_create();
@@ -49,7 +50,7 @@ part_type_life(particle1,30,440);
 emitter1 = part_emitter_create(Sname);
 part_emitter_region(Sname,emitter1,0,room_width,0,0,1,0);
 part_emitter_stream(Sname,emitter1,particle1,7);
-/*
+*/
 
 Sname = part_system_create()
 
@@ -76,18 +77,18 @@ part_type_speed(particle2,1.2,5.2,0,0);
 part_type_direction(particle2,250,290,0,20);
 part_type_orientation(particle2,0,359,4,10,1);
 part_type_blend(particle2,0);
-part_type_life(particle2,60,400); */
-
+part_type_life(particle2,60,400); 
+*/
 
 emitter1 = part_emitter_create(Sname);
 part_emitter_region(Sname,emitter1,0,SW,0,0,1,0);
 part_emitter_stream(Sname,emitter1,particle1,5);
-
 /*
+
 emitter2 = part_emitter_create(Sname);
 part_emitter_region(Sname,emitter2,0,SW,0,0,1,0);
-part_emitter_stream(Sname,emitter2,particle2,3); */
-
+part_emitter_stream(Sname,emitter2,particle2,3); 
+*/
 part_system_automatic_draw(Sname,0);
 
 for(var i = 0;i &lt; 400;i++)
@@ -136,7 +137,7 @@ if(room != rm_splashscreen)
     draw_set_alpha(1)
     draw_background_tiled(image,bg_x,bg_y);
     draw_set_color(make_color_hsv(40+sin(hue)*10,255,80+sin(hue+.12351231)*4));
-    //part_type_color1(particle1,make_color_hsv(hue+irandom_range(2,8),255,255));
+    part_type_color1(particle1,make_color_hsv(hue+irandom_range(2,8),255,255));
     //draw_set_color(c_black);
     draw_set_alpha(.1)
     draw_rectangle(0,0,SW,SH,0);

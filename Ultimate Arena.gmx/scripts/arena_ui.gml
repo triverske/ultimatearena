@@ -121,6 +121,38 @@ with (obj_uiButton)
             with(obj_arenaController)
                 showGroups = !showGroups;
         }
+        if (bID == 10)
+        {
+            with(obj_uiWindow)
+            {
+                if(wID == "Shrinking Arena")
+                    zui_destroy();
+            }
+            with (zui_main()) 
+            {
+                 create_window_arenashrink();
+            }
+        }
+        if (bID == 70)
+        {
+            if (type == 2)
+            {
+                type = 3;
+                global.arenaShrink = 1;
+                caption = "Shrinking Arena On";
+            }
+            else
+            {
+                type = 2;
+                global.arenaShrink = 0;
+                caption = "Shrinking Arena Off";
+            }
+        }
+        if (bID == 71)
+        {
+            with(obj_arenaShrink)
+                radius = 300;
+        }
         if (bID == 79)
         {
             if (type == 2)
@@ -242,6 +274,18 @@ with (obj_uiWindow)
             
             
  
+        }
+    }
+}
+
+with(obj_uiSlider)
+{
+    if(argument0 == id)
+    {
+        if(slID == 1) //Shrink Ticks
+        {
+            with(obj_arenaShrink)
+                ticksUntilShrink = 301-round(300*argument1);
         }
     }
 }

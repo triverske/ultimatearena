@@ -96,7 +96,7 @@ pos = 1;
 if(pressed)
 {
     var mouseloc = clamp(mouse_x-(__x+__parent.__x-__parent.__width/2),0,__width); 
-    show_debug_message(string(mouseloc) + "," + string(__x+__parent.__x-__parent.__width/2) + "," + string(mouse_x));
+    //show_debug_message(string(mouseloc) + "," + string(__x+__parent.__x-__parent.__width/2) + "," + string(mouse_x));
     cell.__x = mouseloc;
     
     value = 1 / __width * mouseloc;

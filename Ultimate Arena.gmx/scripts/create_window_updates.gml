@@ -15,6 +15,9 @@ with(zui_create(WS - 200,HS/2,obj_uiWindow,-1))
     with(zui_create(5,__height - 45,obj_uiButton))
     {
         zui_set_anchor(0,0);
+        bID = 80;
+        zui_set_size(186,40);
+        callback = arena_ui;
 
         if(global.deadUpdates)
         {
@@ -26,12 +29,6 @@ with(zui_create(WS - 200,HS/2,obj_uiWindow,-1))
             caption = "Death Updates Off";
             type = 2;
         }
-        
-
-    bID = 80;
-    zui_set_size(186,40);
-    callback = arena_ui;
-    
     }
     with(zui_create(__width - 5,__height - 45,obj_uiButton))
     {
@@ -39,13 +36,13 @@ with(zui_create(WS - 200,HS/2,obj_uiWindow,-1))
         bID = 79;
         if(global.otherUpdates)
         {
-        caption = "Other Updates On";
-        type = 3;
+            caption = "Other Updates On";
+            type = 3;
         }
         else
         {
-        caption = "Other Updates Off";
-        type = 2;
+            caption = "Other Updates Off";
+            type = 2;
         }
         zui_set_size(186,40);
         callback = arena_ui;
