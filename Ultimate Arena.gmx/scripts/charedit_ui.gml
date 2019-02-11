@@ -177,6 +177,7 @@ with(obj_uiButton)
             if(file != "")
             {
                 var newsp2 = sprite_add(file,0,0,0,0,0);
+                global.sprFile = file;
                 var wd = round(sprite_get_width(newsp2) / 128);
                 var h = sprite_get_height(newsp2)
                 
@@ -200,31 +201,34 @@ with(obj_uiButton)
                 } 
                 else //regular)
                 {
-                    var newsp = sprite_add(file,0,0,0,0,0);
-                    var surf = surface_create(128,128);
-                    surface_set_target(surf);
-                    draw_clear_alpha(0,0);
                     
-                    var spw = sprite_get_width(newsp);
-                    var sph = sprite_get_height(newsp);
-                    
+                    var spw = sprite_get_width(newsp2);
+                    var sph = sprite_get_height(newsp2);
+                
                     if(spw == 128 && sph == 128)
-                        draw_sprite_stretched(newsp,0,0,0,128,128);
+                    {
+                        var surf = surface_create(128,128);
+                        surface_set_target(surf);
+                        draw_clear_alpha(0,0);
+                        draw_sprite_stretched(newsp2,0,0,0,128,128);
+                        surface_reset_target();
+                        
+                        if(obj_fighterEditor.newImage != spr_defaultFighterImage)
+                        sprite_delete(obj_fighterEditor.newImage);
+                        obj_fighterEditor.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
+                        
+                    }
                     else
                     {
-                        texture_set_interpolation(1);
-                        draw_sprite_stretched(newsp,0,0,0,128,128);
-                        texture_set_interpolation(0);
+                        ui_show_popup_crop();
+
                     }
-                    surface_reset_target();
                     
-                    if(obj_fighterEditor.newImage != spr_defaultFighterImage)
-                        sprite_delete(obj_fighterEditor.newImage);
-                    obj_fighterEditor.newImage = sprite_create_from_surface(surf,0,0,128,128,0,0,0,0);
+                    sprite_delete(newsp2);
                 }
-                sprite_delete(newsp2);
             }
-            else{
+            else
+            {
                 if(obj_fighterEditor.newImage != spr_defaultFighterImage)
                     sprite_delete(obj_fighterEditor.newImage);
                 obj_fighterEditor.newImage = spr_defaultFighterImage;
@@ -284,33 +288,42 @@ with(obj_uiButton)
                     global.creator = steam_get_user_account_id();
                 }
                 
-                with(obj_fighterEditor){
+                with(obj_fighterEditor)
+                {
                     array_to_section();
-                    for(var i=0; i<55; i++){
-                        if(textList[i,0] != ""){
+                    for(var i=0; i<55; i++)
+                    {
+                        if(textList[i,0] != "")
+                        {
                             ini_write_real(section[i],"total",string_length(textList[i,0]));
                             ini_write_string(section[i],"toggle",textList[i,0]);
-                            for(var j=0; j<string_length(textList[i,0]); j++){
+                            for(var j=0; j<string_length(textList[i,0]); j++)
                                 ini_write_string(section[i],"s"+string(j+1),textList[i,j+1]);
-                            }
+                            
                         }
                     }
                 }
                 
                 var tagstring = "";
-                with(obj_uiListbox){
-                    if(listID == 1){
-                        for(var i=0; i<global.TAG_COUNT; i++){
-                            if(selected[i] == 0){
+                with(obj_uiListbox)
+                {
+                    if(listID == 1)
+                    {
+                        for(var i=0; i<global.TAG_COUNT; i++)
+                        {
+                            if(selected[i] == 0)
+                            {
                                 if(tagstring == "")
                                     tagstring+= global.TAGS[i];
                                 else
                                     tagstring+= ","+global.TAGS[i];
                             }
-                            selected[i]=1;
+                            selected[i] = 1;
                         }
-                        for(var i=0; i<array_length_1d(obj_fighterEditor.tempTags); i++){
-                            if(selected[i+global.TAG_COUNT] == 0){
+                        for(var i=0; i<array_length_1d(obj_fighterEditor.tempTags); i++)
+                        {
+                            if(selected[i+global.TAG_COUNT] == 0)
+                            {
                                 if(tagstring == "")
                                     tagstring += obj_fighterEditor.tempTags[i];
                                 else

@@ -118,7 +118,7 @@ for(h=0;h<s;h++)
         if(ini_section_exists("character"))
         {
     
-            var in = steam_map [? "folder"] + "\" + f;
+            var in = steam_map[? "folder"] + "\" + f;
             var name = ini_read_string("character","name","NAMING ERROR");
             show_debug_message(name);
             if(name == "NAMING ERROR")
@@ -143,14 +143,14 @@ for(h=0;h<s;h++)
             //BUG
             if(cAnimated)
             {
-                var temp = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);
+                var temp = sprite_add(steam_map[? "folder"] + "\" + name + ".png",1,0,0,0,0);
                 var wd = round(sprite_get_width(temp) / 128);
-                global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",wd,0,0,0,0);
+                global.cIMAGES[i] = sprite_add(steam_map[? "folder"] + "\" + name + ".png",wd,0,0,0,0);
                 global.cIMAGESP[i] = cAnimationSpeed;
                 sprite_delete(temp);
             }
             else if(cImage != "spr_defaultFighterImage")
-                global.cIMAGES[i] = sprite_add(working_directory + "characters\" + directory[h] + "\" + directory[h] + ".png",1,0,0,0,0);
+                global.cIMAGES[i] = sprite_add(steam_map[? "folder"] + "\" + name + ".png",1,0,0,0,0);
             else
                 global.cIMAGES[i] = spr_defaultFighterImage; 
             
@@ -161,13 +161,16 @@ for(h=0;h<s;h++)
                 for(r = 0; r < tagcount; r++){
                     var curtag = string_extract(tags,",",r);
                     var notInArray = 1;
-                    for(c = 0;c < global.TAG_COUNT; c++){
-                        if(global.TAGS[c] == curtag){
+                    for(c = 0;c < global.TAG_COUNT; c++)
+                    {
+                        if(global.TAGS[c] == curtag)
+                        {
                             notInArray = 0
                             global.TAG_LIST[c,array_length_2d(global.TAG_LIST, c)] = i;
                         }
                     }
-                    if(notInArray){
+                    if(notInArray)
+                    {
                         global.TAGS[global.TAG_COUNT] = curtag;
                         global.TAG_LIST[global.TAG_COUNT,0] = i;
                         global.TAG_COUNT++;

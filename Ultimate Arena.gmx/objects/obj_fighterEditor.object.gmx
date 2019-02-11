@@ -64,6 +64,8 @@ global.editColors[6,0] = 0;
 global.editColors[6,1] = 64;
 global.editColors[6,2] = 255;
 
+global.sprFile = "";
+
 section[54] = "";
 section[0] = "eat";
 section[1] = "drink";
@@ -183,6 +185,7 @@ command = 13;
 textList = 0;
 currentList = 0;
 toggleList = 0;
+cropImage = 0;
 
 tempTags = 0;
 for(i=0;i&lt;5;i++)

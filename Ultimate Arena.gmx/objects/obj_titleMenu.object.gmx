@@ -95,8 +95,8 @@ with (zui_main())
 
     with (zui_create(display_get_gui_width()/2 - 480, display_get_gui_height() / 2  + 300, obj_uiButton)) 
     {
-         zui_set_size(240, 80);
-         caption = "Subscribe To TRAILBOSS";
+         zui_set_size(200, 60);
+         caption = "Subscribe To TRAILBOSS#For Dev Updates";
          callback = title_buttons;
          bID = 21;
     }

@@ -1,3 +1,5 @@
+obj_fighterEditor.cropImage = 0;
+
 with(zui_create(window_get_width()*.5-40, window_get_height()/2 - 145, obj_uiWindow))
 {
     global.charVersion = 1;

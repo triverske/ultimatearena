@@ -127,6 +127,7 @@
       <sprite>sprites\spr_caution</sprite>
       <sprite>sprites\spr_triverskeLogo</sprite>
       <sprite>sprites\spr_cell</sprite>
+      <sprite>sprites\spr_crop</sprite>
     </sprites>
     <sprites name="In Game">
       <sprite>sprites\spr_fighter</sprite>
@@ -195,10 +196,12 @@
       <script>scripts\ui_resume.gml</script>
       <script>scripts\ui_exit.gml</script>
       <script>scripts\ui_show_popup.gml</script>
+      <script>scripts\ui_show_popup_crop.gml</script>
       <script>scripts\ui_show_popup_textedit.gml</script>
       <script>scripts\ui_show_popup_credits.gml</script>
       <script>scripts\ui_show_popup_editors.gml</script>
       <script>scripts\ui_popup_close.gml</script>
+      <script>scripts\ui_popup_close_crop.gml</script>
       <script>scripts\ui_show_pause.gml</script>
       <script>scripts\ui_restart.gml</script>
       <script>scripts\zui_draw.gml</script>
@@ -367,6 +370,7 @@
       <object>objects\obj_uiSlider</object>
       <object>objects\obj_uiLabel</object>
       <object>objects\obj_uiImage</object>
+      <object>objects\obj_uiCrop</object>
       <object>objects\obj_uiCheckbox</object>
       <object>objects\obj_uiBlack</object>
       <object>objects\obj_uiField</object>
