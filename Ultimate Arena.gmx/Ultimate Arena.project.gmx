@@ -378,6 +378,9 @@
       <object>objects\obj_uiWorkshopItem</object>
       <object>objects\obj_uiSliderCell</object>
     </objects>
+    <objects name="Extras">
+      <object>objects\obj_dya</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_setup</room>
@@ -390,6 +393,7 @@
     <room>rooms\rm_workshop</room>
     <room>rooms\rm_charselect</room>
     <room>rooms\rm_game</room>
+    <room>rooms\rm_dya</room>
   </rooms>
   <constants number="2">
     <constant name="SW">floor(display_get_width() / global.gs)</constant>
