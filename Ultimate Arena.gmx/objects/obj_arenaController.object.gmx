@@ -74,57 +74,58 @@ if(global.loadingGame == 1)
     global.loadingGame = 0;
     load_game_finish();
 }
-else{
-if(global.arena_events)
-    event_timer = irandom(20000);
 else
-    event_timer = 0;
-    
-for(var i = 0;i&lt;global.fighters+2;i++)
-    global.deadday[i] = "";
-
-for(var i = 0;i &lt; global.trees; i++)
 {
-    var c = instance_create(global.treeloc[i,0],global.treeloc[i,1],obj_tree);
-    c.foodcount = ceil(random(3));
-}
-
-for(var i = 0;i &lt; global.wood; i++)
-    instance_create(global.woodloc[i,0],global.woodloc[i,1],obj_wood);
+    if(global.arena_events)
+        event_timer = irandom(20000);
+    else
+        event_timer = 0;
+        
+    for(var i = 0;i&lt;global.fighters+2;i++)
+        global.deadday[i] = "";
     
-for(var i = 0;i &lt; global.rope; i++)
-    instance_create(global.ropeloc[i,0],global.ropeloc[i,1],obj_rope);
+    for(var i = 0;i &lt; global.trees; i++)
+    {
+        var c = instance_create(global.treeloc[i,0],global.treeloc[i,1],obj_tree);
+        c.foodcount = ceil(random(3));
+    }
     
-for(var i = 0;i &lt; global.stone; i++)
-    instance_create(global.stoneloc[i,0],global.stoneloc[i,1],obj_stone);
-    
-for(var i = 0;i &lt; 6;i++)
-    regGroup[i] = -1;
-for(var i = 1;i &lt; global.fighters+1; i++)
-{ 
-    global.deathCause[i] = "Death by ???";
-    var c = instance_create(0,0,obj_fighter);
-    c.fighterID = i;
-    global.IDLIST[i] = c;
-    c.color = global.COLORS[i];
-    c.NAME = global.NAMES[i];
-    c.STRENGTH = global.STATS[i,0];
-    c.AGILITY = global.STATS[i,1];
-    c.ENDURANCE = global.STATS[i,2];
-    c.SKILL = global.STATS[i,3];
-    c.LUCK = global.STATS[i,4];
-    team_set(i,c);
-}    
-global.NAMES[global.fighters+1] = "";
-groups[0,0] = -1;
-groups[0,1] = c_white;
-totalGroups = 0;
-showGroups = 0;
-if(global.landmines)
-{
-    for(var i = 0;i &lt; 12; i++) 
-        instance_create(floor(random(472))+20,floor(random(472))+20,obj_landmine);
-}
+    for(var i = 0;i &lt; global.wood; i++)
+        instance_create(global.woodloc[i,0],global.woodloc[i,1],obj_wood);
+        
+    for(var i = 0;i &lt; global.rope; i++)
+        instance_create(global.ropeloc[i,0],global.ropeloc[i,1],obj_rope);
+        
+    for(var i = 0;i &lt; global.stone; i++)
+        instance_create(global.stoneloc[i,0],global.stoneloc[i,1],obj_stone);
+        
+    for(var i = 0;i &lt; 6;i++)
+        regGroup[i] = -1;
+    for(var i = 1;i &lt; global.fighters+1; i++)
+    { 
+        global.deathCause[i] = "Death by ???";
+        var c = instance_create(0,0,obj_fighter);
+        c.fighterID = i;
+        global.IDLIST[i] = c;
+        c.color = global.COLORS[i];
+        c.NAME = global.NAMES[i];
+        c.STRENGTH = global.STATS[i,0];
+        c.AGILITY = global.STATS[i,1];
+        c.ENDURANCE = global.STATS[i,2];
+        c.SKILL = global.STATS[i,3];
+        c.LUCK = global.STATS[i,4];
+        team_set(i,c);
+    }    
+    global.NAMES[global.fighters+1] = "";
+    groups[0,0] = -1;
+    groups[0,1] = c_white;
+    totalGroups = 0;
+    showGroups = 0;
+    if(global.landmines)
+    {
+        for(var i = 0;i &lt; 12; i++) 
+            instance_create(floor(random(472))+20,floor(random(472))+20,obj_landmine);
+    }
 }
 with(zui_main())
 {

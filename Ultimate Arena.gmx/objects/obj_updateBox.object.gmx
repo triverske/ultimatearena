@@ -28,6 +28,8 @@
             <string>currentPos = 0;
 y = 0;
 time = global.TIME_STRING;
+if(room == rm_dya)
+    time = string(ceil(obj_dya.dayTimer / 60)) + "s Left";
 var tvar = floor(random(5));
 text = "ERROR";
 trigger = 0;

@@ -156,6 +156,7 @@
       <sprite>sprites\spr_defaultMaps</sprite>
       <sprite>sprites\spr_workshopUpdatesItem</sprite>
       <sprite>sprites\spr_snow</sprite>
+      <sprite>sprites\spr_dya_arena</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -203,6 +204,7 @@
       <script>scripts\ui_popup_close.gml</script>
       <script>scripts\ui_popup_close_crop.gml</script>
       <script>scripts\ui_show_pause.gml</script>
+      <script>scripts\ui_show_dya_gameover.gml</script>
       <script>scripts\ui_restart.gml</script>
       <script>scripts\zui_draw.gml</script>
       <script>scripts\zui_set_visible.gml</script>
@@ -236,6 +238,7 @@
     <script>scripts\string_extract.gml</script>
     <scripts name="ui">
       <script>scripts\arena_ui.gml</script>
+      <script>scripts\dya_ui.gml</script>
       <script>scripts\title_buttons.gml</script>
       <script>scripts\fighter_list_ui.gml</script>
       <script>scripts\tag_ui.gml</script>
@@ -244,6 +247,7 @@
       <script>scripts\tag_draw_ui.gml</script>
       <script>scripts\tag_select_draw_ui.gml</script>
       <script>scripts\fighter_select_buttons.gml</script>
+      <script>scripts\dya_fighter_select_buttons.gml</script>
       <script>scripts\arena_fighter_ui.gml</script>
       <script>scripts\drawcall_fighter.gml</script>
       <script>scripts\fighter_select_draw_ui.gml</script>
@@ -256,7 +260,9 @@
       <script>scripts\workshop_ui.gml</script>
       <scripts name="windows">
         <script>scripts\create_window_map.gml</script>
+        <script>scripts\create_window_dya_map.gml</script>
         <script>scripts\create_window_updates.gml</script>
+        <script>scripts\create_window_dya_updates.gml</script>
         <script>scripts\create_window_charedit.gml</script>
         <script>scripts\create_window_eventedit.gml</script>
         <script>scripts\create_window_mapedit.gml</script>
@@ -321,6 +327,7 @@
       <object>objects\obj_backgroundAnimation</object>
       <object>objects\obj_titleMenu</object>
       <object>objects\obj_fighterSelect</object>
+      <object>objects\obj_dyaFighterSelect</object>
       <object>objects\obj_fighterEditor</object>
       <object>objects\obj_eventEditor</object>
       <object>objects\obj_mapEditor</object>
@@ -380,6 +387,8 @@
     </objects>
     <objects name="Extras">
       <object>objects\obj_dya</object>
+      <object>objects\obj_dya_fighter</object>
+      <object>objects\obj_dya_hoverStats</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -394,6 +403,7 @@
     <room>rooms\rm_charselect</room>
     <room>rooms\rm_game</room>
     <room>rooms\rm_dya</room>
+    <room>rooms\rm_dyaCharselect</room>
   </rooms>
   <constants number="2">
     <constant name="SW">floor(display_get_width() / global.gs)</constant>

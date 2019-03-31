@@ -913,10 +913,8 @@ display_set_gui_size(global.WSCALE,global.HSCALE);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_game)
-{
+            <string>if (room == rm_game || room == rm_dya)
     ui_show_pause();
-}
 </string>
           </argument>
         </arguments>

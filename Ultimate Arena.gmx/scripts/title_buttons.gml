@@ -241,6 +241,12 @@ with (obj_uiButton)
         {
             url_open("https://www.youtube.com/channel/UCEcNnpeHk9z0aSCkyGMRNMA");
         }
+        else if(bID == 22)//Defend Your Arena
+        {
+            var c = instance_create(0,0,obj_roomTransition);
+            c.gotoroom = rm_dyaCharselect;
+            global.GAMETYPE = 2;  
+        }
     }
 }
 

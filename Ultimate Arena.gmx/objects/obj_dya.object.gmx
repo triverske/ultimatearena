@@ -7,7 +7,476 @@
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Create Map
+global.event_count = 0;
+global.fighter_place[global.fighters] = 0;
+global.deadUpdates = 1;
+global.otherUpdates = 1;
+global.update_count = 0;
+global.kill_count = 0;
+global.event_kills = 0;
+global.LANDMINE_KILLS = 0;
+global.TIME_STRING = "NOT READY";
+global.TIME_DAYS = 1;
+global.GAME_SPEED = 1;
+
+waitLength = 60*5;
+waitTimer = 0;
+
+arenaHealth = 400;
+arenaHealthMax = 400;
+
+day = 60*60;
+dayTimer = day;
+
+instance_create(0,0,obj_dya_hoverStats);
+
+sanityleader = -1;
+xpleader = -1;
+killleader = -1;
+updateScroll = 0;
+fighterGrabbed = noone;
+
+global.log[0] = "";
+global.logi = 0;
+
+skullx = 0;
+skully = 0;
+
+draw_set_valign(fa_top);
+
+map = surface_create(720,440);
+updates = surface_create(390,74*50);
+global.boxColor = 0;
+audio_play_sound(snd_outdoor_ambient,0,1);
+audio_play_sound(snd_outdoor_ambient2,0,1);
+mapSize = 512;
+global.mapSize = mapSize;
+
+timer = 0;
+timerMax = 90;
+sidemenu = -1;
+
+with(zui_main())
+{
+    create_window_dya_map();
+    create_window_dya_updates();
+    
+    
+    with(zui_create(75,global.HSCALE/2,obj_uiWindow,-1))
+    {
+        wID = "Stats";
+        callback = dya_ui;
+        zui_set_size(140,524);
+        with(zui_create(0,0,obj_uiWindowCaption))
+        {
+            caption = "Stats";
+            draggable = 1;
+        }
+        zui_create(0,0,obj_uiExitButton,-1);
+    }
+    
+    with(zui_create(0,0,obj_uiWindow,-100))
+    {
+        wID = "Test";
+        callback = dya_ui;
+        zui_set_size(global.WSCALE,55);
+        zui_set_anchor(0,0);
+        
+        for(var i=1;i&lt;3;i++)
+        {
+            with (zui_create(120+20*i,35,obj_uiImageButton))
+            {
+                type = i;
+                bID = i;
+                callback = dya_ui;
+                image = spr_gameSpeedButtons;
+                zui_set_size(18,18);
+            }
+        } 
+
+        with (zui_create(240+44*0,28,obj_uiImageButton))
+        {
+            type = 0;
+            bID = 4;
+            callback = dya_ui;
+            image = spr_gameButtons;
+            zui_set_size(42,42);
+        }
+        with (zui_create(240+44*1,28,obj_uiImageButton))
+        {
+            type = 1;
+            bID = 5;
+            callback = dya_ui;
+            image = spr_gameButtons;
+            zui_set_size(42,42);
+        }
+        with (zui_create(240+44*2,28,obj_uiImageButton))
+        {
+            type = 4;
+            bID = 8;
+            callback = dya_ui;
+            image = spr_gameButtons;
+            zui_set_size(42,42);
+        }
+    }
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+surface_set_target(map);
+draw_sprite(spr_dya_arena,0,0,0);
+
+with(obj_dya_fighter)
+    draw_sprite(spr_fighter,0,x,y);
+    
+with (obj_explosion)
+    draw_self();
+
+surface_reset_target();
+
+var scr = false;
+with(obj_uiWindow)
+    if(wID == "Updates")
+        if(__hover)
+            scr = true;
+            
+if(scr)
+{
+    if(mouse_wheel_up())
+        updateScroll -= 34;
+    else if(mouse_wheel_down())
+        updateScroll += 34;
+}
+
+updateScroll = clamp(updateScroll,0,7400);
+
+draw_updates();
+
+if (alarm[0] == -1 &amp;&amp; global.GAME_SPEED &gt; 0)
+    alarm[0] = global.GAME_SPEED;
+
+//Pause on Space 
+if(keyboard_check_pressed(vk_space))
+{
+    if (global.GAME_SPEED == 0)
+    {
+        global.GAME_SPEED = global.SAVE_SPEED;
+    }
+    else if (global.GAME_SPEED != 0)
+    {
+        global.SAVE_SPEED = global.GAME_SPEED;
+        global.GAME_SPEED = 0;
+    }
+}
+
+if(global.GAME_SPEED &gt; 0)
+{
+    if(waitTimer &gt; 0)
+    {
+        waitTimer--;
+        if(waitTimer == 0)
+        {
+            dayTimer = day
+            arenaHealth = arenaHealthMax;
+            
+        }
+    }
+    else
+    {
+        dayTimer--;
+        if(dayTimer == 0)
+        {
+            with(obj_dya_fighter)
+            {
+                bypass = 1;
+                instance_destroy();
+            }
+            waitTimer = waitLength;
+            global.TIME_DAYS++;
+        }
+        else
+        {
+            timer--;
+            if(timer &lt; 0)
+            {
+                timer = max(irandom(40-irandom(global.TIME_DAYS*4)),0) + irandom(45); 
+                instance_create(-30,irandom_range(300,420),obj_dya_fighter);
+            
+            }
+        }
+    }
+    if(arenaHealth &lt;= 0)
+    {
+        ui_show_dya_gameover();
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Side Menu
+draw_set_valign(fa_top);
+draw_set_halign(fa_left);
+/*
+
+if (global.TIME_SECONDS == 60)
+{
+    global.TIME_SECONDS = 0;
+    global.TIME_MINUTES += 1;
+    if (global.TIME_MINUTES == 60)
+    {
+        global.TIME_MINUTES = 0;
+        global.TIME_HOURS += 1;
+        if (global.TIME_HOURS == 24)
+        {
+            global.TIME_HOURS = 0;
+            global.TIME_DAYS += 1;
+        }
+    }
+}
+
+if(killleaderprev != killleader)
+    update[0] = 120;
+
+if(xpleaderprev != xpleader)
+    update[1] = 120;
+    
+if(sanityleaderprev != sanityleader)
+    update[2] = 120;
+    
+with(obj_arenaController)
+{
+    sanityleader = other.sanityleader;
+    xpleader = other.xpleader;
+    killleader = other.killleader;
+} */
+    
+if(!surface_exists(sidemenu))
+{
+    sidemenu = surface_create(100,500);
+}
+surface_set_target(sidemenu);
+draw_rectangle_colour(0,0,100,500,c_1,c_1,c_1,c_1,0);
+/*
+var timeh = "";
+var timem = "";
+var times = "";
+
+if (global.TIME_SECONDS &lt; 10)
+    times = "0"+string(global.TIME_SECONDS);
+else
+    times = string(global.TIME_SECONDS);
+    
+if (global.TIME_MINUTES &lt; 10)
+    timem = "0"+string(global.TIME_MINUTES);
+else
+    timem = string(global.TIME_MINUTES);
+
+if (global.TIME_HOURS &lt; 10)
+    timeh = "0"+string(global.TIME_HOURS);
+else
+    timeh = string(global.TIME_HOURS);
+
+global.TIME_STRING = timeh + ":" + timem + ":" + times
+*/
+draw_set_halign(fa_center);
+draw_set_font(font0);
+draw_set_color(c_white);
+
+
+draw_text(50,5,"TIME LEFT");
+draw_text(50,20,string(ceil(dayTimer / 60)));
+
+draw_text(50,40,"ARENA HEALTH");
+draw_text(50,55,string(arenaHealth) + " / " + string(arenaHealthMax));
+
+draw_text(50,75,"UPDATE TOTAL");
+draw_text(50,90,string(global.update_count));
+
+draw_set_halign(fa_left);
+surface_reset_target();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var str = (1/20);
+with(fighterGrabbed)
+{
+    yspeed = (y - yArray[0]) * str
+    xspeed = (x - xArray[0]) * str
+    
+    grabbed = false;
+    falling = true;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>fighterGrabbed = noone;
+if(instance_exists(global.mapwindow))
+{
+    if(global.mapwindow.__hover == 1)
+    {
+        var xPos = (global.__zui_mx-global.mapwindow.__x);
+        var yPos = (global.__zui_my-global.mapwindow.__y);
+        
+        xPos *= (720/(global.HSCALE*(1)));
+        yPos *= (440/(global.HSCALE*(440/720)));
+        yPos -= 20
+        
+        with(obj_dya_fighter)
+        {
+            if(abs(xPos - x) &lt; 8)
+            {
+                if(abs(yPos - y) &lt; 8)
+                {
+                    other.fighterGrabbed = id;
+                    grabbed = 1;
+                    ySave = y;
+                    //instance_destroy();
+                    exit;
+                }
+            }
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+draw_set_halign(fa_center);
+draw_set_valign(fa_top);
+draw_set_color(c_white);
+draw_set_font(font0);
+
+draw_text(50,5,"DYA MODE");
+draw_text(50,20,"DAY " + string(global.TIME_DAYS));
+//draw_text(50,35,global.TIME_STRING);
+
+
+if (global.GAME_SPEED == 0)
+    draw_text(150,10,"PAUSED");
+else
+    draw_text(150,10,"1X SPEED");
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>

@@ -1,4 +1,4 @@
-///arena_ui(id)
+///dya_ui(id)
 
 //Controls the UI for most of the arena-related things
 
@@ -52,7 +52,7 @@ with (obj_uiButton)
             }
             with (zui_main()) 
             {
-                create_window_map();
+                create_window_dya_map();
             }
         }
         if (bID == 5)
@@ -67,7 +67,7 @@ with (obj_uiButton)
                 with(zui_create(445,348,obj_uiWindow,-1)) 
                 {
                     wID = "Stats";
-                    callback = arena_ui;
+                    callback = dya_ui;
                     zui_set_size(140,524);
                     with(zui_create(0,0,obj_uiWindowCaption))
                     {
@@ -113,7 +113,7 @@ with (obj_uiButton)
             }
             with (zui_main()) 
             {
-                 create_window_updates();
+                 create_window_dya_updates();
             }
         }
         if (bID == 9)
@@ -237,14 +237,14 @@ with (obj_uiWindow)
         if(wID == "Map")
         {
     
-            draw_surface_stretched(obj_arenaController.map,0,24,HS*(512/720),HS*(512/720));
+            draw_surface_stretched(obj_dya.map,0,24,HS*(1),HS*(440/720));
             
         }
     
         if(wID == "Stats")
         {
-    
-            draw_surface_ext(obj_sideMenu.sidemenu,20,24,1,1,0,c_white,1);
+            
+            draw_surface_ext(obj_dya.sidemenu,20,24,1,1,0,c_white,1);
             
         }
         if(wID == "Updates")
@@ -271,6 +271,9 @@ with (obj_uiWindow)
             {
                 draw_statbars(0,0,0,0,1);
             }
+            
+            
+ 
         }
     }
 }
