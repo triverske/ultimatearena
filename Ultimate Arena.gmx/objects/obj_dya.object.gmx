@@ -71,6 +71,7 @@ audio_play_sound(snd_outdoor_ambient2,0,1);
 mapSize = 512;
 global.mapSize = mapSize;
 
+global.kill_count = 0;
 timer = 0;
 timerMax = 90;
 sidemenu = -1;
@@ -85,7 +86,7 @@ with(zui_main())
     {
         wID = "Stats";
         callback = dya_ui;
-        zui_set_size(140,524);
+        zui_set_size(140,200);
         with(zui_create(0,0,obj_uiWindowCaption))
         {
             caption = "Stats";
@@ -308,11 +309,10 @@ with(obj_arenaController)
 } */
     
 if(!surface_exists(sidemenu))
-{
-    sidemenu = surface_create(100,500);
-}
+    sidemenu = surface_create(100,170);
+
 surface_set_target(sidemenu);
-draw_rectangle_colour(0,0,100,500,c_1,c_1,c_1,c_1,0);
+draw_rectangle_colour(0,0,100,170,c_1,c_1,c_1,c_1,0);
 /*
 var timeh = "";
 var timem = "";
@@ -348,6 +348,9 @@ draw_text(50,55,string(arenaHealth) + " / " + string(arenaHealthMax));
 
 draw_text(50,75,"UPDATE TOTAL");
 draw_text(50,90,string(global.update_count));
+
+draw_text(50,110,"KILL COUNT");
+draw_text(50,125,string(global.kill_count));
 
 draw_set_halign(fa_left);
 surface_reset_target();
@@ -419,9 +422,9 @@ if(instance_exists(global.mapwindow))
         
         with(obj_dya_fighter)
         {
-            if(abs(xPos - x) &lt; 8)
+            if(abs(xPos - x) &lt; 8*(global.HSCALE/720))
             {
-                if(abs(yPos - y) &lt; 8)
+                if(abs(yPos - y) &lt; 8*(global.HSCALE/720))
                 {
                     other.fighterGrabbed = id;
                     grabbed = 1;

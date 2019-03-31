@@ -291,7 +291,7 @@ with(obj_uiButton)
                 with(obj_fighterEditor)
                 {
                     array_to_section();
-                    for(var i=0; i<55; i++)
+                    for(var i=0; i<global.SECTIONS; i++)
                     {
                         if(textList[i,0] != "")
                         {
@@ -625,7 +625,7 @@ with(obj_uiButton)
                 
                 command--;
                 if(command < 0)
-                    command = 54;
+                    command = global.SECTIONS-1;
                     
                 array_from_section();
                 
@@ -666,7 +666,7 @@ with(obj_uiButton)
                 array_to_section();
                 
                 command++;
-                if(command > 54)
+                if(command > global.SECTIONS)
                     command = 0;
                     
                 array_from_section();

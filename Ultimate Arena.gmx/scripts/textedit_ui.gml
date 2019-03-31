@@ -69,7 +69,7 @@ with(obj_uiButton){
                 
                 command--;
                 if(command < 0)
-                    command = 54;
+                    command = global.SECTIONS-1;
                     
                 array_from_section();
                 
@@ -108,7 +108,7 @@ with(obj_uiButton){
                 array_to_section();
                 
                 command++;
-                if(command > 54)
+                if(command > global.SECTIONS)
                     command = 0;
                     
                 array_from_section();
@@ -220,7 +220,7 @@ with(obj_uiButton){
                 if(global.IDselected == 0){
                     ini_open("settings.ini");
                     var t = "";
-                    for(var i=0; i<55; i++){
+                    for(var i=0; i<global.SECTIONS; i++){
                         if(textList[i,0] != "")
                             t+=textList[i,0];
                     }
@@ -229,7 +229,7 @@ with(obj_uiButton){
                 }
                 else{
                     ini_open(global.TEXT[global.IDselected]);
-                    for(var i=0; i<55; i++){
+                    for(var i=0; i<global.SECTIONS; i++){
                         if(textList[i,0] != ""){
                             ini_write_real(section[i],"total",string_length(textList[i,0]));
                             ini_write_string(section[i],"toggle",textList[i,0]);

@@ -51,6 +51,7 @@ global.TIME_DAYS = 0;
 global.gs = 2;
 global.arenaShrink = 1;
 global.uploadImage = -1;
+global.SECTIONS = 58;
 draw_set_circle_precision(64);
 
 global.createdWorkshopItems = -1;

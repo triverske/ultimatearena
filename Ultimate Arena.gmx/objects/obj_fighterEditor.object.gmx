@@ -66,7 +66,7 @@ global.editColors[6,2] = 255;
 
 global.sprFile = "";
 
-section[54] = "";
+section[58] = "";
 section[0] = "eat";
 section[1] = "drink";
 section[2] = "bathe";
@@ -122,8 +122,11 @@ section[51] = "attack_wspear";
 section[52] = "attack_sspear";
 section[53] = "attack_wbow";
 section[54] = "attack_sbow";
+section[55] = "dya_kill";
+section[56] = "dya_attack";
+section[57] = "dya_live";
 
-sectionName[54] = "";
+sectionName[58] = "";
 sectionName[0] = "EAT";
 sectionName[1] = "DRINK";
 sectionName[2] = "BATHE";
@@ -149,7 +152,7 @@ sectionName[21] = "KILL STEEL SPEAR (INSANE)";
 sectionName[22] = "KILL STEEL SPEAR (FAIL)";
 sectionName[23] = "KILL WOODEN BOW";
 sectionName[24] = "KILL WOODEN BOW (INSANE)";
-sectionName[25] = "KILL WOODEN BOW (FAIL)";
+sectionName[25] = "KILL WOODEN BOW (INSANE)";
 sectionName[26] = "KILL STEEL BOW";
 sectionName[27] = "KILL STEEL BOW (INSANE)";
 sectionName[28] = "KILL STEEL BOW (FAIL)";
@@ -179,9 +182,12 @@ sectionName[51] = "ATTACK WOODEN SPEAR";
 sectionName[52] = "ATTACK STEEL SPEAR";
 sectionName[53] = "ATTACK WOODEN BOW";
 sectionName[54] = "ATTACK STEEL BOW";
+sectionName[55] = "DYA KILL";
+sectionName[56] = "DYA ATTACK";
+sectionName[57] = "DYA SURVIVE FALL";
 
 newImage = spr_defaultFighterImage;
-command = 13;
+command = 58;
 textList = 0;
 currentList = 0;
 toggleList = 0;

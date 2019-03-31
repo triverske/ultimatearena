@@ -63,10 +63,13 @@ NAME = global.NAMES[fID];
             <kind>1</kind>
             <string>if(bypass)
     exit;
-    
-update_create(global.NAMES[fID]  + " was killed by the guardians.",fID,1);
+
+
 if(touched)
+{
     global.kill_count++;
+    update_create(update_get_text("dya_kill",fighterID),fighterID,1);
+}
 instance_create(x,y,obj_explosion);
 </string>
           </argument>
@@ -153,6 +156,7 @@ if(grabbed || falling)
             }
             else    
             {
+                update_create(update_get_text("dya_live",fighterID),fighterID,0);
                 xspeed = random_range(.5,1);
                 falling = false;
                 grabbed = false;
@@ -175,11 +179,13 @@ else
     {
         with(obj_dya)
             arenaHealth -= 10;
+        touched = false
+        update_create(update_get_text("dya_attack",fighterID),fighterID,1);
         instance_destroy();
     }
 }
 
-if(irandom(1000) == 1)
+if(irandom(10000) == 1)
     update_create(update_get_text("think",fID),fID,0);
 </string>
           </argument>

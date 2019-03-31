@@ -68,7 +68,7 @@ with (obj_uiButton)
                 {
                     wID = "Stats";
                     callback = dya_ui;
-                    zui_set_size(140,524);
+                    zui_set_size(140,200);
                     with(zui_create(0,0,obj_uiWindowCaption))
                     {
                         caption = "Stats";

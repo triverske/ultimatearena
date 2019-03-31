@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>section[54] = "";
+            <string>section[58] = "";
 section[0] = "eat";
 section[1] = "drink";
 section[2] = "bathe";
@@ -81,8 +81,11 @@ section[51] = "attack_wspear";
 section[52] = "attack_sspear";
 section[53] = "attack_wbow";
 section[54] = "attack_sbow";
+section[55] = "dya_kill";
+section[56] = "dya_attack";
+section[57] = "dya_live";
 
-sectionName[54] = "";
+sectionName[58] = "";
 sectionName[0] = "EAT";
 sectionName[1] = "DRINK";
 sectionName[2] = "BATHE";
@@ -138,11 +141,15 @@ sectionName[51] = "ATTACK WOODEN SPEAR";
 sectionName[52] = "ATTACK STEEL SPEAR";
 sectionName[53] = "ATTACK WOODEN BOW";
 sectionName[54] = "ATTACK STEEL BOW";
+sectionName[55] = "DYA KILL";
+sectionName[56] = "DYA ATTACK";
+sectionName[57] = "DYA SURVIVE FALL";
+
 
 global.IDselected = 0;
 global.copyProtection = 0;
 
-command = 0;
+command = 13;
 textList = 0;
 currentList = 0;
 toggleList = 0;

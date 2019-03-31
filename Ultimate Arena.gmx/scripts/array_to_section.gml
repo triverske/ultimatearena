@@ -2,8 +2,8 @@
 
 var copy = textList;
 textList = 0;
-
-for(var i=54; i>-1; i--){
+var sc = global.SECTIONS
+for(var i=sc; i>-1; i--){
     if(i != command){
         for(var j=array_length_2d(copy,i)-1; j>-1; j--)
             textList[i,j] = copy[i,j];

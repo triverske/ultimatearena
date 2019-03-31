@@ -3,7 +3,7 @@
 //2d - 0:toggle string, 1+:update text
 
 textList = 0;
-
+var sc = global.SECTIONS
 if(argument0 == "DefaultText.ini"){
     ini_open("settings.ini");
     var s = ini_read_string("defaulttext","toggle","");
@@ -15,7 +15,7 @@ if(argument0 == "DefaultText.ini"){
     ini_close();
     
     ini_open(argument0);
-    for(var i=0; i<55; i++){
+    for(var i=0; i<global.SECTIONS+1; i++){
         textList[i,0] = "";
         var t = ini_read_real(section[i],"total",0);
         for(var j=t; j>0; j--)
@@ -39,7 +39,7 @@ if(argument0 == "DefaultText.ini"){
     ini_close();
 }
 else if(argument0 == ""){
-    for(var i=54; i>-1; i--){
+    for(var i=sc; i>-1; i--){
         textList[i,0] = "";
     }
     global.charVersion = 1;
@@ -55,7 +55,7 @@ else if(argument0 == ""){
 }
 else{
     ini_open(argument0);
-    for(var i=54; i>-1; i--){
+    for(var i=sc; i>-1; i--){
         textList[i,0] = "";
         if(ini_section_exists(section[i])){
             var t = ini_read_real(section[i],"total",0);

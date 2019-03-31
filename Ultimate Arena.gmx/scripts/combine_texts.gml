@@ -54,6 +54,18 @@ section[51] = "attack_wspear";
 section[52] = "attack_sspear";
 section[53] = "attack_wbow";
 section[54] = "attack_sbow";
+section[55] = "dya_kill";
+section[56] = "dya_attack";
+section[57] = "dya_live";
+
+SC = 58 //Section count (0 counts)
+
+var ttotal = 0
+ini_open("DefaultText.ini");
+for(var i=0; i<SC; i++)
+    ttotal += ini_read_real(section[i],"total",0);
+ini_close();
+
 
 directory = 0;
 directory[0] = "";
@@ -63,25 +75,32 @@ if(file_exists("text.ini"))
     file_delete("text.ini");
     
 ini_open("settings.ini");
-if(ini_read_real("defaulttext","togglefile",1)){
+if(ini_read_real("defaulttext","togglefile",1))
+{
     var t = ini_read_string("defaulttext","toggle","ERROR");
     
-    if(t != "ERROR"){
+    if(t != "ERROR")
+    {
         ini_close();
         var a = 0;
         ini_open("DefaultText.ini");
-        for(var i=0; i<55; i++){//stores text in a array
+        for(var i=0; i<SC; i++)
+        {//stores text in a array
             a[i,0] = ini_read_real(section[i],"total",0);
+            show_debug_message(string(a[i,0]) + " in section " + section[i]);
             //a[i,1] = ini_read_string(section[i],"toggle","ERROR");
             for(var j=1;j<a[i,0]+1;j++)
                 a[i,j] = ini_read_string(section[i],"s"+string(j),"ERROR");
         }
         ini_close();
         ini_open("text.ini");
-        for(i=0; i<55; i++){//adds a array to text.ini
+        for(i=0; i<SC; i++) //adds a array to text.ini
+        {
             var tot = 0;
-            for(j=1; j<a[i,0]+1; j++){
-                if(string_char_at(t,1) == "1"){
+            for(j=1; j<a[i,0]+1; j++)
+            {
+                if(string_char_at(t,1) == "1")
+                {
                     tot++;
                     ini_write_string(section[i],"s"+string(tot),a[i,j]);
                 }
@@ -91,9 +110,10 @@ if(ini_read_real("defaulttext","togglefile",1)){
         }
         ini_close();
     }
-    else{
+    else
+    {
         t="";
-        repeat(194)
+        repeat(ttotal)
             t+="1";
         ini_write_string("defaulttext","toggle",t);
         ini_close();
@@ -101,16 +121,23 @@ if(ini_read_real("defaulttext","togglefile",1)){
     }
 }
 else
+{
     ini_close();
+}
 
-if(l > 0){
-    for(var i=0;i<l;i++){//loops through all files
-        if(global.TEXTTOGGLE[i+1]){
+if(l > 0)
+{
+    for(var i=0;i<l;i++)
+    {//loops through all files
+        if(global.TEXTTOGGLE[i+1])
+        {
             var t = 0;
             ini_open("texts\" + directory[i] + "\" + directory[i] + ".ini");
-            for(var j=0; j<55; j++){//stores text in t array
+            for(var j=0; j<SC; j++)
+            {//stores text in t array
                 t[j,0] = 0;
-                if(ini_section_exists(section[j])){
+                if(ini_section_exists(section[j]))
+                {
                     t[j,0] = ini_read_real(section[j],"total",0);
                     t[j,1] = ini_read_string(section[j],"toggle","ERROR");
                     if(t[j,0] > 0 && t[j,1] == "ERROR"){
@@ -125,9 +152,11 @@ if(l > 0){
             }
             ini_close();
             ini_open("text.ini");
-            for(j=0; j<55; j++){//adds t array to text.ini
+            for(j=0; j<SC; j++)
+            {//adds t array to text.ini
                 var tot = ini_read_real(section[j],"total",0);
-                for(var k=2;k<t[j,0]+2;k++){
+                for(var k=2;k<t[j,0]+2;k++)
+                {
                     if(t[j,k] == "ERROR" || string_char_at(t[j,1],k-1) == "0")
                         tot--;
                     else
