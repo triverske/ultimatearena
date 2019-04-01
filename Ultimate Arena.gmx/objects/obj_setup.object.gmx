@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.VERSION = "3.0";
+            <string>global.VERSION = "4.0";
 
 global.ENDLESS = 0;
 global.SAVE_SPEED = 12;
@@ -60,6 +60,21 @@ global.createdWorkshopItemsCount = 0;
 unset = true;
 
 new_item = -1;
+
+ini_open("settings.ini")
+var v = ini_read_real("settings","version",1);
+var ac = ini_read_real("settings","addcharacters",1);
+ini_close();
+
+if(v &lt; 4)
+{
+    file_delete("settings.ini");
+    ini_open("settings.ini");
+    ini_write_real("settings","version",global.VERSION);
+    ini_write_real("settings","addcharacters",ac);
+    ini_close();
+}
+
 
 initialize_workshop();
 
