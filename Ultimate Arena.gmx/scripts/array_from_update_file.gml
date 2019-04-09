@@ -7,8 +7,9 @@ var sc = global.SECTIONS
 if(argument0 == "DefaultText.ini"){
     ini_open("settings.ini");
     var s = ini_read_string("defaulttext","toggle","");
-    if(s == ""){
-        repeat(194)
+    if(s == "")
+    {
+        repeat(999)
             s+="1";
         ini_write_string("defaulttext","toggle",s);
     }

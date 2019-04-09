@@ -66,7 +66,7 @@ global.editColors[6,2] = 255;
 
 global.sprFile = "";
 
-section[58] = "";
+section[59] = "";
 section[0] = "eat";
 section[1] = "drink";
 section[2] = "bathe";
@@ -125,8 +125,9 @@ section[54] = "attack_sbow";
 section[55] = "dya_kill";
 section[56] = "dya_attack";
 section[57] = "dya_live";
+section[58] = "shrink";
 
-sectionName[58] = "";
+sectionName[59] = "";
 sectionName[0] = "EAT";
 sectionName[1] = "DRINK";
 sectionName[2] = "BATHE";
@@ -185,9 +186,10 @@ sectionName[54] = "ATTACK STEEL BOW";
 sectionName[55] = "DYA KILL";
 sectionName[56] = "DYA ATTACK";
 sectionName[57] = "DYA SURVIVE FALL";
+sectionName[58] = "DEATH BY ARENA SHRINKING";
 
 newImage = spr_defaultFighterImage;
-command = 58;
+command = 0;
 textList = 0;
 currentList = 0;
 toggleList = 0;

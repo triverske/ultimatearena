@@ -227,14 +227,30 @@ speed = random(QUICK) * (global.extraFrames+1);
 
 ai_submit_command(STATE,CONTINUE); 
 
+var shrink = 0;
 with(obj_arenaShrink)
+{
     if(!point_in_circle(other.x,other.y,x,y,radius))
+    {
         other.HP -= random(.1);
+        shrink = 1;
+    }
+}
 
 if(HP &lt; 0)
 {
+    if(shrink)
+    {
+        global.deathCause[fighterID] = "Death by Shrinking Arena";
+        update_create(update_get_text("shrink",fighterID),fighterID,1);
+    }
+    else
+    {
+        update_create(global.NAMES[fighterID]  + " was killed by the guardians.",fighterID,1);
+    }
+    
     instance_destroy();
-    update_create(global.NAMES[fighterID]  + " was killed by the guardians.",fighterID,1);
+    
 }
 
 //Determine time based stats

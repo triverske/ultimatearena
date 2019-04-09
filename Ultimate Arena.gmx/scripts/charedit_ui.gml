@@ -43,6 +43,25 @@ with(obj_uiListbox)
                 global.creator = ini_read_real("character","creator",-1);
                 global.charVersion = ini_read_real("character","version",1);
                 global.workshopID = ini_read_real("character","workshopID",-1);
+                
+                var c1 = ini_read_real("character","colorr",255);
+                var c2 = ini_read_real("character","colorg",255);
+                var c3 = ini_read_real("character","colorb",255);
+                global.sliderColor = make_color_rgb(c1,c2,c3);
+                
+                with(obj_uiSlider)
+                {
+                    if(slID == 1)
+                        value = color_get_hue(global.sliderColor) / 255;
+                    else if(slID == 2)
+                        value = color_get_saturation(global.sliderColor) / 255;
+                    else if(slID == 3)
+                        value = color_get_value(global.sliderColor) / 255;
+                    
+                    show_debug_message(string(value));
+                    cell.__x = __width * value
+                }
+                
                 ini_close();
                 
                 with(obj_uiImage)
@@ -291,7 +310,7 @@ with(obj_uiButton)
                 with(obj_fighterEditor)
                 {
                     array_to_section();
-                    for(var i=0; i<global.SECTIONS; i++)
+                    for(var i=0; i<global.SECTIONS+1; i++)
                     {
                         if(textList[i,0] != "")
                         {
@@ -666,7 +685,7 @@ with(obj_uiButton)
                 array_to_section();
                 
                 command++;
-                if(command > global.SECTIONS)
+                if(command >= global.SECTIONS)
                     command = 0;
                     
                 array_from_section();

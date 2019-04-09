@@ -108,7 +108,7 @@ with(obj_uiButton){
                 array_to_section();
                 
                 command++;
-                if(command > global.SECTIONS)
+                if(command >= global.SECTIONS)
                     command = 0;
                     
                 array_from_section();

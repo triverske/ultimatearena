@@ -57,8 +57,9 @@ section[54] = "attack_sbow";
 section[55] = "dya_kill";
 section[56] = "dya_attack";
 section[57] = "dya_live";
+section[58] = "shrink";
 
-SC = 58 //Section count (0 counts)
+SC = 59 //Section count (0 counts)
 
 var ttotal = 0
 ini_open("DefaultText.ini");
@@ -140,14 +141,15 @@ if(l > 0)
                 {
                     t[j,0] = ini_read_real(section[j],"total",0);
                     t[j,1] = ini_read_string(section[j],"toggle","ERROR");
-                    if(t[j,0] > 0 && t[j,1] == "ERROR"){
+                    if(t[j,0] > 0 && t[j,1] == "ERROR")
+                    {
                         t[j,1] = "";
                         repeat(t[j,0])
                             t[j,1]+="1";
                     }
-                    for(var k=2;k<t[j,0]+2;k++){
+                    for(var k=2;k<t[j,0]+2;k++)
                         t[j,k] = ini_read_string(section[j],"s"+string(k-1),"ERROR");
-                    }
+                    
                 }
             }
             ini_close();
