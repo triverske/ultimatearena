@@ -128,6 +128,8 @@
       <sprite>sprites\spr_triverskeLogo</sprite>
       <sprite>sprites\spr_cell</sprite>
       <sprite>sprites\spr_crop</sprite>
+      <sprite>sprites\spr_newspaper</sprite>
+      <sprite>sprites\spr_testnewsimage</sprite>
     </sprites>
     <sprites name="In Game">
       <sprite>sprites\spr_fighter</sprite>
@@ -274,6 +276,7 @@
         <script>scripts\create_window_workshop.gml</script>
         <script>scripts\create_window_workshop1.gml</script>
         <script>scripts\create_window_arenashrink.gml</script>
+        <script>scripts\create_window_newspaper.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>
@@ -313,12 +316,14 @@
     <script>scripts\workshop_add_created_item.gml</script>
     <script>scripts\add_commas.gml</script>
     <script>scripts\initialize_sprites.gml</script>
+    <script>scripts\generate_news.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
     <font>fonts\font3</font>
     <font>fonts\font4</font>
     <font>fonts\font_board</font>
+    <font>fonts\fnt_headline</font>
   </fonts>
   <objects name="objects">
     <objects name="Menus &amp; Setup">

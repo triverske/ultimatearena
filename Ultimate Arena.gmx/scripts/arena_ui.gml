@@ -133,6 +133,18 @@ with (obj_uiButton)
                  create_window_arenashrink();
             }
         }
+        if(bID == 11) //Newspaper
+        {
+            with(obj_uiWindow)
+            {
+                if(wID == "Ultimate News")
+                    zui_destroy();
+            }
+            with (zui_main()) 
+            {
+                 create_window_newspaper();
+            }
+        }
         if (bID == 70)
         {
             if (type == 2)
@@ -236,9 +248,12 @@ with (obj_uiWindow)
     {
         if(wID == "Map")
         {
-    
             draw_surface_stretched(obj_arenaController.map,0,24,HS*(512/720),HS*(512/720));
-            
+        }
+        
+        if(wID == "Ultimate News")
+        {
+            draw_surface_stretched(obj_arenaController.news,0,24,600,600);
         }
     
         if(wID == "Stats")

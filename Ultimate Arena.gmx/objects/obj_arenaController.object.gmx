@@ -42,6 +42,10 @@ xpleader = -1;
 killleader = -1;
 updateScroll = 0;
 
+news = -1;
+newsHeadline = string(global.fighters) + " FIGHTERS ENTER THE ULTIMATE ARENA!";
+newsIssue = 0;
+
 global.log[0] = "";
 global.logi = 0;
 
@@ -162,7 +166,7 @@ with(zui_main())
                 zui_set_size(18,18);
             }
         } 
-        for(var i=0;i&lt;7;i++)
+        for(var i=0;i&lt;8;i++)
         {
             with (zui_create(240+44*i,28,obj_uiImageButton))
             {
@@ -244,6 +248,8 @@ alarm[0] = global.GAME_SPEED;
             <kind>1</kind>
             <string>draw_map();
 
+
+
 var scr = false;
 with(obj_uiWindow)
     if(wID == "Updates")
@@ -277,6 +283,13 @@ if(keyboard_check_pressed(vk_space))
         global.SAVE_SPEED = global.GAME_SPEED;
         global.GAME_SPEED = 0;
     }
+    surface_free(news);
+}
+
+if(!surface_exists(news))
+{
+    generate_news();
+    
 }
 
 
