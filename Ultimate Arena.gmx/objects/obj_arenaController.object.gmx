@@ -45,6 +45,7 @@ updateScroll = 0;
 news = -1;
 newsHeadline = string(global.fighters) + " FIGHTERS ENTER THE ULTIMATE ARENA!";
 newsIssue = 0;
+newsFightersDead = ds_list_create();
 
 global.log[0] = "";
 global.logi = 0;

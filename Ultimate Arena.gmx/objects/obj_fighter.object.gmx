@@ -156,6 +156,11 @@ playDeathSound(fighterID);
 
 global.deadday[fighterID] = "Died Day " + string(global.TIME_DAYS);
 
+with(obj_arenaController)
+{
+    ds_list_add(newsFightersDead,other.fighterID);
+}
+
 with(obj_fighter)
 {  
     if(distance_to_object(other) &lt; SIGHT)
