@@ -159,6 +159,7 @@
       <sprite>sprites\spr_workshopUpdatesItem</sprite>
       <sprite>sprites\spr_snow</sprite>
       <sprite>sprites\spr_dya_arena</sprite>
+      <sprite>sprites\spr_map</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -394,6 +395,7 @@
       <object>objects\obj_dya</object>
       <object>objects\obj_dya_fighter</object>
       <object>objects\obj_dya_hoverStats</object>
+      <object>objects\obj_maptest</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -409,6 +411,7 @@
     <room>rooms\rm_game</room>
     <room>rooms\rm_dya</room>
     <room>rooms\rm_dyaCharselect</room>
+    <room>rooms\rm_maptest</room>
   </rooms>
   <constants number="2">
     <constant name="SW">floor(display_get_width() / global.gs)</constant>
