@@ -46,6 +46,7 @@ news = -1;
 newsHeadline = string(global.fighters) + " FIGHTERS ENTER THE ULTIMATE ARENA!";
 newsIssue = 0;
 newsFightersDead = ds_list_create();
+newsPrev = 12;
 
 global.log[0] = "";
 global.logi = 0;
@@ -291,6 +292,13 @@ if(!surface_exists(news))
 {
     generate_news();
     
+}
+
+
+if(global.TIME_HOURS mod 6 == 0 &amp;&amp; global.TIME_MINUTES == 0 &amp;&amp; newsPrev != global.TIME_HOURS)
+{
+    generate_news();
+    newsPrev = global.TIME_HOURS;
 }
 
 

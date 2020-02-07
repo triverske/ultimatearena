@@ -253,7 +253,24 @@ with (obj_uiWindow)
         
         if(wID == "Ultimate News")
         {
+            var px = __x - 300;
+            var py = __y - 276;
             draw_surface_stretched(obj_arenaController.news,0,24,600,600);
+            draw_sprite(spr_cameraButton,1,0,24);
+            
+            if(mouse_check_button_pressed(mb_left))
+            {
+                show_debug_message(string(px) + ", " + string(py) + " - " + string(mouse_x) + ", " + string(mouse_y));
+                //Screenshot News
+                if(point_in_rectangle(mouse_x,mouse_y,px,py,px+14,py+14))
+                {
+                    var file = get_save_filename("Screenshot|*.png", "pic.png");
+                    if(file != "")
+                    {
+                        surface_save(obj_arenaController.news,file);
+                    }
+                }
+            }
         }
     
         if(wID == "Stats")

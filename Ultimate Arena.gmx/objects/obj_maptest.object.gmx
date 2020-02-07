@@ -26,33 +26,47 @@
           <argument>
             <kind>1</kind>
             <string>mapSurf = -1;
-mapWidth = 500;
-mapHeight = 500;
+mapWidth = 512;
+mapHeight = 512;
 
-colSurf = surface_create(384,384);
-heightSurf = surface_create(384,384);
+px = 512;
+py = 512;
+
+colSurf = surface_create(1024,1024);
+heightSurf = surface_create(1024,1024);
 
 phi = 0;
+ybuffer[mapWidth] = 0;
 
 surface_set_target(colSurf);
+draw_clear_alpha(c_black,1);
 draw_sprite(spr_map,0,0,0);
 surface_reset_target();
 
 surface_set_target(heightSurf);
+draw_clear_alpha(c_black,1);
 draw_sprite(spr_map,1,0,0);
 surface_reset_target();
 
-colMap[384,384] = 0;
-heightMap[384,384] = 0;
-for(var i = 0;i &lt; 384;i++)
-{
-    for(var c = 0;c &lt; 384;c++)
-    {
-        heightMap[i,c] = color_get_red(surface_getpixel(heightSurf,i,c));
-        colMap[i,c] = surface_getpixel(colSurf,i,c);
-    }
-}
+//=== Determine Width and Height ==//
+var ww = 1024
+var hh = 1024
 
+//=== Surface to Buffer ===//
+colBuff=buffer_create(4 * ww * hh, buffer_fixed, 1);
+buffer_get_surface(colBuff, colSurf, 0, 0, 0);
+surface_free(colSurf);// we don't need the surface anymore
+
+heiBuff=buffer_create(4 * ww * hh, buffer_fixed, 1);
+buffer_get_surface(heiBuff, heightSurf, 0, 0, 0);
+surface_free(heightSurf);// we don't need the surface anymore
+
+
+/*
+    
+// === Cleanup ===//
+buffer_delete(colBuff);       
+buffer_delete(heiBuff);     
 </string>
           </argument>
         </arguments>
@@ -75,72 +89,131 @@ for(var i = 0;i &lt; 384;i++)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(!surface_exists(mapSurf))
-    mapSurf = surface_create(mapWidth,mapHeight);
+            <string>var renW = 256;
+var renH = 256;
 
-var px = 200;
-var py = 200;
-var height = 50;
-var horizon = 120;
+
+if(!surface_exists(mapSurf))
+    mapSurf = surface_create(renW,renH);
+
+var height = 150;
+var horizon = 40;
 var scale_height = 120;
-var distance = 120;
+var distance = 600;
 
 var plx = 0;
 var prx = 0;
 var ply = 0;
 var pry = 0;
 
-if(keyboard_check_pressed(ord("E")))
-    phi++;
-if(keyboard_check_pressed(ord("Q")))
-    phi--;
-
-/*
-def Render(p, height, horizon, scale_height, distance, screen_width, screen_height):
-    # Draw from back to the front (high z coordinate to low z coordinate)
-    for z in range(distance, 1, -1):
-        # Find line on map. This calculation corresponds to a field of view of 90°
-        pleft  = Point(-z + p.x, -z + p.y)
-        pright = Point( z + p.x, -z + p.y)
-        # segment the line
-        dx = (pright.x - pleft.x) / screen_width
-        # Raster line and draw a vertical line for each segment
-        for i in range(0, screen_width):
-            height_on_screen = (height - heightmap[pleft.x, pleft.y]) / z * scale_height. + horizon
-            DrawVerticalLine(i, height_on_screen, screen_height, colormap[pleft.x, pleft.y])
-            pleft.x += dx
-Render( Point(0, 0), 50, 120, 120, 300, 800, 600 )
-*/
-
-surface_set_target(mapSurf);
 var sinphi = sin(phi);
 var cosphi = cos(phi);
-var m = 10;
-for(var z = distance;z &gt; 1;z-=m)
+if(keyboard_check(ord("W")))
 {
-    m = floor(m * .9);
+    z = 1;
+    plx = (-cosphi*z - sinphi*z) + px;
+    ply = ( sinphi*z - cosphi*z) + py;
+    prx = ( cosphi*z - sinphi*z) + px;
+    pry = (-sinphi*z - cosphi*z) + py;
+    px = (plx+prx)/2;
+    py = (ply+pry)/2;
+}
+    
+
+if(keyboard_check(ord("E")))
+    phi+=.1;
+if(keyboard_check(ord("Q")))
+    phi-=.1;
+
+for(var i = 0;i &lt; renW;i++)
+    ybuffer[i] = renW;
+
+surface_set_target(mapSurf);
+draw_clear_alpha(make_color_rgb(77,179,240),1);
+var sinphi = sin(phi);
+var cosphi = cos(phi);
+
+var z = 40;
+var dz = .1;
+var cl = 0;
+var cycles = 0;
+while(cycles &lt; 75)
+{
 
     plx = (-cosphi*z - sinphi*z) + px;
     ply = ( sinphi*z - cosphi*z) + py;
     prx = ( cosphi*z - sinphi*z) + px;
     pry = (-sinphi*z - cosphi*z) + py;
     
-    var dx = (prx - plx) / mapWidth;
-    var dy = (pry - ply) / mapWidth;
+    var dx = (prx - plx) / renW;
+    var dy = (pry - ply) / renW;
     //Render time
-    for(var i = 0;i &lt; mapWidth;i++)
+    for(var i = 0;i &lt; renW;i++)
     {
-        var hm = heightMap[plx,ply];
-        var cm = colMap[plx,ply];
+        if(plx &lt; 0 || plx &gt; 1023 || ply &lt; 0 || ply &gt; 1023)
+        {
+            plx += dx;
+            ply += dy;
+            continue;
+        }
+        rx = round(plx);
+        ry = round(ply);
+            
+        //var hm = map_getheight(plx,ply);
+        
+        var pixel = buffer_peek(heiBuff, 4 * (rx + ry * 1024), buffer_u32)    // extracts info in ABGR Format
+        var hm = pixel &amp; $ff; 
+        
         height_on_screen = (height - hm) / z * scale_height + horizon;
-        draw_set_color(cm);
-        draw_line(i, height_on_screen, i, mapHeight)
-        plx += dx;
-        ply += dy;
+        
+        if(height_on_screen &lt; ybuffer[i])
+        {  
+            //var cm = map_getcolor(plx,ply);
+            pixel = buffer_peek(colBuff, 4 * (rx + ry * 1024), buffer_u32)    // extracts info in ABGR Format
+            cm = make_color_rgb(pixel &amp; $ff, (pixel &gt;&gt; 8) &amp; $ff, (pixel &gt;&gt; 16) &amp; $ff);
+            
+            draw_set_color(merge_color(cm,make_color_rgb(77,179,240),min(cl,.98))); 
+            
+            draw_line(i, height_on_screen, i, ybuffer[i])
+            ybuffer[i] = height_on_screen;
+        }
+          /*  
+        if(cycles &gt; 60)
+        {
+            i+=2;
+            plx += dx*3;
+            ply += dy*3;
+        }
+        else if(cycles &gt; 40)
+        {
+            i+=1;
+            plx += dx*2;
+            ply += dy*2;
+        }
+        else*/
+        {
+            plx += dx;
+            ply += dy;
+        }
+
+        
+        
     }
+    
+    z += dz;
+    dz += .12;
+    cl += .005;
+    cycles++;
+    if(cycles &gt; 50)
+        dz += .23;
 }
+//show_debug_message(string(cycles));
+draw_set_color(c_black);
+draw_set_valign(fa_top);
+draw_set_halign(fa_left);
 draw_text(10,10,fps);
 surface_reset_target();
+
 </string>
           </argument>
         </arguments>
@@ -163,7 +236,7 @@ surface_reset_target();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_surface(mapSurf,50,50);
+            <string>draw_surface_ext(mapSurf,50,50,2,2,0,c_white,1);
 </string>
           </argument>
         </arguments>
