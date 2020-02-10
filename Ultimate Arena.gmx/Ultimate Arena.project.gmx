@@ -161,6 +161,7 @@
       <sprite>sprites\spr_dya_arena</sprite>
       <sprite>sprites\spr_map</sprite>
     </sprites>
+    <sprite>sprites\spr_backgrid</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_tile2</background>
@@ -318,8 +319,7 @@
     <script>scripts\add_commas.gml</script>
     <script>scripts\initialize_sprites.gml</script>
     <script>scripts\generate_news.gml</script>
-    <script>scripts\map_getcolor.gml</script>
-    <script>scripts\map_getheight.gml</script>
+    <script>scripts\buffer_get_height.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -398,6 +398,7 @@
       <object>objects\obj_dya_fighter</object>
       <object>objects\obj_dya_hoverStats</object>
       <object>objects\obj_maptest</object>
+      <object>objects\obj_mapcamera</object>
     </objects>
   </objects>
   <rooms name="rooms">
