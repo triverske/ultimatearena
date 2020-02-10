@@ -402,7 +402,6 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_maptest</room>
     <room>rooms\rm_setup</room>
     <room>rooms\rm_splashscreen</room>
     <room>rooms\rm_title</room>
@@ -415,6 +414,7 @@
     <room>rooms\rm_game</room>
     <room>rooms\rm_dya</room>
     <room>rooms\rm_dyaCharselect</room>
+    <room>rooms\rm_maptest</room>
   </rooms>
   <constants number="2">
     <constant name="SW">floor(display_get_width() / global.gs)</constant>

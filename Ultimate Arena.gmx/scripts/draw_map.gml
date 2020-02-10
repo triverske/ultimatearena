@@ -5,6 +5,9 @@ if !surface_exists(map)
 }
 
 surface_set_target(map);
+with(obj_mapcamera)
+    draw_surface_ext(testSurf,0,0,2,2,0,c_white,1);
+/*
 draw_background(global.bck_minimap,0,0);
 
 with(obj_arenaShrink)
@@ -196,6 +199,6 @@ if(instance_exists(obj_arenaEvent))
     draw_set_halign(fa_middle);
     draw_text_colour(256,512-21,"Arena Event! " + obj_arenaEvent.description,c_white,c_white,c_silver,c_silver,1);
 }
-
+*/
 surface_reset_target();
 global.testmap = realmap;
