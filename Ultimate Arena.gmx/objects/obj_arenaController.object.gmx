@@ -168,7 +168,7 @@ with(zui_main())
                 zui_set_size(18,18);
             }
         } 
-        for(var i=0;i&lt;8;i++)
+        for(var i=0;i&lt;9;i++)
         {
             with (zui_create(240+44*i,28,obj_uiImageButton))
             {
@@ -249,8 +249,6 @@ alarm[0] = global.GAME_SPEED;
           <argument>
             <kind>1</kind>
             <string>draw_map();
-
-
 
 var scr = false;
 with(obj_uiWindow)

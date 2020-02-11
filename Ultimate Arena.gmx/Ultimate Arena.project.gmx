@@ -264,6 +264,7 @@
       <script>scripts\workshop_ui.gml</script>
       <scripts name="windows">
         <script>scripts\create_window_map.gml</script>
+        <script>scripts\create_window_3dmap.gml</script>
         <script>scripts\create_window_dya_map.gml</script>
         <script>scripts\create_window_updates.gml</script>
         <script>scripts\create_window_dya_updates.gml</script>

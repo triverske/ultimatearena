@@ -145,6 +145,18 @@ with (obj_uiButton)
                  create_window_newspaper();
             }
         }
+        if (bID == 12)
+        {
+            with(obj_uiWindow)
+            {
+                if(wID == "3D Map")
+                    zui_destroy();
+            }
+            with (zui_main()) 
+            {
+                create_window_3dmap();
+            }
+        }
         if (bID == 70)
         {
             if (type == 2)
@@ -249,6 +261,11 @@ with (obj_uiWindow)
         if(wID == "Map")
         {
             draw_surface_stretched(obj_arenaController.map,0,24,HS*(512/720),HS*(512/720));
+        }
+        
+        if(wID == "3D Map")
+        {
+            draw_surface_stretched(obj_mapcamera.testSurf,0,24,HS*(512/720),HS*(512/720));
         }
         
         if(wID == "Ultimate News")
