@@ -81,6 +81,17 @@ d3d_set_zwriteenable(1);
 d3d_set_projection(x,y,z,xto,yto,zto,0,0,1);
 with(obj_maptest)
     vertex_submit(vertexBuffer, pr_trianglelist, texture);
+with(obj_fighter)
+    if(bufferReady)
+    {
+        var cx = floor(clamp(x,0,511));
+        var cy = floor(clamp(y,0,511));
+        d3d_transform_set_identity();
+        d3d_transform_add_translation(cx-8,cy,(buffer_get_height(obj_maptest.hBuff,cx,cy) * terrainHeight / 255)+3);
+        vertex_submit(vertexBuffer, pr_trianglelist, texture);
+        d3d_transform_set_identity();
+        
+    }
 theta+=.0000001*delta_time;
 x = zoom * sin(theta) + 256;
 y = zoom * cos(theta) + 256;

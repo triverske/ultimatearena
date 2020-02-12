@@ -30,9 +30,38 @@ ticksUntilShrink = 100;
 ticks = 0;
 minSize = 10;
 alarm[0] = global.GAME_SPEED;
+alarm[1] = 50;
 
 surf = -1;
 surf2 = surface_create(512,512);
+
+col[0] = c_orange;
+col[1] = make_color_rgb(255,100,23);
+cur = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>cur = !cur;
+alarm[1] = 50;
 </string>
           </argument>
         </arguments>
@@ -168,7 +197,7 @@ surface_free(surf2);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_orange);
+            <string>draw_set_color(col[cur]);
 draw_set_alpha(1);
 draw_circle(x,y,radius,1);
 draw_circle(x,y,radius-.5,1);

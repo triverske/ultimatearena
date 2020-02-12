@@ -133,6 +133,7 @@
     </sprites>
     <sprites name="In Game">
       <sprite>sprites\spr_fighter</sprite>
+      <sprite>sprites\spr_fighter3d</sprite>
       <sprite>sprites\spr_fighterLowAlpha</sprite>
       <sprite>sprites\spr_landmine</sprite>
       <sprite>sprites\spr_stone</sprite>
