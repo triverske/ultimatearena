@@ -40,6 +40,13 @@ with (obj_uiButton)
                     group = -1;
             }
         }
+        if(bID == 4)
+        {
+            with(obj_fighter)
+                cameraFollow = 0;
+            with(fID)
+                cameraFollow = 1;
+        }
     
     }
 }

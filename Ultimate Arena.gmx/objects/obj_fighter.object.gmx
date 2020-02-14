@@ -147,6 +147,9 @@ sbowid = 0;
 
 bufferReady = false;
 alarm[2] = 2;
+
+ang = 0;
+cameraFollow = false;
 </string>
           </argument>
         </arguments>
@@ -237,19 +240,19 @@ vertexBuffer = vertex_create_buffer();
 vertex_begin(vertexBuffer,vertFormat);
     
 //tri 1
-vertex_position_3d(vertexBuffer,0,0,0+16);
+vertex_position_3d(vertexBuffer,-8,0,0+16);
 vertex_texcoord(vertexBuffer,0,0);
-vertex_position_3d(vertexBuffer,0,0,0);
+vertex_position_3d(vertexBuffer,-8,0,0);
 vertex_texcoord(vertexBuffer,0,1);
-vertex_position_3d(vertexBuffer,0+16,0,0+16);
+vertex_position_3d(vertexBuffer,8,0,0+16);
 vertex_texcoord(vertexBuffer,1,0);
 
 //tri 2
-vertex_position_3d(vertexBuffer,0+16,0,0+16);
+vertex_position_3d(vertexBuffer,8,0,0+16);
 vertex_texcoord(vertexBuffer,1,0);
-vertex_position_3d(vertexBuffer,0,0,0);
+vertex_position_3d(vertexBuffer,-8,0,0);
 vertex_texcoord(vertexBuffer,0,1);
-vertex_position_3d(vertexBuffer,0+16,0,0);
+vertex_position_3d(vertexBuffer,8,0,0);
 vertex_texcoord(vertexBuffer,1,1);
 
 vertex_end(vertexBuffer);
@@ -734,6 +737,44 @@ if(alarm[0] == 1)
 
     if(global.grid[rx,ry] == 0)
         water = 1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///3D Stuff
+
+if(cameraFollow)
+{
+    var cx = floor(clamp(y,0,511));
+    var cy = floor(clamp(512-x,0,511));
+    var cz = buffer_get_height(obj_maptest.hBuff,cx,cy) * terrainHeight / 255;
+    
+    with(obj_mapcamera)
+    {
+        followFighter = other.id;
+        followFighterId = other.fighterID;
+        tx = smooth_approach(tx,cx,.1);
+        ty = smooth_approach(ty,cy,.1);
+        tz = smooth_approach(tz,cz,.1);
+        show_debug_message(string(tx) + ", " + string(ty));
+    }
 }
 </string>
           </argument>

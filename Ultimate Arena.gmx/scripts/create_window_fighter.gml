@@ -106,6 +106,15 @@ with(zui_create(WS/2-WS*.1,HS/2,obj_uiWindow,-1))
         bID = 3;
         fID = other.fID
     }
+    with (zui_create(3, 174, obj_uiButton))
+    {
+        zui_set_anchor(0,0);
+        zui_set_size(150, 24);
+        caption = "Center 3D Camera";
+        callback = arena_fighter_ui;
+        bID = 4;
+        fID = other.fID
+    }
     
     wID = "FIGHTER";
 }

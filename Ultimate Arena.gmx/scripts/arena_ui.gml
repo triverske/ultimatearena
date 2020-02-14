@@ -266,6 +266,29 @@ with (obj_uiWindow)
         if(wID == "3D Map")
         {
             draw_surface_stretched(obj_mapcamera.testSurf,0,24,HS*(512/720),HS*(512/720));
+            with(obj_mapcamera)
+            {
+                if(followFighterId != -1)
+                {
+                    var caption = "Following: " + global.NAMES[followFighterId] + "#";
+                    texture_set_interpolation(1);
+                    draw_sprite_stretched(global.IMAGES[followFighterId],0,5,467,64,64);
+                    texture_set_interpolation(0);
+                    if(instance_exists(followFighter))
+                        caption += followFighter.caption;
+                    else
+                        caption += global.deathCause[followFighterId];
+                    draw_set_valign(fa_bottom);
+                    draw_set_halign(fa_left);
+                    draw_set_color(c_black);
+                    draw_text(74,531,caption);
+                    draw_text(74,529,caption);
+                    draw_text(73,530,caption);
+                    draw_text(75,530,caption);
+                    draw_set_color(c_white);
+                    draw_text(74,530,caption);
+                }
+            }
         }
         
         if(wID == "Ultimate News")

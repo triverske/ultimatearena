@@ -139,6 +139,23 @@ draw_clear_alpha(c_black,1);
 
 draw_sprite_ext(spr_map,0,256,256,hflip,vflip,rot,c_white,1);
 draw_set_colour_write_enable(1,1,1,0);
+
+with(obj_deadLocation)
+{
+    var cx = floor(clamp(y,0,511));
+    var cy = floor(clamp(512-x,0,511));
+    draw_sprite(sprite_index,0,cx,cy);
+}
+    
+    
+with(obj_landmine)
+{
+    var cx = floor(clamp(y,0,511));
+    var cy = floor(clamp(512-x,0,511));
+    draw_sprite(sprite_index,0,cx,cy);
+}
+    
+
 with(obj_arenaShrink)
     event_perform(ev_draw,0);
     
