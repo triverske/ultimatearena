@@ -322,6 +322,7 @@
     <script>scripts\initialize_sprites.gml</script>
     <script>scripts\generate_news.gml</script>
     <script>scripts\buffer_get_height.gml</script>
+    <script>scripts\color_randomize.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>

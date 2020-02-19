@@ -45,7 +45,7 @@ followFighter = noone;
 followFighterId = -1;
 
 xp = 0;
-testSurf = surface_create(256,256);
+testSurf = surface_create(512,512);
 </string>
           </argument>
         </arguments>
@@ -93,9 +93,6 @@ draw_set_alpha_test_ref_value(128);
 with(obj_fighter)
     if(bufferReady)
     {
-        
-        
-        
         var cx = floor(clamp(y,0,511));
         var cy = floor(clamp(512-x,0,511));
         
@@ -109,6 +106,23 @@ with(obj_fighter)
         d3d_transform_set_identity();
         
     }
+with(obj_tree)
+    if(bufferReady)
+    {
+        var cx = floor(clamp(y,0,511));
+        var cy = floor(clamp(512-x,0,511));
+        
+        ang = point_direction(cx,cy,other.x,other.y) - 90;
+        //show_debug_message(string(ang));
+        
+        d3d_transform_set_identity();
+        d3d_transform_set_rotation_z(ang);
+        d3d_transform_add_translation(cx,cy,(buffer_get_height(obj_maptest.hBuff,cx,cy) * terrainHeight / 255));
+        vertex_submit(vertexBuffer, pr_trianglelist, texture);
+        d3d_transform_set_identity();
+        
+    } 
+    
 draw_set_alpha_test(0);
 theta+=.0000001*delta_time;
 x = zoom * sin(theta) + tx;
@@ -123,11 +137,6 @@ d3d_set_zwriteenable(0);
 d3d_set_fog(false, c_black, 0, 0);
 
 surface_reset_target();
-
-
-
-//draw_surface_ext(testSurf,200,200,2,2,0,c_white,1);
-
 </string>
           </argument>
         </arguments>

@@ -372,7 +372,7 @@ if (regen == 1)
     var WS = global.WSCALE;
     var HS = global.HSCALE;
     
-    scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
+    scr_generate_map(256, 64, -.65, 0.3, 0.08, false);
     regen = 0;
     with(obj_uiWindow)
     {
@@ -396,7 +396,7 @@ if (regen == 2)
     var HS = global.HSCALE;
     
     //scr_load_map("MapTest2.png");
-    scr_generate_map(256, 64, -.65, 0.3, 0.15, false);
+    scr_generate_map(256, 64, -.65, 0.3, 0.08, false);
     regen = 0;
     with(obj_uiWindow)
     {

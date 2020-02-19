@@ -74,6 +74,7 @@ caption = "Wandering";
 DIR = floor(random(360));
 alarm[0] = global.GAME_SPEED;
 enemyNear = 0;
+delay = 3;
 
 foodloc[0] = 0;
 foodloc[1] = 0;
@@ -147,7 +148,7 @@ sbowid = 0;
 
 bufferReady = false;
 alarm[2] = 2;
-
+z = 0;
 ang = 0;
 cameraFollow = false;
 </string>
@@ -696,9 +697,37 @@ sspear = 0;
 wbow = 0;
 sbow = 0;
 
+
 //pick command
 if (DELAY &lt; 1)
     ai_command(ai_get_command());
+
+
+var inc = 0;
+while(true)
+{
+    if(inc &gt; 10) //can't find path
+    {
+        speed = 0;
+        z = buffer_get_height(obj_maptest.hBuff,x,y) * 128 / 255;
+        break;
+    }
+    var nx = round(clamp(x+lengthdir_x(speed,DIR),0,511));
+    var ny = round(clamp(y+lengthdir_y(speed,DIR),0,511));
+    
+    var nz = buffer_get_height(obj_maptest.hBuff,nx,ny) * 128 / 255;
+    if(cameraFollow)
+        show_debug_message(string(abs(z-nz)));
+    if(abs(z-nz) &lt; 5.1)
+    {
+        z = nz;
+        speed -= clamp(abs(z-nz)*4,0,speed*.8)
+        break;
+    }
+    else
+        DIR = random(360);
+    inc++;
+}
     
 if(frames &gt; 0)
     event_perform(ev_alarm,0);
@@ -773,7 +802,6 @@ if(cameraFollow)
         tx = smooth_approach(tx,cx,.1);
         ty = smooth_approach(ty,cy,.1);
         tz = smooth_approach(tz,cz,.1);
-        show_debug_message(string(tx) + ", " + string(ty));
     }
 }
 </string>

@@ -276,6 +276,7 @@ randomize();
 global.seed = random_get_seed();
 
 global.mapsurf = 0;
+global.heightsurf = 0;
 global.bck_minimap = -1;
 
 

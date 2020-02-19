@@ -31,6 +31,89 @@
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///3D Stuff
+z = 0;
+bufferReady = false;
+alarm[2] = 2;
+
+ang = 0;
+cameraFollow = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+vertex_format_begin();
+vertex_format_add_position_3d();
+vertex_format_add_textcoord();
+vertFormat = vertex_format_end();
+
+terrainHeight = 128;
+z = buffer_get_height(obj_maptest.hBuff,x,y) * terrainHeight / 255;
+
+texture = sprite_get_texture(spr_tree,0);
+
+vertexBuffer = vertex_create_buffer();
+vertex_begin(vertexBuffer,vertFormat);
+    
+//tri 1
+vertex_position_3d(vertexBuffer,-8,0,0+16);
+vertex_texcoord(vertexBuffer,0,0);
+vertex_position_3d(vertexBuffer,-8,0,0);
+vertex_texcoord(vertexBuffer,0,1);
+vertex_position_3d(vertexBuffer,8,0,0+16);
+vertex_texcoord(vertexBuffer,1,0);
+
+//tri 2
+vertex_position_3d(vertexBuffer,8,0,0+16);
+vertex_texcoord(vertexBuffer,1,0);
+vertex_position_3d(vertexBuffer,-8,0,0);
+vertex_texcoord(vertexBuffer,0,1);
+vertex_position_3d(vertexBuffer,8,0,0);
+vertex_texcoord(vertexBuffer,1,1);
+
+vertex_end(vertexBuffer);
+vertex_freeze(vertexBuffer);
+
+bufferReady = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
   </events>
   <PhysicsObject>0</PhysicsObject>

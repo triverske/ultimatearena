@@ -17,6 +17,7 @@ waterlevel    = argument2;
 mountainlevel = argument3;
 beachsize     = argument4;
 seamless      = argument5;
+mountainlevel = .02;
 
 var totaltrees = 30;
 global.trees = 0;
@@ -68,31 +69,33 @@ for (var i = 0; i < width; i += 1)
 var surf = surface_create(512, 512);
 surface_set_target(surf);
 
-var green  = make_color_rgb( 69, 157, 69);
-var blue   = make_color_rgb( 48, 102,201);
+var green  = make_color_rgb( 96, 110, 55);
+var blue   = make_color_rgb( 52, 76,139);
 var yellow = make_color_rgb(222, 196,104);
-var brown1 = make_color_rgb(164, 141, 60);
-var brown2 = make_color_rgb(130, 112, 48);
-var brown3 = make_color_rgb( 94,  80, 34);
+var brown1 = make_color_rgb(113, 107, 97);
+var brown2 = make_color_rgb(84, 68, 48);
+var brown3 = make_color_rgb( 74,  90, 48);
 var map_tile_size = (512 / width);
 
 // give each terrain a unique color in the minimap
 for (var i = 0; i < width; i += 1) {
   for (var j = 0; j < height; j += 1) {
     var point = scr_sample(i,j);
-    if (point > mountainlevel + 0.4) {
+    if (point > mountainlevel + 0.87)
+        draw_set_color(c_white);
+    else if (point > mountainlevel + 0.5)
       draw_set_color(brown1);
-    } else if (point > mountainlevel + 0.2) {
+    else if (point > mountainlevel + 0.11)
       draw_set_color(brown2);
-    } else if (point > mountainlevel) {
+    else if (point > mountainlevel - .08) 
       draw_set_color(brown3);
-    } else if (point > waterlevel) {
+    else if (point > waterlevel)
       draw_set_color(green);
-    } else if (point > (waterlevel - beachsize)) {
+    else if (point > (waterlevel - beachsize)) 
       draw_set_color(yellow);
-    } else {
+    else 
       draw_set_color(blue);
-    }
+    
     draw_rectangle(i * map_tile_size, j * map_tile_size, (i + 1) * map_tile_size, (j + 1) * map_tile_size, false);
   }
 }
@@ -111,7 +114,6 @@ while(global.trees < totaltrees)
     {
         global.treeloc[global.trees,0] = rand1;
         global.treeloc[global.trees,1] = rand2;
-        draw_sprite(spr_tree,0,rand1,rand2);
         global.trees++;
     }
 }
@@ -159,3 +161,41 @@ surface_reset_target();
 if(surface_exists(global.mapsurf))
     surface_free(global.mapsurf);
 global.mapsurf = surf;
+
+//Heightmap
+var surf2 = surface_create(512, 512);
+surface_set_target(surf2);
+
+var green  = make_color_rgb( 69, 157, 69);
+var blue   = make_color_rgb( 48, 102,201);
+var yellow = make_color_rgb(222, 196,104);
+var brown1 = make_color_rgb(164, 141, 60);
+var brown2 = make_color_rgb(130, 112, 48);
+var brown3 = make_color_rgb( 94,  80, 34);
+var map_tile_size = (512 / width);
+
+// give each terrain a unique color in the minimap
+for (var i = 0; i < width; i += 1) {
+  for (var j = 0; j < height; j += 1) {
+    var point = scr_sample(i,j);
+    //show_debug_message(string((point+1)*50));
+    draw_set_color(make_color_hsv(0,0,clamp(((point+.6)*(point+.5)*50),0,255)));
+
+    if (point > mountainlevel + 0.4) {
+      //draw_set_color(brown1);
+    } else if (point > mountainlevel + 0.2) {
+      //draw_set_color(brown2);
+    } else if (point > mountainlevel) {
+      //draw_set_color(brown3);
+    } else if (point > waterlevel) {
+      //draw_set_color(green);
+    } else if (point > (waterlevel - beachsize)) {
+      //draw_set_color(yellow);
+    } else {
+      draw_set_color(c_black);
+    }
+    draw_rectangle(i * map_tile_size, j * map_tile_size, (i + 1) * map_tile_size, (j + 1) * map_tile_size, false);
+  }
+}
+surface_reset_target();
+global.heightsurf = surf2;

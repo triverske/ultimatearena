@@ -37,12 +37,14 @@ heightSurf = surface_create(512,512);
 
 surface_set_target(colSurf);
 draw_clear_alpha(c_black,1);
-draw_sprite_ext(spr_map,0,256,256,hflip,vflip,rot,c_white,1);
+//draw_sprite_ext(spr_map,0,256,256,hflip,vflip,rot,c_white,1);
+draw_surface_ext(global.mapsurf,0,0,1,1,90,c_white,1);
 surface_reset_target();
 
 surface_set_target(heightSurf);
 draw_clear_alpha(c_black,1);
-draw_sprite_ext(spr_map,1,256,256,-1,1,0,c_white,1);
+draw_surface_ext(global.heightsurf,512,0,-1,1,0,c_white,1);
+//draw_sprite_ext(spr_map,1,256,256,-1,1,0,c_white,1);
 surface_reset_target();
 
 hBuff = noone;
@@ -61,56 +63,56 @@ texture = surface_get_texture(colSurf);
 mSize = 512;
     
     
-    var size = (4 * mSize * mSize) + 8;
-    hBuff = buffer_create(size, buffer_fixed, 1);
-    
-    buffer_write(hBuff,buffer_f32,mSize);
-    buffer_write(hBuff,buffer_f32,mSize);
-    buffer_get_surface(hBuff, heightSurf,0,8,0);
-    
-    vertexBuffer = vertex_create_buffer();
-    vertex_begin(vertexBuffer,vertFormat);
-    for(var i = 0;i &lt; xDivisions - 1;i++)
+var size = (4 * mSize * mSize) + 8;
+hBuff = buffer_create(size, buffer_fixed, 1);
+
+buffer_write(hBuff,buffer_f32,mSize);
+buffer_write(hBuff,buffer_f32,mSize);
+buffer_get_surface(hBuff, heightSurf,0,8,0);
+
+vertexBuffer = vertex_create_buffer();
+vertex_begin(vertexBuffer,vertFormat);
+for(var i = 0;i &lt; xDivisions - 1;i++)
+{
+    for(var c = 0;c &lt; yDivisions - 1;c++)
     {
-        for(var c = 0;c &lt; yDivisions - 1;c++)
-        {
-            var p1x = floor((i * mSize) / xDivisions);
-            var p1y = floor((c * mSize) / yDivisions);
-            
-            var p2x = floor(((i + 1) * mSize) / xDivisions);
-            var p2y = floor(((c + 1) * mSize) / yDivisions);
-            
-            var pz1 = buffer_get_height(hBuff,p1x,p1y) * terrainHeight / 255;
-            var pz2 = buffer_get_height(hBuff,p2x,p1y) * terrainHeight / 255;
-            var pz3 = buffer_get_height(hBuff,p1x,p2y) * terrainHeight / 255;
-            var pz4 = buffer_get_height(hBuff,p2x,p2y) * terrainHeight / 255;
-            
-            var tx1 = (i / xDivisions);
-            var ty1 = (c / yDivisions);
-            var tx2 = ((i+1) / xDivisions);
-            var ty2 = ((c+1) / yDivisions);
-            
-            //tri 1
-            vertex_position_3d(vertexBuffer,i,c,pz1);
-            vertex_texcoord(vertexBuffer,tx1,ty1);
-            vertex_position_3d(vertexBuffer,i,c+1,pz3);
-            vertex_texcoord(vertexBuffer,tx1,ty2);
-            vertex_position_3d(vertexBuffer,i+1,c,pz2);
-            vertex_texcoord(vertexBuffer,tx2,ty1);
-            
-            //tri 2
-            vertex_position_3d(vertexBuffer,i+1,c,pz2);
-            vertex_texcoord(vertexBuffer,tx2,ty1);
-            vertex_position_3d(vertexBuffer,i,c+1,pz3);
-            vertex_texcoord(vertexBuffer,tx1,ty2);
-            vertex_position_3d(vertexBuffer,i+1,c+1,pz4);
-            vertex_texcoord(vertexBuffer,tx2,ty2);
-            
-        }
+        var p1x = floor((i * mSize) / xDivisions);
+        var p1y = floor((c * mSize) / yDivisions);
+        
+        var p2x = floor(((i + 1) * mSize) / xDivisions);
+        var p2y = floor(((c + 1) * mSize) / yDivisions);
+        
+        var pz1 = buffer_get_height(hBuff,p1x,p1y) * terrainHeight / 255;
+        var pz2 = buffer_get_height(hBuff,p2x,p1y) * terrainHeight / 255;
+        var pz3 = buffer_get_height(hBuff,p1x,p2y) * terrainHeight / 255;
+        var pz4 = buffer_get_height(hBuff,p2x,p2y) * terrainHeight / 255;
+        
+        var tx1 = (i / xDivisions);
+        var ty1 = (c / yDivisions);
+        var tx2 = ((i+1) / xDivisions);
+        var ty2 = ((c+1) / yDivisions);
+        
+        //tri 1
+        vertex_position_3d(vertexBuffer,i,c,pz1);
+        vertex_texcoord(vertexBuffer,tx1,ty1);
+        vertex_position_3d(vertexBuffer,i,c+1,pz3);
+        vertex_texcoord(vertexBuffer,tx1,ty2);
+        vertex_position_3d(vertexBuffer,i+1,c,pz2);
+        vertex_texcoord(vertexBuffer,tx2,ty1);
+        
+        //tri 2
+        vertex_position_3d(vertexBuffer,i+1,c,pz2);
+        vertex_texcoord(vertexBuffer,tx2,ty1);
+        vertex_position_3d(vertexBuffer,i,c+1,pz3);
+        vertex_texcoord(vertexBuffer,tx1,ty2);
+        vertex_position_3d(vertexBuffer,i+1,c+1,pz4);
+        vertex_texcoord(vertexBuffer,tx2,ty2);
+        
     }
-    vertex_end(vertexBuffer);
-    vertex_freeze(vertexBuffer);
-    instance_create(0,0,obj_mapcamera);
+}
+vertex_end(vertexBuffer);
+vertex_freeze(vertexBuffer);
+instance_create(0,0,obj_mapcamera);
 </string>
           </argument>
         </arguments>
@@ -137,7 +139,8 @@ mSize = 512;
 surface_set_target(colSurf);
 draw_clear_alpha(c_black,1);
 
-draw_sprite_ext(spr_map,0,256,256,hflip,vflip,rot,c_white,1);
+draw_surface_ext(global.mapsurf,0,512,1,1,90,c_white,1);
+//draw_sprite_ext(spr_map,0,256,256,hflip,vflip,rot,c_white,1);
 draw_set_colour_write_enable(1,1,1,0);
 
 with(obj_deadLocation)

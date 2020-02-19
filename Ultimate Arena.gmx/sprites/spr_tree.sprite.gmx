@@ -8,17 +8,17 @@
   <sepmasks>0</sepmasks>
   <bboxmode>1</bboxmode>
   <bbox_left>0</bbox_left>
-  <bbox_right>6</bbox_right>
+  <bbox_right>15</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>13</bbox_bottom>
+  <bbox_bottom>15</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
-  <For3D>0</For3D>
-  <width>7</width>
-  <height>14</height>
+  <For3D>-1</For3D>
+  <width>16</width>
+  <height>16</height>
   <frames>
     <frame index="0">images\spr_tree_0.png</frame>
   </frames>

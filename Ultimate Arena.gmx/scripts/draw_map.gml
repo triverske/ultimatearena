@@ -7,7 +7,7 @@ if(!surface_exists(map))
 surface_set_target(map);
 
 draw_background(global.bck_minimap,0,0);
-draw_sprite(spr_map,0,256,256);
+//draw_sprite(spr_map,0,256,256);
 
 with(obj_arenaShrink)
     event_perform(ev_draw,0);
