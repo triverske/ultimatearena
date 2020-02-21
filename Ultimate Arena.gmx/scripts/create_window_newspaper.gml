@@ -1,6 +1,7 @@
 var WS = global.WSCALE;
 var HS = global.HSCALE;
 
+global.newsLook = false;
 with(zui_create(WS/2-WS*.1,HS/2,obj_uiWindow,-1))
 {
     wID = "Ultimate News";

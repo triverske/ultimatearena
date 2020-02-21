@@ -130,6 +130,7 @@
       <sprite>sprites\spr_crop</sprite>
       <sprite>sprites\spr_newspaper</sprite>
       <sprite>sprites\spr_testnewsimage</sprite>
+      <sprite>sprites\spr_notification</sprite>
     </sprites>
     <sprites name="In Game">
       <sprite>sprites\spr_fighter</sprite>
@@ -324,6 +325,7 @@
     <script>scripts\buffer_get_height.gml</script>
     <script>scripts\color_randomize.gml</script>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\font0</font>
     <font>fonts\font3</font>

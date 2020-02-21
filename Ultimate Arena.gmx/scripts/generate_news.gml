@@ -4,6 +4,7 @@ var oldHeadline = newsHeadline;
 if(newsIssue == 0)
 {
     newsHeadline = string(global.fighters) + " FIGHTERS ENTER THE ULTIMATE ARENA!";
+    newsImage = 4;
     newsIssue++;
 }
 else
@@ -32,9 +33,20 @@ else
     }
 }
 
+var newsOpen = false;
+with(obj_uiWindow)
+    if(wID == "Ultimate News")
+        newsOpen = true;
+
+if(!newsOpen)
+    global.newsLook = true;
+else
+    global.newsLook = false;
+
 news = surface_create(600,576);
 surface_set_target(news);
 draw_clear_alpha(c_white,1);
+draw_set_colour_write_enable(1,1,1,0);
 draw_sprite(spr_newspaper,0,0,0);
 draw_set_font(fnt_headline);
 draw_set_valign(fa_middle);
@@ -102,6 +114,6 @@ texture_set_interpolation(1);
 if(img != noone)
     draw_sprite_stretched(img,0,15,195,64,64);
 texture_set_interpolation(0);
-
+draw_set_colour_write_enable(1,1,1,1);
 surface_reset_target();
 ds_list_clear(newsFightersDead);
