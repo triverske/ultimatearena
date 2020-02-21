@@ -40,9 +40,15 @@ tx = 256;
 ty = 256;
 tz = 0;
 
+cx = 256;
+cy = 256;
+cz = 0
+
 zoom = 512
 followFighter = noone;
 followFighterId = -1;
+followRandom = false;
+followCPU = false;
 
 xp = 0;
 testSurf = surface_create(512,512);
@@ -74,6 +80,10 @@ if(mouse_wheel_down())
     zoom = min(zoom + 32, 768);
 if(mouse_wheel_up())
     zoom = max(zoom - 32, 64);
+    
+tx = smooth_approach(tx,cx,.1);
+ty = smooth_approach(ty,cy,.1);
+tz = smooth_approach(tz,cz,.1);
 
 d3d_start();
 d3d_set_fog(true, make_color_rgb(80,243,75), 400, 7000);
@@ -93,15 +103,15 @@ draw_set_alpha_test_ref_value(128);
 with(obj_fighter)
     if(bufferReady)
     {
-        var cx = floor(clamp(y,0,511));
-        var cy = floor(clamp(512-x,0,511));
+        var dx = floor(clamp(y,0,511));
+        var dy = floor(clamp(512-x,0,511));
         
-        ang = point_direction(cx,cy,other.x,other.y) - 90;
+        ang = point_direction(dx,dy,other.x,other.y) - 90;
         //show_debug_message(string(ang));
         
         d3d_transform_set_identity();
         d3d_transform_set_rotation_z(ang);
-        d3d_transform_add_translation(cx,cy,(buffer_get_height(obj_maptest.hBuff,cx,cy) * terrainHeight / 255));
+        d3d_transform_add_translation(dx,dy,(buffer_get_height(obj_maptest.hBuff,dx,dy) * terrainHeight / 255));
         vertex_submit(vertexBuffer, pr_trianglelist, texture);
         d3d_transform_set_identity();
         
@@ -109,15 +119,15 @@ with(obj_fighter)
 with(obj_tree)
     if(bufferReady)
     {
-        var cx = floor(clamp(y,0,511));
-        var cy = floor(clamp(512-x,0,511));
+        var dx = floor(clamp(y,0,511));
+        var dy = floor(clamp(512-x,0,511));
         
-        ang = point_direction(cx,cy,other.x,other.y) - 90;
+        ang = point_direction(dx,dy,other.x,other.y) - 90;
         //show_debug_message(string(ang));
         
         d3d_transform_set_identity();
         d3d_transform_set_rotation_z(ang);
-        d3d_transform_add_translation(cx,cy,(buffer_get_height(obj_maptest.hBuff,cx,cy) * terrainHeight / 255));
+        d3d_transform_add_translation(dx,dy,(buffer_get_height(obj_maptest.hBuff,dx,dy) * terrainHeight / 255));
         vertex_submit(vertexBuffer, pr_trianglelist, texture);
         d3d_transform_set_identity();
         
@@ -137,6 +147,38 @@ d3d_set_zwriteenable(0);
 d3d_set_fog(false, c_black, 0, 0);
 
 surface_reset_target();
+
+if(followRandom)
+{
+    if(followCPU)
+    {
+        with(obj_fighter)
+        {
+            if(fighterID == global.cpuchoice)
+            {
+                cameraFollow = true;
+                other.followFighter = id;
+                other.followFighterId = fighterID;
+            }
+            else
+            {
+                cameraFollow = false;
+            }
+        }
+    }
+    else
+    {
+        if(!instance_exists(followFighter))
+        {
+            with(instance_find(obj_fighter,instance_number(irandom(obj_fighter)-1)))
+            {
+                cameraFollow = true;
+                other.followFighter = id;
+                other.followFighterId = fighterID;
+            }
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

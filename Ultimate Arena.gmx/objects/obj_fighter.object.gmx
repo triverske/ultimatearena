@@ -709,7 +709,9 @@ while(true)
     if(inc &gt; 10) //can't find path
     {
         speed = 0;
-        z = buffer_get_height(obj_maptest.hBuff,x,y) * 128 / 255;
+        var nx = round(clamp(x,0,511));
+        var ny = round(clamp(y,0,511));
+        z = buffer_get_height(obj_maptest.hBuff,nx,ny) * 128 / 255;
         break;
     }
     var nx = round(clamp(x+lengthdir_x(speed,DIR),0,511));
@@ -791,17 +793,18 @@ if(alarm[0] == 1)
 
 if(cameraFollow)
 {
-    var cx = floor(clamp(y,0,511));
-    var cy = floor(clamp(512-x,0,511));
-    var cz = buffer_get_height(obj_maptest.hBuff,cx,cy) * terrainHeight / 255;
+    var cx1 = floor(clamp(y,0,511));
+    var cy1 = floor(clamp(512-x,0,511));
+    var cz1 = buffer_get_height(obj_maptest.hBuff,cx1,cy1) * 128 / 255;
     
     with(obj_mapcamera)
     {
         followFighter = other.id;
         followFighterId = other.fighterID;
-        tx = smooth_approach(tx,cx,.1);
-        ty = smooth_approach(ty,cy,.1);
-        tz = smooth_approach(tz,cz,.1);
+        
+        cx = cx1;
+        cy = cy1;
+        cz = cz1;
     }
 }
 </string>
@@ -828,25 +831,25 @@ if(cameraFollow)
             <kind>1</kind>
             <string>if(other.owner != fighterID)
 {
-if(alarm[0] == 1)
-{
-    other.triggered = true;
-    HP-=50;
-    if(HP&lt;0)
+    if(alarm[0] == 1)
     {
-        if(instance_exists(other.owner))
+        other.triggered = true;
+        HP-=50;
+        if(HP&lt;0)
         {
-            with(other.owner)
-                XP+=5;
+            if(instance_exists(other.owner) &amp;&amp; other.owner.object_index == obj_fighter)
+            {
+                with(other.owner)
+                    XP+=5;
+            }
+            update_m_create(update_get_multichar_text("die_trap",fighterID,other.owner,0,0),other.owner,fighterID,0,0,1);
+            
+            with(global.IDLIST[other.owner])
+                kills++;
+            global.deathCause[fighterID] = "Killed by "+global.NAMES[other.owner]+"'s trap";
+            instance_destroy();
         }
-        update_m_create(update_get_multichar_text("die_trap",fighterID,other.owner,0,0),other.owner,fighterID,0,0,1);
-        
-        with(global.IDLIST[other.owner])
-            kills++;
-        global.deathCause[fighterID] = "Killed by "+global.NAMES[other.owner]+"'s trap";
-        instance_destroy();
     }
-}
 }
 </string>
           </argument>

@@ -325,7 +325,6 @@
     <script>scripts\buffer_get_height.gml</script>
     <script>scripts\color_randomize.gml</script>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\font0</font>
     <font>fonts\font3</font>

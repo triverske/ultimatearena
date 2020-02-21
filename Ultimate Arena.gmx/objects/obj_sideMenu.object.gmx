@@ -259,6 +259,7 @@ draw_text(50,300,"CPU'S CHOICE");
 
 texture_set_interpolation(1);
 draw_sprite_stretched(global.IMAGES[xpleader],ind2,26,316,48,48);
+global.cpuchoice = xpleader;
 texture_set_interpolation(0);
 
 if(update[1] &gt; 0)

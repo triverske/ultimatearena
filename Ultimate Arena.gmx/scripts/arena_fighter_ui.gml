@@ -46,6 +46,9 @@ with (obj_uiButton)
                 cameraFollow = 0;
             with(fID)
                 cameraFollow = 1;
+            
+            with(obj_mapcamera)
+                followRandom = 0;
         }
     
     }

@@ -46,13 +46,6 @@ with (zui_main())
         callback = title_buttons;
         bID = 0;
     }
-    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2 + 174, obj_uiButton)) 
-    {
-        zui_set_size(260, 48);
-        caption = "Defend Your Arena!";
-        callback = title_buttons;
-        bID = 22;
-    }
     
     with (zui_create(display_get_gui_width()/2 + 100, display_get_gui_height() / 2  + 270, obj_uiButton)) 
     {
@@ -96,9 +89,9 @@ with (zui_main())
     with (zui_create(display_get_gui_width()/2 - 100, display_get_gui_height() / 2  + 330, obj_uiButton)) 
     {
          zui_set_size(190, 24);
-         caption = "Ultimate Arena: Showdown";
+         caption = "Defend Your Arena";
          callback = title_buttons;
-         bID = 17;
+         bID = 22;
     }
 
     with (zui_create(display_get_gui_width()/2 - 480, display_get_gui_height() / 2  + 300, obj_uiButton)) 

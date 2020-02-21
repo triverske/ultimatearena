@@ -157,6 +157,47 @@ with (obj_uiButton)
                 create_window_3dmap();
             }
         }
+        if(bID == 65)
+        {
+            with(obj_fighter)
+                cameraFollow = 0;
+            with(obj_mapcamera)
+            {
+                followRandom = false;
+                followFighter = noone;
+                followFighterId = -1;
+                cx = 256;
+                cy = 256;
+                cz = buffer_get_height(obj_maptest.hBuff,cx,cy) * 128 / 255;
+            }
+            
+        }
+        if(bID == 66)
+        {
+            with(obj_fighter)
+                cameraFollow = 0;
+            with(obj_mapcamera)
+            {
+                followCPU = false;
+                followRandom = true;
+                followFighter = noone;
+                followFighterId = -1;
+            }
+            
+        }
+        if(bID == 67)
+        {
+            with(obj_fighter)
+                cameraFollow = 0;
+            with(obj_mapcamera)
+            {
+                followCPU = true;
+                followRandom = true;
+                followFighter = noone;
+                followFighterId = -1;
+            }
+            
+        }
         if (bID == 70)
         {
             if (type == 2)
@@ -270,6 +311,7 @@ with (obj_uiWindow)
             {
                 if(followFighterId != -1)
                 {
+                    draw_set_font(font0);
                     var fl = floor(HS*(512/720)) + 24
                 
                     var caption = "Following: " + global.NAMES[followFighterId] + "#";

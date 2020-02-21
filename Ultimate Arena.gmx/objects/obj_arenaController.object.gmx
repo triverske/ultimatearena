@@ -37,6 +37,7 @@ global.LANDMINE_KILLS = 0;
 global.DEADLOC[global.fighters,0] = 0;
 global.DEADLOC[global.fighters,1] = 0;
 global.newsLook = false;
+global.mapwindow = noone;
 
 sanityleader = -1;
 xpleader = -1;
@@ -136,7 +137,7 @@ else
 }
 with(zui_main())
 {
-    create_window_map();
+    create_window_3dmap();
     create_window_updates();
     
     with(zui_create(75,global.HSCALE/2,obj_uiWindow,-1))
