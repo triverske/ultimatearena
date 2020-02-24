@@ -105,14 +105,24 @@ with(obj_fighter)
     {
         var dx = floor(clamp(y,0,511));
         var dy = floor(clamp(512-x,0,511));
-        
+        var zp = (buffer_get_height(obj_maptest.hBuff,dx,dy) * terrainHeight / 255);
         ang = point_direction(dx,dy,other.x,other.y) - 90;
-        //show_debug_message(string(ang));
+        dis = point_distance(dx,dy,other.xto,other.yto);
+        dis += abs(other.z - zp);
+        //show_debug_message(string(dis));
+        
         
         d3d_transform_set_identity();
         d3d_transform_set_rotation_z(ang);
-        d3d_transform_add_translation(dx,dy,(buffer_get_height(obj_maptest.hBuff,dx,dy) * terrainHeight / 255));
+        d3d_transform_add_translation(dx,dy,zp);
         vertex_submit(vertexBuffer, pr_trianglelist, texture);
+        if(dis &lt; 300)
+        {
+            d3d_transform_add_scaling(1,1,2);
+            d3d_transform_add_translation(0,0,10);
+            
+            vertex_submit(vertexBuffer, pr_trianglelist, tex2);
+        }
         d3d_transform_set_identity();
         
     }

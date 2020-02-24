@@ -164,6 +164,7 @@
       <sprite>sprites\spr_map</sprite>
     </sprites>
     <sprite>sprites\spr_backgrid</sprite>
+    <sprite>sprites\spr_pointer</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_tile2</background>
