@@ -162,6 +162,18 @@ with(obj_landmine)
 with(obj_arenaShrink)
     event_perform(ev_draw,0);
     
+with(obj_arenaEvent)
+{
+    draw_set_color(c_red);
+    draw_set_alpha(1);
+    draw_circle(x,y,radius0,1);
+    draw_set_alpha(.1);
+    draw_circle(x,y,radius0,0);
+    draw_set_alpha(.5);
+    draw_circle(x,y,radius1,1);
+    draw_set_alpha(1);
+}
+    
 draw_set_alpha(dif(global.TIME_HOURS,12)*.02);
 draw_rectangle_colour(1,1,511,511,c_navy,c_navy,c_navy,c_navy,false);
 draw_set_colour_write_enable(1,1,1,1);

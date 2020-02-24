@@ -74,7 +74,7 @@
             <kind>1</kind>
             <string>if(instance_exists(global.mapwindow))
 {
-    if(global.mapwindow.__hover == 1)
+    if(global.mapwindow.__hover)
     {
         var xPos = (global.__zui_mx-global.mapwindow.__x);
         var yPos = (global.__zui_my-global.mapwindow.__y);

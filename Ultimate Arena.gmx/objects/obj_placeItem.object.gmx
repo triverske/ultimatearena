@@ -73,7 +73,11 @@ evOverride = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(global.mapwindow.__hover == 1)
+            <string>var hv = 0;
+with(global.mapwindow)
+    hv = __hover;
+
+if(hv)
 {
     var xPos = (global.__zui_mx-global.mapwindow.__x);
     var yPos = (global.__zui_my-global.mapwindow.__y);

@@ -270,12 +270,13 @@ with (obj_uiButton)
             {
                 with(zui_create(445,348,obj_uiWindow,-1)) 
                 {
-                    zui_set_size(260,420);
+                    wID = "Event List";
+                    zui_set_size(260,420);/*
                     with (zui_create(0, 0, obj_uiWindowCaption)) 
                     {
                         caption = "Event List";
                         draggable = 1;
-                    }
+                    }*/
                     zui_create(0,0,obj_uiExitButton,-1);
                     with(zui_create(0,24,obj_uiListbox))
                     {
@@ -307,30 +308,73 @@ with (obj_uiWindow)
         if(wID == "3D Map")
         {
             draw_surface_stretched(obj_mapcamera.testSurf,0,24,HS*(512/720),HS*(512/720));
-            with(obj_mapcamera)
+            draw_set_font(font0);
+            
+            if(instance_exists(obj_arenaEvent))
             {
-                if(followFighterId != -1)
-                {
-                    draw_set_font(font0);
-                    var fl = floor(HS*(512/720)) + 24
+                var fl = floor(HS*(512/720)) + 24
                 
-                    var caption = "Following: " + global.NAMES[followFighterId] + "#";
-                    texture_set_interpolation(1);
-                    draw_sprite_stretched(global.IMAGES[followFighterId],0,5,fl-69,64,64);
-                    texture_set_interpolation(0);
-                    if(instance_exists(followFighter))
-                        caption += followFighter.caption;
-                    else
-                        caption += global.deathCause[followFighterId];
-                    draw_set_valign(fa_bottom);
-                    draw_set_halign(fa_left);
-                    draw_set_color(c_black);
-                    draw_text(74,fl-5,caption);
-                    draw_text(74,fl-7,caption);
-                    draw_text(73,fl-6,caption);
-                    draw_text(75,fl-6,caption);
-                    draw_set_color(c_white);
-                    draw_text(74,fl-6,caption);
+                draw_set_alpha(.6)
+                draw_rectangle_colour(0,fl-24,HS*(512/720),fl,c_red,c_red,c_maroon,c_maroon,0);
+                draw_set_alpha(1);
+                draw_set_halign(fa_middle);
+                draw_set_valign(fa_bottom);
+                draw_text_colour((HS*(512/720))/2,fl-4,"Arena Event! " + obj_arenaEvent.description,c_white,c_white,c_silver,c_silver,1);
+                
+                with(obj_mapcamera)
+                {
+                    if(followFighterId != -1)
+                    {
+                        
+                        fl -= 5;
+                    
+                        var caption = "Following: " + global.NAMES[followFighterId] + "#";
+                        texture_set_interpolation(1);
+                        draw_sprite_stretched(global.IMAGES[followFighterId],0,5,fl-89,64,64);
+                        texture_set_interpolation(0);
+                        if(instance_exists(followFighter))
+                            caption += followFighter.caption;
+                        else
+                            caption += global.deathCause[followFighterId];
+                        draw_set_valign(fa_bottom);
+                        draw_set_halign(fa_left);
+                        draw_set_color(c_black);
+                        draw_text(74,fl-25,caption);
+                        draw_text(74,fl-27,caption);
+                        draw_text(73,fl-26,caption);
+                        draw_text(75,fl-26,caption);
+                        draw_set_color(c_white);
+                        draw_text(74,fl-26,caption);
+                    }
+                }
+            }
+            else
+            {
+                with(obj_mapcamera)
+                {
+                    if(followFighterId != -1)
+                    {
+                        
+                        var fl = floor(HS*(512/720)) + 24
+                    
+                        var caption = "Following: " + global.NAMES[followFighterId] + "#";
+                        texture_set_interpolation(1);
+                        draw_sprite_stretched(global.IMAGES[followFighterId],0,5,fl-69,64,64);
+                        texture_set_interpolation(0);
+                        if(instance_exists(followFighter))
+                            caption += followFighter.caption;
+                        else
+                            caption += global.deathCause[followFighterId];
+                        draw_set_valign(fa_bottom);
+                        draw_set_halign(fa_left);
+                        draw_set_color(c_black);
+                        draw_text(74,fl-5,caption);
+                        draw_text(74,fl-7,caption);
+                        draw_text(73,fl-6,caption);
+                        draw_text(75,fl-6,caption);
+                        draw_set_color(c_white);
+                        draw_text(74,fl-6,caption);
+                    }
                 }
             }
         }
