@@ -7,12 +7,13 @@ for(var i=0;i<l;i++)
     global.MAPS[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + ".ini";
     
     ini_open(global.MAPS[i]);
+    version = ini_read_real("Map","Version",0); //0 - Old, 1 - New
     if(ini_read_real("Map","creator",-1) == steam_get_user_account_id() && ini_read_real("Map","workshopID",-1) != -1)
         workshop_add_created_item(ini_read_real("Map","workshopID",-1));
     ini_close();
     
     global.mapNAME[i] = directory[i];
-    global.mapTYPE[i] = 0;
+    global.mapTYPE[i] = version;
     global.mapPICS[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + ".png";
     if(file_exists(working_directory+"maps\" + directory[i] + "\" + directory[i] + "overlay.png"))
         global.mapOVERLAY[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + "overlay.png";
@@ -41,6 +42,7 @@ for(h=0;h<s;h++)
         
         if(ini_section_exists("Map"))
         {
+            version = ini_read_real("Map","Version",0); //0 - Old, 1 - New
             var in = steam_map [? "folder"] + "\" + f;
             var name = string_replace(f,".ini","");//ini_read_string("event","name","NAMING ERROR");
             show_debug_message(name);
@@ -51,7 +53,7 @@ for(h=0;h<s;h++)
                 continue;
             }
             global.MAPS[i] = steam_map [? "folder"] + "\" + f;
-            global.mapTYPE[i] = 1;
+            global.mapTYPE[i] = version;
             global.mapNAME[i] = name;
             global.mapPICS[i] = steam_map [? "folder"] + "\" + name + ".png";
             if(file_exists(steam_map [? "folder"] + "\" + name + "overlay.png"))
