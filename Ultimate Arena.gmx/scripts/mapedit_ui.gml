@@ -1,10 +1,14 @@
 ///mapedit_ui(id)
-with(obj_uiListbox){
-    if(argument0 == id){
-        if(global.IDselected == sID){
+with(obj_uiListbox)
+{
+    if(argument0 == id)
+    {
+        if(global.IDselected == sID)
+        {
             global.IDselected = -1;
         }
-        else{
+        else
+        {
             global.IDselected = sID;
             var mname = global.MAPS[sID];
             var mcolors = "";
@@ -159,33 +163,31 @@ with(obj_uiButton){
                 room_restart();
             }
         }
-        else if(bID == 10){//Save Map
-            with(obj_uiField){
-                if(content == ""){
+        else if(bID == 10)
+        {//Save Map
+            with(obj_uiField)
+            {
+                if(content == "")
+                {
                     ui_show_popup("Please enter a name.");
                     exit;
                 }
                 else
                     global.charname = content;
             }
-            with(obj_mapEditor){
+            with(obj_mapEditor)
+            {
                 var name = global.charname;
                 
                 ini_open(working_directory+"maps\"+name+'\'+name+'.ini');
-                surface_save(mapeditSurf,working_directory+"maps\"+name+'\'+name+'.png');
+                surface_save(mapeditSurf,working_directory+"maps\"+name+'\color.png');
                 ini_write_string("Map","name",name);
-                if(overlayImage != spr_blankMap){
-                    sprite_save(overlayImage,0,working_directory+"maps\"+name+'\'+name+'overlay.png');
-                    sprite_delete(overlayImage);
-                }
+                ini_write_real("Map","Version",1);
+                sprite_save(overlayImage,0,working_directory+"maps\"+name+'\height.png');
+                sprite_delete(overlayImage);
+                
                 var str = "";
-                for(var i=0; i<256; i++){
-                    for(var j=0; j<256; j++){
-                        str+=string(ds_grid_get(mapGrid,i,j));
-                    }
-                    ini_write_string("Map","Colors"+string(i),str);
-                    str = "";
-                }
+
                 for(var i=0; i<array_height_2d(treeArray); i++)
                     ini_write_string("Trees",string(i),string_format(treeArray[i,0],3,0)+string_format(treeArray[i,1],3,0));
                 ini_close();
@@ -227,12 +229,12 @@ with(obj_uiButton){
                     steam_ugc_set_item_visibility(updateHandle, ugc_visibility_public);
                     
                     var tagArray;
-                    tagArray[0] = "Map";
+                    tagArray[0] = "Map V2";
                     
                     steam_ugc_set_item_tags(updateHandle, tagArray);
                     
-                    if(file_exists(working_directory+"maps\"+name+'\'+name+'overlay.png'))
-                        steam_ugc_set_item_preview(updateHandle, working_directory+"maps\"+name+'\'+name+'overlay.png');
+                    if(file_exists(working_directory+"maps\"+name+'\color.png'))
+                        steam_ugc_set_item_preview(updateHandle, working_directory+"maps\"+name+'\color.png');
                     else
                         steam_ugc_set_item_preview(updateHandle, working_directory + "maps\" + workshopName + "\" + name + ".png");
                         
