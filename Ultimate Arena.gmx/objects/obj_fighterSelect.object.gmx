@@ -28,7 +28,7 @@
             <string>global.IDselected = -1;
 global.GAME_SPEED = 12;
 global.SAVE_SPEED = 12;
-
+global.mapSelected = -1;
 regen = 1;
 startgame = 0;
 search = "";

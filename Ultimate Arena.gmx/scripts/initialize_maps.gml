@@ -14,11 +14,20 @@ for(var i=0;i<l;i++)
     
     global.mapNAME[i] = directory[i];
     global.mapTYPE[i] = version;
-    global.mapPICS[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + ".png";
-    if(file_exists(working_directory+"maps\" + directory[i] + "\" + directory[i] + "overlay.png"))
-        global.mapOVERLAY[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + "overlay.png";
-    else
-        global.mapOVERLAY[i] = noone;
+    
+    if(version == 0)
+    {
+        global.mapPICS[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + ".png";
+        if(file_exists(working_directory+"maps\" + directory[i] + "\" + directory[i] + "overlay.png"))
+            global.mapOVERLAY[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + "overlay.png";
+        else
+            global.mapOVERLAY[i] = noone;
+    }
+    else if(version == 1)
+    {
+        global.mapPICS[i] = sprite_add(working_directory+"maps\" + directory[i] + "\height.png",0,0,0,0,0);
+        global.mapOVERLAY[i] = working_directory+"maps\" + directory[i] + "\color.png";
+    }
 }
 
 
@@ -55,11 +64,19 @@ for(h=0;h<s;h++)
             global.MAPS[i] = steam_map [? "folder"] + "\" + f;
             global.mapTYPE[i] = version;
             global.mapNAME[i] = name;
-            global.mapPICS[i] = steam_map [? "folder"] + "\" + name + ".png";
-            if(file_exists(steam_map [? "folder"] + "\" + name + "overlay.png"))
-                global.mapOVERLAY[i] = steam_map [? "folder"] + "\" + name + "overlay.png";
-            else
-                global.mapOVERLAY[i] = noone;
+            if(version == 0)
+            {
+                global.mapPICS[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + ".png";
+                if(file_exists(working_directory+"maps\" + directory[i] + "\" + directory[i] + "overlay.png"))
+                    global.mapOVERLAY[i] = working_directory+"maps\" + directory[i] + "\" + directory[i] + "overlay.png";
+                else
+                    global.mapOVERLAY[i] = noone;
+            }
+            else if(version == 1)
+            {
+                global.mapPICS[i] = sprite_add(working_directory+"maps\" + directory[i] + "\height.png",0,0,0,0,0);
+                global.mapOVERLAY[i] = working_directory+"maps\" + directory[i] + "\color.png";
+            }
             
             i++;
         }

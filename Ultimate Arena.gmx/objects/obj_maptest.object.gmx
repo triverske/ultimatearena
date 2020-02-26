@@ -44,6 +44,15 @@ surface_reset_target();
 surface_set_target(heightSurf);
 draw_clear_alpha(c_black,1);
 draw_surface_ext(global.heightsurf,512,0,-1,1,0,c_white,1);
+if(global.mapSelected != -1)
+{
+    draw_clear_alpha(c_black,1);
+    if(global.mapTYPE[global.mapSelected] == 1)
+    {
+        show_debug_message("HERE");
+        draw_sprite_ext(global.mapPICS[global.mapSelected] ,0,512,0,-1,1,0,c_white,1);
+    }
+}
 //draw_sprite_ext(spr_map,1,256,256,-1,1,0,c_white,1);
 surface_reset_target();
 

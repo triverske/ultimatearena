@@ -161,7 +161,6 @@
       <sprite>sprites\spr_workshopUpdatesItem</sprite>
       <sprite>sprites\spr_snow</sprite>
       <sprite>sprites\spr_dya_arena</sprite>
-      <sprite>sprites\spr_map</sprite>
     </sprites>
     <sprite>sprites\spr_backgrid</sprite>
     <sprite>sprites\spr_pointer</sprite>
@@ -240,7 +239,6 @@
       <script>scripts\scr_diamond_square.gml</script>
     </scripts>
     <script>scripts\scr_generate_map.gml</script>
-    <script>scripts\scr_load_map.gml</script>
     <script>scripts\generate_map_from_sprite.gml</script>
     <script>scripts\string_extract.gml</script>
     <scripts name="ui">

@@ -12,18 +12,22 @@ if (argument0 == id )
     global.rope = 0;
     var totalstone = 5;
     global.stone = 0;
-    
-    //Fill global.grid
+    global.mapSelected = sID;
     ini_open(global.MAPS[sID]);
-    for(var i=0; i<256; i++){
-        var str = ini_read_string("Map","Colors"+string(i),"");
-        for(var j=0; j<256; j++){
-             var k = real(string_char_at(str,j+1));
-             if(k > 3){
-                global.grid[i,j] = 3;
-             }
-             else
-                global.grid[i,j] = k;
+    if(global.mapTYPE[sID] == 0)
+    {
+        //Fill global.grid
+        
+        for(var i=0; i<256; i++){
+            var str = ini_read_string("Map","Colors"+string(i),"");
+            for(var j=0; j<256; j++){
+                 var k = real(string_char_at(str,j+1));
+                 if(k > 3){
+                    global.grid[i,j] = 3;
+                 }
+                 else
+                    global.grid[i,j] = k;
+            }
         }
     }
     
@@ -31,9 +35,17 @@ if (argument0 == id )
     var surf = surface_create(512, 512);
     surface_set_target(surf);
     
-    var spr = sprite_add(global.mapPICS[sID],1,0,0,0,0);
-    draw_sprite_ext(spr,0,0,0,2,2,0,c_white,1);
     
+    if(global.mapTYPE[sID] == 0)
+    {
+        var spr = sprite_add(global.mapPICS[sID],1,0,0,0,0);
+        draw_sprite_ext(spr,0,0,0,2,2,0,c_white,1);
+    }
+    else
+    {
+        var spr = sprite_add(global.mapOVERLAY[sID],1,0,0,0,0);
+        draw_sprite_ext(spr,0,0,0,1,1,0,c_white,1);
+    }
     var blue = make_color_rgb(48,102,201);
     //create wood
     while(global.wood < totalwood)
@@ -80,7 +92,10 @@ if (argument0 == id )
         if(file_exists(global.mapOVERLAY[sID]))
         {
             spr2 = sprite_add(global.mapOVERLAY[sID],1,0,0,0,0);
-            draw_sprite_ext(spr2,0,0,0,2,2,0,c_white,1);
+            if(global.mapTYPE[sID] == 0)
+                draw_sprite_ext(spr2,0,0,0,2,2,0,c_white,1);
+            else
+                draw_sprite_ext(spr2,0,0,0,1,1,0,c_white,1);
         }
     }
     
@@ -94,7 +109,8 @@ if (argument0 == id )
             break;
         global.treeloc[global.trees,0] = real(string_copy(ini_read_string("Trees",string(i),"000000"),1,3));
         global.treeloc[global.trees,1] = real(string_copy(ini_read_string("Trees",string(i),"000000"),4,3));
-        draw_sprite(spr_tree,0,global.treeloc[global.trees,0],global.treeloc[global.trees,1]);
+        if(global.mapTYPE[sID] == 0)
+            draw_sprite(spr_tree,0,global.treeloc[global.trees,0],global.treeloc[global.trees,1]);
         global.trees++;
     }
     
