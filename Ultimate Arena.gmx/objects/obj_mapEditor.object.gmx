@@ -32,19 +32,25 @@ overlayOn = false;
 cursorType = 0;
 cursorSize = 0;
 treeArray = 0;
-mapGrid = ds_grid_create(256,256);
+mapGrid = ds_grid_create(512,512);
 ds_grid_clear(mapGrid,2);
 
-green  = make_color_rgb( 69, 157, 69);
-blue   = make_color_rgb( 48, 102,201);
+green  = make_color_rgb( 96, 110, 55);
+blue   = make_color_rgb( 52, 76,139);
 yellow = make_color_rgb(222, 196,104);
-brown1 = make_color_rgb(164, 141, 60);
-brown2 = make_color_rgb(130, 112, 48);
-brown3 = make_color_rgb( 94,  80, 34);
+brown1 = make_color_rgb(113, 107, 97);
+brown2 = make_color_rgb(84, 68, 48);
+brown3 = make_color_rgb( 74,  90, 48);
+hColor = c_black;
 
-mapeditSurf = surface_create(256,256);
+mapeditSurf = surface_create(512,512);
 surface_set_target(mapeditSurf);
-draw_rectangle_colour(0,0,256,256,green,green,green,green,0);
+draw_clear_alpha(c_black,1);
+surface_reset_target();
+
+colorSurf = surface_create(512,512);
+surface_set_target(colorSurf);
+draw_clear_alpha(green,1);
 surface_reset_target();
 
 with(zui_main())
@@ -88,6 +94,10 @@ with(zui_main())
     }
     create_window_mapedit();
 }
+
+
+
+
 </string>
           </argument>
         </arguments>
@@ -137,30 +147,20 @@ with(zui_main())
 if(mouse_check_button(mb_left)){
 if(mouse_x &gt; round(window_get_width()*.5-257) &amp;&amp; mouse_x &lt; round(window_get_width()*.5+256)){
 if(mouse_y &gt; round(window_get_height()*.5-233) &amp;&amp; mouse_y &lt; round(window_get_height()*.5+280)){
-    var xx = round((mouse_x-round(window_get_width()*.5-255))/2);
-    var yy = round((mouse_y-round(window_get_height()*.5-231))/2);
+    var xx = round((mouse_x-round(window_get_width()*.5-255)));
+    var yy = round((mouse_y-round(window_get_height()*.5-231)));
     var tx = mouse_x-(round(window_get_width()*.5-256));
     var ty = mouse_y-(round(window_get_height()*.5-232));
     show_debug_message(string(xx)+','+string(yy)+','+string(tx)+','+string(ty));
-    surface_set_target(mapeditSurf);
+    
     switch(cursorType){
         case 0:
-            draw_circle_center(xx,yy,cursorSize,blue);
-            break;
         case 1:
-            draw_circle_center(xx,yy,cursorSize,yellow);
-            break;
         case 2:
-            draw_circle_center(xx,yy,cursorSize,green);
-            break;
         case 3:
-            draw_circle_center(xx,yy,cursorSize,brown1);
-            break;
         case 4:
-            draw_circle_center(xx,yy,cursorSize,brown2);
-            break;
         case 5:
-            draw_circle_center(xx,yy,cursorSize,brown3);
+            draw_circle_center(xx,yy,cursorSize,hColor);
             break;
         case 6:
             if(mouse_check_button_pressed(mb_left)){
@@ -175,11 +175,8 @@ if(mouse_y &gt; round(window_get_height()*.5-233) &amp;&amp; mouse_y &lt; round(
             }
             break;
     }
-    if(cursorType &lt; 6){
-        ds_grid_set_disk(mapGrid,xx,yy,cursorSize,cursorType);
-        show_debug_message(string(cursorSize)+','+string(ds_grid_get(mapGrid,xx,yy)));
-    }
-    surface_reset_target();
+
+    
 }
 }
 }
@@ -240,7 +237,7 @@ if(ds_exists(mapGrid,ds_type_grid))
             <string>
 if(overlayOn)
 {
-    draw_sprite_ext(overlayImage,0,round(window_get_width()*.5-256),round(window_get_height()*.5-232),2,2,0,c_white,1);
+    draw_sprite_ext(overlayImage,0,round(window_get_width()*.5-256),round(window_get_height()*.5-232),1,1,0,c_white,1);
 }
 
 if(treeArray != 0)

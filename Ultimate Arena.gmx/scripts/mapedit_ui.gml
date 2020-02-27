@@ -13,9 +13,13 @@ with(obj_uiListbox)
             var mname = global.MAPS[sID];
             var mcolors = "";
             ini_open(working_directory+"maps\"+mname+'\'+mname+'.ini');
-            
-            for(var i=0; i<256; i++)
-                mcolors[i] = ini_read_string("Map","Colors"+string(i),"");
+            if(ini_read_real("map","Version",0) == 0)
+            {
+                ini_close();
+                global.IDselected = -1;
+                ui_show_popup("Old Map Format#No Longer Supported");
+                exit;
+            }
             
             obj_mapEditor.treeArray = 0;
             for(var i=0; i<30; i++){
@@ -26,7 +30,6 @@ with(obj_uiListbox)
             }
             
             global.creator = ini_read_real("map","creator",-1);
-            global.charVersion = ini_read_real("map","version",1);
             global.workshopID = ini_read_real("map","workshopID",-1);
             
             ini_close();
@@ -39,16 +42,18 @@ with(obj_uiListbox)
                 if(lID == 1)
                     caption = string(array_height_2d(obj_mapEditor.treeArray))+"/30 Trees";
             }
-            with(obj_mapEditor){
+            with(obj_mapEditor)
+            {
                 var c = "";
-                for(var i=0; i<256; i++){
-                for(var j=0; j<256; j++){
+                for(var i=0; i<512; i++){
+                for(var j=0; j<512; j++){
                     c = string_char_at(mcolors[i],j+1);
                     ds_grid_set(mapGrid,i,j,real(c))
                 }
                 }
-                var map = sprite_add(working_directory+"maps\"+mname+"\"+mname+".png",1,0,0,0,0);
+                var map = sprite_add(working_directory+"maps\"+mname+"\height.png",1,0,0,0,0);
                 surface_set_target(mapeditSurf);
+                draw_clear_alpha(c_black,1);
                 draw_sprite(map,0,0,0);
                 surface_reset_target();
                 sprite_delete(map);
@@ -56,19 +61,20 @@ with(obj_uiListbox)
                     sprite_delete(overlayImage);
                 overlayImage = spr_blankMap;
                 overlayOn = false;
-                if(file_exists(working_directory+"maps\"+mname+"\"+mname+"overlay.png")){
-                    overlayImage = sprite_add(working_directory+"maps\"+mname+"\"+mname+"overlay.png",1,0,0,0,0);
-                    var surf = surface_create(256,256);
+                if(file_exists(working_directory+"maps\"+mname+"\color.png")){
+                    overlayImage = sprite_add(working_directory+"maps\"+mname+"\color.png",1,0,0,0,0);
+                    var surf = surface_create(512,512);
                     surface_set_target(surf);
-                    draw_sprite_stretched(overlayImage,0,0,0,256,256);
+                    draw_sprite_stretched(overlayImage,0,0,0,512,512);
                     surface_reset_target();
                     sprite_delete(overlayImage);
-                    overlayImage = sprite_create_from_surface(surf,0,0,256,256,0,0,0,0);
+                    overlayImage = sprite_create_from_surface(surf,0,0,512,512,0,0,0,0);
                     surface_free(surf);
                     overlayOn = true;
-                    with(obj_uiButton){
+                    with(obj_uiButton)
+                    {
                         if(bID == 11)
-                            caption = "Remove Overlay Image";
+                            caption = "Remove Color Map";
                     }
                 }
                 with(obj_uiButton){
@@ -180,11 +186,18 @@ with(obj_uiButton){
                 var name = global.charname;
                 
                 ini_open(working_directory+"maps\"+name+'\'+name+'.ini');
-                surface_save(mapeditSurf,working_directory+"maps\"+name+'\color.png');
+                surface_save(mapeditSurf,working_directory+"maps\"+name+'\height.png');
                 ini_write_string("Map","name",name);
                 ini_write_real("Map","Version",1);
-                sprite_save(overlayImage,0,working_directory+"maps\"+name+'\height.png');
-                sprite_delete(overlayImage);
+                if(overlayImage != spr_blankMap)
+                {
+                    sprite_save(overlayImage,0,working_directory+"maps\"+name+'\color.png');
+                    sprite_delete(overlayImage);
+                }
+                else
+                {
+                    surface_save(colorSurf,working_directory+"maps\"+name+'\color.png');
+                }
                 
                 var str = "";
 
@@ -256,7 +269,7 @@ with(obj_uiButton){
                         if(bID == 12)
                             caption = "Overlay: Off";
                     }
-                    other.caption = "Import Overlay Image";
+                    other.caption = "Import Color Map";
                 }
                 else{
                     var file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
@@ -264,12 +277,12 @@ with(obj_uiButton){
                         if(overlayImage != spr_blankMap)
                             sprite_delete(overlayImage);
                         overlayImage = sprite_add(file,0,0,0,0,0);
-                        var surf = surface_create(256,256);
+                        var surf = surface_create(512,512);
                         surface_set_target(surf);
-                        draw_sprite_stretched(overlayImage,0,0,0,256,256);
+                        draw_sprite_stretched(overlayImage,0,0,0,512,512);
                         surface_reset_target();
                         sprite_delete(overlayImage);
-                        overlayImage = sprite_create_from_surface(surf,0,0,256,256,0,0,0,0);
+                        overlayImage = sprite_create_from_surface(surf,0,0,512,512,0,0,0,0);
                         surface_free(surf);
                         overlayOn = true;
                         with(obj_uiButton){
@@ -277,7 +290,7 @@ with(obj_uiButton){
                                 caption = "Overlay: On";
                         }
                     }
-                    other.caption = "Remove Overlay Image";
+                    other.caption = "Remove Color Map";
                 }
             }
         }
@@ -298,31 +311,41 @@ with(obj_uiButton){
             }
         }
         else if(bID == 14)//Brush 1
-            obj_mapEditor.cursorSize = 0;
+            obj_mapEditor.cursorSize = 7;
         else if(bID == 15)//Brush 2
-            obj_mapEditor.cursorSize = 1;
+            obj_mapEditor.cursorSize = 21;
         else if(bID == 16)//Brush 3
-            obj_mapEditor.cursorSize = 2;
+            obj_mapEditor.cursorSize = 55;
         else if(bID == 17)//Brush 4
-            obj_mapEditor.cursorSize = 3;
-        else if(bID == 18){//Generate Map From Overlay
-            with(obj_mapEditor){
-                surface_set_target(mapeditSurf);
-                draw_clear(green);
-                surface_reset_target();
-                treeArray = 0;
-                ds_grid_clear(mapGrid,0);
-                overlayOn = false;
-                with(obj_uiButton){
-                    if(bID == 12)
-                        caption = "Overlay: Off";
-                }
-                generate_map_from_sprite(overlayImage);
-                with(obj_uiLabel){
-                    if(lID == 1)
-                        caption = "30/30 Trees";
+            obj_mapEditor.cursorSize = 71;
+        else if(bID == 18)//Import Heightmap
+        {
+            with(obj_mapEditor)
+            {
+                var file = get_open_filename("Image File|*.png;*.jpg;*.jpeg", "");
+                if(file != "")
+                {
+                    tempfile = sprite_add(file,0,0,0,0,0);
+
+                    surface_set_target(mapeditSurf);
+                    draw_sprite_stretched(tempfile,0,0,0,512,512);
+                    surface_reset_target();
+                    sprite_delete(tempfile);
                 }
             }
+        }
+    }
+}
+
+with(obj_uiSlider)
+{
+    if(argument0 == id)
+    {
+        if(slID == 1) //Height
+        {
+            var cl = round(255*argument1);
+            with(obj_mapEditor)
+                hColor = make_color_rgb(cl,cl,cl);
         }
     }
 }

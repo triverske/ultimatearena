@@ -3,7 +3,7 @@ with(zui_create(round(window_get_width()*.5), round(window_get_height()/2), obj_
     wID = "Editor Window";
     
     with(zui_create(0, 0, obj_uiWindowCaption))
-        caption = "Map Editor";
+        caption = "Heightmap Editor";
     with(zui_create(15, 39, obj_uiLabel)){
         caption = "Name: ";
         halign = fa_left;
@@ -19,7 +19,7 @@ with(zui_create(round(window_get_width()*.5), round(window_get_height()/2), obj_
     with(zui_create(5, 54, obj_uiImage)){
         image = obj_mapEditor.mapeditSurf;
         type = 2;
-        scale = 2;
+        scale = 1;
         iID = 0;
     }
 }
@@ -79,96 +79,23 @@ with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)-1
             halign = fa_left;
         }
     }
-    with (zui_create(5, 99, obj_uiButton)) {                                           
-        zui_set_anchor(0,0);
-        zui_set_size(190, 30);
-        caption = "";
-        callback = mapedit_ui;
-        bID = 3;
-        with(zui_create(5,5,obj_uiImage)){
-            zui_set_anchor(0,0);
-            height = 19;
-            width = 20;
-            type = 3;
-            color = make_color_rgb(222, 196,104);
-        }
-        with(zui_create(35, 15, obj_uiLabel)){
-            caption = "Sand";
-            halign = fa_left;
-        }
+    
+    with(zui_create(100, 110, obj_uiLabel))
+    {
+        caption = "Height"
+        halign = fa_center;
     }
-    with (zui_create(5, 134, obj_uiButton)) {                                           
+    with(zui_create(10,120,obj_uiSlider))
+    {
+        zui_set_size(180, 26);
         zui_set_anchor(0,0);
-        zui_set_size(190, 30);
-        caption = "";
         callback = mapedit_ui;
-        bID = 4;
-        with(zui_create(5,5,obj_uiImage)){
-            zui_set_anchor(0,0);
-            height = 19;
-            width = 20;
-            type = 3;
-            color = make_color_rgb( 69, 157, 69);
-        }
-        with(zui_create(35, 15, obj_uiLabel)){
-            caption = "Grass";
-            halign = fa_left;
-        }
+        slID = 1;
+        value = 1;
+        pos = 0;
     }
-    with(zui_create(5, 169, obj_uiButton)) {                                           
-        zui_set_anchor(0,0);
-        zui_set_size(190, 30);
-        caption = "";
-        callback = mapedit_ui;
-        bID = 5;
-        with(zui_create(5,5,obj_uiImage)){
-            zui_set_anchor(0,0);
-            height = 19;
-            width = 20;
-            type = 3;
-            color = make_color_rgb(164, 141, 60);
-        }
-        with(zui_create(35, 15, obj_uiLabel)){
-            caption = "Mountain 1";
-            halign = fa_left;
-        }
-    }
-    with (zui_create(5, 204, obj_uiButton)) {                                           
-        zui_set_anchor(0,0);
-        zui_set_size(190, 30);
-        caption = "";
-        callback = mapedit_ui;
-        bID = 6;
-        with(zui_create(5,5,obj_uiImage)){
-            zui_set_anchor(0,0);
-            height = 19;
-            width = 20;
-            type = 3;
-            color = make_color_rgb(130, 112, 48);
-        }
-        with(zui_create(35, 15, obj_uiLabel)){
-            caption = "Mountain 2";
-            halign = fa_left;
-        }
-    }
-    with (zui_create(5, 239, obj_uiButton)) {                                           
-        zui_set_anchor(0,0);
-        zui_set_size(190, 30);
-        caption = "";
-        callback = mapedit_ui;
-        bID = 7;
-        with(zui_create(5,5,obj_uiImage)){
-            zui_set_anchor(0,0);
-            height = 19;
-            width = 20;
-            type = 3;
-            color = make_color_rgb( 94,  80, 34);
-        }
-        with(zui_create(35, 15, obj_uiLabel)){
-            caption = "Mountain 3";
-            halign = fa_left;
-        }
-    }
+
+
     with (zui_create(5, 274, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
@@ -218,14 +145,14 @@ with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)+1
     with(zui_create(5, 75, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
-        caption = "Import Overlay Image";
+        caption = "Import Color Map";
         callback = mapedit_ui;
         bID = 11;
     }
     with(zui_create(5, 110, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
-        caption = "Generate Map From Overlay";
+        caption = "Import Height Map";
         callback = mapedit_ui;
         bID = 18;
     }
