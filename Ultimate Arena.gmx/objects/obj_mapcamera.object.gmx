@@ -118,7 +118,6 @@ with(obj_fighter)
         vertex_submit(vertexBuffer, pr_trianglelist, texture);
         if(dis &lt; 300)
         {
-            d3d_transform_add_scaling(1,1,2);
             d3d_transform_add_translation(0,0,10);
             
             vertex_submit(vertexBuffer, pr_trianglelist, tex2);

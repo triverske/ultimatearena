@@ -227,11 +227,17 @@ global.DEADLOC[fighterID,1] = y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>imageSurf = surface_create(64,128);
+            <string>imageSurf = surface_create(128,128);
 surface_set_target(imageSurf);
 texture_set_interpolation(1);
-draw_sprite_stretched(global.IMAGES[fighterID],0,0,0,64,64);
-draw_sprite(spr_pointer,0,0,64);
+draw_sprite_stretched(global.IMAGES[fighterID],0,32,0,64,64);
+var cl = c_lime;
+if(HP &lt; 15)
+    cl = c_red;
+else if(HP &lt; 40)
+    cl = c_orange
+
+draw_sprite_ext(spr_pointer,0,32,64,1,1,0,cl,1);
 texture_set_interpolation(0);
 surface_reset_target();
 tex2 = surface_get_texture(imageSurf);
@@ -843,6 +849,24 @@ if(global.SPRITES[fighterID,0] != spr_fighter)
         draw_sprite_ext(spr_fighter,INSANE,16,32,1,1,0,color,1);
 surface_reset_target();
 texture = surface_get_texture(fighterSurf);
+
+
+if(bufferReady)
+{
+    surface_set_target(imageSurf);
+    texture_set_interpolation(1);
+    draw_sprite_stretched(global.IMAGES[fighterID],0,32,0,64,64);
+    var cl = c_lime;
+    if(HP &lt; 15)
+        cl = c_red;
+    else if(HP &lt; 40)
+        cl = c_orange
+    
+    draw_sprite_ext(spr_pointer,0,32,64,1,1,0,cl,1);
+    texture_set_interpolation(0);
+    surface_reset_target();
+    tex2 = surface_get_texture(imageSurf);
+}
 </string>
           </argument>
         </arguments>
