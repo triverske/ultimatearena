@@ -217,7 +217,7 @@ with(obj_uiButton){
                 ini_close();
             }
             
-            if(global.workshop && !global.copyProtection)
+            if(global.workshop)
             {
                 if(global.workshopID == -1)
                 {

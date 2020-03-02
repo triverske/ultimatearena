@@ -1,7 +1,9 @@
 with(zui_create(round(window_get_width()*.5), round(window_get_height()/2), obj_uiWindow)){
     zui_set_size(522, 572);
     wID = "Editor Window";
-    
+    global.workshopID = -1;
+    global.creator = -1;
+    global.charVersion = 0;
     with(zui_create(0, 0, obj_uiWindowCaption))
         caption = "Heightmap Editor";
     with(zui_create(15, 39, obj_uiLabel)){
@@ -61,6 +63,7 @@ with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)-1
         callback = mapedit_ui;
         bID = 17;
     }
+    /*
     with(zui_create(5, 64, obj_uiButton)) {                                           
         zui_set_anchor(0,0);
         zui_set_size(190, 30);
@@ -78,7 +81,7 @@ with(zui_create(round(window_get_width()*.5)+411, round(window_get_height()/2)-1
             caption = "Water";
             halign = fa_left;
         }
-    }
+    }*/
     
     with(zui_create(100, 110, obj_uiLabel))
     {
