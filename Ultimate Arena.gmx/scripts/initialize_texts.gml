@@ -37,8 +37,6 @@ for(h=0;h<s;h++)
 {
     steam_map = ds_map_create();
     steam_ugc_get_item_install_info(steam_list[| h], steam_map); 
-    //show_debug_message(steam_map [? "folder"]);
-    
     
     var f = file_find_first(steam_map [? "folder"] + "\*.ini", 0);
     if(f != "")

@@ -70,7 +70,7 @@ ini_close();
 
 directory = 0;
 directory[0] = "";
-var l = initialize_directory("texts");
+var l = initialize_directory("texts") + global.TEXT_COUNT;
 
 if(file_exists("text.ini"))
     file_delete("text.ini");
@@ -128,12 +128,13 @@ else
 
 if(l > 0)
 {
-    for(var i=0;i<l;i++)
+    for(var i=1;i<l;i++)
     {//loops through all files
-        if(global.TEXTTOGGLE[i+1])
+        if(global.TEXTTOGGLE[i])
         {
             var t = 0;
-            ini_open("texts\" + directory[i] + "\" + directory[i] + ".ini");
+            show_debug_message(global.TEXT[i]);
+            ini_open(global.TEXT[i]);
             for(var j=0; j<SC; j++)
             {//stores text in t array
                 t[j,0] = 0;
