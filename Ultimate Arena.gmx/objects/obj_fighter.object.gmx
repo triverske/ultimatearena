@@ -68,6 +68,7 @@ QUICK  = .5;// The max movement in a cycle (in pixels)
 SIGHT  = 5+SKILL; // How far a fighter can "see".
 STATE  = "WANDER";
 CONTINUE = 1; // How much more likely will the current action be on the next cycle?
+PANIC = irandom(50) == 4;
 
 caption = "Wandering";
 
@@ -373,7 +374,7 @@ if(STATE == "SLEEP")
     if(time%(53-ENDURANCE*2) == 0 &amp;&amp; HP &lt; 100)
         HP+=floor(random(3));
     if (SANITY &lt; SANMAX &amp;&amp; time%360 == 0)
-        SANITY+=1;
+        SANITY = clamp(SANITY + 2,-99,SANMAX);
 }
 else{
     if(time%(170+ENDURANCE*18) == 0)
@@ -388,13 +389,7 @@ else{
     {
         if(time%(35+ENDURANCE*2) == 0)
         {
-            if(time%2 == 0)
-            {
-                SANMAX-=floor(random(3));
-                SANITY-=floor(random(3));
-            }
-            else
-                SANITY-=floor(random(3));
+            SANITY-=floor(random(2));
         }
         if(time%(235+ENDURANCE*5) == 0)
             HP-=floor(random(3));
@@ -406,13 +401,15 @@ else{
     }
     else if(time%(96-ENDURANCE*2) == 0 &amp;&amp; HP &lt; 100)
         HP+=floor(random(3));
-}    
-if(time%360 == 0)
-{
-    SANITY-=irandom(3);
-    SANMAX-=irandom(3);
 }
+
 //check stats for negative values
+if(PANIC &amp;&amp; irandom(30) == 4)
+    SANITY -= floor(irandom(4))
+
+if(irandom(100) == 4)
+    SANITY -= floor(irandom(4))
+
 if (SANITY &lt; 0)
     INSANE = 1;
 else
@@ -578,9 +575,11 @@ if(!global.fighterGroups || (group!=c.group || (group==-1 || INSANE &amp;&amp; i
 }
 }
 
-if (INSANE = 1)
+if(INSANE)
 {
-    ai_submit_command("SUICIDE",5);
+    if(irandom(8) == 2)
+        ai_submit_command("SUICIDE",1);
+        
     if(SKILL &gt; 4)
     {
         if(instance_exists(c))
@@ -588,7 +587,7 @@ if (INSANE = 1)
     }
 }
    
-if (water)
+if(water)
 {
     if(THIRST &lt; 10)
         ai_submit_command("DRINK",100);
@@ -1150,52 +1149,58 @@ if(bufferReady)
             <kind>1</kind>
             <string>if(other.owner != fighterID)
 {
-if(alarm[0] == 1)
-{
-    var t = floor(random(25));
-    if(other.owner == -1){
-        if (t &lt; 25-(SKILL+LUCK)){
-            other.triggered = true;
-            global.deathCause[fighterID] = "Death by land mine";
-            update_create(update_get_text("die_mine",fighterID),fighterID,1);
-            instance_destroy();
-        }
-        else{
-            update_create(update_get_text("disarm_mine",fighterID),fighterID,0);
-            with(other)
-                instance_destroy();
-            XP+=3;
-            INV[0]++;
-        }
-    }
-    else{
-        if (t &lt; 25-(SKILL+LUCK)){
-            if(instance_exists(global.IDLIST[other.owner]))
+    if(alarm[0] == 1)
+    {
+        var t = floor(random(25));
+        if(other.owner == -1)
+        {
+            if (t &lt; 25-(SKILL+LUCK))
             {
-                with(global.IDLIST[other.owner])
-                    XP+=5;
-            }
-            other.triggered = true;
-            global.deathCause[fighterID] = "Killed by "+global.NAMES[other.owner]+"'s land mine";
-            update_m_create(update_get_multichar_text("die_mine_m",fighterID,other.owner,0,0),other.owner,fighterID,0,0,1);
-            with(global.IDLIST[other.owner])
-                kills++;
-            global.LANDMINE_KILLS++;
-            instance_destroy();
-        }
-        else{
-            update_create(update_get_text("disarm_mine",fighterID),fighterID,0);
-            with(other)
+                other.triggered = true;
+                global.deathCause[fighterID] = "Death by land mine";
+                update_create(update_get_text("die_mine",fighterID),fighterID,1);
+                global.LANDMINE_KILLS++;
                 instance_destroy();
-            XP+=3;
-            INV[0]++;
-            
+            }
+            else
+            {
+                update_create(update_get_text("disarm_mine",fighterID),fighterID,0);
+                with(other)
+                    instance_destroy();
+                XP+=3;
+                INV[0]++;
+            }
+        }
+        else
+        {
+            if (t &lt; 25-(SKILL+LUCK))
+            {
+                if(instance_exists(global.IDLIST[other.owner]))
+                {
+                    with(global.IDLIST[other.owner])
+                        XP+=5;
+                }
+                other.triggered = true;
+                global.deathCause[fighterID] = "Killed by "+global.NAMES[other.owner]+"'s land mine";
+                update_m_create(update_get_multichar_text("die_mine_m",fighterID,other.owner,0,0),other.owner,fighterID,0,0,1);
+                with(global.IDLIST[other.owner])
+                    kills++;
+                
+                global.LANDMINE_KILLS++;
+                instance_destroy();
+            }
+            else
+            {
+                update_create(update_get_text("disarm_mine",fighterID),fighterID,0);
+                with(other)
+                    instance_destroy();
+                XP+=3;
+                INV[0]++;
+                
+            }
         }
     }
 }
-}
-
-
 </string>
           </argument>
         </arguments>

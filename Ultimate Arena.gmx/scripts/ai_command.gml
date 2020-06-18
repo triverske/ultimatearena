@@ -172,8 +172,7 @@ if (com != STATE)
         caption = "Taking a Bath";
         QUICK = 0;
         CONTINUE = 0;
-        if(SANITY<SANMAX)
-            SANITY++;
+        SANITY = clamp(SANITY + 2,-99,SANMAX);
         bathetime = time;
         DELAY = 60;
         update_create(update_get_text("bathe",fighterID),fighterID,0);
@@ -360,7 +359,7 @@ if (com != STATE)
                 update_m_create(update_get_multichar_text("kill_unarmed",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
             kills++;
             XP+=5;
-            c = irandom(20);
+            c = irandom(5);
             SANITY -= c;
             SANMAX -= c;
             with (otherFighter)
@@ -406,7 +405,7 @@ if (com != STATE)
                 update_m_create(update_get_multichar_text("kill_wspear",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
             kills++;
             XP+=7;
-            c = (floor(random(15)));
+            c = (floor(random(8)));
             SANITY -= c;
             SANMAX -= c;
             with (otherFighter)
@@ -458,7 +457,7 @@ if (com != STATE)
                 update_m_create(update_get_multichar_text("kill_sspear",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
             kills++;
             XP+=8;
-            c = (floor(random(15)));
+            c = (floor(random(8)));
             SANITY -= c;
             SANMAX -= c;
             with (otherFighter)
@@ -510,7 +509,7 @@ if (com != STATE)
                 update_m_create(update_get_multichar_text("kill_wbow",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
             kills++;
             XP+=9;
-            c = (floor(random(10)));
+            c = (floor(random(5)));
             SANITY -= c;
             SANMAX -= c;
             with (otherFighter)
@@ -562,7 +561,7 @@ if (com != STATE)
                 update_m_create(update_get_multichar_text("kill_sbow",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
             kills++;
             XP+=10;
-            c = (floor(random(10)));
+            c = (floor(random(5)));
             SANITY -= c;
             SANMAX -= c;
             with (otherFighter)
@@ -595,7 +594,7 @@ if (com != STATE)
             update_m_create(update_get_multichar_text("kill_drown",fighterID,otherFighter.fighterID,0,0),fighterID,otherFighter.fighterID,0,0,1);
         kills++;
         XP+=12;
-        SANITY -= (floor(random(10)));
+        SANITY -= (floor(random(5)));
         with (otherFighter)
         {
             global.deathCause[fighterID] = "Drowned by " + other.NAME;

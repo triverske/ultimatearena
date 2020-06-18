@@ -65,7 +65,7 @@ if(amt > 0)
     for(var i = 0;i < amt;i++)
     {
         tx2 += global.NAMES[newsFightersDead[| i]] + " - " + global.deathCause[newsFightersDead[| i]];
-        show_debug_message("i:" + string(i) + " , AMT:" + string(amt));
+        //show_debug_message("i:" + string(i) + " , AMT:" + string(amt));
         if(i != (amt - 1))
             tx2 += ", ";
         if(string_width(tx2) > 590)
@@ -85,7 +85,7 @@ if(amt > 0)
             tx = tx2;
             if(i == amt - 1)
             {
-                show_debug_message("GET");
+                //show_debug_message("GET");
                 if(nd <= 8)
                     draw_text(300,445 + nd*15,tx);
                 nd++;
