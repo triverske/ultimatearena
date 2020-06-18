@@ -74,6 +74,7 @@ with (obj_uiButton)
                         caption = "Stats";
                         draggable = 1;
                     }
+                    alarm[0] = 2;
                     zui_create(0,0,obj_uiExitButton,-1);
                 }
             }
