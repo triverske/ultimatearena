@@ -70,7 +70,8 @@ ini_close();
 
 directory = 0;
 directory[0] = "";
-var l = initialize_directory("texts") + global.TEXT_COUNT;
+initialize_directory("texts");
+var l = array_length_1d(global.TEXTTOGGLE);
 
 if(file_exists("text.ini"))
     file_delete("text.ini");
