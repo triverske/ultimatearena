@@ -473,6 +473,7 @@ if(global.fighterGroups &amp;&amp; group == id)
 }
 //Send Commands
 ai_submit_command("WANDER",1);
+ai_submit_command("HEAD TO CENTER",1);
 ai_submit_command("WAIT",1);
 
 if(irandom(100) == 1)
@@ -668,34 +669,29 @@ else if(HUNGER &lt; 50 &amp;&amp; INV[2] &lt; 1 &amp;&amp; !(foodloc[0]==0 &amp;
 
 //Check for escape
 var esc = irandom(100000)
-if(x &gt; 490 || x &lt; 10  || y &gt; 490 || y &lt; 10) //Make sure fighter doesn't leave arena
+var outsideArena = x &gt; 490 || x &lt; 10  || y &gt; 490 || y &lt; 10;
+if(outsideArena) //Make sure fighter doesn't leave arena
 {
-    if (!escape) 
-    {
-        
+    ai_submit_command("HEAD TO CENTER",4);
 
-        if (esc &lt; 480)
-        {
-            global.deathCause[fighterID] = "Death by failed escape attempt";
-            instance_destroy();
-            update_create(update_get_text("arena_escape_fail",fighterID),fighterID,1);
-        }
-        else if (esc &lt; 490)
-        {
-            global.deathCause[fighterID] = "Death by failed escape attempt";
-            instance_destroy();
-            update_create(global.NAMES[fighterID]  + " was killed by the guardians.",fighterID,1);
-        }
-        else if (esc &lt; 492)
-        {
-            global.WILD_RIDE = 1;
-            global.deathCause[fighterID] = "Death by failed escape attempt";
-            instance_destroy();
-            update_create(global.NAMES[fighterID]  + " died trying to get off Mr. Troy's Wild Ride!",fighterID,1);
-        }
-        
-        //speed = -1;
-        //DIR -= (floor(random(40)) + 160)
+    if (esc &lt; 480)
+    {
+        global.deathCause[fighterID] = "Death by failed escape attempt";
+        instance_destroy();
+        update_create(update_get_text("arena_escape_fail",fighterID),fighterID,1);
+    }
+    else if (esc &lt; 490)
+    {
+        global.deathCause[fighterID] = "Death by failed escape attempt";
+        instance_destroy();
+        update_create(global.NAMES[fighterID]  + " was killed by the guardians.",fighterID,1);
+    }
+    else if (esc &lt; 492)
+    {
+        global.WILD_RIDE = 1;
+        global.deathCause[fighterID] = "Death by failed escape attempt";
+        instance_destroy();
+        update_create(global.NAMES[fighterID]  + " died trying to get off Mr. Troy's Wild Ride!",fighterID,1);
     }
 }
 
@@ -732,8 +728,7 @@ while(true)
     var ny = round(clamp(y+lengthdir_y(speed,DIR),0,511));
     
     var nz = buffer_get_height(obj_maptest.hBuff,nx,ny) * 128 / 255;
-    if(cameraFollow)
-        show_debug_message(string(abs(z-nz)));
+
     if(abs(z-nz) &lt; 5.1)
     {
         z = nz;

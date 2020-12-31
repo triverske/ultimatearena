@@ -308,7 +308,7 @@ with (obj_uiWindow)
         
         if(wID == "3D Map")
         {
-            draw_surface_stretched(obj_mapcamera.testSurf,0,24,HS*(512/720),HS*(512/720));
+            draw_surface_stretched(obj_mapcamera.Surf3D,0,24,HS*(512/720),HS*(512/720));
             draw_set_font(font0);
             
             if(instance_exists(obj_arenaEvent))

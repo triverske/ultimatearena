@@ -5,9 +5,17 @@ if(!surface_exists(map))
 }
 
 surface_set_target(map);
+draw_clear_alpha(c_black,1);
 
+draw_set_color_write_enable(1,1,1,0);
 draw_background(global.bck_minimap,0,0);
-//draw_sprite(spr_map,0,256,256);
+draw_set_alpha(1);
+if(global.mapSelected != -1)
+    if(global.mapOVERLAY[global.mapSelected] != noone)
+        with(obj_arenaController)
+            draw_sprite(mapColor,0,0,0);
+            
+draw_set_color_write_enable(1,1,1,1);
 
 with(obj_arenaShrink)
     event_perform(ev_draw,0);

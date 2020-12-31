@@ -35,12 +35,6 @@ refresh = 10;
 colSurf = surface_create(512,512);
 heightSurf = surface_create(512,512);
 
-surface_set_target(colSurf);
-draw_clear_alpha(c_black,1);
-//draw_sprite_ext(spr_map,0,256,256,hflip,vflip,rot,c_white,1);
-draw_surface_ext(global.mapsurf,0,0,1,1,90,c_white,1);
-surface_reset_target();
-
 surface_set_target(heightSurf);
 draw_clear_alpha(c_black,1);
 draw_surface_ext(global.heightsurf,512,0,-1,1,0,c_white,1);
@@ -49,11 +43,15 @@ if(global.mapSelected != -1)
     draw_clear_alpha(c_black,1);
     if(global.mapTYPE[global.mapSelected] == 1)
     {
-        show_debug_message("HERE");
         draw_sprite_ext(global.mapPICS[global.mapSelected] ,0,512,0,-1,1,0,c_white,1);
     }
 }
 //draw_sprite_ext(spr_map,1,256,256,-1,1,0,c_white,1);
+surface_reset_target();
+
+surface_set_target(colSurf);
+draw_clear_alpha(c_black,1);
+
 surface_reset_target();
 
 hBuff = noone;
@@ -148,8 +146,21 @@ instance_create(0,0,obj_mapcamera);
 surface_set_target(colSurf);
 draw_clear_alpha(c_black,1);
 
-draw_surface_ext(global.mapsurf,0,512,1,1,90,c_white,1);
-//draw_sprite_ext(spr_map,0,256,256,hflip,vflip,rot,c_white,1);
+var g = 1;
+with(obj_arenaController)
+{
+    if(mapColor != noone)
+    {
+        draw_sprite_ext(mapColor,0,0,512,1,1,90,c_white,1);
+        g = 0;
+    }
+}
+
+if(g)
+    draw_surface_ext(global.mapsurf,0,512,1,1,90,c_white,1);
+        
+        
+        
 draw_set_colour_write_enable(1,1,1,0);
 
 with(obj_deadLocation)

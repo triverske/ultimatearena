@@ -23,7 +23,7 @@ with(obj_uiMain)
         with (zui_create(zui_get_width() * 0.5, zui_get_height() - 210, obj_uiButton)) 
         {
             zui_set_size(250, 28);
-            caption = "Map Editor";
+            caption = "Map Editor (Beta)";
             bID = 15;
             callback = title_buttons;
         }
@@ -39,6 +39,13 @@ with(obj_uiMain)
             zui_set_size(250, 28);
             caption = "Text Editor";
             bID = 16;
+            callback = title_buttons;
+        }
+        with (zui_create(zui_get_width() * 0.5, zui_get_height() - 90, obj_uiButton)) 
+        {
+            zui_set_size(250, 28);
+            caption = "Workshop Item Manager";
+            bID = 20;
             callback = title_buttons;
         }
         

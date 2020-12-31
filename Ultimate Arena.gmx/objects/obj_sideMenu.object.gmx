@@ -31,7 +31,7 @@ global.TIME_HOURS = 12;
 global.TIME_DAYS = 1;
 global.TIME_STRING = "00:12:00";
 global.NAMES[0] = " ";
-global.KILL_STRING = "KILLS:  ";
+global.KILL_STRING = "KILL LEADERS:  ";
 global.DEATH_STRING = "DEATHS:  ";
 killleader = 0;
 killleaderprev = 0;
@@ -85,7 +85,7 @@ for(i = 0;i &lt; global.fighters+1;i++)
             <kind>1</kind>
             <string>global.TIME_SECONDS+=30;
 alarm[0] = global.GAME_SPEED;
-global.KILL_STRING = "KILLS:  ";
+global.KILL_STRING = "KILL LEADERS:  ";
 global.DEATH_STRING = "DEATHS:  ";
 killleader = 0;
 killleaderkills = 0;

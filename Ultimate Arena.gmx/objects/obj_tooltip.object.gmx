@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>727379968</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,18 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>pressed = 0;
-callback = -1;
-type = 0;
-hoverTimer = 0;
+            <string>sx = mouse_x;
+sy = mouse_y;
+sw = 0;
 
-tooltip = "";
+text = "TEST";
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="56">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -53,22 +52,14 @@ tooltip = "";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(pressed) 
-{
-    pressed = 0;
-    if(zui_get_hover()) 
-    {
-        audio_play_sound(snd_blip,0,0);
-        if(callback &gt;= 0)
-            script_execute(callback, id);
-    }
-}
+            <string>if(abs(sx-mouse_x) + abs(sy-mouse_y) &gt; 5)
+    instance_destroy();
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="53">
+    <event eventtype="8" enumb="75">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -85,70 +76,24 @@ tooltip = "";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (zui_get_hover())
-    pressed = 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(__enabled)
-{
-    if(zui_get_hover()) 
-    {
-        if(pressed)
-        {
-            draw_set_color($aaaaaa);
-            hoverTimer = 0;
-        }
-        else
-        {
-            draw_set_color($cccccc); 
-            hoverTimer++;
-        }
-    } 
-    else 
-    {
-        draw_set_color($ffffff);
-        hoverTimer = 0;
-    }
-    
-    ui_draw_sprite_panel(spr_button, type, 8, -6, -6, __width + 12, __height + 12);
-    
-    draw_set_font(font0);
-    draw_set_halign(1);
-    draw_set_valign(1);
-    draw_set_color(merge_colour(draw_get_colour(), 0, 0.1));
-    draw_text(floor(__width * 0.5),floor(__height * 0.5), caption);
-    
-    if(hoverTimer &gt; 45 &amp;&amp; tooltip != "")
-    {
-        if(!instance_exists(obj_tooltip))
-        {
-            with(instance_create(mouse_x+25,mouse_y,obj_tooltip))
-                text = other.tooltip;
-                
-            hoverTimer = -1500;
-        }
-    }
-}
+            <string>draw_set_color(c_black)
+
+draw_set_alpha(.5);
+draw_rectangle(x-5,y-9,x+5+sw,y+9,0);
+draw_set_alpha(1);
+draw_set_color(c_aqua);
+draw_rectangle(x-5,y-9,x+5+sw,y+9,1);
+
+draw_set_font(font0);
+draw_set_halign(fa_left);
+draw_set_valign(1);
+draw_set_color($ffffff);
+
+if(sw == 0)
+    sw = string_width(text);
+
+
+draw_text(x, y, text);
 </string>
           </argument>
         </arguments>

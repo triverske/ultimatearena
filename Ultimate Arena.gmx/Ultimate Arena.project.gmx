@@ -239,7 +239,6 @@
       <script>scripts\scr_diamond_square.gml</script>
     </scripts>
     <script>scripts\scr_generate_map.gml</script>
-    <script>scripts\generate_map_from_sprite.gml</script>
     <script>scripts\string_extract.gml</script>
     <scripts name="ui">
       <script>scripts\arena_ui.gml</script>
@@ -345,6 +344,7 @@
       <object>objects\obj_textEditor</object>
       <object>objects\obj_roomTransition</object>
       <object>objects\obj_workshop</object>
+      <object>objects\obj_tooltip</object>
     </objects>
     <objects name="Arena">
       <object>objects\obj_tree</object>

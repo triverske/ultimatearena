@@ -33,6 +33,8 @@ drawGui = 0;
 color = c_white;
 alpha = 1;
 imgAnchor = 0;
+tooltip = "";
+hoverTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -115,13 +117,31 @@ imgAnchor = 0;
     if(zui_get_hover()) 
     {
         if(pressed)
+        {
             darken = 2;
+            hoverTimer = 0;
+        }
         else
+        {
             darken = 1;
+            hoverTimer++;
+        }
     } 
     else 
     {
         darken = 0;
+        hoverTimer = 0;
+    }
+    
+    if(hoverTimer &gt; 45 &amp;&amp; tooltip != "")
+    {
+        if(!instance_exists(obj_tooltip))
+        {
+            with(instance_create(mouse_x+25,mouse_y,obj_tooltip))
+                text = other.tooltip;
+                
+            hoverTimer = -1500;
+        }
     }
     
     ui_draw_sprite_panel(spr_button, 0, 8, -6, -6, __width + 12, __height + 12);
@@ -172,17 +192,31 @@ imgAnchor = 0;
         {
             darken = 2;
             draw_set_color($aaaaaa);
+            hoverTimer = 0;
         }
         else
         {
             darken = 1;
             draw_set_color($cccccc); 
+            hoverTimer++;
         }
     } 
     else 
     {
         darken = 0;
         draw_set_color($ffffff);
+        hoverTimer = 0;
+    }
+    
+    if(hoverTimer &gt; 45 &amp;&amp; tooltip != "")
+    {
+        if(!instance_exists(obj_tooltip))
+        {
+            with(instance_create(mouse_x+25,mouse_y,obj_tooltip))
+                text = other.tooltip;
+                
+            hoverTimer = -1500;
+        }
     }
     
     ui_draw_sprite_panel(spr_button, 0, 8, -6, -6, __width + 12, __height + 12);

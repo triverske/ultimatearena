@@ -75,7 +75,7 @@ for(h=0;h<s;h++)
             else if(version == 1)
             {
                 global.mapPICS[i] = sprite_add(steam_map [? "folder"] + "\height.png",0,0,0,0,0);
-                global.mapOVERLAY[i] = steam_map [? "folder"] + "\color.png";
+                global.mapOVERLAY[i] = steam_map[? "folder"] + "\color.png";
             }
             
             i++;

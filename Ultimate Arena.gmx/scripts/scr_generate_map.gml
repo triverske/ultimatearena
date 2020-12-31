@@ -77,9 +77,12 @@ var brown2 = make_color_rgb(84, 68, 48);
 var brown3 = make_color_rgb( 74,  90, 48);
 var map_tile_size = (512 / width);
 
+
 // give each terrain a unique color in the minimap
-for (var i = 0; i < width; i += 1) {
-  for (var j = 0; j < height; j += 1) {
+for (var i = 0; i < width; i += 1) 
+{
+  for (var j = 0; j < height; j += 1) 
+  {
     var point = scr_sample(i,j);
     if (point > mountainlevel + 0.87)
         draw_set_color(c_white);

@@ -67,6 +67,7 @@ with (obj_uiButton)
                         zui_create(0,0,obj_uiExitButton,-5);
                         callback = title_buttons;
                         wID = "Settings";
+                        tooltip = "Opens the settings menu";
             
                         with (zui_create(5, __height - 135, obj_uiButton)) 
                         {
@@ -102,6 +103,7 @@ with (obj_uiButton)
                             caption = "Toggle Fullscreen";
                             callback = title_buttons;
                             bID = 2;
+                            tooltip = "Switches between windowed and fullscreen mode";
                         }    
                         
                         with(zui_create(120,__height - 30, obj_uiLabel))
@@ -246,6 +248,10 @@ with (obj_uiButton)
             var c = instance_create(0,0,obj_roomTransition);
             c.gotoroom = rm_dyaCharselect;
             global.GAMETYPE = 2;  
+        }
+        else if(bID == 23)//Steam Workshop
+        {
+            steam_activate_overlay_browser("https://steamcommunity.com/workshop/browse/?appid=385240");
         }
     }
 }

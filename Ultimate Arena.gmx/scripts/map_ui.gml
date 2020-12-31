@@ -14,10 +14,12 @@ if (argument0 == id )
     global.stone = 0;
     global.mapSelected = sID;
     ini_open(global.MAPS[sID]);
+    draw_set_alpha(1);
+
     if(global.mapTYPE[sID] == 0)
     {
         //Fill global.grid
-        
+        /*
         for(var i=0; i<256; i++){
             var str = ini_read_string("Map","Colors"+string(i),"");
             for(var j=0; j<256; j++){
@@ -28,13 +30,14 @@ if (argument0 == id )
                  else
                     global.grid[i,j] = k;
             }
-        }
+        }*/
     }
     
     // create minimap surface
     var surf = surface_create(512, 512);
     surface_set_target(surf);
-    
+    draw_clear_alpha(c_black,1);
+    draw_set_colour_write_enable(1,1,1,0);
     
     if(global.mapTYPE[sID] == 0)
     {
@@ -115,6 +118,7 @@ if (argument0 == id )
     }
     
     ini_close();
+    draw_set_colour_write_enable(1,1,1,1);
     surface_reset_target();
     sprite_delete(spr);
     if(spr2 != 0)

@@ -134,13 +134,13 @@ with (obj_uiButton)
             {
                 type = 3;
                 global.fighterGroups = 1;
-                caption = "Groups On";
+                caption = "Teams On";
             }
             else
             {
                 type = 2;
                 global.fighterGroups = 0;
-                caption = "Groups Off";
+                caption = "Teams Off";
             }
         }
         else if(bID == 13){//Select Map

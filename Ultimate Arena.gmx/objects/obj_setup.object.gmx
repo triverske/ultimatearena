@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.VERSION = "5.2";
+            <string>global.VERSION = "5.3";
 
 global.ENDLESS = 0;
 global.SAVE_SPEED = 12;

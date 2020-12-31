@@ -39,6 +39,32 @@ global.DEADLOC[global.fighters,1] = 0;
 global.newsLook = false;
 global.mapwindow = noone;
 
+mapColor = noone;
+
+if(global.mapSelected != -1)
+{
+    if(global.mapOVERLAY[global.mapSelected] != noone)
+    {
+        mapColor = sprite_add(global.mapOVERLAY[global.mapSelected],0,0,0,0,0);
+        surface_set_target(global.mapsurf);
+        draw_sprite(mapColor,0,0,0);
+        surface_reset_target();
+        background_assign(global.bck_minimap,background_create_from_surface(global.mapsurf,0,0,512,512,0,0));
+
+    }
+}
+
+tt[0] = "Opens the map window.";
+tt[1] = "Opens the stats window.";
+tt[2] = "Opens the sponsor window.";
+tt[3] = "Opens the fighter list window.";
+tt[4] = "Opens the updates window;";
+tt[5] = "Toggles whether or not teams are shown on the map.";
+tt[6] = "Change shrinking arena border settings.";
+tt[7] = "View latest Newspaper headline.";
+tt[8] = "Opens the 3D map window.";
+
+
 sanityleader = -1;
 xpleader = -1;
 killleader = -1;
@@ -178,6 +204,7 @@ with(zui_main())
                 bID = i + 4;
                 callback = arena_ui;
                 image = spr_gameButtons;
+                tooltip = obj_arenaController.tt[i];
                 zui_set_size(42,42);
             }
         } 

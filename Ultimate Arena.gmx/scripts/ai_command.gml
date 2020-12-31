@@ -10,28 +10,37 @@ if (com != STATE)
         caption = "Wandering";
         var ic = true;
             with(obj_arenaShrink)
-                if(!point_in_circle(other.x,other.y,x,y,radius-10))
+                if(!point_in_circle(other.x,other.y,x,y,radius+10))
                     ic = false;
         
         if(group != -1 && instance_exists(group) && distance_to_object(group) > 5)
         {
             if(ic == true)
-                DIR += random_range(-20,20);//point_direction(x,y-5,group.x,group.y-5)+random_range(-15,15);
+                DIR += point_direction(x,y-5,group.x,group.y-5)+random_range(-15,15);
             else
-                DIR = point_direction(x,y-5,256,256)+random_range(-20,20);
+                DIR = point_direction(x,y-5,256+irandom_range(-120,120),256+irandom_range(-120,120))+random_range(-20,20);
         }
         else
         {
             if(ic == false)
-                wanderAngle = point_direction(x,y-5,256,256)+random_range(-20,20);
-            else
-                wanderAngle += random_range(-20,20)
-            wanderAngle += random_range(-1,1)//change the angle randomly to make it wander
-            DIR = wanderAngle;
+                DIR = point_direction(x,y-5,256+irandom_range(-120,120),256+irandom_range(-120,120))+random_range(-30,30);
+
+            DIR += random_range(-5,5)//change the angle randomly to make it wander
         }
-        QUICK = .5 + AGILITY/10;
-        CONTINUE = 8;
+        QUICK = .1 + AGILITY/20;
+        CONTINUE = 15;
+        
         update_create(update_get_text("wander",fighterID),fighterID,0);
+        break;
+        
+        case "HEAD TO CENTER":
+        caption = "Headed to Center";
+
+        DIR = point_direction(x,y-5,256+irandom_range(-120,120),256+irandom_range(-120,120))+random_range(-25,25);
+        QUICK = .1 + AGILITY/20;
+        CONTINUE = 1;
+        update_create(update_get_text("headtocenter",fighterID),fighterID,0);
+        
         break;
         
         case "SLEEP":

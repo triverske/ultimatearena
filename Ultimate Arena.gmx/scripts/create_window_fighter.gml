@@ -74,6 +74,7 @@ with(zui_create(WS/2-WS*.1,HS/2,obj_uiWindow,-1))
         zui_set_size(150, 24);
         caption = "Move";
         callback = arena_fighter_ui;
+        tooltip = "Pick up the fighter and move them.";
         bID = 2;
         fID = other.fID
     }
@@ -84,6 +85,7 @@ with(zui_create(WS/2-WS*.1,HS/2,obj_uiWindow,-1))
         zui_set_size(150, 24);
         caption = "Give Food & Water";
         callback = arena_fighter_ui;
+        tooltip = "Fills the fighter's food and water meters.";
         bID = 0;
         fID = other.fID
     }
@@ -94,6 +96,7 @@ with(zui_create(WS/2-WS*.1,HS/2,obj_uiWindow,-1))
         zui_set_size(150, 24);
         caption = "Kill";
         callback = arena_fighter_ui;
+        tooltip = "Immediately kills the fighter. Careful!";
         bID = 1;
         fID = other.fID
     }
@@ -101,8 +104,9 @@ with(zui_create(WS/2-WS*.1,HS/2,obj_uiWindow,-1))
     {
         zui_set_anchor(0,0);
         zui_set_size(150, 24);
-        caption = "Remove from Group";
+        caption = "Remove from Team";
         callback = arena_fighter_ui;
+        tooltip = "Immediately ends the fighters relationship with their team.";
         bID = 3;
         fID = other.fID
     }
@@ -112,6 +116,7 @@ with(zui_create(WS/2-WS*.1,HS/2,obj_uiWindow,-1))
         zui_set_size(150, 24);
         caption = "Center 3D Camera";
         callback = arena_fighter_ui;
+        tooltip = "Follow this fighter on the 3D map.";
         bID = 4;
         fID = other.fID
     }

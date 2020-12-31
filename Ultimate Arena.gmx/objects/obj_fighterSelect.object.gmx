@@ -74,6 +74,7 @@ with (zui_main())
             zui_set_size(150, 30);
             caption = "Toggle Selection";
             callback = selection_ui;
+            tooltip = "Non-selected fighters will be selected and vice versa.";
             bID = 0;
             listID = other.listID;
         }
@@ -84,6 +85,7 @@ with (zui_main())
             zui_set_size(96, 30);
             caption = "Clear";
             callback = selection_ui;
+            tooltip = "Clears the fighter list so none are selected.";
             bID = 1;
             listID = other.listID;
         }
@@ -94,6 +96,7 @@ with (zui_main())
             zui_set_size(150, 30);
             caption = "Change Teams";
             callback = selection_ui;
+            tooltip = "Changes the starting team of selected fighters.";
             bID = 2;
             listID = other.listID;
         }
@@ -103,6 +106,7 @@ with (zui_main())
             zui_set_anchor(0,0);
             zui_set_size(96, 30);
             caption = "Clear Teams";
+            tooltip = "Clears the fighter list so none start in a team."
             callback = selection_ui;
             bID = 3;
             listID = other.listID;
@@ -126,6 +130,7 @@ with (zui_main())
             zui_set_size(240, 30);
             caption = "Search";
             callback = fighter_select_buttons;
+            tooltip = "Search by text for fighters."
             bID = 17;
             
         }
@@ -136,6 +141,7 @@ with (zui_main())
             zui_set_size(240, 30);
             caption = "Select By Tag";
             callback = fighter_select_buttons;
+            tooltip = "Select fighters with specific tags."
             bID = 2;
         }
         
@@ -145,6 +151,7 @@ with (zui_main())
             zui_set_size(150, 30);
             caption = "Select Random 50";
             callback = fighter_select_buttons;
+            tooltip = "Selects 50 random fighters from your library."
             bID = 14;
         }
         with (zui_create(160, __height - 35, obj_uiButton)) 
@@ -153,6 +160,7 @@ with (zui_main())
             zui_set_size(40, 30);
             caption = "100";
             callback = fighter_select_buttons;
+            tooltip = "Selects 100 random fighters from your library."
             bID = 15;
         }
         with (zui_create(205, __height - 35, obj_uiButton)) 
@@ -161,6 +169,7 @@ with (zui_main())
             zui_set_size(40, 30);
             caption = "250";
             callback = fighter_select_buttons;
+            tooltip = "Selects 250 random fighters from your library."
             bID = 16;
         }
         with (zui_create(0, 0, obj_uiWindowCaption)) 
@@ -196,6 +205,7 @@ with (zui_main())
             zui_set_size(240, 30);
             caption = "Return To Title";
             callback = fighter_select_buttons;
+            tooltip = "Return to the main menu."
             bID = 0;
         }
         
@@ -205,6 +215,7 @@ with (zui_main())
             zui_set_size(240, 30);
             caption = "Select Saved Map";
             callback = fighter_select_buttons;
+            tooltip = "Select a map from your library."
             bID = 13;
         }
         with (zui_create(5, __height - 105, obj_uiButton)) 
@@ -213,6 +224,7 @@ with (zui_main())
             zui_set_size(240, 30);
             caption = "Regenerate Map";
             callback = fighter_select_buttons;
+            tooltip = "Randomly generates a new map."
             bID = 1;
         }
         with (zui_create(5, __height - 140, obj_uiButton)) 
@@ -221,6 +233,7 @@ with (zui_main())
             zui_set_size(240, 30);
             caption = "Create From Seed";
             callback = fighter_select_buttons;
+            tooltip = "Creates a map from a text seed.";
             bID = 8;
         }
         with (zui_create(5, __height - 175, obj_uiButton)) 
@@ -229,6 +242,7 @@ with (zui_main())
             zui_set_size(240, 30);
             caption = "Begin Game";
             callback = fighter_select_buttons;
+            tooltip = "Starts the game with the selected settings."
             bID = 3;
         }
     }
@@ -283,6 +297,7 @@ with (zui_main())
             global.arena_events = 1;
             type = 3;
             callback = fighter_select_buttons;
+            tooltip = "Toggles whether or not random Arena Events can happen.";
             bID = 4;
         }
         
@@ -294,6 +309,7 @@ with (zui_main())
             caption = "Inital Landmines On";
             type = 3;
             callback = fighter_select_buttons;
+            tooltip = "Toggles pre-placed landmines around the arena."
             bID = 5;
         }
         
@@ -311,10 +327,11 @@ with (zui_main())
         {
             zui_set_anchor(0, 0);
             zui_set_size(240, 30);
-            caption = "Groups On";
+            caption = "Teams On";
             global.fighterGroups = 1;
             type = 3;
             callback = fighter_select_buttons;
+            tooltip = "Changes whether or not fighters can team up to form groups."
             bID = 12;
         }
         
@@ -326,6 +343,7 @@ with (zui_main())
             global.custom_updates = 1;
             type = 3;
             callback = fighter_select_buttons;
+            tooltip = "Changes whether or not custom updates from characters will appear."
             bID = 7;
         }
     }

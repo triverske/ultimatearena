@@ -51,7 +51,30 @@ followRandom = false;
 followCPU = false;
 
 xp = 0;
-testSurf = surface_create(512,512);
+Surf3D = surface_create(512,512);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>surface_free(Surf3D);
 </string>
           </argument>
         </arguments>
@@ -87,7 +110,7 @@ tz = smooth_approach(tz,cz,.1);
 
 d3d_start();
 d3d_set_fog(true, make_color_rgb(80,243,75), 400, 7000);
-surface_set_target(testSurf);
+surface_set_target(Surf3D);
 draw_clear_alpha(c_teal,1);
 texture_set_interpolation(1);
 d3d_set_zwriteenable(0);
@@ -120,7 +143,7 @@ with(obj_fighter)
         {
             d3d_transform_add_translation(0,0,10);
             
-            vertex_submit(vertexBuffer, pr_trianglelist, tex2);
+            //vertex_submit(vertexBuffer, pr_trianglelist, tex2);
         }
         d3d_transform_set_identity();
         
