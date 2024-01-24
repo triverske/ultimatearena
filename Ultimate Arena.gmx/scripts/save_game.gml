@@ -9,7 +9,6 @@ else
 ini_write_real("Map","seed",global.seed);
 ini_write_real("Map","ENDLESS",global.ENDLESS);
 ini_write_real("Map","GAMETYPE",global.GAMETYPE);
-ini_write_real("Map","TWITCHENABLED",global.TWITCHENABLED);
 ini_write_real("Map","arena_events",global.arena_events);
 ini_write_real("Map","landmines",global.landmines);
 ini_write_real("Map","custom_sounds",global.custom_sounds);

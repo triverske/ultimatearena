@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.VERSION = "5.3";
+            <string>global.VERSION = "5.4";
 
 global.ENDLESS = 0;
 global.SAVE_SPEED = 12;
@@ -282,11 +282,7 @@ global.bck_minimap = -1;
 
 global.boxColor = 0;
 global.GAMETYPE = 0;
-
-global.CODENAME = "Basilisk";
 ini_open("settings.ini");
-global.TWITCHENABLED = ini_read_real("twitch","enable",0);
-global.SELECTIONTIME = ini_read_real("twitch","time",60);
 global.vsync = ini_read_real("settings","vsync",0);
 
 var v = ini_read_real("settings","version",1);
@@ -308,10 +304,10 @@ for(var i = 0;i &lt; co;i++)
     workshop_add_created_item(ini_read_string("created","c"+string(i),-1));
 ini_close();
 
-
+application_surface_draw_enable(0);
 room_goto_next();
 
-application_surface_draw_enable(0);
+
 </string>
           </argument>
         </arguments>
@@ -410,14 +406,8 @@ if(keyboard_check(vk_tab))
     var my = display_mouse_get_y() - 360;
     window_set_position(mx,my);
 }
-if(keyboard_check_pressed(vk_numpad0) &amp;&amp; keyboard_check_pressed(vk_numpad1))
-{
-    if(global.uploadImage != -1)
-        sprite_delete(global.uploadImage);
-    global.uploadImage = sprite_add(get_open_filename("image file",".png"),0,0,0,0,0);
-}
 
-global.gs = max(1,display_get_height() div 1080);
+//global.gs = max(1,display_get_height() div 1080);
  
 /*if(keyboard_check_pressed(vk_space))
 {
@@ -765,6 +755,54 @@ if(event_id == new_item)
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var scale = 2;
+
+if(window_get_fullscreen())
+{
+    var offset = (3440 - 2560) / scale;
+
+    room_set_width(room,3440/scale)
+    room_set_height(room,1440/scale) 
+    global.WSCALE = 3440 / scale;
+    global.HSCALE = 1440 / scale;
+    display_set_gui_maximise(scale, scale, offset, 0);
+
+}
+else
+{
+    room_set_width(room,1280)
+    room_set_height(room,720)
+    global.WSCALE = 1280;
+    global.HSCALE = 720;
+    
+display_set_gui_size(global.WSCALE,global.HSCALE);
+}
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
@@ -844,23 +882,7 @@ requestId = steam_ugc_submit_item_update(updateHandle, "Version " + date_datetim
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(window_get_fullscreen())
-{
-    room_set_width(room,SW)
-    room_set_height(room,SH) 
-    global.WSCALE = SW;
-    global.HSCALE = SH;
-}
-else
-{
-    room_set_width(room,1280)
-    room_set_height(room,720)
-    global.WSCALE = 1280;
-    global.HSCALE = 720;
-}
-
-
-display_set_gui_size(global.WSCALE,global.HSCALE);
+            <string>event_user(1);
 </string>
           </argument>
         </arguments>
@@ -907,7 +929,7 @@ display_set_gui_size(global.WSCALE,global.HSCALE);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_surface_stretched(application_surface,0,0,SW,SH);
+            <string>//draw_surface_stretched(application_surface,0,0,SW,SH);
 </string>
           </argument>
         </arguments>

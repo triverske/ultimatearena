@@ -176,7 +176,6 @@ if(global.landmines)
 
 global.ENDLESS = ini_read_real("Map","ENDLESS",0);
 global.GAMETYPE = ini_read_real("Map","GAMETYPE",0);
-global.TWITCHENABLED = ini_read_real("Map","TWITCHENABLED",0);
 global.custom_sounds = ini_read_real("Map","custom_sounds",0);
 global.fighterGroups = ini_read_real("Map","fighterGroups",0);
 global.custom_updates = ini_read_real("Map","custon_updates",0);

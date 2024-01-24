@@ -37,14 +37,17 @@ with (obj_uiButton)
             {
                 window_set_fullscreen(false);
                 display_set_gui_size(1280,720);
-                room_restart();
+                
             }
             else
             {
                 window_set_fullscreen(true);
                 display_set_gui_size(SW,SH);
-                room_restart();
+                
             }
+            
+            with(obj_setup)
+                event_user(1);
         }
         else if (bID == 3)//Exit Game
         {
