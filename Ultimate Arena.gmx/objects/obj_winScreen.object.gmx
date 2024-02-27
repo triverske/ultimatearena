@@ -82,11 +82,11 @@ part_type_blend(particle3,0);
 part_type_life(particle3,60,400);
 
 emitter1 = part_emitter_create(Sname);
-part_emitter_region(Sname,emitter1,0,SW,0,0,1,0);
+part_emitter_region(Sname,emitter1,0,GUIW,0,0,1,0);
 part_emitter_stream(Sname,emitter1,particle1,2);
 
 emitter2 = part_emitter_create(Sname);
-part_emitter_region(Sname,emitter2,0,SW,0,0,1,0);
+part_emitter_region(Sname,emitter2,0,GUIW,0,0,1,0);
 part_emitter_stream(Sname,emitter2,particle2,2);
 
 part_system_automatic_draw(Sname,0);
@@ -228,7 +228,7 @@ surface_reset_target();
             <string>if(window_get_fullscreen())
 {
     texture_set_interpolation(1);
-    draw_surface_stretched(winSurf,0,0,SW,SH);
+    draw_surface_stretched(winSurf,0,0,GUIW,GUIH);
     texture_set_interpolation(0);
 }
 else

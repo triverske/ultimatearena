@@ -37,13 +37,13 @@ with (obj_uiButton)
             {
                 window_set_fullscreen(false);
                 display_set_gui_size(1280,720);
-                
+                global.gs = max(1,window_get_height() div 1080);
             }
             else
             {
                 window_set_fullscreen(true);
-                display_set_gui_size(SW,SH);
-                
+                display_set_gui_size(GUIW,GUIH);
+                global.gs = max(1,window_get_height() div 1080);
             }
             
             with(obj_setup)

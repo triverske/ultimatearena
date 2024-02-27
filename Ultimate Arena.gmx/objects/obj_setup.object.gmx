@@ -407,7 +407,7 @@ if(keyboard_check(vk_tab))
     window_set_position(mx,my);
 }
 
-//global.gs = max(1,display_get_height() div 1080);
+//global.gs = max(1,GUIH div 720);
  
 /*if(keyboard_check_pressed(vk_space))
 {
@@ -772,17 +772,20 @@ if(event_id == new_item)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var scale = 2;
+            <string>var scale = max(1,GUIH div 720);
+
+
 
 if(window_get_fullscreen())
 {
-    var offset = (3440 - 2560) / scale;
+    var offset = ((SW - (scale * 1280)) / scale);
 
-    room_set_width(room,3440/scale)
-    room_set_height(room,1440/scale) 
-    global.WSCALE = 3440 / scale;
-    global.HSCALE = 1440 / scale;
-    display_set_gui_maximise(scale, scale, offset, 0);
+    room_set_width(room,SW/scale)
+    room_set_height(room,SH/scale) 
+    global.WSCALE = SW / scale;
+    global.HSCALE = SH / scale;
+    display_set_gui_maximise(); 
+    //display_set_gui_maximise(scale, scale, offset, 0);
 
 }
 else
@@ -792,11 +795,12 @@ else
     global.WSCALE = 1280;
     global.HSCALE = 720;
     
-display_set_gui_size(global.WSCALE,global.HSCALE);
+    display_set_gui_size(global.WSCALE,global.HSCALE);
 }
 
-
-
+global.gs = scale;
+ 
+ 
 
 </string>
           </argument>

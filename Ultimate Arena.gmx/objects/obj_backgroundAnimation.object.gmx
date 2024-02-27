@@ -81,12 +81,12 @@ part_type_life(particle2,60,400);
 */
 
 emitter1 = part_emitter_create(Sname);
-part_emitter_region(Sname,emitter1,0,SW,0,0,1,0);
+part_emitter_region(Sname,emitter1,0,GUIW,0,0,1,0);
 part_emitter_stream(Sname,emitter1,particle1,5);
 /*
 
 emitter2 = part_emitter_create(Sname);
-part_emitter_region(Sname,emitter2,0,SW,0,0,1,0);
+part_emitter_region(Sname,emitter2,0,GUIW,0,0,1,0);
 part_emitter_stream(Sname,emitter2,particle2,3); 
 */
 part_system_automatic_draw(Sname,0);
@@ -140,7 +140,7 @@ if(room != rm_splashscreen)
     part_type_color1(particle1,make_color_hsv(hue+irandom_range(2,8),255,255));
     //draw_set_color(c_black);
     draw_set_alpha(.1)
-    draw_rectangle(0,0,SW,SH,0);
+    draw_rectangle(0,0,GUIW,GUIH,0);
     draw_set_alpha(1)
     
     part_system_drawit(Sname);

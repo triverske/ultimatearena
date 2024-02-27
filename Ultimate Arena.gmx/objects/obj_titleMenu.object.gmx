@@ -157,8 +157,8 @@ with (zui_main())
 lmx = 0;
 lmy = 0;
 logo_timer = 0;
-logo_x = irandom(SW-700);
-logo_y = irandom(SH-352);
+logo_x = irandom(GUIW-700);
+logo_y = irandom(GUIH-352);
 logo_xv = choose(true,false);
 logo_yv = choose(true,false);
 logo_col = make_color_hsv(random(255),255,255);
@@ -250,8 +250,11 @@ var c4 = make_color_hsv(hue-30,150,40);
 var sw = sprite_get_width(spr_ultimateArenaLogo);
 var sh = sprite_get_height(spr_ultimateArenaLogo);
 
-draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,display_get_gui_width()/2 - sw/2-10,(display_get_gui_height()/5)*2 - sh/2+10,1,1,0,c3,c3,c4,c4,1);
-draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,display_get_gui_width()/2 - sw/2,(display_get_gui_height()/5)*2 - sh/2,1,1,0,c,c,c2,c2,1);
+show_debug_message("GUIW: " + string(GUIW));
+show_debug_message("GUIH: " + string(GUIH));
+
+draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,GUIW/2 - sw/2-10,(GUIH/3) - sh/2+10,1,1,0,c3,c3,c4,c4,1);
+draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,GUIW/2 - sw/2,(GUIH/3) - sh/2,1,1,0,c,c,c2,c2,1);
 
 var gw = display_get_gui_width();
 var gh = display_get_gui_height();
@@ -266,7 +269,7 @@ if(logo_xv)
     }
 }
 else
-{
+{ 
     logo_x--;
     if(logo_x &lt; 0)
     {

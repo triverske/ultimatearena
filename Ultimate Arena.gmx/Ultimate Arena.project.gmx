@@ -419,9 +419,11 @@
     <room>rooms\rm_dyaCharselect</room>
     <room>rooms\rm_maptest</room>
   </rooms>
-  <constants number="2">
-    <constant name="SW">floor(display_get_width() / global.gs)</constant>
-    <constant name="SH">floor(display_get_height() / global.gs)</constant>
+  <constants number="4">
+    <constant name="SW">display_get_width()</constant>
+    <constant name="SH">display_get_height()</constant>
+    <constant name="GUIW">floor(window_get_width() / global.gs)</constant>
+    <constant name="GUIH">floor(window_get_height() / global.gs)</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
