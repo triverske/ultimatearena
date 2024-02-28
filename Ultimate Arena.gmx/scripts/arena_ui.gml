@@ -62,22 +62,7 @@ with (obj_uiButton)
                 if(wID == "Stats")
                     zui_destroy();
             }
-            with (zui_main()) 
-            {
-                with(zui_create(445,348,obj_uiWindow,-1)) 
-                {
-                    wID = "Stats";
-                    callback = arena_ui;
-                    zui_set_size(140,524);
-                    with(zui_create(0,0,obj_uiWindowCaption))
-                    {
-                        caption = "Stats";
-                        draggable = 1;
-                    }
-                    alarm[0] = 2;
-                    zui_create(0,0,obj_uiExitButton,-1);
-                }
-            }
+            create_window_stats();
         }
         if (bID == 6)
         {
@@ -303,17 +288,17 @@ with (obj_uiWindow)
     {
         if(wID == "Map")
         {
-            draw_surface_stretched(obj_arenaController.map,0,24,HS*(512/720),HS*(512/720));
+            draw_surface_stretched(obj_arenaController.map,0,24,HS*(512/720)*global.gs,HS*(512/720)*global.gs);
         }
         
         if(wID == "3D Map")
         {
-            draw_surface_stretched(obj_mapcamera.Surf3D,0,24,HS*(512/720),HS*(512/720));
+            draw_surface_stretched(obj_mapcamera.Surf3D,0,24,HS*(512/720)*global.gs,HS*(512/720)*global.gs);
             draw_set_font(font0);
             
             if(instance_exists(obj_arenaEvent))
             {
-                var fl = floor(HS*(512/720)) + 24
+                var fl = floor(HS*(512/720) *global.gs) + 24
                 
                 draw_set_alpha(.6)
                 draw_rectangle_colour(0,fl-24,HS*(512/720),fl,c_red,c_red,c_maroon,c_maroon,0);
@@ -356,7 +341,7 @@ with (obj_uiWindow)
                     if(followFighterId != -1)
                     {
                         
-                        var fl = floor(HS*(512/720)) + 24
+                        var fl = floor(HS*(512/720)*global.gs) + 24
                     
                         var caption = "Following: " + global.NAMES[followFighterId] + "#";
                         texture_set_interpolation(1);
@@ -412,7 +397,7 @@ with (obj_uiWindow)
         }
         if(wID == "Updates")
         {
-            draw_surface_part(global.surf_updates,0,0,390,HS*(512/720) - 75,0,24);
+            draw_surface_part(global.surf_updates,0,0,390,HS*(512/720)*global.gs - 75,0,24);
             
         }
         if(wID == "Sandbox")

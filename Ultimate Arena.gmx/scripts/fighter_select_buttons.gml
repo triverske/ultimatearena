@@ -322,7 +322,7 @@ with (obj_uiWindow)
         if(!surface_exists(global.mapsurf))
             obj_fighterSelect.regen = 1;
         else
-            draw_surface_stretched(global.mapsurf,0,24,HS*(512/720),HS*(512/720));
+            draw_surface_stretched(global.mapsurf,0,24,HS*(512/720)*global.gs,HS*(512/720)*global.gs);
     }
     }
 }

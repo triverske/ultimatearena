@@ -2,7 +2,6 @@ var WS = global.WSCALE;
 var HS = global.HSCALE;
 var createdItems = argument0;
 
-
 with(zui_main())
 {
     with(zui_create(0,0,obj_uiWindow))

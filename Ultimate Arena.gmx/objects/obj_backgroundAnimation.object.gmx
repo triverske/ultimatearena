@@ -48,7 +48,7 @@ part_type_orientation(particle1,0,360,0,10,1);
 part_type_blend(particle1,0);
 part_type_life(particle1,30,440);
 emitter1 = part_emitter_create(Sname);
-part_emitter_region(Sname,emitter1,0,room_width,0,0,1,0);
+part_emitter_region(Sname,emitter1,0,window_get_width(),0,0,1,0);
 part_emitter_stream(Sname,emitter1,particle1,7);
 */
 
@@ -81,12 +81,12 @@ part_type_life(particle2,60,400);
 */
 
 emitter1 = part_emitter_create(Sname);
-part_emitter_region(Sname,emitter1,0,SW,0,0,1,0);
+part_emitter_region(Sname,emitter1,0,window_get_width(),0,0,1,0);
 part_emitter_stream(Sname,emitter1,particle1,5);
 /*
 
 emitter2 = part_emitter_create(Sname);
-part_emitter_region(Sname,emitter2,0,SW,0,0,1,0);
+part_emitter_region(Sname,emitter2,0,window_get_width(),0,0,1,0);
 part_emitter_stream(Sname,emitter2,particle2,3); 
 */
 part_system_automatic_draw(Sname,0);
@@ -97,6 +97,47 @@ for(var i = 0;i &lt; 400;i++)
 
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///emitter reset
+part_emitter_region(Sname,emitter1,0,window_get_width(),0,0,1,0);
+
+var amt = min(window_get_width() div 1280, 1) * 5;
+
+part_emitter_stream(Sname,emitter1,particle1,amt);
+
+
+var i = 0;
+var maxi = 600;
+
+while(true)
+{
+    part_system_update(Sname);
+    i++
+    
+    if(i == maxi)
+        break;
+}
 </string>
           </argument>
         </arguments>
@@ -136,7 +177,7 @@ if(room != rm_splashscreen)
 {
     draw_set_alpha(1)
     draw_background_tiled(image,bg_x,bg_y);
-    draw_set_color(make_color_hsv(40+sin(hue)*10,255,80+sin(hue+.12351231)*4));
+    draw_set_color(make_color_hsv(30*sin(hue*.01)+(hue),255,80+sin(hue+.12351231)*4));
     part_type_color1(particle1,make_color_hsv(hue+irandom_range(2,8),255,255));
     //draw_set_color(c_black);
     draw_set_alpha(.1)

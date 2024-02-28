@@ -48,8 +48,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var WS = SW//global.WSCALE;
-var HS = SH//global.HSCALE;
+            <string>var WS = GUIW;//global.WSCALE;
+var HS = GUIH;//global.HSCALE;
 
 if(instance_exists(global.mapwindow))
 {

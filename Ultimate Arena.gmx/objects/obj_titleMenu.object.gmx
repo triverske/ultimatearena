@@ -36,10 +36,43 @@ if(audio_is_playing(snd_outdoor_ambient))
     audio_stop_sound(snd_outdoor_ambient2);
 }
 
-with (zui_main()) 
+event_user(0);
+
+lmx = 0;
+lmy = 0;
+logo_timer = 0;
+logo_x = irandom(GUIW-700);
+logo_y = irandom(GUIH-352);
+logo_xv = choose(true,false);
+logo_yv = choose(true,false);
+logo_col = make_color_hsv(random(255),255,255);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (zui_main()) 
 {
     //ui_show_popup("More features on the way,#thank you for playing!");
-    with (zui_create(display_get_gui_width()/2, display_get_gui_height() / 2 + 226, obj_uiButton)) 
+    with (zui_create(GUIW/2, GUIH / 2 + 226, obj_uiButton)) 
     {
         zui_set_size(260, 48);
         caption = "Quick Match";
@@ -48,7 +81,7 @@ with (zui_main())
         bID = 0;
     }
     
-    with (zui_create(display_get_gui_width()/2 + 100, display_get_gui_height() / 2  + 270, obj_uiButton)) 
+    with (zui_create(GUIW/2 + 100, GUIH / 2  + 270, obj_uiButton)) 
     {
          //zui_set_anchor(0, 0);
          zui_set_size(190, 24);
@@ -57,7 +90,7 @@ with (zui_main())
          tooltip = "Endlessly play matches back to back, great for casual viewing"
          bID = 12;
     }
-    with (zui_create(display_get_gui_width()/2 + 100, display_get_gui_height() / 2  + 300, obj_uiButton)) 
+    with (zui_create(GUIW/2 + 100, GUIH / 2  + 300, obj_uiButton)) 
     {
          //zui_set_anchor(0, 0);
          zui_set_size(190, 24);
@@ -66,7 +99,7 @@ with (zui_main())
          tooltip = "Opens the settings menu"
          bID = 5;
     }    
-    with (zui_create(display_get_gui_width()/2 + 100, display_get_gui_height() / 2  + 330, obj_uiButton)) 
+    with (zui_create(GUIW/2 + 100, GUIH / 2  + 330, obj_uiButton)) 
     {
          //zui_set_anchor(0, 0);
          zui_set_size(190, 24);
@@ -76,7 +109,7 @@ with (zui_main())
          bID = 3;
     }
     
-    with (zui_create(display_get_gui_width()/2 - 100, display_get_gui_height() / 2  + 270, obj_uiButton)) 
+    with (zui_create(GUIW/2 - 100, GUIH / 2  + 270, obj_uiButton)) 
     {
          zui_set_size(190, 24);
          caption = "Editors";
@@ -84,7 +117,7 @@ with (zui_main())
          tooltip = "Add and edit Maps, Fighters, Events, and Text"
          bID = 4;
     }
-    with (zui_create(display_get_gui_width()/2 - 100, display_get_gui_height() / 2  + 300, obj_uiButton)) 
+    with (zui_create(GUIW/2 - 100, GUIH / 2  + 300, obj_uiButton)) 
     {
          zui_set_size(190, 24);
          caption = "Steam Workshop";
@@ -92,7 +125,7 @@ with (zui_main())
          callback = title_buttons;
          bID = 23;
     }
-    with (zui_create(display_get_gui_width()/2 - 100, display_get_gui_height() / 2  + 330, obj_uiButton)) 
+    with (zui_create(GUIW/2 - 100, GUIH / 2  + 330, obj_uiButton)) 
     {
          zui_set_size(190, 24);
          caption = "Defend Your Arena";
@@ -101,7 +134,7 @@ with (zui_main())
          bID = 22;
     }
     
-    with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  + 300, obj_uiImageButton)) 
+    with (zui_create(GUIW/2 + 590, GUIH / 2  + 300, obj_uiImageButton)) 
     {
          //github
          zui_set_size(80, 80);
@@ -111,7 +144,7 @@ with (zui_main())
          type = 0;
          bID = 11;
     }
-    with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  + 210, obj_uiImageButton)) 
+    with (zui_create(GUIW/2 + 590, GUIH / 2  + 210, obj_uiImageButton)) 
     {
          zui_set_size(80, 80);
          caption = "Facebook";
@@ -121,7 +154,7 @@ with (zui_main())
          type = 1;
          bID = 13;
     }
-    with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  + 120, obj_uiImageButton)) 
+    with (zui_create(GUIW/2 + 590, GUIH / 2  + 120, obj_uiImageButton)) 
     {
          zui_set_size(80, 80);
          caption = "Twitter";
@@ -131,7 +164,7 @@ with (zui_main())
          type = 2;
          bID = 14;
     }
-    with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  + 30, obj_uiImageButton)) 
+    with (zui_create(GUIW/2 + 590, GUIH / 2  + 30, obj_uiImageButton)) 
     {
          zui_set_size(80, 80);
          caption = "Discord";
@@ -141,7 +174,7 @@ with (zui_main())
          type = 3;
          bID = 18;
     }
-    with (zui_create(display_get_gui_width()/2 + 590, display_get_gui_height() / 2  - 60, obj_uiImageButton)) 
+    with (zui_create(GUIW/2 + 590, GUIH / 2  - 60, obj_uiImageButton)) 
     {
          zui_set_size(80, 80);
          caption = "Twitch";
@@ -153,15 +186,6 @@ with (zui_main())
     }
     
 }
-
-lmx = 0;
-lmy = 0;
-logo_timer = 0;
-logo_x = irandom(SW-700);
-logo_y = irandom(SH-352);
-logo_xv = choose(true,false);
-logo_yv = choose(true,false);
-logo_col = make_color_hsv(random(255),255,255);
 
 </string>
           </argument>
@@ -215,6 +239,45 @@ lmy = mouse_y;
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with(obj_uiButton)
+    zui_destroy();
+    
+var isSettingsOpen = false;
+    
+with(obj_uiWindow)
+{
+    if(wID == "Settings")
+        isSettingsOpen = true;
+    zui_destroy();
+}
+    
+if(isSettingsOpen)
+    create_window_settings();
+
+
+alarm[0] = 2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
@@ -250,8 +313,8 @@ var c4 = make_color_hsv(hue-30,150,40);
 var sw = sprite_get_width(spr_ultimateArenaLogo);
 var sh = sprite_get_height(spr_ultimateArenaLogo);
 
-draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,display_get_gui_width()/2 - sw/2-10,(display_get_gui_height()/5)*2 - sh/2+10,1,1,0,c3,c3,c4,c4,1);
-draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,display_get_gui_width()/2 - sw/2,(display_get_gui_height()/5)*2 - sh/2,1,1,0,c,c,c2,c2,1);
+draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,WW/2 - sw/2-10,(WH/3) - sh/2+10,1,1,0,c3,c3,c4,c4,1);
+draw_sprite_general(spr_ultimateArenaLogo,0,0,0,sw,sh,WW/2 - sw/2,(WH/3) - sh/2,1,1,0,c,c,c2,c2,1);
 
 var gw = display_get_gui_width();
 var gh = display_get_gui_height();
@@ -266,7 +329,7 @@ if(logo_xv)
     }
 }
 else
-{
+{ 
     logo_x--;
     if(logo_x &lt; 0)
     {
@@ -297,7 +360,7 @@ logo_timer++;
 if(logo_timer &gt; 1800)
 {
     depth = -50;
-    draw_rectangle_color(0,0,gw,gh,c_black,c_black,c_black,c_black,0);
+    draw_rectangle_color(0,0,GUIW,GUIH,c_black,c_black,c_black,c_black,0);
     draw_sprite_ext(spr_ultimateArenaLogo,0,logo_x+350/2,logo_y+176/2,.5,.5,0,logo_col,1);
 }
 

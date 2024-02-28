@@ -93,7 +93,7 @@ s2l = string_length(global.KILL_STRING)*12;
 
 if(s1c &gt; s1p-1 || start)
 {
-    var c = instance_create(WS,HS-40,obj_scrollingText);
+    var c = instance_create(WW,WH-40,obj_scrollingText);
     c.text = global.DEATH_STRING;
     c.color = make_color_rgb(40,80,255);//make_color_rgb(0,228,228);
     c.length = s1l;
@@ -108,7 +108,7 @@ else
 
 if (s2c &gt; s2p-1 || start)
 {
-    var c = instance_create(WS,HS-19,obj_scrollingText);
+    var c = instance_create(WW,WH-19,obj_scrollingText);
     c.text = global.KILL_STRING;
     c.color = c_red;
     c.length = s2l;
@@ -146,8 +146,8 @@ with(obj_scrollingText)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var WS = global.WSCALE;
-var HS = global.HSCALE;
+            <string>var WS = WW;
+var HS = WH;
 
 draw_set_font(font_board);draw_set_valign(fa_top);
 draw_set_halign(fa_left);

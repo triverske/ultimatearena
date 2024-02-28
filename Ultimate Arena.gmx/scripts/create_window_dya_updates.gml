@@ -1,5 +1,5 @@
 var WS = global.WSCALE;
-var HS = global.HSCALE;
+var HS = global.HSCALE *global.gs;
 
 with(zui_create(WS - 200,HS/2,obj_uiWindow,-1))
 {

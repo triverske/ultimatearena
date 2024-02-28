@@ -1,6 +1,7 @@
-var WS = global.WSCALE;
-var HS = global.HSCALE;
+var WS = global.WSCALE *global.gs;
+var HS = global.HSCALE *global.gs;
 
+show_debug_message("3DMAP HS: " + string(HS));
 with(zui_create(WS/2-WS*.1,HS/2,obj_uiWindow,-1))
 {
     wID = "3D Map";
