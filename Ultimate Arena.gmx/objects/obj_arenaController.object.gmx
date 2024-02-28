@@ -163,52 +163,7 @@ else
 }
 with(zui_main())
 {
-    create_window_map();
-    create_window_updates();
-    
-    with(zui_create(75,global.HSCALE/2,obj_uiWindow,-1))
-    {
-        wID = "Stats";
-        callback = arena_ui;
-        zui_set_size(140,524);
-        with(zui_create(0,0,obj_uiWindowCaption))
-        {
-            caption = "Stats";
-            draggable = 1;
-        }
-        zui_create(0,0,obj_uiExitButton,-1);
-    }
-    
-    with(zui_create(0,0,obj_uiWindow,-100))
-    {
-        wID = "Test";
-        callback = arena_ui;
-        zui_set_size(global.WSCALE,55);
-        zui_set_anchor(0,0);
-        for(var i=0;i&lt;4;i++)
-        {
-            with (zui_create(120+20*i,35,obj_uiImageButton))
-            {
-                type = i;
-                bID = i;
-                callback = arena_ui;
-                image = spr_gameSpeedButtons;
-                zui_set_size(18,18);
-            }
-        } 
-        for(var i=0;i&lt;9;i++)
-        {
-            with (zui_create(240+44*i,28,obj_uiImageButton))
-            {
-                type = i;
-                bID = i + 4;
-                callback = arena_ui;
-                image = spr_gameButtons;
-                tooltip = obj_arenaController.tt[i];
-                zui_set_size(42,42);
-            }
-        } 
-    }
+    alarm[0] = 2;
 }
 alarm[0] = global.GAME_SPEED;
 

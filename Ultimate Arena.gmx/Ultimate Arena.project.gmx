@@ -280,6 +280,9 @@
         <script>scripts\create_window_workshop1.gml</script>
         <script>scripts\create_window_arenashrink.gml</script>
         <script>scripts\create_window_newspaper.gml</script>
+        <script>scripts\create_window_stats.gml</script>
+        <script>scripts\create_startup_windows.gml</script>
+        <script>scripts\create_window_settings.gml</script>
       </scripts>
     </scripts>
     <script>scripts\string_parse_number.gml</script>
@@ -419,11 +422,13 @@
     <room>rooms\rm_dyaCharselect</room>
     <room>rooms\rm_maptest</room>
   </rooms>
-  <constants number="4">
+  <constants number="6">
     <constant name="SW">display_get_width()</constant>
     <constant name="SH">display_get_height()</constant>
     <constant name="GUIW">floor(window_get_width() / global.gs)</constant>
     <constant name="GUIH">floor(window_get_height() / global.gs)</constant>
+    <constant name="WW">window_get_width()</constant>
+    <constant name="WH">window_get_height()</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

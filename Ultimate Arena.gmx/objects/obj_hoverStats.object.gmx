@@ -58,16 +58,22 @@ if(instance_exists(global.mapwindow))
         var xPos = (global.__zui_mx-global.mapwindow.__x);
         var yPos = (global.__zui_my-global.mapwindow.__y);
         
-        xPos *= (512/(global.HSCALE*(512/720)));
-        yPos *= (512/(global.HSCALE*(512/720)));
+        var s = 512;
+        
+        xPos *= (s/(global.HSCALE*(s/720)));
+        yPos *= (s/(global.HSCALE*(s/720)));
+        
+        xPos /= global.gs;
+        yPos /= global.gs;
         
         yPos -= 24;
         
         var c = instance_nearest(xPos,yPos,obj_fighter);
         var open = 0;
         var d = c.fighterID
-        if(dif(c.x,xPos) &lt; 10)
-            if(dif(c.y,yPos) &lt; 10)
+        var dis = 10 * (global.gs)
+        if(dif(c.x,xPos) &lt; dis)
+            if(dif(c.y,yPos) &lt; dis)
                 open = 1;
     
     
@@ -107,8 +113,8 @@ if(instance_exists(global.mapwindow))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var WS = GUIW//global.WSCALE;
-var HS = GUIH//global.HSCALE;
+            <string>var WS = global.WSCALE;
+var HS = global.HSCALE;
 
 if(instance_exists(global.mapwindow))
 {
@@ -117,15 +123,27 @@ if(instance_exists(global.mapwindow))
         var xPos = (global.__zui_mx-global.mapwindow.__x);
         var yPos = (global.__zui_my-global.mapwindow.__y);
         
-        xPos *= (512/(global.HSCALE*(512/720)));
-        yPos *= (512/(global.HSCALE*(512/720)));
+        var s = 512;
         
-        yPos -= 18;
+        xPos *= (s/(global.HSCALE*(s/720)));
+        yPos *= (s/(global.HSCALE*(s/720)));
+        
+        xPos /= global.gs;
+        yPos /= global.gs;
+        
+        yPos -= 24;
+        
+        show_debug_message("XPOS: " + string(xPos));
+        show_debug_message("YPOS: " + string(yPos));
+        //show_debug_message("XPOS: " + string(xPos));
+        //show_debug_message("XPOS: " + string(xPos));
         
         c = instance_nearest(xPos,yPos,obj_fighter)
+        show_debug_message("CXPOS: " + string(c.x));
+        show_debug_message("CYPOS: " + string(c.y));
         if(instance_exists(c))
         {
-            var dis = 10 * (global.HSCALE/1280)
+            var dis = 10 * (global.gs)
             if(dif(c.x,xPos) &lt; dis)
                 if(dif(c.y,yPos) &lt; dis)
                     draw_hover_stats(c);

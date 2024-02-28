@@ -2,7 +2,7 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>727379968</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -25,8 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sx = mouse_x;
-sy = mouse_y;
+            <string>sx = mouse_x * global.gs;
+sy = mouse_y * global.gs;
+
+setup = false;
+
 sw = 0;
 
 text = "TEST";
@@ -52,7 +55,20 @@ text = "TEST";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(abs(sx-mouse_x) + abs(sy-mouse_y) &gt; 5)
+            <string>var off = (global.gs-1) * 150;
+
+if(!setup)
+{
+    sx = mouse_x * global.gs + off;
+    sy = mouse_y * global.gs;
+
+    x = sx;
+    y = sy;
+    setup = true;
+    visible = true;
+}
+
+if(abs(sx-(mouse_x* global.gs + off)) + abs(sy-mouse_y* global.gs) &gt; 5)
     instance_destroy();
 </string>
           </argument>

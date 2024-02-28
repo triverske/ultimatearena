@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.VERSION = "5.4";
+            <string>global.VERSION = "6.0";
 
 global.ENDLESS = 0;
 global.SAVE_SPEED = 12;
@@ -56,6 +56,8 @@ draw_set_circle_precision(64);
 
 global.createdWorkshopItems = -1;
 global.createdWorkshopItemsCount = 0;
+global.__zui_mx = 0;
+global.__zui_my = 0;
 
 unset = true;
 
@@ -350,6 +352,48 @@ if(totalMusic &gt; 0)
     yp = 0;
     ypG = true;
     ypWait = 60;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///scaling fix
+
+var scale = max(1,window_get_height() div 720);
+
+global.gs = scale;
+show_debug_message("Set scale to " + string(scale));
+
+if(window_get_fullscreen())
+{
+    var offset = ((SW - (scale * 1280)) / scale);
+
+    room_set_width(room,SW/scale)
+    room_set_height(room,SH/scale) 
+    global.WSCALE = SW / scale;
+    global.HSCALE = SH / scale;
+    display_set_gui_maximise();
+
+    with(obj_uiMain)
+        zui_set_size(WW,WH);
 }
 </string>
           </argument>
@@ -784,7 +828,7 @@ if(window_get_fullscreen())
     room_set_height(room,SH/scale) 
     global.WSCALE = SW / scale;
     global.HSCALE = SH / scale;
-    display_set_gui_maximise(); 
+    //display_set_gui_maximise(); 
     //display_set_gui_maximise(scale, scale, offset, 0);
 
 }
@@ -799,9 +843,15 @@ else
 }
 
 global.gs = scale;
+alarm[1] = 2;
  
- 
+with(obj_backgroundAnimation)
+{
+    alarm[0] = 2;
+}
 
+with(obj_titleMenu)
+    event_user(0);
 </string>
           </argument>
         </arguments>
@@ -911,29 +961,6 @@ requestId = steam_ugc_submit_item_update(updateHandle, "Version " + date_datetim
             <kind>1</kind>
             <string>if(file_exists("text.ini"))
     file_delete("text.ini");
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="75">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//draw_surface_stretched(application_surface,0,0,SW,SH);
 </string>
           </argument>
         </arguments>
