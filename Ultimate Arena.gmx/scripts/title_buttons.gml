@@ -33,10 +33,21 @@ with (obj_uiButton)
         }
         else if (bID == 2)//Fullscreen
         {
+            ini_open("settings.ini")
+        
             if window_get_fullscreen()
+            {
                 window_set_fullscreen(false);
+                ini_write_real("settings","fullscreen",0);
+            }
             else
+            {
                 window_set_fullscreen(true);
+                ini_write_real("settings","fullscreen",1);
+            }
+                
+            ini_close();
+
             
             with(obj_setup)
                 event_user(1);
