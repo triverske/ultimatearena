@@ -4,26 +4,32 @@ ID = argument1;
 
 
 ini_open("text.ini");
-var total1 = ini_read_real(state,"total",1);
+var total1 = ini_read_real(state,"total",0);
 ini_close();
 ini_open(global.FILES[ID])
 var total2 = ini_read_real(state,"total",0);
 ini_close();
 
-var randvar = 0;
-if(total2 > 0)
-    randvar = irandom(1);
+var useCustom = 0;
+if(total1 > 0 && total2 > 0)
+    useCustom = irandom(1);
+else if(total2 > 0)
+    useCustom = 1;
+else if(total1 > 0)
+    useCustom = 0;
+else
+    return "";
 
-if(randvar)
+if(useCustom)
 {
-    randvar = irandom(total2-1)+1;
+    var randvar = irandom(total2-1)+1;
     ini_open(global.FILES[ID]);
     var c = ini_read_string(state,"s"+string(randvar),"ERROR " + global.FILES[ID]);
     ini_close();
 }
 else
 {
-    randvar = irandom(total1-1)+1;
+    var randvar = irandom(total1-1)+1;
     ini_open("text.ini");
     var c = ini_read_string(state,"s"+string(randvar),"ERROR");
     ini_close();

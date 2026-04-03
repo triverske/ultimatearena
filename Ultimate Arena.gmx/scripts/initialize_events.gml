@@ -59,4 +59,6 @@ for(h=0;h<s;h++)
     file_find_close();
     ds_map_destroy(steam_map);
 }
+ds_list_destroy(steam_list);
+ 
 global.EVENT_COUNT = i;

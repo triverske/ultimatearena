@@ -14,14 +14,6 @@ if(is_array(global.cIMAGES)){
 }
 global.cIMAGES = 0;
 
-if(is_array(global.cIMAGES)){
-    for(var i=0; i<array_length_1d(global.cIMAGES); i++){
-        if(global.cIMAGES[i] != spr_defaultFighterImage)
-            sprite_delete(global.cIMAGES[i]);
-    }
-}
-global.cIMAGES = 0;
-
 directory = 0;
 directory[0] = "";
 var l = initialize_directory("characters");
@@ -105,7 +97,7 @@ var s = ds_list_size(steam_list);
 for(h=0;h<s;h++)
 {
     steam_map = ds_map_create();
-    steam_ugc_get_item_install_info(steam_list[| h], steam_map); 
+    steam_ugc_get_item_install_info(steam_list[| h], steam_map);
     //show_debug_message(steam_map [? "folder"]);
     
     
@@ -185,6 +177,7 @@ for(h=0;h<s;h++)
     file_find_close();
     ds_map_destroy(steam_map);
 }
+ds_list_destroy(steam_list);
 
 global.lNAME = i;
 global.fighters = i;
